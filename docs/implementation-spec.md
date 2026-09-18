@@ -1401,3 +1401,7 @@ No detenerse después de una sola fase salvo bloqueo real.
 - Condiciones comerciales opcionales se ingresan expresamente y se guardan en el snapshot. No se toman plazos ni datos fiscales contradictorios de los mocks como valores de producción.
 - Fecha UTC persistida y zona America/Lima explícita; presentación siempre en Lima.
 - Autenticación con scrypt para hash y jose para sesión. Secretos definidos en Vercel; producción inicia con catálogo vacío.
+
+### Selección guiada del vidrio
+
+En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial automática. Cada control permanece deshabilitado hasta completar el anterior; medidas y cantidad requieren un vidrio seleccionado. Al cambiar modalidad o familia se descarta la selección dependiente. Solo se ofrecen familias con productos activos y cotizables (precio > 0 en esa modalidad), y el combo de vidrio se limita a esa familia. Se elimina el selector adicional de espesor. El detalle muestra Catedral y su diseño cuando corresponda, color, grosor, medidas de plancha si están registradas, y código entre paréntesis en texto pequeño. No se inventan dimensiones ni se repite la familia. La edición de ítems conserva su modalidad, familia y producto; permite cambiar medidas/cantidad como antes. Cálculos y snapshots históricos permanecen iguales.

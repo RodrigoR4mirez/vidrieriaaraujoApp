@@ -8,7 +8,6 @@ import {
   type CatalogState,
   type SaleMode,
   isQuotable,
-  productDetails,
 } from "@/domain/catalogs/models";
 import {
   draftItemSchema,
@@ -19,6 +18,7 @@ import { priceDraft } from "@/application/use-cases";
 import { confirmAction } from "@/app/actions";
 import { money } from "@/lib/formatting";
 import { Button, Dialog, Notice, QuantityControl } from "./ui";
+import { GlassPicker } from "./glass-picker";
 import { QuotationSummary } from "./quotation-summary";
 export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
   const [items, setItems] = useState<DraftItem[]>([]);
@@ -183,22 +183,26 @@ function ItemForm({
   onCancel: () => void;
 }) {
   const hydrated = useHydrated();
-  const [mode, setMode] = useState<SaleMode>(editing?.mode ?? "SQUARE_FOOT");
-  const available = catalog.products.filter((p) => isQuotable(p, catalog.values, mode));
-  const [productId, setProductId] = useState(
-    editing?.productId || available[0]?.id || "",
+  const [mode, setMode] = useState<SaleMode | "">(editing ? editing.mode ?? "SQUARE_FOOT" : "");
+  const [familyId, setFamilyId] = useState(
+    editing ? catalog.products.find((p) => p.id === editing.productId)?.familyId || "" : "",
   );
+  const [productId, setProductId] = useState(editing?.productId || "");
+  const available = mode ? catalog.products.filter((p) => isQuotable(p, catalog.values, mode)) : [];
+  const families = catalog.values.filter((v) => v.category === "families" && available.some((p) => p.familyId === v.id));
+  const familyProducts = available.filter((p) => p.familyId === familyId);
   const [widthCm, setWidth] = useState(editing && editing.mode !== "SHEET" ? editing.widthCm : "");
   const [heightCm, setHeight] = useState(editing && editing.mode !== "SHEET" ? editing.heightCm : "");
   const [quantity, setQuantity] = useState(editing?.quantity || 1);
   const [error, setError] = useState("");
-  const product = available.find((p) => p.id === productId) || (!editing ? available[0] : undefined);
-  const variants = available.filter(
-    (p) =>
-      p.familyId === product?.familyId &&
-      p.colorFinishId === product?.colorFinishId &&
-      p.cathedralDesignId === product?.cathedralDesignId,
-  );
+  const product = familyProducts.find((p) => p.id === productId);
+  function clearProduct() {
+    setProductId("");
+    setWidth("");
+    setHeight("");
+    setQuantity(1);
+    setError("");
+  }
   const candidate = {
     productId: product?.id || "",
     mode,
@@ -240,50 +244,28 @@ function ItemForm({
       <div className="field">
         <label htmlFor="sale-mode">Cotizar por</label>
         <select id="sale-mode" value={mode} disabled={!!editing} onChange={(event) => {
-          const nextMode = event.target.value as SaleMode;
-          setMode(nextMode);
-          setProductId(catalog.products.find((p) => isQuotable(p, catalog.values, nextMode))?.id || "");
-          setError("");
+          setMode(event.target.value as SaleMode | "");
+          setFamilyId("");
+          clearProduct();
         }}>
+          <option value="">Selecciona la modalidad</option>
           <option value="SQUARE_FOOT">Pie² (por medidas)</option>
           <option value="SHEET">Plancha entera</option>
         </select>
       </div>
-      {!product && <Notice>No hay vidrios activos con precio disponible para esta modalidad.</Notice>}
+      {mode && !available.length && <Notice>No hay vidrios activos con precio disponible para esta modalidad.</Notice>}
       <div className="field">
-        <label htmlFor="glass-select">Tipo de vidrio</label>
-        <select
-          id="glass-select"
-          value={product?.id || ""}
-          disabled={!!editing}
-          onChange={(e) => setProductId(e.target.value)}
-          required
-        >
-          {!product && <option value="">Sin vidrios disponibles</option>}
-          {available.map((p) => (
-            <option key={p.id} value={p.id}>
-              {productDetails(p, catalog.values).productDescription} · {p.code}
-            </option>
-          ))}
+        <label htmlFor="family-select">Familia</label>
+        <select id="family-select" value={familyId} disabled={!!editing || !mode || !families.length}
+          onChange={(event) => { setFamilyId(event.target.value); clearProduct(); }} required>
+          <option value="">Selecciona la familia</option>
+          {families.map((family) => <option key={family.id} value={family.id}>{family.name}</option>)}
         </select>
       </div>
-      <div className="field">
-        <label>Espesor del cristal</label>
-        <div className="thickness-pills">
-          {variants.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              disabled={!!editing}
-              aria-pressed={productId === p.id}
-              className={productId === p.id ? "selected" : ""}
-              onClick={() => setProductId(p.id)}
-            >
-              {productDetails(p, catalog.values).thickness}
-            </button>
-          ))}
-        </div>
-      </div>
+      <GlassPicker key={`${mode}-${familyId}`} products={familyProducts} values={catalog.values}
+        value={productId} disabled={!!editing || !mode || !familyId || !familyProducts.length}
+        onChange={setProductId} />
+      <fieldset disabled={!product} className="item-measures form-stack">
       {mode === "SQUARE_FOOT" && <div className="form-grid">
         <div className="field">
           <label htmlFor="width">Ancho (cm)</label>
@@ -315,6 +297,7 @@ function ItemForm({
         </div>
       </div>}
       <QuantityControl value={quantity} onChange={setQuantity} label={mode === "SHEET" ? "Cantidad de planchas" : "Cantidad de paños / piezas"} />
+      </fieldset>
       <div className="estimate">
         <span>Importe estimado</span>
         <strong>{estimate ? money(estimate) : "S/ —"}</strong>

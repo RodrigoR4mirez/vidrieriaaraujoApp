@@ -419,3 +419,7 @@ Cada ítem nuevo elige una modalidad: `SQUARE_FOOT` (por pie², con medidas) o `
 - Total de proforma: suma de importes de ambas modalidades.
 
 El snapshot de plancha conserva modalidad, producto y descripción, precio por plancha, cantidad, precio unitario, importe y medidas de plancha del catálogo si existen. Cambios posteriores del catálogo no alteran el histórico. Los snapshots anteriores sin modalidad se interpretan como venta por pie² y se leen sin reescribirlos. Resumen, PDF, WhatsApp y ticket identifican claramente las planchas enteras.
+
+### Selección guiada del vidrio
+
+En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial automática. Cada control permanece deshabilitado hasta completar el anterior; medidas y cantidad requieren un vidrio seleccionado. Al cambiar modalidad o familia se descarta la selección dependiente. Solo se ofrecen familias con productos activos y cotizables (precio > 0 en esa modalidad), y el combo de vidrio se limita a esa familia. Se elimina el selector adicional de espesor. El detalle muestra Catedral y su diseño cuando corresponda, color, grosor, medidas de plancha si están registradas, y código entre paréntesis en texto pequeño. No se inventan dimensiones ni se repite la familia. La edición de ítems conserva su modalidad, familia y producto; permite cambiar medidas/cantidad como antes. Cálculos y snapshots históricos permanecen iguales.

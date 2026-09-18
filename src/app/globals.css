@@ -1163,3 +1163,29 @@ fieldset.quotation-layout {
   margin: 0;
   min-width: 0;
 }
+
+/* Quote selection: modality → family → glass. */
+.item-measures { border: 0; padding: 0; margin: 0; min-width: 0; }
+.quote-form select:disabled, .item-measures:disabled { opacity: .5; }
+.glass-picker { position: relative; min-width: 0; }
+.glass-picker-trigger {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  width: 100%; min-height: 46px; padding: 12px 13px; text-align: left;
+  border: 1px solid #cbd6e5; border-radius: 12px; background: #ffffffc7;
+  color: var(--ink); font-size: 12px;
+}
+.glass-picker-trigger svg { flex-shrink: 0; }
+.glass-picker span { min-width: 0; overflow-wrap: anywhere; }
+.glass-picker small { font-size: 10px; color: #5b6f8b; }
+.glass-picker-list {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 10;
+  margin-top: 4px; max-height: min(280px, 40dvh); overflow-y: auto;
+  border: 1px solid #cbd6e5; border-radius: 12px; background: #f8fbff;
+  box-shadow: 0 8px 24px #192d4b26; padding: 4px;
+}
+.glass-picker-list button {
+  display: block; width: 100%; min-height: 46px; padding: 12px;
+  border: 0; border-radius: 8px; background: transparent;
+  text-align: left; font-size: 12px; color: var(--ink);
+}
+.glass-picker-list button:hover, .glass-picker-list button.active { background: #e5efff; }

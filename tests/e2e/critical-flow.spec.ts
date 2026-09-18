@@ -117,9 +117,17 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     page.getByRole("button", { name: `Reactivar ${code}`, exact: true }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Cotizador", exact: true }).click();
-  expect(
-    await page.locator("#glass-select option").allTextContents(),
-  ).not.toEqual(expect.arrayContaining([expect.stringContaining(code)]));
+  await expect(page.getByLabel("Cotizar por")).toHaveValue("");
+  await expect(page.getByLabel("Familia", { exact: true })).toBeDisabled();
+  await expect(page.getByRole("combobox", { name: "Tipo de vidrio" })).toBeDisabled();
+  await expect(page.getByLabel("Cantidad", { exact: true })).toBeDisabled();
+  await expect(page.getByText("Espesor del cristal", { exact: true })).toHaveCount(0);
+  await page.getByLabel("Cotizar por").selectOption("SQUARE_FOOT");
+  await expect(page.getByRole("combobox", { name: "Tipo de vidrio" })).toBeDisabled();
+  await page.getByLabel("Familia", { exact: true }).selectOption({ label: names.family });
+  await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
+  await expect(page.getByRole("option").filter({ hasText: code })).toHaveCount(0);
+  await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Escape");
   await page.getByRole("link", { name: "Vidrios", exact: true }).click();
   await page
     .getByRole("button", { name: `Reactivar ${code}`, exact: true })
@@ -129,11 +137,10 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   ).toBeVisible();
   await page.getByRole("link", { name: "Cotizador", exact: true }).click();
   const add = async (sku: string, width: string, quantity: string) => {
-    const option = await page
-      .locator("#glass-select option")
-      .filter({ hasText: sku })
-      .getAttribute("value");
-    await page.getByLabel("Tipo de vidrio").selectOption(option!);
+    await page.getByLabel("Cotizar por").selectOption("SQUARE_FOOT");
+    await page.getByLabel("Familia", { exact: true }).selectOption({ label: names.family });
+    await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
+    await page.getByRole("option").filter({ hasText: sku }).click();
     await page.getByLabel("Ancho (cm)", { exact: true }).fill(width);
     await page.getByLabel("Alto (cm)", { exact: true }).fill("80");
     await page.getByLabel("Cantidad", { exact: true }).fill(quantity);
@@ -177,12 +184,18 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     .fill("Condiciones de prueba; no corresponde a una venta.");
   await page.getByLabel("Cotizar por").selectOption("SHEET");
   await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveCount(0);
-  const sheetOptions = await page.locator("#glass-select option").allTextContents();
-  expect(sheetOptions.some((text) => text.includes(`${tag}-SHEET`))).toBe(true);
-  for (const suffix of ["COM", "LAM", "NONE"])
-    expect(sheetOptions.some((text) => text.includes(`${tag}-${suffix}`))).toBe(false);
-  const sheetId = await page.locator("#glass-select option").filter({ hasText: `${tag}-SHEET` }).getAttribute("value");
-  await page.getByLabel("Tipo de vidrio").selectOption(sheetId!);
+  await expect(page.getByLabel("Familia", { exact: true })).toHaveValue("");
+  await expect(page.getByRole("combobox", { name: "Tipo de vidrio" })).toBeDisabled();
+  await page.getByLabel("Familia", { exact: true }).selectOption({ label: names.family });
+  await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
+  const sheetOptions = await page.getByRole("listbox").getByRole("option").allTextContents();
+  expect(sheetOptions).toHaveLength(1);
+  expect(sheetOptions[0]).toContain(`Catedral ${names.design} · ${names.color} · ${names.thickness}`);
+  expect(sheetOptions[0]).not.toContain(names.family);
+  expect(sheetOptions[0]).toContain(`(${tag}-SHEET)`);
+  // Select by keyboard as well as touch/click; Enter must not submit the form.
+  await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Home");
+  await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Enter");
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Agregar ítem", exact: true }).click();
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 603.68");
@@ -195,9 +208,25 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
   await page.getByLabel("Cotizar por").selectOption("SQUARE_FOOT");
-  const cutOptions = await page.locator("#glass-select option").allTextContents();
+  await page.getByLabel("Familia", { exact: true }).selectOption({ label: names.family });
+  await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
+  const cutOptions = await page.getByRole("listbox").getByRole("option").allTextContents();
+  expect(cutOptions).toHaveLength(2);
   for (const suffix of ["SHEET", "NONE"])
     expect(cutOptions.some((text) => text.includes(`${tag}-${suffix}`))).toBe(false);
+  expect(cutOptions.find((text) => text.includes(code))).toContain("200 × 300 cm");
+  for (const viewport of [{ width: 390, height: 844 }, { width: 820, height: 1180 }]) {
+    await page.setViewportSize(viewport);
+    const dropdown = await page.getByRole("listbox").boundingBox();
+    expect(dropdown!.x).toBeGreaterThanOrEqual(0);
+    expect(dropdown!.x + dropdown!.width).toBeLessThanOrEqual(viewport.width);
+    await page.screenshot({ path: `test-results/selector-${viewport.width}.png`, fullPage: true });
+  }
+  await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Escape");
+  await page.getByLabel("Familia", { exact: true }).selectOption("");
+  await expect(page.getByRole("combobox", { name: "Tipo de vidrio" })).toBeDisabled();
+  await expect(page.getByLabel("Ancho (cm)", { exact: true })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Agregar ítem", exact: true })).toBeDisabled();
   for (const viewport of [
     { width: 1440, height: 900 },
     { width: 1280, height: 800 },
