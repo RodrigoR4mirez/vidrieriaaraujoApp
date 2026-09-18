@@ -1,0 +1,198 @@
+import { randomUUID } from "node:crypto";
+import { describe, expect, it } from "vitest";
+import { AlreadyExistsError, ConflictError } from "@/domain/errors";
+import {
+  BlobCatalogDocument,
+  VercelBlobGlassRepository,
+  VercelBlobBaseCatalogRepository,
+  VercelBlobQuotationRepository,
+} from "@/infrastructure/persistence/blob/repositories";
+import type { JsonStore } from "@/infrastructure/persistence/blob/store";
+import { QuotationService, CatalogService } from "@/application/use-cases";
+import { quotationSchema } from "@/domain/quotation/models";
+import { quotationText, whatsappUrl } from "@/lib/sharing";
+class MemoryStore implements JsonStore {
+  records = new Map<string, { value: unknown; etag: string }>();
+  async read(path: string) {
+    return structuredClone(this.records.get(path) || null);
+  }
+  async paths(prefix: string) {
+    return [...this.records.keys()].filter((k) => k.startsWith(prefix));
+  }
+  async write(path: string, value: unknown, etag?: string) {
+    const current = this.records.get(path);
+    if (!etag && current) throw new AlreadyExistsError();
+    if (etag && current?.etag !== etag) throw new ConflictError();
+    this.records.set(path, {
+      value: structuredClone(value),
+      etag: randomUUID(),
+    });
+  }
+}
+async function fixture() {
+  const store = new MemoryStore(),
+    document = new BlobCatalogDocument(store);
+  const glass = new VercelBlobGlassRepository(document),
+    bases = new VercelBlobBaseCatalogRepository(document),
+    quotations = new VercelBlobQuotationRepository(store);
+  const catalog = new CatalogService(glass, bases),
+    service = new QuotationService(glass, quotations);
+  const family = await catalog.saveBase({
+    category: "families",
+    code: "COM",
+    name: "Cristal común",
+    status: "ACTIVE",
+  });
+  const thickness = await catalog.saveBase({
+    category: "thicknesses",
+    code: "E06",
+    name: "6 mm",
+    status: "ACTIVE",
+  });
+  const product = await catalog.saveProduct({
+    code: "COM-06",
+    familyId: family.id,
+    thicknessId: thickness.id,
+    pricePerSquareFoot: "3.50",
+    status: "ACTIVE",
+  });
+  const draft = () => ({
+    requestId: randomUUID(),
+    conditions: "Entrega coordinada con el cliente.",
+    items: [
+      {
+        id: randomUUID(),
+        productId: product.id,
+        widthCm: "100",
+        heightCm: "80",
+        quantity: 2,
+      },
+    ],
+  });
+  return {
+    store,
+    glass,
+    bases,
+    quotations,
+    catalog,
+    service,
+    product,
+    family,
+    draft,
+  };
+}
+describe("repositories y casos de uso", () => {
+  it("conserva ambas altas cuando dos dispositivos inicializan el catálogo", async () => {
+    const store = new MemoryStore();
+    const bases = new VercelBlobBaseCatalogRepository(new BlobCatalogDocument(store));
+    await Promise.all(["COM", "LAM"].map((code) => bases.save({
+      category: "families", code, name: code, status: "ACTIVE", description: "", observation: "",
+    })));
+    expect((await bases.list()).map((value) => value.code).sort()).toEqual(["COM", "LAM"]);
+  });
+  it("confirma, serializa y comparte el mismo snapshot", async () => {
+    const f = await fixture();
+    const q = await f.service.confirm(f.draft());
+    expect(q.number).toBe("PRO-00001");
+    expect(q.total).toBe("62.25");
+    expect(quotationSchema.parse(JSON.parse(JSON.stringify(q)))).toEqual(q);
+    expect(quotationText(q)).toContain("TOTAL PROFORMA: S/ 62.25");
+    expect(decodeURIComponent(whatsappUrl(q))).toContain(q.number);
+    await f.catalog.saveProduct(
+      { ...f.product, pricePerSquareFoot: "100" },
+      f.product.id,
+      f.product.revision,
+    );
+    expect((await f.service.find(q.number))?.total).toBe("62.25");
+  });
+  it("asigna números únicos crecientes en confirmaciones simultáneas", async () => {
+    const f = await fixture();
+    const results = await Promise.all(
+      Array.from({ length: 8 }, () => f.service.confirm(f.draft())),
+    );
+    expect(new Set(results.map((q) => q.number)).size).toBe(8);
+    expect(await f.service.nextNumber()).toBe("PRO-00009");
+  });
+  it("un reintento concurrente de la misma confirmación no duplica", async () => {
+    const f = await fixture(),
+      draft = f.draft();
+    const results = await Promise.all([
+      f.service.confirm(draft),
+      f.service.confirm(draft),
+    ]);
+    expect(results[0].number).toBe(results[1].number);
+    expect(await f.service.list()).toHaveLength(1);
+  });
+  it("no sobrescribe proformas confirmadas", async () => {
+    const f = await fixture(),
+      q = await f.service.confirm(f.draft());
+    await expect(
+      f.store.write(`data/v1/quotations/${q.number}.json`, {
+        ...q,
+        total: "0",
+      }),
+    ).rejects.toBeInstanceOf(AlreadyExistsError);
+  });
+  it("rechaza SKU duplicado incluso bajo concurrencia", async () => {
+    const f = await fixture();
+    const results = await Promise.allSettled([
+      f.catalog.saveProduct({ ...f.product, code: "NEW" }),
+      f.catalog.saveProduct({ ...f.product, code: "new" }),
+    ]);
+    expect(results.filter((r) => r.status === "fulfilled")).toHaveLength(1);
+    expect((await f.glass.catalog()).products).toHaveLength(2);
+  });
+  it("detecta edición obsoleta sin perder el cambio anterior", async () => {
+    const f = await fixture();
+    await f.catalog.saveProduct(
+      { ...f.product, pricePerSquareFoot: "4" },
+      f.product.id,
+      1,
+    );
+    await expect(
+      f.catalog.saveProduct(
+        { ...f.product, pricePerSquareFoot: "5" },
+        f.product.id,
+        1,
+      ),
+    ).rejects.toBeInstanceOf(ConflictError);
+    expect((await f.catalog.load()).products[0].pricePerSquareFoot).toBe("4");
+  });
+  it("oculta, conserva y reactiva productos", async () => {
+    const f = await fixture();
+    const hidden = await f.catalog.saveProduct(
+      { ...f.product, status: "HIDDEN" },
+      f.product.id,
+      1,
+    );
+    await expect(f.service.confirm(f.draft())).rejects.toThrow("oculto");
+    await f.catalog.saveProduct(
+      { ...hidden, status: "ACTIVE" },
+      hidden.id,
+      hidden.revision,
+    );
+    expect((await f.service.confirm(f.draft())).total).toBe("62.25");
+  });
+  it("excluye valores base ocultos de nuevas cotizaciones", async () => {
+    const f = await fixture();
+    await f.catalog.saveBase(
+      { ...f.family, status: "HIDDEN" },
+      f.family.id,
+      f.family.revision,
+    );
+    await expect(f.service.confirm(f.draft())).rejects.toThrow("oculto");
+  });
+  it("rechaza referencias inválidas y totales del cliente", async () => {
+    const f = await fixture();
+    await expect(
+      f.catalog.saveProduct({
+        ...f.product,
+        code: "INVALID",
+        familyId: randomUUID(),
+      }),
+    ).rejects.toThrow("catálogo");
+    await expect(
+      f.service.confirm({ ...f.draft(), total: "0.01" }),
+    ).rejects.toThrow();
+  });
+});

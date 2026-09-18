@@ -1,0 +1,9 @@
+STITCH/
+LOGOS/
+tests/
+playwright-report/
+test-results/
+backups/
+.env*
+!.env.example
+.DS_Store

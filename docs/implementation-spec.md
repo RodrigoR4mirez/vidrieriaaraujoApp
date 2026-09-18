@@ -1383,3 +1383,13 @@ No inventar información de negocio.
 19. Production.
 
 No detenerse después de una sola fase salvo bloqueo real.
+
+## 49. Decisiones verificadas de implementación
+
+- Next.js 16.3.5 es el patch estable elegido mediante npm; versiones exactas en package.json/package-lock.json.
+- `tsc` usa TypeScript 7.0.2 a través del alias `@typescript/native`. El paquete oficial de compatibilidad `@typescript/typescript6` se publica bajo el alias `typescript` para herramientas que aún consumen su API. ESLint 10 usa `@eslint/compat` para los plugins heredados de eslint-config-next, sin desactivar reglas.
+- Webpack es el compilador de desarrollo/build por una restricción local de puertos en el proceso auxiliar CSS de Turbopack.
+- Catálogos base y productos comparten `data/v1/catalog.json` para unicidad de SKU y control de versiones mediante una única operación ETag. Las proformas mantienen un archivo inmutable por folio.
+- Condiciones comerciales opcionales se ingresan expresamente y se guardan en el snapshot. No se toman plazos ni datos fiscales contradictorios de los mocks como valores de producción.
+- Fecha UTC persistida y zona America/Lima explícita; presentación siempre en Lima.
+- Autenticación con scrypt para hash y jose para sesión. Secretos definidos en Vercel; producción inicia con catálogo vacío.

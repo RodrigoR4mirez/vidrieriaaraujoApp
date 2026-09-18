@@ -1,0 +1,109 @@
+import { z } from "zod";
+import { catalogStateSchema } from "@/domain/catalogs/models";
+import { quotationSchema } from "@/domain/quotation/models";
+import { DomainError } from "@/domain/errors";
+import type { JsonStore } from "./json-store";
+export const backupSchema = z
+  .object({
+    schemaVersion: z.literal(1),
+    exportedAt: z.string().datetime(),
+    entries: z.array(
+      z.object({ pathname: z.string(), value: z.unknown() }).strict(),
+    ),
+  })
+  .strict();
+export function validateBackup(raw: unknown) {
+  const backup = backupSchema.parse(raw);
+  const paths = new Set<string>();
+  for (const entry of backup.entries) {
+    if (paths.has(entry.pathname))
+      throw new DomainError("Backup con rutas duplicadas.");
+    paths.add(entry.pathname);
+    if (entry.pathname === "data/v1/catalog.json") {
+      const state = catalogStateSchema.parse(entry.value);
+      if (
+        new Set(state.products.map((p) => p.code)).size !==
+        state.products.length
+      )
+        throw new DomainError("Backup con códigos de vidrio duplicados.");
+      if (
+        new Set(state.values.map((v) => `${v.category}/${v.code}`)).size !==
+        state.values.length
+      )
+        throw new DomainError("Backup con códigos base duplicados.");
+      if (
+        new Set([...state.products, ...state.values].map((v) => v.id)).size !==
+        state.products.length + state.values.length
+      )
+        throw new DomainError("Backup con IDs duplicados.");
+      for (const p of state.products)
+        for (const [id, category] of [
+          [p.familyId, "families"],
+          [p.thicknessId, "thicknesses"],
+          [p.colorFinishId, "colors-finishes"],
+          [p.cathedralDesignId, "cathedral-designs"],
+        ]) {
+          if (
+            id &&
+            !state.values.some((v) => v.id === id && v.category === category)
+          )
+            throw new DomainError("Backup con referencias inválidas.");
+        }
+      entry.value = state;
+    } else if (
+      /^data\/v1\/quotations\/PRO-\d{5,}\.json$/.test(entry.pathname)
+    ) {
+      const q = quotationSchema.parse(entry.value);
+      if (entry.pathname !== `data/v1/quotations/${q.number}.json`)
+        throw new DomainError("El número no coincide con el archivo.");
+      entry.value = q;
+    } else throw new DomainError("Ruta no admitida en backup.");
+  }
+  return backup;
+}
+export async function exportBackup(store: JsonStore) {
+  const entries = await Promise.all(
+    (await store.paths("data/v1/")).map(async (pathname) => {
+      const blob = await store.read(pathname);
+      if (!blob)
+        throw new DomainError(
+          "El almacenamiento cambió durante la exportación. Reintenta.",
+        );
+      return { pathname, value: blob.value };
+    }),
+  );
+  return validateBackup({
+    schemaVersion: 1,
+    exportedAt: new Date().toISOString(),
+    entries,
+  });
+}
+export async function importBackup(
+  store: JsonStore,
+  raw: unknown,
+  overwrite: boolean,
+) {
+  const backup = validateBackup(raw);
+  const plan = await Promise.all(
+    backup.entries.map(async (entry) => {
+      const current = await store.read(entry.pathname);
+      if (
+        current &&
+        JSON.stringify(current.value) === JSON.stringify(entry.value)
+      )
+        return null;
+      if (current && entry.pathname.includes("/quotations/"))
+        throw new DomainError(
+          "Una proforma confirmada nunca puede sobrescribirse.",
+        );
+      if (current && !overwrite)
+        throw new DomainError(
+          "Hay datos existentes. Usa --overwrite para restaurar el catálogo.",
+        );
+      return { ...entry, etag: current?.etag };
+    }),
+  );
+  for (const entry of plan)
+    if (entry) await store.write(entry.pathname, entry.value, entry.etag);
+  return plan.filter(Boolean).length;
+}

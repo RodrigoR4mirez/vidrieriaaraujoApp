@@ -1,0 +1,40 @@
+# Arquitectura implementada
+
+```text
+UI (App Router, Server Components + componentes interactivos)
+  → Server Actions / Route Handlers con sesión
+  → CatalogService / QuotationService / casos de backup
+  → GlassRepository / BaseCatalogRepository / QuotationRepository / JsonStore
+  → VercelBlob*Repository / VercelBlobStore
+  → Vercel Blob privado
+```
+
+El punto de composición `src/application/container.ts` conecta las interfaces a las implementaciones. Fuera de ese punto los casos de uso no importan infraestructura. El dominio contiene esquemas, estados, descripción de productos y el único cálculo monetario. La UI nunca importa el SDK Blob. `server-only` protege configuración, autenticación y composición.
+
+## Lecturas y escritura
+
+Cada lectura de pantalla exige sesión en el servidor y obtiene datos frescos. Las páginas protegidas son dinámicas. Las Server Actions vuelven a autenticar, validan con Zod y revalidan las vistas después de guardar. El endpoint PDF responde 401 sin sesión y usa Cache-Control privado/no-store.
+
+El catálogo pequeño se almacena como un agregado `data/v1/catalog.json`. Esta decisión permite comprobar SKU únicos, referencias y versiones dentro de una única escritura condicional. Separar cada producto en archivos independientes necesitaría un protocolo adicional para asegurar unicidad al cambiar códigos. La especificación ofrece la distribución por registro como recomendación, no obligación.
+
+Cada registro tiene `revision`. El cliente devuelve la revisión editada. La operación lee el último ETag, valida, escribe con `ifMatch`; ante conflicto relee y reintenta hasta 20 veces. Si la revisión de ese registro cambió, informa conflicto en español. Ediciones simultáneas de registros diferentes se combinan; nunca se pierden cambios silenciosamente.
+
+Las lecturas privadas usan `useCache: false` y `Accept-Encoding: identity`. En la verificación real, respuestas comprimidas de Blob devolvían un ETag débil (`W/`) que no satisface `ifMatch`. Solicitar la representación sin compresión conserva el cuerpo y su ETag fuerte juntos; nunca se sustituye por el ETag de otra lectura. También se reintenta la colisión si dos dispositivos crean el catálogo inicial simultáneamente.
+
+## Confirmación
+
+El servidor acepta solo IDs, medidas, cantidades, condiciones y un ID de solicitud. Relee productos y catálogos base activos, llama al cálculo de dominio y crea el snapshot. Lista proformas, elige máximo + 1 y crea un archivo sin overwrite ni sufijo aleatorio. Ante colisión relee y reintenta. El ID de solicitud permite recuperar el resultado tras perder una respuesta y evita duplicar un mismo intento concurrente. El folio que aparece en borrador es provisional.
+
+El histórico tiene un archivo por proforma. La fecha se almacena ISO UTC junto con `timezone: America/Lima`; UI, mensajes y documentos la presentan en Lima. Las salidas usan el snapshot, sin consultar precios actuales ni repetir fórmulas. No hay endpoint de edición/eliminación de proformas.
+
+## Interfaz
+
+`Brand`, `PageHeader`, `Panel`, `Button`, `Notice`, `StatusBadge`, `Dialog` y `EmptyState` son compartidos. `QuantityControl`, `ItemForm`, `QuotationSummary`, `ShareActions` y `PrintButton` cubren cotización y salidas. El modal usa `<dialog>` con foco nativo y cierre Escape. Los controles están etiquetados y los errores se anuncian con `role=alert`.
+
+El borrador se mantiene en memoria del componente, sin persistencia de negocio en el navegador. Nueva proforma confirma el descarte. Hay aviso al cerrar/recargar con cambios pendientes. Las acciones se deshabilitan durante confirmación.
+
+## Seguridad y límites
+
+Scrypt y comparación constante para contraseña; JWT HS256 restringido por algoritmo, emisor y audiencia. Sesión HttpOnly. Next Server Actions verifica origen. Todo acceso a repositorios se realiza detrás de sesión; no hay rutas públicas para datos. Secretos validados al usarse, permitiendo construir sin credenciales de negocio. No hay credenciales predeterminadas versionadas.
+
+Es un MVP de catálogo pequeño: listar histórico lee snapshots con concurrencia limitada a 20. Si crece sustancialmente, implementar paginación/indexación en un nuevo repositorio. Blob no proporciona transacciones entre documentos ni restauración multiarchivo atómica. El servicio requiere conexión; otro dispositivo refleja cambios al abrir o refrescar.

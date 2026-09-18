@@ -1,0 +1,97 @@
+.print-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 20px;
+}
+.print-document {
+  margin: 24px auto;
+  background: white;
+  color: #000;
+  padding: 20px;
+  box-shadow: 0 5px 30px #0001;
+}
+.print-document.ticket {
+  width: 80mm;
+  font: 11px/1.5 monospace;
+}
+.print-document.a4 {
+  max-width: 210mm;
+  min-height: 250mm;
+  padding: 15mm;
+  font:
+    12px/1.6 Arial,
+    sans-serif;
+}
+.print-document header {
+  text-align: center;
+  border-bottom: 1px dashed #222;
+  padding-bottom: 15px;
+}
+.print-document h1 {
+  color: #000;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+.print-document h2 {
+  font-size: 13px;
+  display: block;
+  margin-top: 14px;
+}
+.print-line {
+  padding: 14px 0;
+  border-bottom: 1px dashed #777;
+  break-inside: avoid;
+}
+.print-line div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.print-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 0;
+  font-size: 14px;
+}
+.print-conditions {
+  white-space: pre-wrap;
+  font-size: 10px;
+}
+.print-document footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 10px;
+}
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .app-shell {
+    padding: 0;
+    max-width: none;
+    margin: 0;
+  }
+  .print-document {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    box-shadow: none;
+  }
+  .print-document h1 {
+    font-size: 17px;
+  }
+  .print-line {
+    break-inside: avoid;
+  }
+}
