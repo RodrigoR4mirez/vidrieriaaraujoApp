@@ -4,11 +4,10 @@ import { ChevronDown } from "lucide-react";
 import { productDetails, type BaseValue, type Product } from "@/domain/catalogs/models";
 
 function glassLabel(product: Product, values: BaseValue[]) {
-  const { family, colorFinish, thickness, cathedralDesign } = productDetails(product, values);
-  const cathedral = cathedralDesign || /catedral/i.test(family);
+  const { colorFinish, thickness, cathedralDesign } = productDetails(product, values);
   const size = product.sheetWidthCm && product.sheetHeightCm
     ? `${product.sheetWidthCm} × ${product.sheetHeightCm} cm` : "";
-  return [cathedral ? ["Catedral", cathedralDesign].filter(Boolean).join(" ") : "",
+  return [cathedralDesign,
     colorFinish, thickness, size].filter(Boolean).join(" · ");
 }
 

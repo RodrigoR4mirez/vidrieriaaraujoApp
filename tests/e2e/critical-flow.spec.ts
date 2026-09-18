@@ -190,7 +190,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
   const sheetOptions = await page.getByRole("listbox").getByRole("option").allTextContents();
   expect(sheetOptions).toHaveLength(1);
-  expect(sheetOptions[0]).toContain(`Catedral ${names.design} · ${names.color} · ${names.thickness}`);
+  expect(sheetOptions[0]).toContain(`${names.design} · ${names.color} · ${names.thickness}`);
   expect(sheetOptions[0]).not.toContain(names.family);
   expect(sheetOptions[0]).toContain(`(${tag}-SHEET)`);
   // Select by keyboard as well as touch/click; Enter must not submit the form.
