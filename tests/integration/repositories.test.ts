@@ -10,8 +10,9 @@ import {
 import type { JsonStore } from "@/infrastructure/persistence/blob/store";
 import { QuotationService, CatalogService } from "@/application/use-cases";
 import { quotationSchema } from "@/domain/quotation/models";
-import { catalogStateSchema } from "@/domain/catalogs/models";
-import { validateBackup } from "@/application/backup";
+import { catalogStateSchema, isQuotable } from "@/domain/catalogs/models";
+import { validateBackup, exportBackup, importBackup } from "@/application/backup";
+import { quotationItemDetail } from "@/lib/quotation-item";
 import { quotationText, whatsappUrl } from "@/lib/sharing";
 class MemoryStore implements JsonStore {
   records = new Map<string, { value: unknown; etag: string }>();
@@ -84,6 +85,49 @@ async function fixture() {
   };
 }
 describe("repositories y casos de uso", () => {
+  it("guarda precios omitidos o vacíos como cero y filtra por modalidad", async () => {
+    const f = await fixture();
+    const zero = await f.catalog.saveProduct({ ...f.product, code: "PENDIENTE", pricePerSquareFoot: "", pricePerSheet: undefined });
+    expect(zero).toMatchObject({ pricePerSquareFoot: "0.00", pricePerSheet: "0.00" });
+    const sheet = await f.catalog.saveProduct({ ...zero, code: "PLANCHA", pricePerSheet: "111.11" });
+    const values = (await f.catalog.load()).values;
+    expect(isQuotable(zero, values, "SQUARE_FOOT")).toBe(false);
+    expect(isQuotable(zero, values, "SHEET")).toBe(false);
+    expect(isQuotable(f.product, values, "SQUARE_FOOT")).toBe(true);
+    expect(isQuotable(f.product, values, "SHEET")).toBe(false);
+    expect(isQuotable(sheet, values, "SQUARE_FOOT")).toBe(false);
+    expect(isQuotable(sheet, values, "SHEET")).toBe(true);
+    expect(isQuotable({ ...sheet, status: "HIDDEN" }, values, "SHEET")).toBe(false);
+    expect(isQuotable(sheet, values.map((v) => ({ ...v, status: "HIDDEN" })), "SHEET")).toBe(false);
+    await expect(f.catalog.saveProduct({ ...zero, code: "NEGATIVO", pricePerSheet: "-1.00" })).rejects.toThrow();
+    await expect(f.service.confirm({ ...f.draft(), items: [{ id: randomUUID(), productId: zero.id, mode: "SHEET", quantity: 1 }] })).rejects.toThrow("sin precio");
+    await expect(f.service.confirm({ ...f.draft(), items: [{ ...f.draft().items[0], productId: zero.id }] })).rejects.toThrow("sin precio");
+  });
+  it("confirma una proforma mixta y conserva precio/modalidad tras modificar catálogo", async () => {
+    const f = await fixture();
+    const product = await f.catalog.saveProduct({ ...f.product, pricePerSheet: "111.11", sheetWidthCm: "200", sheetHeightCm: "300" }, f.product.id, f.product.revision);
+    const draft = f.draft();
+    const q = await f.service.confirm({ ...draft, items: [...draft.items, { id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 3 }] });
+    expect(q.total).toBe("395.58");
+    expect(q.items[0].itemAmount).toBe("62.25");
+    expect(q.items[1]).toMatchObject({ mode: "SHEET", pricePerSheet: "111.11", quantity: 3, itemAmount: "333.33", sheetWidthCm: "200", sheetHeightCm: "300" });
+    expect(q.items[1]).not.toHaveProperty("areaFt2");
+    expect(quotationItemDetail(q.items[1])).toBe("Plancha entera · 200 × 300 cm");
+    expect(quotationText(q)).toContain("Plancha entera");
+    expect(decodeURIComponent(whatsappUrl(q))).toContain("S/ 395.58");
+    await f.catalog.saveProduct({ ...product, pricePerSheet: "0.00" }, product.id, product.revision);
+    expect(await f.service.find(q.number)).toEqual(q);
+    await expect(f.service.confirm({ requestId: randomUUID(), items: [{ id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 1 }] })).rejects.toThrow("sin precio");
+  });
+  it("lee y respalda el histórico sin modalidad sin modificar su JSON", async () => {
+    const f = await fixture();
+    const q = await f.service.confirm(f.draft());
+    expect(q.items[0]).not.toHaveProperty("mode");
+    const original = JSON.stringify(f.store.records.get(`data/v1/quotations/${q.number}.json`)?.value);
+    expect(await f.service.find(q.number)).toEqual(q);
+    expect(await importBackup(f.store, await exportBackup(f.store), false)).toBe(0);
+    expect(JSON.stringify(f.store.records.get(`data/v1/quotations/${q.number}.json`)?.value)).toBe(original);
+  });
   it("edita bases sin códigos y preserva campos antiguos, IDs y precios existentes", async () => {
     const f = await fixture();
     const record = f.store.records.get("data/v1/catalog.json")!;

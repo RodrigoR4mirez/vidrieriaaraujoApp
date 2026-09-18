@@ -56,7 +56,10 @@ export const baseValueSchema = baseInputSchema.extend({
   code: codeSchema.optional(),
   observation: z.string().max(200).optional(),
 });
-export const priceInputSchema = positiveDecimal.regex(
+const catalogPrice = decimalString.max(30);
+const defaultCatalogPrice = z.union([catalogPrice, z.literal("")])
+  .optional().transform((value) => value || "0.00");
+export const priceInputSchema = catalogPrice.regex(
   /^\d+\.\d{2}$/,
   "El precio debe tener exactamente dos decimales",
 );
@@ -74,11 +77,16 @@ export const productInputSchema = z.object({
     .transform((v) => v || undefined),
   sheetWidthCm: optionalDecimal,
   sheetHeightCm: optionalDecimal,
-  pricePerSquareFoot: positiveDecimal,
-  pricePerSheet: optionalDecimal,
+  pricePerSquareFoot: defaultCatalogPrice,
+  pricePerSheet: defaultCatalogPrice,
   status: statusSchema,
 });
-export const productSchema = productInputSchema.extend(metadata);
+// Reading legacy records must not insert fields or rewrite historic values.
+export const productSchema = productInputSchema.extend({
+  ...metadata,
+  pricePerSquareFoot: catalogPrice,
+  pricePerSheet: catalogPrice.optional(),
+});
 export const catalogStateSchema = z
   .object({
     schemaVersion: z.literal(1),
@@ -112,9 +120,11 @@ export function productDetails(product: Product, values: BaseValue[]) {
       .join(" · "),
   };
 }
-export function isQuotable(product: Product, values: BaseValue[]) {
+export type SaleMode = "SQUARE_FOOT" | "SHEET";
+export function isQuotable(product: Product, values: BaseValue[], mode: SaleMode = "SQUARE_FOOT") {
   return (
     product.status === "ACTIVE" &&
+    new Decimal(mode === "SHEET" ? product.pricePerSheet || "0" : product.pricePerSquareFoot).gt(0) &&
     [
       product.familyId,
       product.thicknessId,

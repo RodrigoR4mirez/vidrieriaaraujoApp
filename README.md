@@ -1,6 +1,6 @@
 # Distribuidora Araujo — Vidriería & Aluminios
 
-MVP privado de catálogo de vidrios, cotización por medidas y proformas históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador solo permanece en memoria hasta confirmarlo.
+MVP privado de catálogo de vidrios, cotización por medidas y planchas enteras y proformas históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador solo permanece en memoria hasta confirmarlo.
 
 Aplicación: [vidrieria-araujo.vercel.app](https://vidrieria-araujo.vercel.app). El catálogo inicia vacío para cargar los datos reales del negocio. Resultados de pruebas y URL Preview en [Despliegue](docs/deployment.md#resultados).
 
@@ -35,8 +35,8 @@ El segundo comando genera el secreto de sesión. En archivos dotenv, **escapar c
 ## Uso
 
 1. Crear familias y espesores en **Catálogos base**, y opcionalmente colores/acabados y diseños catedral.
-2. Crear vidrios con códigos únicos y precio por pie². El catálogo de producción inicia vacío.
-3. En **Cotizador**, seleccionar vidrio, ancho y alto en cm y cantidad. Agregar, editar, eliminar y alternar vistas.
+2. Crear vidrios con códigos únicos y precios por pie² y/o plancha (sin precio: `0.00`). El catálogo de producción inicia vacío.
+3. En **Cotizador**, elegir **Pie² (por medidas)** o **Plancha entera**, vidrio y cantidad; solo por pie² ingresar ancho y alto en cm. Se pueden mezclar ambas modalidades en una proforma. Agregar, editar, eliminar y alternar vistas.
 4. Ingresar condiciones comerciales opcionales. El sistema no asume plazos de entrega, vigencia ni datos fiscales de los mocks.
 5. Confirmar. El servidor valida el catálogo activo, calcula y guarda una proforma inmutable con número definitivo.
 6. Abrir **Compartir proforma** para copiar, abrir WhatsApp, descargar PDF A4 o imprimir A4/ticket 80 mm.
@@ -44,7 +44,7 @@ El segundo comando genera el secreto de sesión. En archivos dotenv, **escapar c
 
 Ocultar conserva registros. Un producto con cualquier referencia base oculta tampoco puede seleccionarse para una nueva cotización. Para resolver conflictos de edición, recargar y volver a aplicar los cambios. Cambiar precios nunca recalcula el histórico.
 
-Los catálogos base solo solicitan nombre, descripción opcional y estado. Los precios se escriben desde los centavos: `1` → `0.01`, `11100` → `111.00`; precio por plancha puede quedar vacío. Los datos antiguos se conservan sin migración destructiva.
+Los catálogos base solo solicitan nombre, descripción opcional y estado. Los precios se escriben desde los centavos: `1` → `0.01`, `11100` → `111.00`; ambos precios permiten `0.00` y al vaciarlos toman ese valor. Cada modalidad ofrece únicamente productos activos con su precio mayor que cero. Una plancha se calcula como precio de catálogo × cantidad, sin redondeo comercial; por pie² se conserva la fórmula oficial. Los datos antiguos se conservan sin migración destructiva.
 
 ## Verificar
 

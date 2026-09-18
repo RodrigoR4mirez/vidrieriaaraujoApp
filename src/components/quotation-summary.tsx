@@ -1,4 +1,5 @@
 "use client";
+import { quotationItemDetail } from "@/lib/quotation-item";
 import { useState } from "react";
 import { Pencil, Trash2, List, Rows3 } from "lucide-react";
 import type { QuotationItem } from "@/domain/quotation/models";
@@ -52,7 +53,7 @@ export function QuotationSummary({
       </div>
       {!items.length && (
         <EmptyState title="Empieza una nueva cotización">
-          Selecciona un vidrio, ingresa sus medidas y agrega el primer ítem.
+          Selecciona la modalidad, el vidrio y agrega el primer ítem.
         </EmptyState>
       )}
       <div className="quotation-groups">
@@ -73,7 +74,7 @@ export function QuotationSummary({
               <table className="quotation-table">
                 <thead>
                   <tr>
-                    <th>{compact ? "Vidrio / medidas" : "Medidas (cm)"}</th>
+                    <th>{compact ? "Vidrio / modalidad" : "Modalidad / medidas"}</th>
                     <th>Cant.</th>
                     <th>P. unitario</th>
                     <th>Importe</th>
@@ -90,7 +91,7 @@ export function QuotationSummary({
                       <td>
                         {compact && <small>{item.productDescription}</small>}
                         <strong>
-                          {item.widthCm} × {item.heightCm} cm
+                          {quotationItemDetail(item)}
                         </strong>
                       </td>
                       <td>{item.quantity}</td>

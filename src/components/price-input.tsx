@@ -31,12 +31,12 @@ export function PriceInput({
       maxLength={30}
       placeholder="0.00"
       required={required}
-      value={value ? new Decimal(value).toFixed(2) : required ? "0.00" : ""}
+      value={value ? new Decimal(value).toFixed(2) : "0.00"}
       onFocus={(event) => event.currentTarget.select()}
       onBlur={onBlur}
       onChange={(event) => {
         const formatted = priceFromDigits(event.target.value);
-        if (formatted !== null) onChange(formatted);
+        if (formatted !== null) onChange(formatted || "0.00");
       }}
     />
   );

@@ -11,8 +11,9 @@ it("ingresa y borra precios desde los centavos con dos decimales", () => {
   expect(priceFromDigits("-100")).toBeNull();
 });
 
-it("rechaza nuevos precios sin dos decimales o sin importe positivo", () => {
-  for (const price of ["111", "1.1", "1.111", "0.00"])
+it("admite cero y rechaza precios negativos o sin dos decimales", () => {
+  for (const price of ["111", "1.1", "1.111", "-1.00"])
     expect(priceInputSchema.safeParse(price).success).toBe(false);
+  expect(priceInputSchema.parse("0.00")).toBe("0.00");
   expect(priceInputSchema.parse("111.00")).toBe("111.00");
 });

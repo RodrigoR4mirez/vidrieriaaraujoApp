@@ -1,39 +1,42 @@
 import { z } from "zod";
-import { measurementSchema } from "./calculation";
+import { measurementSchema, quantitySchema } from "./calculation";
 import { decimalString, positiveDecimal } from "../catalogs/models";
-export const draftItemSchema = measurementSchema.extend({
-  id: z.string().uuid(),
-  productId: z.string().uuid(),
-});
-export const draftSchema = z
-  .object({
-    requestId: z.string().uuid(),
-    items: z
-      .array(draftItemSchema)
-      .min(1, "Agrega al menos un vidrio")
-      .max(200),
-    conditions: z.string().trim().max(2000).default(""),
-  })
-  .strict();
-export const quotationItemSchema = draftItemSchema
-  .extend({
-    productCode: z.string(),
-    productDescription: z.string(),
-    family: z.string(),
-    colorFinish: z.string(),
-    thickness: z.string(),
-    cathedralDesign: z.string(),
-    pricePerSquareFoot: positiveDecimal,
-    widthInRaw: decimalString,
-    heightInRaw: decimalString,
-    widthInRounded: decimalString,
-    heightInRounded: decimalString,
-    areaIn2: decimalString,
-    areaFt2: decimalString,
-    unitPrice: decimalString,
-    itemAmount: decimalString,
-  })
-  .strict();
+const identity = { id: z.string().uuid(), productId: z.string().uuid() };
+const cutDraftSchema = measurementSchema.extend({
+  ...identity,
+  // Missing mode is the original square-foot format; keep legacy JSON unchanged.
+  mode: z.literal("SQUARE_FOOT").optional(),
+}).strict();
+const sheetDraftSchema = z.object({
+  ...identity,
+  mode: z.literal("SHEET"),
+  quantity: quantitySchema,
+}).strict();
+export const draftItemSchema = z.union([sheetDraftSchema, cutDraftSchema]);
+export const draftSchema = z.object({
+  requestId: z.string().uuid(),
+  items: z.array(draftItemSchema).min(1, "Agrega al menos un vidrio").max(200),
+  conditions: z.string().trim().max(2000).default(""),
+}).strict();
+const snapshot = {
+  productCode: z.string(), productDescription: z.string(),
+  family: z.string(), colorFinish: z.string(), thickness: z.string(), cathedralDesign: z.string(),
+  unitPrice: decimalString, itemAmount: decimalString,
+};
+const cutItemSchema = cutDraftSchema.extend({
+  ...snapshot,
+  pricePerSquareFoot: positiveDecimal,
+  widthInRaw: decimalString, heightInRaw: decimalString,
+  widthInRounded: decimalString, heightInRounded: decimalString,
+  areaIn2: decimalString, areaFt2: decimalString,
+}).strict();
+const sheetItemSchema = sheetDraftSchema.extend({
+  ...snapshot,
+  pricePerSheet: positiveDecimal,
+  sheetWidthCm: positiveDecimal.optional(),
+  sheetHeightCm: positiveDecimal.optional(),
+}).strict();
+export const quotationItemSchema = z.union([sheetItemSchema, cutItemSchema]);
 export const numberSchema = z
   .string()
   .regex(/^PRO-\d{5,}$/, "Número de proforma inválido");

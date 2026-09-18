@@ -137,7 +137,7 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
                     </td>
                     <td className="numeric">{money(p.pricePerSquareFoot)}</td>
                     <td className="numeric">
-                      {p.pricePerSheet ? money(p.pricePerSheet) : "—"}
+                      {money(p.pricePerSheet || "0.00")}
                     </td>
                     <td>
                       <StatusBadge status={p.status} />
@@ -240,10 +240,10 @@ function ProductForm({
       thicknessId: "",
       colorFinishId: "",
       cathedralDesignId: "",
-      pricePerSquareFoot: "",
+      pricePerSquareFoot: "0.00",
       sheetWidthCm: "",
       sheetHeightCm: "",
-      pricePerSheet: "",
+      pricePerSheet: "0.00",
       status: "ACTIVE",
     },
   });
@@ -346,7 +346,7 @@ function ProductForm({
           {
             field: "pricePerSquareFoot",
             label: "Precio por pie² (S/)",
-            required: true,
+            required: false,
           },
           {
             field: "pricePerSheet",

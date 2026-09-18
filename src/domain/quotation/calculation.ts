@@ -6,14 +6,15 @@ const D = Decimal.clone({ precision: 60, rounding: Decimal.ROUND_HALF_UP });
 const CM_PER_INCH = "2.54";
 const SQUARE_INCHES_PER_FOOT = 144;
 const COMMERCIAL_INCREMENT = "0.05";
-export const measurementSchema = z.object({
-  widthCm: positiveDecimal,
-  heightCm: positiveDecimal,
-  quantity: z
+export const quantitySchema = z
     .number()
     .int("La cantidad debe ser entera")
     .min(1, "La cantidad debe ser al menos 1")
-    .max(Number.MAX_SAFE_INTEGER),
+    .max(Number.MAX_SAFE_INTEGER);
+export const measurementSchema = z.object({
+  widthCm: positiveDecimal,
+  heightCm: positiveDecimal,
+  quantity: quantitySchema,
 });
 export const calculationInputSchema = measurementSchema.extend({
   pricePerSquareFoot: positiveDecimal,
@@ -56,4 +57,16 @@ export function quotationTotal(items: { itemAmount: string }[]) {
   return items
     .reduce((sum, item) => sum.plus(item.itemAmount), new D(0))
     .toFixed(2);
+}
+const sheetCalculationSchema = z.object({
+  pricePerSheet: positiveDecimal,
+  quantity: quantitySchema,
+});
+export function calculateSheet(raw: z.input<typeof sheetCalculationSchema>) {
+  const input = sheetCalculationSchema.parse(raw);
+  return {
+    ...input,
+    unitPrice: new D(input.pricePerSheet).toFixed(2),
+    itemAmount: new D(input.pricePerSheet).times(input.quantity).toFixed(2),
+  };
 }

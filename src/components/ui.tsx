@@ -75,14 +75,16 @@ export function Dialog({
 export function QuantityControl({
   value,
   onChange,
+  label = "Cantidad de paños / piezas",
 }: {
+  label?: string;
   value: number;
   onChange: (n: number) => void;
 }) {
   const id = useId();
   return (
     <div className="field">
-      <label htmlFor={id}>Cantidad de paños / piezas</label>
+      <label htmlFor={id}>{label}</label>
       <div className="stepper">
         <button
           type="button"

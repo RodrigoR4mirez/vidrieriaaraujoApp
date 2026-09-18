@@ -6,7 +6,7 @@ import {
   productDetails,
 } from "@/domain/catalogs/models";
 import { DomainError } from "@/domain/errors";
-import { calculateItem, quotationTotal } from "@/domain/quotation/calculation";
+import { calculateItem, calculateSheet, quotationTotal } from "@/domain/quotation/calculation";
 import {
   draftSchema,
   type DraftItem,
@@ -26,14 +26,24 @@ export function priceDraft(
     const product = catalog.products.find((p) => p.id === item.productId);
     if (!product)
       throw new DomainError("Producto inexistente. Actualiza el catálogo.");
-    if (!isQuotable(product, catalog.values))
+    if (!isQuotable(product, catalog.values, item.mode ?? "SQUARE_FOOT"))
       throw new DomainError(
-        "Producto oculto o con opciones ocultas. Actualiza la proforma.",
+        "Producto oculto, con opciones ocultas o sin precio para esta modalidad. Actualiza la proforma.",
       );
-    return {
-      ...item,
+    const description = {
       productCode: product.code,
       ...productDetails(product, catalog.values),
+    };
+    if (item.mode === "SHEET") return {
+      ...item,
+      ...description,
+      sheetWidthCm: product.sheetWidthCm,
+      sheetHeightCm: product.sheetHeightCm,
+      ...calculateSheet({ pricePerSheet: product.pricePerSheet || "0", quantity: item.quantity }),
+    };
+    return {
+      ...item,
+      ...description,
       ...calculateItem({
         ...item,
         pricePerSquareFoot: product.pricePerSquareFoot,

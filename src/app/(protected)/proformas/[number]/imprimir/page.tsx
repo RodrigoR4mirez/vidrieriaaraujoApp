@@ -1,3 +1,4 @@
+import { quotationItemDetail } from "@/lib/quotation-item";
 import { notFound } from "next/navigation";
 import { requireSession } from "@/infrastructure/auth/session";
 import { services } from "@/application/container";
@@ -40,7 +41,7 @@ export default async function Page({
           <section key={i.id} className="print-line">
             <strong>{i.productDescription}</strong>
             <p>
-              {i.quantity} × {i.widthCm} × {i.heightCm} cm
+              {i.quantity} × {quotationItemDetail(i)}
             </p>
             <div>
               <span>P. unitario: {money(i.unitPrice)}</span>

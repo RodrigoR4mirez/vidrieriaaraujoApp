@@ -347,9 +347,10 @@ Cabecera:
 
 Formulario:
 
-- vidrio;
-- ancho cm;
-- alto cm;
+- modalidad: Pie² (por medidas) o Plancha entera;
+- vidrio activo con precio mayor que cero en la modalidad elegida;
+- ancho cm (solo pie²);
+- alto cm (solo pie²);
 - cantidad.
 
 Los datos del vidrio provienen del catálogo activo.
@@ -548,7 +549,7 @@ updatedAt
 
 Código único.
 
-Los precios se ingresan desde los centavos, con dos decimales fijos: teclear `11100` muestra `111.00`. Aplicar a precio por pie² y por plancha, manteniendo este último opcional. Validar nuevos precios o cambios en servidor y conservar exactamente precios existentes no modificados. No aplicar esta máscara a medidas ni cantidades.
+Los precios se ingresan desde los centavos, con dos decimales fijos: teclear `11100` muestra `111.00`. Aplicar a precio por pie² y por plancha, ambos permiten `0.00` y valores vacíos/ausentes se guardan como `0.00`. Cero indica que esa modalidad no está disponible para cotizar. Validar nuevos precios o cambios en servidor y conservar exactamente precios existentes no modificados. No aplicar esta máscara a medidas ni cantidades.
 
 El botón `+ Nuevo vidrio` abre el modal STITCH con blur discreto.
 
@@ -616,7 +617,8 @@ interface Quotation {
   items: QuotationItem[]
 }
 
-interface QuotationItem {
+interface SquareFootQuotationItem {
+  mode?: 'SQUARE_FOOT' // Ausente en históricos antiguos.
   id: string
   productId: string
 
@@ -645,6 +647,8 @@ interface QuotationItem {
   itemAmount: string
 }
 ```
+
+Una proforma admite ambas modalidades simultáneamente. La otra variante es `SheetQuotationItem`, con `mode: 'SHEET'`, los mismos IDs y datos descriptivos, `quantity`, `pricePerSheet`, `unitPrice`, `itemAmount` y dimensiones de plancha opcionales. No lleva conversiones ni medidas de corte. `QuotationItem = SquareFootQuotationItem | SheetQuotationItem`. Plancha entera calcula precio de catálogo × cantidad con dos decimales, sin redondeo a 0.05. El servidor vuelve a validar disponibilidad y precios al confirmar. Los históricos sin modalidad permanecen intactos y se presentan por pie².
 
 Persistir valores decimales como string si ayuda a evitar pérdida de precisión.
 

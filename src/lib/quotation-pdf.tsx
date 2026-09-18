@@ -1,3 +1,4 @@
+import { quotationItemDetail } from "@/lib/quotation-item";
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import type { Quotation } from "@/domain/quotation/models";
 import { limaDate, money } from "./formatting";
@@ -58,7 +59,7 @@ export function QuotationPdf({ quotation: q }: { quotation: Quotation }) {
         </View>
         <View style={[styles.row, styles.tableHeader]} fixed>
           <Text style={styles.description}>Vidrio / Espesor</Text>
-          <Text style={styles.measures}>Medidas (cm)</Text>
+          <Text style={styles.measures}>Modalidad / medidas</Text>
           <Text style={styles.quantity}>Cant.</Text>
           <Text style={styles.amount}>P. unitario</Text>
           <Text style={styles.amount}>Importe</Text>
@@ -71,7 +72,7 @@ export function QuotationPdf({ quotation: q }: { quotation: Quotation }) {
               {i.productCode}
             </Text>
             <Text style={styles.measures}>
-              {i.widthCm} x {i.heightCm}
+              {quotationItemDetail(i)}
             </Text>
             <Text style={styles.quantity}>{i.quantity}</Text>
             <Text style={styles.amount}>{money(i.unitPrice)}</Text>

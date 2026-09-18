@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight, Plus, RotateCcw, Ruler } from "lucide-react";
 import {
   type CatalogState,
+  type SaleMode,
   isQuotable,
   productDetails,
 } from "@/domain/catalogs/models";
@@ -14,7 +15,6 @@ import {
   type DraftItem,
   type QuotationItem,
 } from "@/domain/quotation/models";
-import { calculateItem } from "@/domain/quotation/calculation";
 import { priceDraft } from "@/application/use-cases";
 import { confirmAction } from "@/app/actions";
 import { money } from "@/lib/formatting";
@@ -29,10 +29,6 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
   const [pending, startTransition] = useTransition();
   const [requestId, setRequestId] = useState("");
   const router = useRouter();
-  const available = {
-    ...catalog,
-    products: catalog.products.filter((p) => isQuotable(p, catalog.values)),
-  };
   let priced: QuotationItem[] = [];
   let pricingError = "";
   try {
@@ -66,11 +62,11 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
           <Ruler size={20} />
           Agregar vidrio
         </h2>
-        <p className="muted">Selecciona el vidrio y completa las medidas.</p>
-        {available.products.length ? (
+        <p className="muted">Elige por pie² o por plancha entera.</p>
+        {catalog.products.length ? (
           <ItemForm
             key={editId || "new"}
-            catalog={available}
+            catalog={catalog}
             editing={items.find((i) => i.id === editId)}
             onSave={(item) => {
               setItems((old) =>
@@ -187,29 +183,33 @@ function ItemForm({
   onCancel: () => void;
 }) {
   const hydrated = useHydrated();
+  const [mode, setMode] = useState<SaleMode>(editing?.mode ?? "SQUARE_FOOT");
+  const available = catalog.products.filter((p) => isQuotable(p, catalog.values, mode));
   const [productId, setProductId] = useState(
-    editing?.productId || catalog.products[0]?.id || "",
+    editing?.productId || available[0]?.id || "",
   );
-  const [widthCm, setWidth] = useState(editing?.widthCm || "");
-  const [heightCm, setHeight] = useState(editing?.heightCm || "");
+  const [widthCm, setWidth] = useState(editing && editing.mode !== "SHEET" ? editing.widthCm : "");
+  const [heightCm, setHeight] = useState(editing && editing.mode !== "SHEET" ? editing.heightCm : "");
   const [quantity, setQuantity] = useState(editing?.quantity || 1);
   const [error, setError] = useState("");
-  const product = catalog.products.find((p) => p.id === productId);
-  const variants = catalog.products.filter(
+  const product = available.find((p) => p.id === productId) || (!editing ? available[0] : undefined);
+  const variants = available.filter(
     (p) =>
       p.familyId === product?.familyId &&
       p.colorFinishId === product?.colorFinishId &&
       p.cathedralDesignId === product?.cathedralDesignId,
   );
+  const candidate = {
+    productId: product?.id || "",
+    mode,
+    quantity,
+    ...(mode === "SQUARE_FOOT" ? { widthCm, heightCm } : {}),
+  };
   let estimate = "";
   if (product) {
     try {
-      estimate = calculateItem({
-        widthCm,
-        heightCm,
-        quantity,
-        pricePerSquareFoot: product.pricePerSquareFoot,
-      }).itemAmount;
+      const item = draftItemSchema.parse({ ...candidate, id: editing?.id || product.id });
+      estimate = priceDraft([item], catalog)[0].itemAmount;
     } catch {
       /* Incomplete input has no estimate. */
     }
@@ -221,13 +221,10 @@ function ItemForm({
         event.preventDefault();
         const parsed = draftItemSchema.safeParse({
           id: editing?.id || crypto.randomUUID(),
-          productId,
-          widthCm,
-          heightCm,
-          quantity,
+          ...candidate,
         });
         if (!parsed.success) {
-          setError(parsed.error.issues[0].message);
+          setError("Selecciona un vidrio disponible, una cantidad entera mayor que cero y medidas válidas cuando corresponda.");
           return;
         }
         onSave(parsed.data);
@@ -239,17 +236,31 @@ function ItemForm({
         }
       }}
     >
-      {editing && <Notice>Editar medidas y cantidad</Notice>}
+      {editing && <Notice>{mode === "SHEET" ? "Editar cantidad de planchas" : "Editar medidas y cantidad"}</Notice>}
+      <div className="field">
+        <label htmlFor="sale-mode">Cotizar por</label>
+        <select id="sale-mode" value={mode} disabled={!!editing} onChange={(event) => {
+          const nextMode = event.target.value as SaleMode;
+          setMode(nextMode);
+          setProductId(catalog.products.find((p) => isQuotable(p, catalog.values, nextMode))?.id || "");
+          setError("");
+        }}>
+          <option value="SQUARE_FOOT">Pie² (por medidas)</option>
+          <option value="SHEET">Plancha entera</option>
+        </select>
+      </div>
+      {!product && <Notice>No hay vidrios activos con precio disponible para esta modalidad.</Notice>}
       <div className="field">
         <label htmlFor="glass-select">Tipo de vidrio</label>
         <select
           id="glass-select"
-          value={productId}
+          value={product?.id || ""}
           disabled={!!editing}
           onChange={(e) => setProductId(e.target.value)}
           required
         >
-          {catalog.products.map((p) => (
+          {!product && <option value="">Sin vidrios disponibles</option>}
+          {available.map((p) => (
             <option key={p.id} value={p.id}>
               {productDetails(p, catalog.values).productDescription} · {p.code}
             </option>
@@ -273,7 +284,7 @@ function ItemForm({
           ))}
         </div>
       </div>
-      <div className="form-grid">
+      {mode === "SQUARE_FOOT" && <div className="form-grid">
         <div className="field">
           <label htmlFor="width">Ancho (cm)</label>
           <input
@@ -302,8 +313,8 @@ function ItemForm({
             required
           />
         </div>
-      </div>
-      <QuantityControl value={quantity} onChange={setQuantity} />
+      </div>}
+      <QuantityControl value={quantity} onChange={setQuantity} label={mode === "SHEET" ? "Cantidad de planchas" : "Cantidad de paños / piezas"} />
       <div className="estimate">
         <span>Importe estimado</span>
         <strong>{estimate ? money(estimate) : "S/ —"}</strong>
@@ -314,10 +325,10 @@ function ItemForm({
           <Button variant="secondary" type="button" onClick={onCancel}>
             Cancelar
           </Button>
-          <Button disabled={!hydrated}>Guardar cambios</Button>
+          <Button disabled={!hydrated || !product}>Guardar cambios</Button>
         </div>
       ) : (
-        <Button disabled={!hydrated} type="submit">
+        <Button disabled={!hydrated || !product} type="submit">
           <Plus size={18} />
           Agregar ítem
         </Button>

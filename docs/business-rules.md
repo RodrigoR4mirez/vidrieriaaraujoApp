@@ -14,7 +14,7 @@ No calcular, mostrar, almacenar ni desglosar IGV en cotizador, PDF, ticket, What
 
 ## 2. Entradas
 
-Para cada ítem:
+Para cada ítem por pie² (por medidas):
 
 - vidrio seleccionado;
 - código y descripción del vidrio;
@@ -268,7 +268,7 @@ No mostrarlas como información principal de la pantalla.
 
 ## 9. Snapshot al confirmar
 
-Cada ítem confirmado debe guardar al menos:
+Cada ítem por pie² confirmado debe guardar al menos:
 
 ```text
 productId
@@ -406,3 +406,16 @@ Si existe contradicción:
 3. `docs/implementation-spec.md`
 4. `STITCH/instrucciones/*.md`
 5. HTML/mock de STITCH
+
+
+## 14. Precios pendientes y venta por plancha entera
+
+Actualización aprobada: el catálogo admite `0.00` en precio por pie² y por plancha. Los precios vacíos o no ingresados se guardan como `0.00`; no se permiten negativos. Cero significa que esa modalidad no está disponible, no que el vidrio se cotiza gratis.
+
+Cada ítem nuevo elige una modalidad: `SQUARE_FOOT` (por pie², con medidas) o `SHEET` (plancha entera). Una misma proforma puede combinar ambas. En el selector solo aparecen productos activos, con referencias base activas y precio estrictamente mayor que cero en la modalidad elegida. El servidor verifica esto al confirmar.
+
+- Por pie²: se conserva exactamente la fórmula de las secciones 2–4 y sus casos oficiales.
+- Por plancha: cantidad entera >= 1; precio unitario = precio de catálogo por plancha; importe = precio por plancha × cantidad, expresado con dos decimales. No aplicar conversiones de área, siguiente par ni redondeo comercial a múltiplos de 0.05. Las medidas de plancha del catálogo son opcionales e informativas; no se solicitan medidas de corte.
+- Total de proforma: suma de importes de ambas modalidades.
+
+El snapshot de plancha conserva modalidad, producto y descripción, precio por plancha, cantidad, precio unitario, importe y medidas de plancha del catálogo si existen. Cambios posteriores del catálogo no alteran el histórico. Los snapshots anteriores sin modalidad se interpretan como venta por pie² y se leen sin reescribirlos. Resumen, PDF, WhatsApp y ticket identifican claramente las planchas enteras.

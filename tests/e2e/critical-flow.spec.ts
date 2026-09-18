@@ -69,9 +69,11 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     ).toBeVisible();
   }
   await page.getByRole("link", { name: "Vidrios", exact: true }).click();
-  for (const [code, price] of [
-    [`${tag}-COM`, "3.50"],
-    [`${tag}-LAM`, "6.50"],
+  for (const [code, price, sheetPrice] of [
+    [`${tag}-COM`, "3.50", ""],
+    [`${tag}-LAM`, "6.50", ""],
+    [`${tag}-SHEET`, "", "111.11"],
+    [`${tag}-NONE`, "", ""],
   ]) {
     await page
       .getByRole("button", { name: "Nuevo vidrio", exact: true })
@@ -90,7 +92,10 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     await dialog
       .getByLabel("Diseño catedral")
       .selectOption({ label: names.design });
-    await dialog.getByLabel("Precio por pie²").fill(price);
+    await expect(dialog.getByLabel("Precio por pie²")).toHaveValue("0.00");
+    await expect(dialog.getByLabel("Precio por plancha")).toHaveValue("0.00");
+    if (price) await dialog.getByLabel("Precio por pie²").fill(price);
+    if (sheetPrice) await dialog.getByLabel("Precio por plancha").fill(sheetPrice);
     await dialog.getByRole("button", { name: "Guardar vidrio" }).click();
     await expect(dialog).not.toBeVisible();
     await expect(
@@ -170,6 +175,29 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page
     .getByLabel("Condiciones comerciales (opcional)")
     .fill("Condiciones de prueba; no corresponde a una venta.");
+  await page.getByLabel("Cotizar por").selectOption("SHEET");
+  await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveCount(0);
+  const sheetOptions = await page.locator("#glass-select option").allTextContents();
+  expect(sheetOptions.some((text) => text.includes(`${tag}-SHEET`))).toBe(true);
+  for (const suffix of ["COM", "LAM", "NONE"])
+    expect(sheetOptions.some((text) => text.includes(`${tag}-${suffix}`))).toBe(false);
+  const sheetId = await page.locator("#glass-select option").filter({ hasText: `${tag}-SHEET` }).getAttribute("value");
+  await page.getByLabel("Tipo de vidrio").selectOption(sheetId!);
+  await page.getByLabel("Cantidad", { exact: true }).fill("3");
+  await page.getByRole("button", { name: "Agregar ítem", exact: true }).click();
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 603.68");
+  await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
+  await expect(page.getByLabel("Cotizar por")).toHaveValue("SHEET");
+  await page.getByLabel("Cantidad", { exact: true }).fill("2");
+  await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 492.57");
+  await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
+  await page.getByLabel("Cantidad", { exact: true }).fill("3");
+  await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
+  await page.getByLabel("Cotizar por").selectOption("SQUARE_FOOT");
+  const cutOptions = await page.locator("#glass-select option").allTextContents();
+  for (const suffix of ["SHEET", "NONE"])
+    expect(cutOptions.some((text) => text.includes(`${tag}-${suffix}`))).toBe(false);
   for (const viewport of [
     { width: 1440, height: 900 },
     { width: 1280, height: 800 },
@@ -190,7 +218,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page).toHaveURL(/\/proformas\/PRO-\d+$/);
   const number = page.url().split("/").pop()!;
   await page.reload();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.35");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 603.68");
   await expect(page.getByText("Solo lectura", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Compartir proforma" }).click();
   await page
@@ -198,8 +226,9 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     .click();
   await expect(page.getByRole("status")).toContainText("Proforma copiada");
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
-    "S/ 270.35",
+    "S/ 603.68",
   );
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toContain("Plancha entera");
   await expect(page.getByRole("link", { name: /WhatsApp/ })).toHaveAttribute(
     "href",
     /^https:\/\/wa.me\/\?text=/,
@@ -209,7 +238,9 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   expect(pdf.headers()["content-type"]).toBe("application/pdf");
   expect((await pdf.body()).subarray(0, 4).toString()).toBe("%PDF");
   await page.goto(`/proformas/${number}/imprimir`);
-  await expect(page.locator(".ticket")).toContainText("S/ 270.35");
+  await expect(page.locator(".ticket")).toContainText("S/ 603.68");
+  await expect(page.locator(".ticket")).toContainText("Plancha entera");
+  await expect(page.locator(".ticket")).toContainText("333.33");
   await page.evaluate(() => {
     window.print = () => {
       document.body.dataset.printed = "true";
@@ -233,7 +264,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await login(secondPage);
   await secondPage.goto(`/proformas/${number}`);
   await expect(secondPage.getByTestId("quotation-total")).toHaveText(
-    "S/ 270.35",
+    "S/ 603.68",
   );
   await secondPage
     .getByRole("link", { name: "Nueva proforma", exact: true })

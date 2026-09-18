@@ -1,12 +1,20 @@
 import { describe, expect, it } from "vitest";
 import {
   calculateItem,
+  calculateSheet,
   nextEvenInch,
   roundHalfUp,
   ceilToMultiple,
   quotationTotal,
 } from "@/domain/quotation/calculation";
 describe("fórmula oficial", () => {
+  it("plancha multiplica precio por cantidad sin redondeo comercial", () => {
+    expect(calculateSheet({ pricePerSheet: "111.11", quantity: 3 }).itemAmount).toBe("333.33");
+    expect(calculateSheet({ pricePerSheet: "0.01", quantity: 3 }).itemAmount).toBe("0.03");
+    for (const quantity of [0, -1, 1.5])
+      expect(() => calculateSheet({ pricePerSheet: "111.11", quantity })).toThrow();
+    expect(() => calculateSheet({ pricePerSheet: "0.00", quantity: 1 })).toThrow();
+  });
   it("100 × 80, S/3.50, 2 piezas = S/62.25", () => {
     const result = calculateItem({
       widthCm: "100",

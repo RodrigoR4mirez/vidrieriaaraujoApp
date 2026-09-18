@@ -23,7 +23,7 @@ Las lecturas privadas usan `useCache: false` y `Accept-Encoding: identity`. En l
 
 ## Confirmación
 
-El servidor acepta solo IDs, medidas, cantidades, condiciones y un ID de solicitud. Relee productos y catálogos base activos, llama al cálculo de dominio y crea el snapshot. Lista proformas, elige máximo + 1 y crea un archivo sin overwrite ni sufijo aleatorio. Ante colisión relee y reintenta. El ID de solicitud permite recuperar el resultado tras perder una respuesta y evita duplicar un mismo intento concurrente. El folio que aparece en borrador es provisional.
+El servidor acepta solo IDs, modalidad, medidas para pie², cantidades, condiciones y un ID de solicitud. Relee productos y catálogos base activos, llama al cálculo de dominio y crea el snapshot. Lista proformas, elige máximo + 1 y crea un archivo sin overwrite ni sufijo aleatorio. Ante colisión relee y reintenta. El ID de solicitud permite recuperar el resultado tras perder una respuesta y evita duplicar un mismo intento concurrente. El folio que aparece en borrador es provisional.
 
 El histórico tiene un archivo por proforma. La fecha se almacena ISO UTC junto con `timezone: America/Lima`; UI, mensajes y documentos la presentan en Lima. Las salidas usan el snapshot, sin consultar precios actuales ni repetir fórmulas. No hay endpoint de edición/eliminación de proformas.
 
@@ -38,3 +38,7 @@ El borrador se mantiene en memoria del componente, sin persistencia de negocio e
 Scrypt y comparación constante para contraseña; JWT HS256 restringido por algoritmo, emisor y audiencia. Sesión HttpOnly. Next Server Actions verifica origen. Todo acceso a repositorios se realiza detrás de sesión; no hay rutas públicas para datos. Secretos validados al usarse, permitiendo construir sin credenciales de negocio. No hay credenciales predeterminadas versionadas.
 
 Es un MVP de catálogo pequeño: listar histórico lee snapshots con concurrencia limitada a 20. Si crece sustancialmente, implementar paginación/indexación en un nuevo repositorio. Blob no proporciona transacciones entre documentos ni restauración multiarchivo atómica. El servicio requiere conexión; otro dispositivo refleja cambios al abrir o refrescar.
+
+## Modalidades de venta
+
+`calculation.ts` mantiene la fórmula oficial por pie² y `calculateSheet` para precio de plancha × cantidad. `priceDraft` selecciona el cálculo y valida producto/referencias activas y precio de la modalidad mayor que cero, tanto en UI como en confirmación del servidor. PDF, ticket y mensajes usan los importes y modalidad del snapshot. Precios de catálogo vacíos se normalizan a `0.00`; no se migran ni sobrescriben históricos. El esquema admite ítems antiguos sin modalidad como pie² y conserva su JSON para backups idempotentes.
