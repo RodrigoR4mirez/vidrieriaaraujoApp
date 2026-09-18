@@ -2,6 +2,8 @@
 
 MVP privado de catálogo de vidrios, cotización por medidas y proformas históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador solo permanece en memoria hasta confirmarlo.
 
+Aplicación: [vidrieria-araujo.vercel.app](https://vidrieria-araujo.vercel.app). El catálogo inicia vacío para cargar los datos reales del negocio. Resultados de pruebas y URL Preview en [Despliegue](docs/deployment.md#resultados).
+
 ## Instalar y ejecutar
 
 ```sh

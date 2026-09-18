@@ -56,4 +56,27 @@ Si Blob falla, la UI informa que no pudo cargar/guardar y permite reintentar. An
 
 ## Resultados
 
-Las URLs definitivas y el resumen de verificación se registrarán después de validar Preview y Production.
+Verificación final: 18 de septiembre de 2026. Código de aplicación: commit `33619e0`.
+
+- Proyecto: https://vercel.com/rodrigor4mirezs-projects/vidrieria-araujo
+- Preview validado: https://vidrieria-araujo-foorcv3uq-rodrigor4mirezs-projects.vercel.app
+- Production: https://vidrieria-araujo.vercel.app
+- Release Production validado: `dpl_5XgJ1NFriyWfLhrz5vYrD2tbummx`, generado desde `main` después de pasar los E2E de Preview.
+
+| Comprobación | Resultado |
+|---|---|
+| npm ci | Correcto; auditoría sin vulnerabilidades |
+| Lint | Correcto, sin errores ni warnings de ESLint |
+| Typecheck | Correcto |
+| Unitarias e integración | 43/43 |
+| Fórmula oficial | S/ 62.25 y S/ 208.10 exactos |
+| Build local y Vercel | Correctos |
+| PDF con paquete aislado | Correcto; fuentes normal/negrita incluidas |
+| E2E local con Blob real | 2/2 |
+| E2E Preview en Vercel | 2/2; incluye PDF, impresión, clipboard y segundo navegador |
+| Concurrencia real Blob | Tres confirmaciones simultáneas con números distintos; reintento concurrente conserva un único número |
+| Backup real | Exportación e importación idempotente correctas, sin sobrescribir históricos |
+| Production | Login, logout, cookie Secure/HttpOnly/Lax y autorización servidor correctos; sin errores JavaScript |
+| Separación de entornos | Production con catálogos e histórico vacíos; datos E2E solo en Preview |
+
+Las credenciales iniciales están en `backups/acceso-inicial.txt`, con permisos 600 y excluidas de Git/despliegue. También están ignorados los backups reales, reportes y trazas de Playwright. El envío efectivo por WhatsApp y la prueba con una impresora física dependen del operador y su equipo; se verificaron el enlace, texto, PDF A4 y estilos de impresión 80 mm/A4.
