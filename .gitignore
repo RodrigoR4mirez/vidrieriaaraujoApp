@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+._*
+
+# Dependencies and generated files
+node_modules/
+.next/
+out/
+dist/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+*.log
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+.vercel/
+
+# Local backups
+backups/
+*.bak
+*.backup

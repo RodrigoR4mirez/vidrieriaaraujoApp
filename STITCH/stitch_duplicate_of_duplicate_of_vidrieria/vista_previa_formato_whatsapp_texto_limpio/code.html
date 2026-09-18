@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Vista Previa - Compartir Proforma WhatsApp</title>
+<!-- Tailwind CSS v3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Custom CSS for WhatsApp doodle pattern & styling -->
+<style data-purpose="whatsapp-theme">
+    /* WhatsApp classic background doodle simulation using pure CSS patterns */
+    .wa-chat-bg {
+      background-color: #EFEAE2;
+      background-image: 
+        radial-gradient(#d6cec5 1.2px, transparent 1.2px), 
+        radial-gradient(#d6cec5 1.2px, #EFEAE2 1.2px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+    }
+
+    /* Outgoing chat bubble tail */
+    .wa-bubble-tail {
+      position: absolute;
+      top: 0;
+      right: -8px;
+      width: 0;
+      height: 0;
+      border-top: 12px solid #E7FFDB;
+      border-right: 12px solid transparent;
+      border-bottom: 0 solid transparent;
+      border-left: 0 solid transparent;
+    }
+
+    /* iOS safe area adjustments */
+    .ios-safe-top {
+      padding-top: max(12px, env(safe-area-inset-top));
+    }
+    .ios-safe-bottom {
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-800 antialiased font-sans flex justify-center min-h-screen sm:p-4 md:p-6 select-none sm:select-auto">
+<!-- BEGIN: PhoneFrameWrapper -->
+<!-- Container with max-width matching a standard iOS device (iPhone 14/15 size) -->
+<main class="w-full max-w-[430px] bg-[#EFEAE2] flex flex-col h-[100dvh] sm:h-[880px] sm:rounded-[44px] shadow-2xl overflow-hidden border-slate-800 sm:border-[8px] relative">
+<!-- BEGIN: TopBarAppHeader -->
+<!-- App Navigation & Action Toolbar -->
+<header class="bg-[#075E54] text-white ios-safe-top shrink-0 shadow-md z-30" data-purpose="app-navigation">
+<!-- iOS Status Bar Placeholder -->
+<div class="px-6 pt-1 pb-1 flex justify-between items-center text-[11px] font-semibold tracking-tight text-white/90">
+<span>10:45</span>
+<div class="flex items-center space-x-1.5">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.47-.91C9.28 20.62 10.6 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"></path></svg>
+<span class="text-[10px]">5G</span>
+<div class="w-5 h-2.5 border border-white/80 rounded-sm p-0.5 flex items-center">
+<div class="h-full w-full bg-white rounded-2xs"></div>
+</div>
+</div>
+</div>
+<!-- Action Navigation Header -->
+<div class="px-4 py-2.5 flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<button aria-label="Volver" class="p-1.5 -ml-1 text-white hover:bg-white/10 rounded-full transition-colors active:scale-95" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<div>
+<h1 class="text-sm font-bold leading-tight tracking-wide">Compartir Proforma</h1>
+<p class="text-[11px] text-emerald-200">Vista previa de mensaje</p>
+</div>
+</div>
+<span class="bg-emerald-800/60 border border-emerald-400/30 text-emerald-100 text-[10px] font-mono px-2 py-0.5 rounded-full">
+          PRO-00001
+        </span>
+</div>
+<!-- Action Buttons Bar -->
+<div class="bg-[#054C44] px-3.5 py-2 flex gap-2 border-t border-emerald-800/40 text-xs shadow-inner" data-purpose="quick-actions">
+<!-- Copiar al portapapeles -->
+<button class="flex-1 bg-white/10 hover:bg-white/20 active:bg-white/30 text-white font-medium py-2 px-3 rounded-lg flex items-center justify-center space-x-1.5 transition-all text-center" id="btn-copy" type="button">
+<svg class="w-4 h-4 shrink-0 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="truncate text-[11px]" id="btn-copy-text">Copiar texto</span>
+</button>
+<!-- Abrir directo en WhatsApp -->
+<a class="flex-1 bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1da850] text-[#075E54] font-bold py-2 px-3 rounded-lg flex items-center justify-center space-x-1.5 transition-all shadow-sm" href="#" id="btn-whatsapp">
+<svg class="w-4 h-4 shrink-0 fill-current" viewBox="0 0 24 24">
+<path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.075-2.222-.556-1.825-.754-3.003-2.613-3.095-2.735-.091-.122-.738-.983-.738-1.874 0-.891.467-1.33.633-1.509.167-.179.366-.224.488-.224.122 0 .245.002.352.007.114.005.267-.043.418.32.155.371.53 1.292.576 1.385.046.093.076.202.015.324-.061.122-.092.198-.182.304-.092.106-.194.237-.277.319-.092.091-.188.19-.081.374.107.183.476.786 1.022 1.272.703.626 1.296.82 1.48.911.183.092.29.076.397-.046.107-.122.458-.533.58-.716.122-.183.245-.152.412-.091.167.061 1.066.503 1.249.594.183.092.305.137.35.214.046.076.046.444-.098.849z"></path>
+</svg>
+<span class="truncate text-[11px]">Abrir WhatsApp</span>
+</a>
+</div>
+</header>
+<!-- END: TopBarAppHeader -->
+<!-- BEGIN: WhatsAppChatHeader -->
+<!-- Simulates WhatsApp contact header bar -->
+<div class="bg-[#128C7E] px-3.5 py-2 flex items-center space-x-3 text-white shadow-sm z-20" data-purpose="whatsapp-contact-info">
+<!-- Contact Avatar (Clean initials placeholder without external images) -->
+<div class="w-9 h-9 rounded-full bg-emerald-100 text-teal-800 font-bold flex items-center justify-center text-sm ring-1 ring-white/30 shrink-0">
+        DA
+      </div>
+<!-- Contact Details -->
+<div class="flex-1 min-w-0">
+<div class="font-semibold text-sm leading-snug truncate">Cliente: Vidriería &amp; Aluminios</div>
+<div class="text-[10px] text-emerald-100/90 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-300 inline-block animate-pulse"></span>
+          en línea
+        </div>
+</div>
+<!-- Action Icons inside WhatsApp -->
+<div class="flex items-center space-x-3 text-white/90">
+<svg class="w-4 h-4 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-4 h-4 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<!-- END: WhatsAppChatHeader -->
+<!-- BEGIN: ChatConversationCanvas -->
+<!-- Scrollable area with background and bubble message -->
+<div class="flex-1 wa-chat-bg p-3.5 overflow-y-auto relative flex flex-col justify-start" data-purpose="chat-scroll-area">
+<!-- Encryption / Date notice -->
+<div class="self-center my-1.5 bg-[#FFF2C6] text-[#54656F] text-[10.5px] px-3 py-1 rounded-lg text-center shadow-xs max-w-[85%] border border-[#E9D99C]">
+        🔒 Los mensajes están cifrados de extremo a extremo.
+      </div>
+<!-- Date Pill -->
+<div class="self-center mb-2 bg-[#E1EDF2] text-[#54656F] text-[10.5px] font-medium px-2.5 py-0.5 rounded shadow-xs uppercase tracking-wider">
+        Hoy
+      </div>
+<!-- BEGIN: OutgoingChatBubble -->
+<!-- Message sent by business to client -->
+<div class="self-end max-w-[94%] bg-[#E7FFDB] rounded-lg rounded-tr-none px-3.5 pt-2.5 pb-1.5 shadow-sm text-slate-800 text-[12.5px] leading-relaxed relative border border-[#D1F0C2]" data-purpose="quotation-message-bubble">
+<!-- SVG/CSS Tail -->
+<span class="wa-bubble-tail"></span>
+<!-- Hidden Raw Text for Clipboard Action -->
+<textarea aria-hidden="true" class="sr-only" id="raw-quote-text" readonly="">📄 *DISTRIBUIDORA ARAUJO*
+*Vidriería &amp; Aluminios*
+----------------------------------------
+*PROFORMA N°:* PRO-00001
+*Fecha:* 24/01/2025  |  *Hora:* 10:45 a. m.
+----------------------------------------
+*DETALLE DE COTIZACIÓN:*
+
+🔹 *Vidrio Templado (8 mm)*
+• 100 x 80 cm (2 unidades)
+   P. Unit: S/ 95.00  ➝  *Total: S/ 190.00*
+• 50 x 50 cm (3 unidades)
+   P. Unit: S/ 80.00  ➝  *Total: S/ 240.00*
+
+🔹 *Vidrio Laminado (6 mm)*
+• 120 x 100 cm (1 unidad)
+   P. Unit: S/ 180.00  ➝  *Total: S/ 180.00*
+----------------------------------------
+📊 *RESUMEN:*
+• Cantidad total de piezas: 6 paños
+• Ítems cotizados: 3
+💰 *TOTAL GENERAL: S/ 540.00*
+----------------------------------------
+📌 *Condiciones:* Validez de proforma 15 días. Entrega en taller o según coordinación.
+¡Gracias por cotizar con nosotros!</textarea>
+<!-- Formatted Message Layout imitating WhatsApp bold and font styles -->
+<div class="font-sans space-y-1 select-text">
+<!-- Header Store Title -->
+<div>
+<span class="text-sm">📄</span> <strong class="font-bold text-gray-900 tracking-wide">DISTRIBUIDORA ARAUJO</strong><br>
+<strong class="font-semibold text-gray-800 italic">Vidriería &amp; Aluminios</strong>
+</div>
+<!-- Divider -->
+<div class="text-gray-400 font-mono text-[10px] select-none tracking-tighter">
+            ----------------------------------------
+          </div>
+<!-- Proforma Metadata -->
+<div class="text-[12px]">
+<strong class="font-semibold text-gray-900">PROFORMA N°:</strong> <span class="font-mono text-blue-800 font-bold bg-blue-50 px-1 py-0.5 rounded border border-blue-200">PRO-00001</span><br>
+<strong class="font-semibold text-gray-900">Fecha:</strong> 24/01/2025 &nbsp;|&nbsp; <strong class="font-semibold text-gray-900">Hora:</strong> 10:45 a. m.
+          </div>
+<!-- Divider -->
+<div class="text-gray-400 font-mono text-[10px] select-none tracking-tighter">
+            ----------------------------------------
+          </div>
+<!-- Section: Details -->
+<div>
+<strong class="font-bold text-emerald-950 uppercase tracking-tight block mb-1">DETALLE DE COTIZACIÓN:</strong>
+<!-- Item Group 1 -->
+<div class="mt-1">
+<span class="text-blue-600">🔹</span> <strong class="font-bold text-gray-900">Vidrio Templado (8 mm)</strong>
+<div class="pl-3.5 space-y-0.5 mt-0.5">
+<div>• 100 x 80 cm (2 unidades)</div>
+<div class="text-gray-600 pl-2.5 text-[11.5px]">
+                  P. Unit: S/ 95.00 ➝ <strong class="font-bold text-gray-900">Total: S/ 190.00</strong>
+</div>
+<div>• 50 x 50 cm (3 unidades)</div>
+<div class="text-gray-600 pl-2.5 text-[11.5px]">
+                  P. Unit: S/ 80.00 ➝ <strong class="font-bold text-gray-900">Total: S/ 240.00</strong>
+</div>
+</div>
+</div>
+<!-- Item Group 2 -->
+<div class="mt-2">
+<span class="text-blue-600">🔹</span> <strong class="font-bold text-gray-900">Vidrio Laminado (6 mm)</strong>
+<div class="pl-3.5 space-y-0.5 mt-0.5">
+<div>• 120 x 100 cm (1 unidad)</div>
+<div class="text-gray-600 pl-2.5 text-[11.5px]">
+                  P. Unit: S/ 180.00 ➝ <strong class="font-bold text-gray-900">Total: S/ 180.00</strong>
+</div>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<div class="text-gray-400 font-mono text-[10px] select-none tracking-tighter">
+            ----------------------------------------
+          </div>
+<!-- Summary & Totals -->
+<div>
+<span class="text-xs">📊</span> <strong class="font-bold text-gray-900">RESUMEN:</strong>
+<div class="pl-3.5">
+              • Cantidad total de piezas: 6 paños<br>
+              • Ítems cotizados: 3
+            </div>
+<div class="mt-1 py-1 px-2 bg-emerald-100/70 rounded border border-emerald-300/60 inline-block w-full">
+              💰 <strong class="font-extrabold text-emerald-950 text-[13px]">TOTAL GENERAL: S/ 540.00</strong>
+</div>
+</div>
+<!-- Divider -->
+<div class="text-gray-400 font-mono text-[10px] select-none tracking-tighter">
+            ----------------------------------------
+          </div>
+<!-- Footer terms & greetings -->
+<div class="text-[11.5px] text-gray-700 leading-snug">
+            📌 <strong class="font-semibold">Condiciones:</strong> Validez de proforma 15 días. Entrega en taller o según coordinación.<br>
+            ¡Gracias por cotizar con nosotros!
+          </div>
+</div>
+<!-- Timestamp and Blue Double Check -->
+<div class="flex items-center justify-end space-x-1 mt-1 text-[10px] text-[#667781] select-none">
+<span>10:45 a. m.</span>
+<!-- WhatsApp Double Check Blue icon SVG -->
+<svg class="w-4 h-3 text-[#53bdeb] fill-current inline-block" viewBox="0 0 16 11">
+<path d="M11.55 1.05a.75.75 0 0 0-1.1-1.02L5.9 4.8 4.3 3.2a.75.75 0 1 0-1.06 1.06l2.13 2.13a.75.75 0 0 0 1.06 0l5.12-5.34z"></path>
+<path d="M15.55 1.05a.75.75 0 0 0-1.1-1.02L9.9 4.8l-.5-.5a.75.75 0 1 0-1.06 1.06l1.03 1.03a.75.75 0 0 0 1.06 0l5.12-5.34z"></path>
+</svg>
+</div>
+</div>
+<!-- END: OutgoingChatBubble -->
+</div>
+<!-- END: ChatConversationCanvas -->
+<!-- BEGIN: ChatInputBar -->
+<!-- Mimics WhatsApp bottom input field and send button -->
+<footer class="bg-[#F0F2F5] px-2.5 py-2 border-t border-slate-200 flex items-center space-x-2 shrink-0 ios-safe-bottom" data-purpose="chat-input-bar">
+<!-- Emoji Icon -->
+<button class="text-slate-500 hover:text-slate-700 p-1" type="button">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</button>
+<!-- Input box placeholder -->
+<div class="flex-1 bg-white rounded-full px-3.5 py-2 text-xs text-slate-400 border border-slate-200 flex items-center justify-between shadow-xs">
+<span class="truncate">Mensaje con formato listo...</span>
+<svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<!-- WhatsApp Audio or Send Button -->
+<button class="w-9 h-9 rounded-full bg-[#00A884] text-white flex items-center justify-center shadow-md active:scale-95 transition-transform shrink-0" type="button">
+<svg class="w-4 h-4 translate-x-0.5 fill-current" viewBox="0 0 24 24">
+<path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+</svg>
+</button>
+</footer>
+<!-- END: ChatInputBar -->
+<!-- Toast Notification for Copy action -->
+<div class="absolute bottom-20 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-xs text-white text-xs font-medium px-4 py-2 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center space-x-2" id="copy-toast">
+<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>¡Texto copiado al portapapeles!</span>
+</div>
+</main>
+<!-- END: PhoneFrameWrapper -->
+<!-- BEGIN: Logic & Event Handling -->
+<script data-purpose="interaction-handlers">
+    document.addEventListener('DOMContentLoaded', () => {
+      const copyBtn = document.getElementById('btn-copy');
+      const copyBtnText = document.getElementById('btn-copy-text');
+      const rawTextEl = document.getElementById('raw-quote-text');
+      const toast = document.getElementById('copy-toast');
+      const waButton = document.getElementById('btn-whatsapp');
+
+      // Encode text for direct WhatsApp URL
+      const textToShare = rawTextEl.value;
+      waButton.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(textToShare)}`;
+
+      // Copy to clipboard interaction
+      copyBtn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(textToShare);
+          } else {
+            // Fallback for older browsers / iframe contexts
+            rawTextEl.select();
+            document.execCommand('copy');
+          }
+
+          // Visual Feedback on Button
+          const originalText = copyBtnText.textContent;
+          copyBtnText.textContent = '¡Copiado!';
+          copyBtn.classList.add('bg-white/30');
+
+          // Trigger Toast Notification
+          toast.classList.remove('opacity-0');
+          toast.classList.add('opacity-100');
+
+          setTimeout(() => {
+            copyBtnText.textContent = originalText;
+            copyBtn.classList.remove('bg-white/30');
+            toast.classList.remove('opacity-100');
+            toast.classList.add('opacity-0');
+          }, 2200);
+
+        } catch (err) {
+          console.error('Error al copiar el texto: ', err);
+        }
+      });
+    });
+  </script>
+<!-- END: Logic & Event Handling -->
+</body></html>

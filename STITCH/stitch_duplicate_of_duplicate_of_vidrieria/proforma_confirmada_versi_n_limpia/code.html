@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Proforma Confirmada - Sistema de Vidriería</title>
+<!-- Tailwind CSS CDN con plugins de formularios y container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0066ff',
+              600: '#0052cc',
+              700: '#0040a8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: CSS Stylesheets -->
+<style data-purpose="liquid-glass-effects">
+    /* Fondo realista minimalista con gradiente suave */
+    body {
+      background: radial-gradient(circle at 15% 15%, #f1f5fa 0%, #e2e8f0 40%, #dbe4ef 100%);
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Estilo contenedor general Liquid Glass */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 
+        0 20px 45px -15px rgba(0, 35, 90, 0.08),
+        0 8px 16px -6px rgba(0, 0, 0, 0.04),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    /* Tarjetas internas tipo cristal translúcido */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 
+        0 10px 25px -8px rgba(30, 60, 110, 0.05),
+        inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    /* Banner de éxito en cristal esmeralda líquido */
+    .glass-success-banner {
+      background: linear-gradient(135deg, rgba(236, 253, 245, 0.8) 0%, rgba(209, 250, 229, 0.6) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(110, 231, 183, 0.6);
+      box-shadow: 
+        0 10px 25px -6px rgba(16, 185, 129, 0.12),
+        inset 0 1px 2px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    /* Botón Hiperrealista Liquid Blue */
+    .liquid-btn-blue {
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 
+        0 8px 20px -4px rgba(37, 99, 235, 0.4),
+        inset 0 2px 3px 0 rgba(255, 255, 255, 0.5);
+      transition: all 0.2s ease;
+    }
+
+    .liquid-btn-blue:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px -4px rgba(37, 99, 235, 0.48);
+    }
+
+    /* Botón Hiperrealista Liquid Clear/Neutral */
+    .liquid-btn-clear {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 4px 14px -3px rgba(0, 20, 50, 0.06),
+        inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+      transition: all 0.2s ease;
+    }
+
+    .liquid-btn-clear:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px -4px rgba(0, 20, 50, 0.1);
+    }
+  </style>
+<!-- END: CSS Stylesheets -->
+</head>
+<body class="flex items-center justify-center p-4 md:p-8 text-slate-800 antialiased selection:bg-blue-100">
+<!-- BEGIN: MainContainer -->
+<main class="w-full max-w-4xl glass-panel rounded-3xl p-6 sm:p-10 transition-all" data-purpose="proforma-screen">
+<!-- BEGIN: HeaderSection -->
+<header class="glass-card rounded-2xl p-6 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4" data-purpose="proforma-header"><div class="flex flex-col gap-1.5">
+  <p class="text-xs uppercase tracking-wider font-semibold text-slate-400">PROFORMA</p>
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-blue-600 whitespace-nowrap">Nº PRO-00001</h1>
+  <p class="text-xs sm:text-sm text-slate-500 font-medium flex items-center gap-1.5 flex-wrap">
+    <span class="font-medium text-slate-400">Fecha:</span>
+    <span class="font-semibold text-slate-700">24/01/2025</span>
+    <span class="mx-1 text-slate-300">·</span>
+    <span class="font-medium text-slate-400">Hora:</span>
+    <span class="font-semibold text-slate-700">10:45 a. m.</span>
+  </p>
+</div>
+<div class="flex items-center gap-4 justify-between md:justify-end">
+  <div class="text-left md:text-right flex flex-col justify-center">
+    <h2 class="text-lg md:text-xl font-black text-slate-900 tracking-tight uppercase">DISTRIBUIDORA ARAUJO</h2>
+    <p class="text-xs md:text-sm font-semibold text-blue-600 uppercase tracking-wider">VIDRIERÍA &amp; ALUMINIOS</p>
+  </div>
+  <div class="w-[92px] h-[92px] rounded-2xl overflow-hidden glass-card p-1 shadow-md flex-shrink-0 flex items-center justify-center border border-white/80">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXQ5ZZ9Cw_yl2kJdRpp_RDkyjoBWFGJcGc5xzzcl8P3sfX7Rl-mCyt6EDFWre4BADpjCzJMpXaj3Cu59FnZ0lUkFjJ83L6BK0R73GynOtnJS66_CIw5C8SuQD7Mh3BTOlcOMvbTYD3X1Ptvgg3D82uBmIHmWq6eSrpQRkQOU9uRGFJm2pxtvsCtD1bFYEZACIofAtQiD1NI4wbyTk202zEpUdPs3x6rcYt39vBZ8RbsK-TiHGd2vVntRYC1hcslpYKoQ" alt="Logo Distribuidora Araujo" class="w-full h-full object-cover rounded-xl shadow-inner">
+  </div>
+</div></header>
+<!-- END: HeaderSection -->
+<!-- BEGIN: MainContent -->
+<div class="flex flex-col gap-6" data-purpose="proforma-summary">
+<!-- Banner de Notificación de Éxito -->
+<article class="glass-success-banner rounded-2xl p-4 sm:p-5 flex items-center gap-4 transition-all" data-purpose="confirmation-alert">
+<div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/25 border border-emerald-300/40">
+<svg class="w-6 h-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-base sm:text-lg font-bold text-emerald-900 tracking-tight">Proforma confirmada</h3>
+<p class="text-xs sm:text-sm text-emerald-800/90 mt-0.5">La proforma PRO-00001 fue registrada correctamente.</p>
+</div>
+</article>
+<!-- Cabecera de Sección Resumen -->
+<div>
+<h2 class="text-xl font-bold text-slate-900">Resumen de proforma</h2>
+<p class="text-xs text-slate-500 mt-0.5">Productos agregados a esta proforma.</p>
+</div>
+<!-- Grupo 1: Vidrio Templado -->
+<div class="glass-card rounded-2xl overflow-hidden" data-purpose="glass-group-tempered">
+<div class="px-5 py-3.5 bg-blue-50/60 border-b border-blue-100/50 flex items-center justify-between">
+<h4 class="font-bold text-blue-600 text-sm tracking-wide">Vidrio Templado</h4>
+<span class="text-xs font-semibold text-slate-500">2 ítems</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs sm:text-sm">
+<thead>
+<tr class="text-slate-400 font-medium border-b border-slate-100 text-[11px] uppercase tracking-wider">
+<th class="py-3 px-5">Medidas (cm)</th>
+<th class="py-3 px-4 text-center">Cantidad</th>
+<th class="py-3 px-4 text-right">Precio unit.</th>
+<th class="py-3 px-5 text-right">Importe</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100/80 font-medium text-slate-700">
+<tr class="hover:bg-white/30 transition-colors">
+<td class="py-3.5 px-5 font-bold text-slate-900">100 x 80</td>
+<td class="py-3.5 px-4 text-center text-slate-700 font-semibold">2</td>
+<td class="py-3.5 px-4 text-right text-slate-500">S/ 95.00</td>
+<td class="py-3.5 px-5 text-right font-semibold text-slate-900">S/ 190.00</td>
+</tr>
+<tr class="hover:bg-white/30 transition-colors">
+<td class="py-3.5 px-5 font-bold text-slate-900">50 x 50</td>
+<td class="py-3.5 px-4 text-center text-slate-700 font-semibold">3</td>
+<td class="py-3.5 px-4 text-right text-slate-500">S/ 80.00</td>
+<td class="py-3.5 px-5 text-right font-semibold text-slate-900">S/ 240.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Grupo 2: Vidrio Laminado -->
+<div class="glass-card rounded-2xl overflow-hidden" data-purpose="glass-group-laminated">
+<div class="px-5 py-3.5 bg-blue-50/60 border-b border-blue-100/50 flex items-center justify-between">
+<h4 class="font-bold text-blue-600 text-sm tracking-wide">Vidrio Laminado</h4>
+<span class="text-xs font-semibold text-slate-500">1 ítem</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs sm:text-sm">
+<thead>
+<tr class="text-slate-400 font-medium border-b border-slate-100 text-[11px] uppercase tracking-wider">
+<th class="py-3 px-5">Medidas (cm)</th>
+<th class="py-3 px-4 text-center">Cantidad</th>
+<th class="py-3 px-4 text-right">Precio unit.</th>
+<th class="py-3 px-5 text-right">Importe</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100/80 font-medium text-slate-700">
+<tr class="hover:bg-white/30 transition-colors">
+<td class="py-3.5 px-5 font-bold text-slate-900">120 x 100</td>
+<td class="py-3.5 px-4 text-center text-slate-700 font-semibold">1</td>
+<td class="py-3.5 px-4 text-right text-slate-500">S/ 180.00</td>
+<td class="py-3.5 px-5 text-right font-semibold text-slate-900">S/ 180.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Tarjeta de Consolidado de Totales -->
+<div class="glass-card rounded-2xl p-5 grid grid-cols-3 divide-x divide-slate-200/80" data-purpose="totals-panel">
+<div class="px-2 sm:px-4 text-left">
+<span class="text-[11px] uppercase font-semibold text-slate-500">Total proforma</span>
+<p class="text-xl sm:text-3xl font-black text-blue-600 mt-1 tracking-tight">S/ 540.00</p>
+</div>
+<div class="px-2 sm:px-4 text-center">
+<span class="text-[11px] uppercase font-semibold text-slate-500">Ítems</span>
+<p class="text-xl sm:text-3xl font-black text-blue-600 mt-1 tracking-tight">3</p>
+</div>
+<div class="px-2 sm:px-4 text-center">
+<span class="text-[11px] uppercase font-semibold text-slate-500">Tipos de vidrio</span>
+<p class="text-xl sm:text-3xl font-black text-blue-600 mt-1 tracking-tight">2</p>
+</div>
+</div>
+<!-- BEGIN: ActionButtons -->
+<div class="pt-2" data-purpose="action-buttons-group">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Botón Secundario: Nueva Proforma -->
+<button class="liquid-btn-clear h-12 sm:h-14 rounded-2xl text-blue-600 font-bold text-sm tracking-wide flex items-center justify-center cursor-pointer" type="button">
+          Nueva proforma
+        </button>
+<!-- Botón Primario: Compartir Proforma -->
+<button class="liquid-btn-blue h-12 sm:h-14 rounded-2xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 cursor-pointer" type="button">
+<svg class="w-5 h-5 text-white stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Compartir proforma</span>
+</button>
+</div>
+</div>
+<!-- END: ActionButtons -->
+</div>
+<!-- END: MainContent -->
+</main>
+<!-- END: MainContainer -->
+
+
+</body></html>

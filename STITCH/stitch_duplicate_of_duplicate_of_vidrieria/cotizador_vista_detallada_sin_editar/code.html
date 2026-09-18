@@ -1,0 +1,508 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Cotizador Profesional - Liquid Glass Proforma</title>
+<!-- Tailwind CSS v3 with Forms Plugin -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Font Google: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#2563eb',
+              600: '#1d6ae5',
+              700: '#1d4ed8',
+              800: '#1e40af'
+            }
+          }
+        }
+      }
+    };
+  </script>
+<style data-purpose="liquid-glass-effects">
+    body {
+      background: radial-gradient(circle at 15% 15%, #f1f5fa 0%, #e2e8f0 40%, #dbe4ef 100%);
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Hiperrealistic Frosted/Liquid Glass Container (Large Panels) */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 
+        0 20px 45px -15px rgba(0, 35, 90, 0.08),
+        0 8px 16px -6px rgba(0, 0, 0, 0.04),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -1px 2px 0 rgba(0, 0, 0, 0.03);
+    }
+
+    /* Sub-card Frosted Glass */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 
+        0 10px 25px -8px rgba(30, 60, 110, 0.06),
+        inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    /* Botón Liquid Blue Vibrante Consistente con Fase 3 Confirmada */
+    .liquid-btn-blue {
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      box-shadow: 
+        0 8px 24px -4px rgba(37, 99, 235, 0.45),
+        0 3px 6px 0 rgba(0, 0, 0, 0.1),
+        inset 0 2px 3px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px 0 rgba(0, 25, 120, 0.3);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .liquid-btn-blue:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 
+        0 12px 28px -4px rgba(37, 99, 235, 0.55),
+        inset 0 2px 4px 0 rgba(255, 255, 255, 0.5);
+    }
+    .liquid-btn-blue:active {
+      transform: translateY(0.5px);
+      box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Botón Liquid Clear / Neutral */
+    .liquid-btn-clear {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 248, 253, 0.8) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 4px 14px -3px rgba(0, 20, 50, 0.08),
+        inset 0 1.5px 2px 0 rgba(255, 255, 255, 1);
+      transition: all 0.2s ease;
+    }
+    .liquid-btn-clear:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px -3px rgba(0, 20, 50, 0.12);
+    }
+
+    /* Glass Input / Capsule Element */
+    .glass-input {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(203, 213, 225, 0.6);
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .glass-input:focus-within {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    /* Glass Stepper Button */
+    .glass-stepper-btn {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(203, 213, 225, 0.6);
+      transition: all 0.18s ease;
+    }
+    .glass-stepper-btn:hover {
+      background: #ffffff;
+      border-color: #93c5fd;
+      color: #1d6ae5;
+    }
+
+    /* Pill Button Thickness Selector */
+    .pill-thickness-active {
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.4);
+    }
+    .pill-thickness-inactive {
+      background: rgba(255, 255, 255, 0.85);
+      color: #475569;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+    }
+    .pill-thickness-inactive:hover {
+      background: #ffffff;
+      color: #1e293b;
+      border-color: #cbd5e1;
+    }
+
+    /* Segment Switcher */
+    .glass-segment-bar {
+      background: rgba(226, 232, 240, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    .glass-segment-active {
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.35);
+    }
+
+    /* Red Action Glass for Delete */
+    .btn-glass-danger {
+      background: rgba(254, 242, 242, 0.85);
+      border: 1px solid rgba(254, 202, 202, 0.7);
+      color: #ef4444;
+      transition: all 0.2s ease;
+    }
+    .btn-glass-danger:hover {
+      background: #fee2e2;
+      color: #dc2626;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 antialiased p-4 md:p-8 flex items-center justify-center">
+<!-- BEGIN: ApplicationLayoutContainer -->
+<main class="w-full max-w-7xl glass-panel rounded-3xl p-6 sm:p-9 space-y-7" data-purpose="cotizador-glass-app">
+<!-- BEGIN: GlassHeaderSection -->
+<header class="glass-card rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-white/80" data-purpose="proforma-header"><div class="space-y-1.5">
+  <p class="text-xs uppercase tracking-wider font-semibold text-slate-500">PROFORMA</p>
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-[#1d6ae5] drop-shadow-sm">
+    Nº PRO-00001
+  </h1>
+  <p class="text-xs sm:text-sm text-slate-600 font-medium pt-0.5 flex items-center gap-1.5">
+    <span class="text-slate-400">Fecha:</span>
+    <span class="font-semibold text-slate-700">24/01/2025</span>
+    <span class="text-slate-300">·</span>
+    <span class="text-slate-400">Hora:</span>
+    <span class="font-semibold text-slate-700">10:45 a. m.</span>
+  </p>
+</div>
+
+<div class="flex items-center gap-4 justify-between sm:justify-end border-t border-slate-100 sm:border-t-0 pt-3 sm:pt-0"><div class="text-left sm:text-right"><h2 class="text-base sm:text-lg font-black tracking-tight text-slate-900 uppercase">DISTRIBUIDORA ARAUJO</h2><p class="text-xs font-bold text-[#1d6ae5] tracking-wider uppercase mt-0.5">Vidriería &amp; Aluminios</p></div><img src="https://lh3.googleusercontent.com/aida/AEtjO1WtJfKtpEnx4zgdw7PQWJ9B_4094jGe_QnG_DY71MDtLy4DYEoBWZd80EsRwt7sAdQGzkX8gbDEAecuvO6KzxWMcxWdsORPyn8-n8i7CYi6Z2e5DtgK7gbc4_AP55D_99zDpe9OMyFS1o4Wi3hxzMevLo9_cZc_VY4SK13VuqNv2ekFyaBLcraK_hxGdQza1uK1BSnINysR_SFZmALgtTm6PYFV6F5R-JBUTI4vathjRAsdPSX-eTUEn9KzY6crMGpokcBWsbk4PMg" alt="Distribuidora Araujo Logo" class="w-14 h-14 rounded-2xl object-cover shadow-sm"><div class="relative" id="settings-menu-container"><button type="button" id="btn-settings-toggle" onclick="const m = document.getElementById('settings-dropdown-menu'); m.classList.toggle('hidden');" class="p-2.5 rounded-xl border border-white/90 bg-white/70 hover:bg-white text-slate-600 hover:text-[#1d6ae5] shadow-sm transition-all flex items-center justify-center cursor-pointer glass-card active:scale-95" title="Configuración del Sistema" aria-label="Configuración del Sistema"><svg class="w-5 h-5 transition-transform duration-300 hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg></button><div id="settings-dropdown-menu" class="hidden absolute right-0 mt-2 w-80 rounded-2xl glass-panel shadow-xl border border-white/90 p-3.5 z-50 transition-all"><div class="flex items-center justify-between pb-2.5 mb-2 border-b border-slate-200/80 px-1"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#1d6ae5]"></span><span class="text-xs font-bold text-slate-800 tracking-wide uppercase">Configuración del Sistema</span></div><span class="text-[10px] font-semibold text-[#1d6ae5] bg-blue-50/70 px-2 py-0.5 rounded-full border border-blue-100/60">Admin</span></div><div class="space-y-1.5"><a href="#" class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-white/60 transition-colors"><div class="w-8 h-8 rounded-lg bg-blue-50/70 flex items-center justify-center text-[#1d6ae5] shrink-0 border border-blue-100/60"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg></div><div class="text-left"><p class="text-xs font-bold text-slate-800">Catálogo Principal de Vidrios</p><p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Precios de plancha, pie² y espesores</p></div></a><div class="p-2 rounded-xl bg-white/40 border border-white/60 text-left"><p class="text-xs font-bold text-slate-800 mb-1.5 flex items-center justify-between"><span class="">Catálogos Base</span><span class="text-[10px] font-medium text-slate-400">4 tablas</span></p><div class="flex flex-wrap gap-1"><span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-white border border-slate-200/70 text-slate-600">Familias</span><span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-white border border-slate-200/70 text-slate-600">Colores / acabados</span><span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-white border border-slate-200/70 text-slate-600">Espesores</span><span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-white border border-slate-200/70 text-slate-600">Diseños catedral</span></div></div><div class="p-2 rounded-xl hover:bg-white/60 transition-colors text-left"><div class="flex items-center justify-between"><p class="text-xs font-bold text-slate-800">Ajustes de Cotizador</p><span class="text-[10px] font-bold text-slate-500">v1.4</span></div><div class="flex items-center gap-3 mt-1.5 text-[11px] text-slate-600"><span class="inline-flex items-center gap-1 font-medium"><strong class="text-[#1d6ae5]">IGV:</strong> 18%</span><span class="text-slate-300">•</span><span class="inline-flex items-center gap-1 font-medium"><strong class="text-[#1d6ae5]">Validez:</strong> 15 días</span></div></div></div></div></div></div></header>
+<!-- END: GlassHeaderSection -->
+<!-- BEGIN: MainContentGrid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+<!-- BEGIN: LeftColumnForm -->
+<section class="lg:col-span-4 glass-card rounded-2xl p-6 flex flex-col justify-between" data-purpose="form-agregar-vidrio">
+<div>
+<!-- Section Title -->
+<div class="mb-5">
+<h2 class="text-xl font-bold text-slate-800 tracking-tight">Agregar vidrio</h2>
+<p class="text-xs text-slate-500 mt-1">Selecciona el tipo de vidrio y completa las medidas.</p>
+</div>
+<div class="space-y-4">
+<!-- Glass Selector: Tipo de Vidrio -->
+<div data-purpose="field-glass-type">
+<label class="block text-xs font-semibold text-slate-600 mb-1.5">Tipo de vidrio</label>
+<div class="relative">
+<select class="glass-input w-full appearance-none rounded-xl py-2.5 pl-3.5 pr-10 text-slate-800 font-medium text-sm focus:outline-none cursor-pointer">
+<option selected="" value="templado">Vidrio Templado</option>
+<option value="laminado">Vidrio Laminado</option>
+<option value="crudo">Vidrio Crudo / Flotado</option>
+<option value="insulado">Vidrio Insulado / Doble Vidriado</option>
+<option value="arenado">Vidrio Arenado / Opaco</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400">
+<svg class="w-4 h-4 text-[#1d6ae5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Espesor del cristal (6 mm, 8 mm, 10 mm, 12 mm) -->
+<div data-purpose="field-thickness">
+<label class="block text-xs font-semibold text-slate-600 mb-1.5">Espesor del cristal</label>
+<div class="grid grid-cols-4 gap-2">
+<button class="pill-thickness-inactive py-2 rounded-xl text-xs font-bold text-center transition-all cursor-pointer" type="button">
+          6 mm
+        </button>
+<button class="pill-thickness-active py-2 rounded-xl text-xs font-bold text-center transition-all cursor-pointer" type="button">
+          8 mm
+        </button>
+<button class="pill-thickness-inactive py-2 rounded-xl text-xs font-bold text-center transition-all cursor-pointer" type="button">
+          10 mm
+        </button>
+<button class="pill-thickness-inactive py-2 rounded-xl text-xs font-bold text-center transition-all cursor-pointer" type="button">
+          12 mm
+        </button>
+</div>
+</div>
+<!-- Medidas del paño (cm) - SIN chip de área -->
+<div data-purpose="field-dimensions">
+<label class="block text-xs font-semibold text-slate-600 mb-1.5">Medidas del paño (cm)</label>
+<div class="grid grid-cols-2 gap-3">
+<!-- Ancho -->
+<div class="glass-input rounded-xl p-2.5 px-3">
+<span class="block text-[10px] text-slate-400 uppercase font-semibold">Ancho</span>
+<div class="flex items-baseline justify-between mt-0.5">
+<input class="w-full bg-transparent border-none p-0 text-base font-bold text-slate-800 focus:ring-0" placeholder="0" type="number" value="100">
+<span class="text-xs text-slate-400 ml-1">cm</span>
+</div>
+</div>
+<!-- Alto -->
+<div class="glass-input rounded-xl p-2.5 px-3">
+<span class="block text-[10px] text-slate-400 uppercase font-semibold">Alto</span>
+<div class="flex items-baseline justify-between mt-0.5">
+<input class="w-full bg-transparent border-none p-0 text-base font-bold text-slate-800 focus:ring-0" placeholder="0" type="number" value="80">
+<span class="text-xs text-slate-400 ml-1">cm</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Cantidad de paños / piezas con Stepper Glass -->
+<div data-purpose="field-quantity">
+<label class="block text-xs font-semibold text-slate-600 mb-1.5">Cantidad de paños / piezas</label>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2">
+<button class="glass-stepper-btn w-11 h-11 rounded-xl flex items-center justify-center font-bold text-slate-600 text-base cursor-pointer" type="button">−</button>
+<div class="glass-input w-14 h-11 rounded-xl flex items-center justify-center font-bold text-slate-800 text-sm">1</div>
+<button class="glass-stepper-btn w-11 h-11 rounded-xl flex items-center justify-center font-bold text-slate-600 text-base cursor-pointer" type="button">+</button>
+</div>
+<div class="text-xs text-slate-500 pl-1">
+<span class="block text-[11px] text-slate-400 font-medium">Subtotal estimado:</span>
+<span class="text-sm font-bold text-[#1d6ae5]">S/ 95.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Submit Button in Form: Solo "Agregar ítem" y SIN tarjeta de pulido perimetral abajo -->
+<div class="mt-6 pt-2">
+<button class="liquid-btn-blue w-full py-3.5 px-5 rounded-xl text-sm font-bold flex items-center justify-center cursor-pointer tracking-wide" type="button">
+      Agregar ítem
+    </button>
+</div>
+</section>
+<!-- END: LeftColumnForm -->
+<!-- BEGIN: RightColumnSummary -->
+<section class="lg:col-span-8 space-y-6" data-purpose="resumen-proforma-section">
+<div class="glass-card rounded-2xl p-6 sm:p-7 space-y-6">
+<!-- Summary Header & Pill Switcher: Pestaña activa en "Detallado" -->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-slate-200/70 gap-3">
+<div>
+<h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Resumen de proforma</h2>
+<p class="text-xs sm:text-sm text-slate-500 mt-0.5">Productos agregados listos para cotizar</p>
+</div>
+<!-- Switch Detallado / Compacto (Detallado ACTIVO) -->
+<div class="glass-segment-bar p-1 rounded-full flex items-center self-start sm:self-auto" data-purpose="glass-toggle">
+<button class="glass-segment-active px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer" type="button">
+          Detallado
+        </button>
+<button class="px-4 py-1.5 rounded-full text-xs font-bold text-slate-600 hover:text-slate-900 transition-all cursor-pointer" type="button">
+          Compacto
+        </button>
+</div>
+</div>
+<!-- Glass Accordions / Product Groups Container -->
+<div class="space-y-4">
+<!-- GRUPO 1: Vidrio Templado -->
+<div class="glass-card rounded-2xl overflow-hidden border border-white/80" data-purpose="categoria-vidrio-templado">
+<!-- Category Header -->
+<div class="px-5 py-3 bg-blue-50/70 border-b border-blue-100/60 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#1d6ae5]"></span>
+<h4 class="font-bold text-sm text-[#1d6ae5] tracking-wide">Vidrio Templado</h4>
+</div>
+<div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
+<span class="">2 ítems</span>
+<svg class="w-4 h-4 text-[#1d6ae5] cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Column Titles -->
+<div class="hidden sm:grid grid-cols-12 px-5 py-2.5 text-[11px] font-bold tracking-wider uppercase text-slate-400 bg-white/40 border-b border-slate-100">
+<div class="col-span-4">Medidas / Acciones</div>
+<div class="col-span-2 text-center">Cantidad</div>
+<div class="col-span-3 text-right">Precio unit.</div>
+<div class="col-span-2 text-right">Importe</div>
+<div class="col-span-1 text-right"></div>
+</div>
+<!-- ITEM 1: No en edición -> Cantidad fija en texto (SIN +/-) y botón Editar explícito -->
+<div class="p-4 sm:px-5 sm:py-3.5 border-b border-slate-100/80 hover:bg-white/30 transition-colors">
+<div class="grid grid-cols-1 sm:grid-cols-12 items-center gap-3">
+<!-- Medidas y Botón Editar -->
+<div class="sm:col-span-4 flex items-center gap-2 flex-wrap">
+<span class="text-sm font-bold text-slate-900 tracking-tight">100 × 80 cm</span>
+<button class="liquid-btn-clear px-2.5 py-1 rounded-full text-xs font-bold text-slate-700 hover:text-[#1d6ae5] inline-flex items-center gap-1.5 cursor-pointer shadow-xs ml-1" title="Editar medidas de este ítem" type="button">
+<svg class="w-3 h-3 text-[#1d6ae5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Editar</span>
+</button>
+</div>
+<!-- Cantidad fija como texto (SIN botones +/-) -->
+<div class="sm:col-span-2 flex items-center justify-start sm:justify-center">
+<span class="text-xs sm:hidden font-medium text-slate-400 mr-1.5">Cantidad:</span>
+<span class="text-sm font-bold text-slate-700">2</span>
+</div>
+<!-- Precio unitario -->
+<div class="sm:col-span-3 text-left sm:text-right text-xs font-semibold text-slate-500">
+<span class="sm:hidden font-medium text-slate-400">P. Unit: </span>S/ 95.00
+            </div>
+<!-- Importe -->
+<div class="sm:col-span-2 text-left sm:text-right text-sm font-black text-slate-900">
+<span class="sm:hidden font-medium text-slate-400">Importe: </span>S/ 190.00
+            </div>
+<!-- Eliminar -->
+<div class="sm:col-span-1 flex justify-end">
+<button class="btn-glass-danger w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer" title="Eliminar ítem" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- ITEM 2: No en edición -> Cantidad fija en texto (SIN +/-) y botón Editar explícito -->
+<div class="p-4 sm:px-5 sm:py-3.5 hover:bg-white/30 transition-colors">
+<div class="grid grid-cols-1 sm:grid-cols-12 items-center gap-3">
+<!-- Medidas y Botón Editar -->
+<div class="sm:col-span-4 flex items-center gap-2 flex-wrap">
+<span class="text-sm font-bold text-slate-900 tracking-tight">50 × 50 cm</span>
+<button class="liquid-btn-clear px-2.5 py-1 rounded-full text-xs font-bold text-slate-700 hover:text-[#1d6ae5] inline-flex items-center gap-1.5 cursor-pointer shadow-xs ml-1" title="Editar medidas de este ítem" type="button">
+<svg class="w-3 h-3 text-[#1d6ae5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Editar</span>
+</button>
+</div>
+<!-- Cantidad fija como texto (SIN botones +/-) -->
+<div class="sm:col-span-2 flex items-center justify-start sm:justify-center">
+<span class="text-xs sm:hidden font-medium text-slate-400 mr-1.5">Cantidad:</span>
+<span class="text-sm font-bold text-slate-700">3</span>
+</div>
+<!-- Precio unitario -->
+<div class="sm:col-span-3 text-left sm:text-right text-xs font-semibold text-slate-500">
+<span class="sm:hidden font-medium text-slate-400">P. Unit: </span>S/ 80.00
+            </div>
+<!-- Importe -->
+<div class="sm:col-span-2 text-left sm:text-right text-sm font-black text-slate-900">
+<span class="sm:hidden font-medium text-slate-400">Importe: </span>S/ 240.00
+            </div>
+<!-- Eliminar -->
+<div class="sm:col-span-1 flex justify-end">
+<button class="btn-glass-danger w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer" title="Eliminar ítem" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- GRUPO 2: Vidrio Laminado -->
+<div class="glass-card rounded-2xl overflow-hidden border border-white/80" data-purpose="categoria-vidrio-laminado">
+<!-- Category Header -->
+<div class="px-5 py-3 bg-blue-50/70 border-b border-blue-100/60 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#1d6ae5]"></span>
+<h4 class="font-bold text-sm text-[#1d6ae5] tracking-wide">Vidrio Laminado</h4>
+</div>
+<div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
+<span class="">1 ítem</span>
+<svg class="w-4 h-4 text-[#1d6ae5] cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Column Titles -->
+<div class="hidden sm:grid grid-cols-12 px-5 py-2.5 text-[11px] font-bold tracking-wider uppercase text-slate-400 bg-white/40 border-b border-slate-100">
+<div class="col-span-4">Medidas / Acciones</div>
+<div class="col-span-2 text-center">Cantidad</div>
+<div class="col-span-3 text-right">Precio unit.</div>
+<div class="col-span-2 text-right">Importe</div>
+<div class="col-span-1 text-right"></div>
+</div>
+<!-- ITEM 3: No en edición -> Cantidad fija en texto (SIN +/-) y botón Editar explícito -->
+<div class="p-4 sm:px-5 sm:py-3.5 hover:bg-white/30 transition-colors">
+<div class="grid grid-cols-1 sm:grid-cols-12 items-center gap-3">
+<!-- Medidas y Botón Editar -->
+<div class="sm:col-span-4 flex items-center gap-2 flex-wrap">
+<span class="text-sm font-bold text-slate-900 tracking-tight">120 × 100 cm</span>
+<button class="liquid-btn-clear px-2.5 py-1 rounded-full text-xs font-bold text-slate-700 hover:text-[#1d6ae5] inline-flex items-center gap-1.5 cursor-pointer shadow-xs ml-1" title="Editar medidas de este ítem" type="button">
+<svg class="w-3 h-3 text-[#1d6ae5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Editar</span>
+</button>
+</div>
+<!-- Cantidad fija como texto (SIN botones +/-) -->
+<div class="sm:col-span-2 flex items-center justify-start sm:justify-center">
+<span class="text-xs sm:hidden font-medium text-slate-400 mr-1.5">Cantidad:</span>
+<span class="text-sm font-bold text-slate-700">1</span>
+</div>
+<!-- Precio unitario -->
+<div class="sm:col-span-3 text-left sm:text-right text-xs font-semibold text-slate-500">
+<span class="sm:hidden font-medium text-slate-400">P. Unit: </span>S/ 180.00
+            </div>
+<!-- Importe -->
+<div class="sm:col-span-2 text-left sm:text-right text-sm font-black text-slate-900">
+<span class="sm:hidden font-medium text-slate-400">Importe: </span>S/ 180.00
+            </div>
+<!-- Eliminar -->
+<div class="sm:col-span-1 flex justify-end">
+<button class="btn-glass-danger w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer" title="Eliminar ítem" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Total Summary Glass Card: LIMPIO según corrección 6 (Total: precio simple sin IGV, Ítems: solo "3", Tipos: solo "2") -->
+<div class="glass-card rounded-2xl p-5 grid grid-cols-3 divide-x divide-slate-200/80 border border-white/90" data-purpose="totales-resumen">
+<!-- Métrica 1: Total Proforma (Solo precio limpio, sin IGV) -->
+<div class="px-2 sm:px-4 text-left">
+<span class="text-[11px] uppercase font-semibold text-slate-500">Total proforma</span>
+<p class="text-xl sm:text-3xl font-black text-[#1d6ae5] mt-1 tracking-tight">S/ 540.00</p>
+</div>
+<!-- Métrica 2: Ítems Totales (Solo número "3", sin "paños" ni m2) -->
+<div class="px-2 sm:px-4 text-center">
+<span class="text-[11px] uppercase font-semibold text-slate-500">Ítems</span>
+<p class="text-xl sm:text-3xl font-black text-[#1d6ae5] mt-1 tracking-tight">3</p>
+</div>
+<!-- Métrica 3: Tipos de Vidrio (Solo número "2", sin subtítulo) -->
+<div class="px-2 sm:px-4 text-center">
+<span class="text-[11px] uppercase font-semibold text-slate-500">Tipos de vidrio</span>
+<p class="text-xl sm:text-3xl font-black text-[#1d6ae5] mt-1 tracking-tight">2</p>
+</div>
+</div>
+<!-- Bottom Action Buttons: Consistentes con diseño fase de proforma -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+<!-- Botón Secundario: Nueva Proforma -->
+<button class="liquid-btn-clear h-12 sm:h-14 rounded-2xl text-slate-700 hover:text-[#1d6ae5] font-bold text-sm tracking-wide flex items-center justify-center cursor-pointer" type="button">
+        Nueva proforma
+      </button>
+<!-- Botón Primario: Confirmar Proforma con azul vibrante #1D6AE5 -->
+<button class="liquid-btn-blue h-12 sm:h-14 rounded-2xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 cursor-pointer shadow-xl" type="button">
+<span class="">Confirmar proforma</span>
+<svg class="w-4 h-4 stroke-[2.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+</section>
+<!-- END: RightColumnSummary -->
+</div>
+<!-- END: MainContentGrid -->
+<footer class="pt-4 border-t border-slate-200/70 text-center text-xs font-medium text-slate-500 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2"><p class="">Distribuidora Araujo © 2025 · Av. Carlos Izaguirre Mz B Lte 8, SMP · Tel: 522-1307 / 950 302 844 · <span class="text-[#1d6ae5]">operaciones@distribuidoraaraujo.com</span></p></footer></main>
+<!-- END: ApplicationLayoutContainer -->
+
+
+
+
+
+
+</body></html>

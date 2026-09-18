@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Distribuidora Araujo - Sistema de Cotización y Proformas</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            neu: {
+              base: '#ebf0f7',
+              text: '#4b5563',
+              muted: '#788497',
+              dark: '#1e293b',
+              brand: '#1d6ae5',
+              brandDark: '#1552b5'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Neumorphic Custom CSS -->
+<style data-purpose="neumorphic-effects">
+    body {
+      background-color: #ebf0f7;
+    }
+
+    /* Tarjeta Neumórfica Elevada */
+    .neu-card {
+      background: #ebf0f7;
+      box-shadow: 20px 20px 48px #cad3e2, -20px -20px 48px #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* Inputs Hendidos (Inset Shadow) inspirados en https://lh3.googleusercontent.com/aida-public/AB6AXuBy62pgNe-oFevyYv2ePHKMOtdwbtL3rpgP5xVAM0pXlP5cPLFMMRpTsNYRkQ60yGWE3cWbp_wj8dKmlKaDPRAbo6Gm_wNbk014zTV6ssSfOrhCUkKhsO_BbN8SSgEiC0y6qfmBLUp8AG2RS524vq1m0tG6sVMGRvBBvKMxraQdsMgHsNRGic55FeWiRGVf1oOEXc9RMvvC-qzD5QzjfuGRHExQ11yUfzBa6jOMTyfWolsD9dlGNqDuJDkrxUH9VfZsajs */
+    .neu-input {
+      background: #ebf0f7;
+      box-shadow: inset 5px 5px 10px #cdd6e4, inset -5px -5px 10px #ffffff;
+      border: none;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .neu-input:focus {
+      box-shadow: inset 6px 6px 12px #c4cee0, inset -6px -6px 12px #ffffff, 0 0 0 1px rgba(29, 106, 229, 0.35);
+    }
+
+    /* Botón Primario Relieve */
+    .neu-btn-primary {
+      background: linear-gradient(145deg, #1f72f5, #195dca);
+      box-shadow: 7px 7px 16px #cbd4e3, -7px -7px 16px #ffffff;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .neu-btn-primary:hover {
+      background: linear-gradient(145deg, #247aff, #1a62d4);
+      transform: translateY(-1px);
+      box-shadow: 9px 9px 20px #c2ccdc, -9px -9px 20px #ffffff;
+    }
+
+    .neu-btn-primary:active {
+      transform: translateY(1px);
+      box-shadow: inset 4px 4px 8px #134699, inset -4px -4px 8px #278eff;
+    }
+
+    /* Checkbox Neumórfico */
+    .neu-checkbox {
+      box-shadow: inset 2px 2px 5px #cdd6e4, inset -2px -2px 5px #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .neu-checkbox:checked {
+      box-shadow: 3px 3px 6px #cad4e3, -3px -3px 6px #ffffff;
+    }
+
+    /* Caja Informativa Flotante */
+    .neu-badge {
+      background: #ebf0f7;
+      box-shadow: 6px 6px 14px #d2dbe8, -6px -6px 14px #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    /* Botón de Icono Redondo */
+    .neu-icon-btn {
+      background: #ebf0f7;
+      box-shadow: 5px 5px 10px #cad3e2, -5px -5px 10px #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .neu-icon-btn:active {
+      box-shadow: inset 3px 3px 6px #cad3e2, inset -3px -3px 6px #ffffff;
+    }
+
+    /* Animación de Spinner */
+    @keyframes spin-fast {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .loading-spinner {
+      animation: spin-fast 0.8s linear infinite;
+    }
+  </style>
+<!-- END: Neumorphic Custom CSS -->
+</head>
+<body class="min-h-screen text-neu-text flex flex-col justify-between items-center p-4 sm:p-6 select-none">
+<!-- BEGIN: MainContent -->
+<main class="w-full flex-grow flex items-center justify-center my-auto py-6">
+<div class="w-full max-w-[430px]" data-purpose="login-container">
+<!-- Card Neumórfica de Acceso -->
+<div class="neu-card rounded-[32px] px-7 py-8 sm:px-9 sm:py-10 transition-all duration-300">
+<!-- BEGIN: HeaderSection -->
+<!-- Encabezado con Logo 3D y Nombres Comerciales -->
+<header class="flex flex-col items-center text-center mb-7">
+<!-- Contenedor del Logo 3D Oficial con Reflejo Sutil -->
+<div class="relative w-28 h-28 mb-4 rounded-3xl p-1.5 flex items-center justify-center neu-badge overflow-hidden shadow-lg"><img alt="Logotipo 3D Vidriería Araujo" class="w-full h-full object-cover rounded-2xl drop-shadow-md" src="https://lh3.googleusercontent.com/aida/AEtjO1WtJfKtpEnx4zgdw7PQWJ9B_4094jGe_QnG_DY71MDtLy4DYEoBWZd80EsRwt7sAdQGzkX8gbDEAecuvO6KzxWMcxWdsORPyn8-n8i7CYi6Z2e5DtgK7gbc4_AP55D_99zDpe9OMyFS1o4Wi3hxzMevLo9_cZc_VY4SK13VuqNv2ekFyaBLcraK_hxGdQza1uK1BSnINysR_SFZmALgtTm6PYFV6F5R-JBUTI4vathjRAsdPSX-eTUEn9KzY6crMGpokcBWsbk4PMg"></div>
+<h1 class="text-xl font-bold tracking-tight text-neu-dark uppercase">
+            Distribuidora Araujo
+          </h1>
+<p class="text-xs font-medium text-neu-muted mt-1">
+            Sistema de Cotización y Proformas
+          </p>
+</header>
+<!-- END: HeaderSection -->
+<!-- BEGIN: LoginForm -->
+<form class="space-y-4" id="loginForm" novalidate="">
+<!-- Notificación o Alerta de Estado -->
+<div class="hidden text-xs rounded-xl p-3 text-center transition-all duration-300 font-medium" id="statusAlert"></div>
+<!-- Campo: Usuario / Correo -->
+<div class="space-y-1.5" data-purpose="field-username">
+<label class="block text-xs font-semibold text-neu-muted uppercase tracking-wider pl-1" for="username">
+              Usuario o Correo
+            </label>
+<div class="relative">
+<input class="neu-input w-full rounded-2xl py-3 px-4 text-sm text-neu-dark placeholder-gray-400 focus:ring-0" id="username" name="username" placeholder="asesor@araujo.com" required="" type="email" value="asesor@araujo.com">
+</div>
+</div>
+<!-- Campo: Contraseña -->
+<div class="space-y-1.5" data-purpose="field-password">
+<label class="block text-xs font-semibold text-neu-muted uppercase tracking-wider pl-1" for="password">
+              Contraseña
+            </label>
+<div class="relative flex items-center">
+<input class="neu-input w-full rounded-2xl py-3 pl-4 pr-11 text-sm text-neu-dark placeholder-gray-400 focus:ring-0" id="password" name="password" placeholder="••••••••••••" required="" type="password" value="demo123">
+<!-- Botón Toggle Visibilidad Contraseña -->
+<button aria-label="Mostrar u ocultar contraseña" class="absolute right-3.5 text-neu-muted hover:text-neu-dark focus:outline-none transition-colors p-1" id="togglePassword" title="Mostrar u ocultar contraseña" type="button">
+<!-- SVG Icon Eye -->
+<svg class="w-4 h-4" fill="none" id="eyeIcon" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Opciones adicionales: Recordar & Olvido -->
+<div class="flex items-center justify-between pt-1 pb-2 text-xs">
+<label class="inline-flex items-center gap-2 cursor-pointer text-neu-muted hover:text-neu-dark transition-colors">
+<input checked="" class="neu-checkbox rounded-md w-4 h-4 text-neu-brand border-none focus:ring-0 focus:ring-offset-0 cursor-pointer bg-[#ebf0f7]" id="rememberMe" type="checkbox">
+<span class="">Recordar sesión</span>
+</label>
+
+</div>
+<!-- Botón de Ingreso Principal -->
+<div class="pt-1">
+<button class="neu-btn-primary w-full py-3.5 px-6 rounded-2xl text-white font-semibold text-sm tracking-wide flex items-center justify-center gap-2" id="submitBtn" type="submit">
+<span id="btnText" class="">Ingresar al Cotizador</span>
+<!-- Spinner (oculto por defecto) -->
+<svg class="hidden loading-spinner w-4 h-4 text-white" fill="none" id="btnSpinner" viewBox="0 0 24 24">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8v8H4z" fill="currentColor"></path>
+</svg>
+</button>
+</div>
+</form>
+<!-- END: LoginForm -->
+<!-- BEGIN: QuickCredentials -->
+<!-- Tarjeta Informativa de Acceso de Demostración -->
+
+<!-- END: QuickCredentials -->
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: Footer -->
+<footer class="text-center py-3 text-xs text-neu-muted/80">
+<p class="">Distribuidora Araujo © 2025 • Soluciones en vidrio templado, perfiles y aluminio</p>
+</footer>
+<!-- END: Footer -->
+<!-- BEGIN: Interactivity Script -->
+<script data-purpose="login-interactions">
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('loginForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnSpinner = document.getElementById('btnSpinner');
+      const statusAlert = document.getElementById('statusAlert');
+      const passwordInput = document.getElementById('password');
+      const togglePasswordBtn = document.getElementById('togglePassword');
+      const eyeIcon = document.getElementById('eyeIcon');
+      const demoBadge = document.getElementById('demoBadge');
+      const usernameInput = document.getElementById('username');
+
+      // Toggle Mostrar/Ocultar Contraseña
+      togglePasswordBtn.addEventListener('click', () => {
+        const isPassword = passwordInput.getAttribute('type') === 'password';
+        passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+        
+        // Modificar icono
+        if (isPassword) {
+          eyeIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+          `;
+        } else {
+          eyeIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          `;
+        }
+      });
+
+      // Relleno de Credenciales Demo al hacer clic
+      demoBadge.addEventListener('click', () => {
+        usernameInput.value = 'asesor@araujo.com';
+        passwordInput.value = 'demo123';
+        passwordInput.focus();
+      });
+
+      // Manejo de Envío y Animación de Validación
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const user = usernameInput.value.trim();
+        const pass = passwordInput.value.trim();
+
+        if (!user || !pass) {
+          showAlert('Por favor ingresa tu usuario y contraseña', 'error');
+          return;
+        }
+
+        // Estado de Carga
+        setLoadingState(true);
+
+        setTimeout(() => {
+          setLoadingState(false);
+          showAlert('¡Acceso concedido! Abriendo cotizador...', 'success');
+          
+          // Simulación de redirección estética
+          setTimeout(() => {
+            btnText.textContent = 'Ingresando...';
+          }, 800);
+        }, 1200);
+      });
+
+      function setLoadingState(isLoading) {
+        if (isLoading) {
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-90', 'cursor-not-allowed');
+          btnText.textContent = 'Verificando credenciales...';
+          btnSpinner.classList.remove('hidden');
+          statusAlert.classList.add('hidden');
+        } else {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-90', 'cursor-not-allowed');
+          btnText.textContent = 'Ingresar al Cotizador';
+          btnSpinner.classList.add('hidden');
+        }
+      }
+
+      function showAlert(message, type) {
+        statusAlert.textContent = message;
+        statusAlert.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-emerald-100', 'text-emerald-700');
+
+        if (type === 'error') {
+          statusAlert.classList.add('bg-red-100', 'text-red-700');
+        } else {
+          statusAlert.classList.add('bg-emerald-100', 'text-emerald-700');
+        }
+      }
+    });
+  </script>
+<!-- END: Interactivity Script -->
+
+
+</body></html>

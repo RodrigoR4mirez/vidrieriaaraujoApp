@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Catálogos Base - Distribuidora Araujo</title>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Plus Jakarta Sans & Caveat for cursive slogan -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            script: ['"Caveat"', 'cursive']
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#1a73e8',
+              600: '#0d6efd',
+              700: '#0b5ed7',
+              800: '#0a4cb4'
+            },
+            slate: {
+              850: '#182234'
+            }
+          },
+          boxShadow: {
+            'card': '0 4px 20px -2px rgba(186, 215, 245, 0.25), 0 2px 6px -1px rgba(0, 0, 0, 0.02)',
+            'card-hover': '0 10px 25px -4px rgba(186, 215, 245, 0.35)',
+            'inner-soft': 'inset 0 2px 4px rgba(0, 0, 0, 0.02)'
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-decorations">
+    body {
+      background-color: #f1f6fd;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1e293b;
+    }
+    
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-8 selection:bg-blue-100 selection:text-blue-800">
+<!-- BEGIN: MainContainer -->
+<div class="max-w-[1440px] w-full mx-auto flex-1 flex flex-col space-y-6">
+<!-- BEGIN: TopHeader -->
+<header class="bg-white rounded-3xl p-6 sm:px-8 sm:py-7 border border-blue-100/70 shadow-card flex flex-col md:flex-row justify-between items-start md:items-center gap-6" data-purpose="header-section">
+<!-- Title and metadata -->
+<div class="space-y-1">
+<span class="text-[11px] font-bold tracking-wider text-blue-600 uppercase">CATÁLOGOS BASE</span>
+<h1 class="text-3xl sm:text-[34px] font-extrabold text-blue-600 tracking-tight leading-tight">Catálogos base</h1>
+<p class="text-sm sm:text-base text-slate-500 font-medium">Administra las opciones que aparecerán al cotizar vidrios.</p>
+<div class="pt-1 flex items-center gap-3 text-xs sm:text-[13px] text-slate-500 font-medium">
+<span>Fecha: <strong class="text-slate-700 font-semibold">24/01/2025</strong></span>
+<span class="text-slate-300">•</span>
+<span>Hora: <strong class="text-slate-700 font-semibold">10:45 a. m.</strong></span>
+</div>
+</div>
+<!-- Company Identity & 3D Glass Logo -->
+<div class="flex items-center gap-4 self-end md:self-auto" data-purpose="company-identity">
+<div class="text-right">
+<h2 class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 leading-tight uppercase">DISTRIBUIDORA ARAUJO</h2>
+<span class="text-[11px] sm:text-xs font-bold tracking-wider text-blue-600 uppercase block">VIDRIERÍA &amp; ALUMINIOS</span>
+</div>
+<div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden bg-slate-900 shadow-md border border-slate-700 flex-shrink-0">
+<img alt="Distribuidora Araujo Glass 3D Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WtJfKtpEnx4zgdw7PQWJ9B_4094jGe_QnG_DY71MDtLy4DYEoBWZd80EsRwt7sAdQGzkX8gbDEAecuvO6KzxWMcxWdsORPyn8-n8i7CYi6Z2e5DtgK7gbc4_AP55D_99zDpe9OMyFS1o4Wi3hxzMevLo9_cZc_VY4SK13VuqNv2ekFyaBLcraK_hxGdQza1uK1BSnINysR_SFZmALgtTm6PYFV6F5R-JBUTI4vathjRAsdPSX-eTUEn9KzY6crMGpokcBWsbk4PMg"/>
+</div>
+</div>
+</header>
+<!-- END: TopHeader -->
+<!-- BEGIN: CatalogLayoutGrid -->
+<main class="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1 items-start" data-purpose="main-grid-layout">
+<!-- BEGIN: Column1Categories -->
+<section class="lg:col-span-3 bg-white rounded-3xl p-5 border border-blue-100/70 shadow-card flex flex-col space-y-4" data-purpose="categories-navigation">
+<!-- Section Header -->
+<div class="flex items-start gap-3 pb-1">
+<div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 shadow-sm border border-blue-100">
+<!-- Layers icon -->
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h2 class="text-base font-bold text-slate-900 leading-tight">Tipos de catálogo</h2>
+<p class="text-xs text-slate-500 font-normal leading-relaxed mt-0.5">Selecciona una categoría para administrar sus opciones.</p>
+</div>
+</div>
+<!-- Categories List -->
+<nav aria-label="Catálogos disponibles" class="space-y-2 pt-2">
+<!-- Item: Familias -->
+<button class="w-full flex items-center justify-between p-3.5 rounded-2xl border border-transparent hover:border-slate-200 hover:bg-slate-50/70 text-slate-700 transition-all group text-left" type="button">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-xl bg-slate-100 group-hover:bg-white text-slate-600 flex items-center justify-center">
+<!-- Grid icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold">Familias</span>
+</div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 group-hover:bg-white">7</span>
+</button>
+<!-- Item: Colores / acabados -->
+<button class="w-full flex items-center justify-between p-3.5 rounded-2xl border border-transparent hover:border-slate-200 hover:bg-slate-50/70 text-slate-700 transition-all group text-left" type="button">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-xl bg-slate-100 group-hover:bg-white text-slate-600 flex items-center justify-center">
+<!-- Palette icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold">Colores / acabados</span>
+</div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 group-hover:bg-white">12</span>
+</button>
+<!-- Item: Espesores -->
+<button class="w-full flex items-center justify-between p-3.5 rounded-2xl border border-transparent hover:border-slate-200 hover:bg-slate-50/70 text-slate-700 transition-all group text-left" type="button">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-xl bg-slate-100 group-hover:bg-white text-slate-600 flex items-center justify-center">
+<!-- Stacked Layers icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold">Espesores</span>
+</div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 group-hover:bg-white">10</span>
+</button>
+<!-- Item: Diseños catedral (ACTIVE STATE) -->
+<button class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-blue-50 border border-blue-200 text-blue-700 font-bold shadow-sm transition-all text-left" type="button">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-sm">
+<!-- Pattern/Cathedral icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm tracking-tight">Diseños catedral</span>
+</div>
+<span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100/90 text-blue-700">6</span>
+</button>
+</nav>
+</section>
+<!-- END: Column1Categories -->
+<!-- BEGIN: Column2CatalogList -->
+<section class="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100/70 shadow-card flex flex-col space-y-4" data-purpose="catalog-table-view">
+<!-- Section Header -->
+<div class="flex items-start gap-3 pb-1">
+<div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 shadow-sm border border-blue-100">
+<!-- List icon -->
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h2 class="text-base font-bold text-slate-900 leading-tight">Listado del catálogo</h2>
+<p class="text-xs text-slate-500 font-normal leading-relaxed mt-0.5">Gestiona los diseños catedras disponibles.</p>
+</div>
+</div>
+<!-- Search & Filter Controls -->
+<div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+<div class="relative flex-1">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<!-- Magnifying glass icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="w-full pl-10 pr-4 py-2.5 bg-slate-50/60 border border-slate-200 rounded-2xl text-xs sm:text-sm placeholder-slate-400 text-slate-700 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="Buscar por código, nombre o descripción..." type="text"/>
+</div>
+<!-- Filter Dropdown Button -->
+<button class="inline-flex items-center justify-between gap-2 px-3.5 py-2.5 bg-slate-50/60 border border-slate-200 rounded-2xl text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors shrink-0" type="button">
+<div class="flex items-center gap-1.5">
+<svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Activos</span>
+</div>
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto border border-slate-100 rounded-2xl">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="border-b border-slate-100 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-50/50">
+<th class="py-3 px-3.5" scope="col">CÓDIGO</th>
+<th class="py-3 px-3" scope="col">NOMBRE</th>
+<th class="py-3 px-3" scope="col">DESCRIPCIÓN</th>
+<th class="py-3 px-3 text-center" scope="col">ESTADO</th>
+<th class="py-3 px-3.5 text-center" scope="col">ACCIONES</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100/80 font-medium text-slate-700">
+<!-- Row 1: CUA -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="py-3.5 px-3.5 font-bold text-slate-900">CUA</td>
+<td class="py-3.5 px-3 font-semibold text-slate-800">Cuadriculado</td>
+<td class="py-3.5 px-3 text-slate-500 max-w-[140px] truncate" title="Diseño cuadriculado clásico.">Diseño cuadriculado clásico.</td>
+<td class="py-3.5 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100/80">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    Activo
+                  </span>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex items-center justify-center gap-1 text-slate-400">
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Editar" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Ver detalles" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: ARA -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="py-3.5 px-3.5 font-bold text-slate-900">ARA</td>
+<td class="py-3.5 px-3 font-semibold text-slate-800">Arabesco</td>
+<td class="py-3.5 px-3 text-slate-500 max-w-[140px] truncate" title="Diseño ornamental de arabescos.">Diseño ornamental de arabescos.</td>
+<td class="py-3.5 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100/80">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    Activo
+                  </span>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex items-center justify-center gap-1 text-slate-400">
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Editar" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Ver detalles" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: FLO -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="py-3.5 px-3.5 font-bold text-slate-900">FLO</td>
+<td class="py-3.5 px-3 font-semibold text-slate-800">Flora</td>
+<td class="py-3.5 px-3 text-slate-500 max-w-[140px] truncate" title="Motivo floral decorativo.">Motivo floral decorativo.</td>
+<td class="py-3.5 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100/80">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    Activo
+                  </span>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex items-center justify-center gap-1 text-slate-400">
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Editar" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Ver detalles" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: LLO -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="py-3.5 px-3.5 font-bold text-slate-900">LLO</td>
+<td class="py-3.5 px-3 font-semibold text-slate-800">Llovizna</td>
+<td class="py-3.5 px-3 text-slate-500 max-w-[140px] truncate" title="Textura tipo lluvia suave.">Textura tipo lluvia suave.</td>
+<td class="py-3.5 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100/80">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    Activo
+                  </span>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex items-center justify-center gap-1 text-slate-400">
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Editar" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Ver detalles" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: GOT -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="py-3.5 px-3.5 font-bold text-slate-900">GOT</td>
+<td class="py-3.5 px-3 font-semibold text-slate-800">Gotas</td>
+<td class="py-3.5 px-3 text-slate-500 max-w-[140px] truncate" title="Diseño de gotas dispersas.">Diseño de gotas dispersas.</td>
+<td class="py-3.5 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100/80">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    Activo
+                  </span>
+</td>
+<td class="py-3.5 px-3.5">
+<div class="flex items-center justify-center gap-1 text-slate-400">
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Editar" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<button class="p-1 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Ver detalles" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- END: Column2CatalogList -->
+<!-- BEGIN: Column3DesignForm -->
+<section class="lg:col-span-4 bg-white rounded-3xl p-5 sm:p-6 border border-blue-100/70 shadow-card flex flex-col space-y-4" data-purpose="design-detail-form">
+<!-- Section Header -->
+<div class="flex items-start gap-3 pb-1">
+<div class="w-10 h-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-md">
+<!-- Plus Circle icon -->
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h2 class="text-base font-bold text-slate-900 leading-tight">Nuevo diseño catedral</h2>
+<p class="text-xs text-slate-500 font-normal leading-relaxed mt-0.5">Completa la información del diseño.</p>
+</div>
+</div>
+<!-- Form Elements -->
+<form class="space-y-3.5 pt-1 text-xs" onsubmit="event.preventDefault();">
+<!-- Código Field -->
+<div class="space-y-1">
+<label class="block font-bold text-slate-700" for="code">
+              Código <span class="text-rose-500">*</span>
+</label>
+<input class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-2xl text-xs placeholder-slate-400 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" id="code" placeholder="Ej. CUA" type="text"/>
+<p class="text-[11px] text-slate-400 font-normal">Usa códigos cortos como CUA, ARA, FLO, etc.</p>
+</div>
+<!-- Nombre Field -->
+<div class="space-y-1">
+<label class="block font-bold text-slate-700" for="name">
+              Nombre <span class="text-rose-500">*</span>
+</label>
+<input class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-2xl text-xs placeholder-slate-400 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" id="name" placeholder="Ej. Cuadriculado" type="text"/>
+</div>
+<!-- Descripción Field -->
+<div class="space-y-1">
+<label class="block font-bold text-slate-700" for="description">Descripción</label>
+<input class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-2xl text-xs placeholder-slate-400 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" id="description" placeholder="Ej. Diseño cuadriculado clásico." type="text"/>
+</div>
+<!-- Estado Selector Pills -->
+<div class="space-y-1.5">
+<span class="block font-bold text-slate-700">Estado</span>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Activo Option -->
+<label class="relative flex items-center justify-center gap-2 p-2.5 border rounded-2xl cursor-pointer transition-all border-blue-500 bg-blue-50/40 text-blue-700 font-bold">
+<input checked="" class="sr-only" name="form_status" type="radio" value="active"/>
+<span class="w-3.5 h-3.5 rounded-full border-2 border-blue-600 flex items-center justify-center bg-white">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+</span>
+<span>Activo</span>
+</label>
+<!-- Oculto Option -->
+<label class="relative flex items-center justify-center gap-2 p-2.5 border rounded-2xl cursor-pointer transition-all border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-medium">
+<input class="sr-only" name="form_status" type="radio" value="hidden"/>
+<span class="w-3.5 h-3.5 rounded-full border-2 border-slate-300 flex items-center justify-center bg-white"></span>
+<span>Oculto</span>
+</label>
+</div>
+</div>
+<!-- Observación Field -->
+<div class="space-y-1">
+<label class="block font-bold text-slate-700" for="notes">Observación (opcional)</label>
+<div class="relative">
+<textarea class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-2xl text-xs placeholder-slate-400 text-slate-800 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" id="notes" placeholder="Ej. Uso principal, características, etc." rows="3"></textarea>
+<span class="absolute bottom-2.5 right-3 text-[10px] font-medium text-slate-400">0/200</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center justify-end gap-2.5 pt-2">
+<button class="px-5 py-2.5 rounded-2xl font-bold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 transition-colors border border-transparent" type="button">
+              Cancelar
+            </button>
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/25 transition-all" type="submit">
+<!-- Floppy disk / save icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Guardar cambio</span>
+</button>
+</div>
+</form>
+</section>
+<!-- END: Column3DesignForm -->
+</main>
+<!-- END: CatalogLayoutGrid -->
+<!-- BEGIN: Footer -->
+<footer class="w-full pt-4 pb-2 border-t border-slate-200/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium" data-purpose="site-footer">
+<!-- Address & Contact Info -->
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1 text-center md:text-left">
+<!-- Location pin icon -->
+<svg class="w-4 h-4 text-blue-600 inline-block flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" fill-rule="evenodd"></path>
+</svg>
+<span>Distribuidora Araujo © 2025</span>
+<span class="text-slate-300">•</span>
+<span>Av. Carlos Izaguirre Mz B Lte 8, SMP</span>
+<span class="text-slate-300">•</span>
+<span>Tel: 522-1307 / 950 302 844</span>
+<span class="text-slate-300">•</span>
+<a class="text-blue-600 hover:underline" href="mailto:operaciones@distribuidoraaraujo.com">operaciones@distribuidoraaraujo.com</a>
+</div>
+<!-- Slogan with cursive script accent -->
+<div class="text-center md:text-right flex-shrink-0">
+<span class="font-script text-xl sm:text-2xl text-blue-800 tracking-wide block -rotate-1">
+          Soluciones en vidrio para un mejor mañana
+        </span>
+</div>
+</footer>
+<!-- END: Footer -->
+</div>
+<!-- END: MainContainer -->
+</body></html>
