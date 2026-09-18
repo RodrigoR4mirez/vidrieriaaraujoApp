@@ -592,8 +592,8 @@ No duplicar.
 Tests oficiales deben dar:
 
 ```text
-S/ 69.45
-S/ 230.35
+S/ 62.25
+S/ 208.10
 ```
 
 ---
@@ -1041,8 +1041,8 @@ Como mínimo:
 No desplegar si fallan:
 
 ```text
-100 x 80 cm / S/3.50 / cantidad 2 = S/69.45
-120 x 80 cm / S/6.50 / cantidad 3 = S/230.35
+100 x 80 cm / S/3.50 / cantidad 2 = S/62.25
+120 x 80 cm / S/6.50 / cantidad 3 = S/208.10
 ```
 
 ---

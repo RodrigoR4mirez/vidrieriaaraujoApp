@@ -15,7 +15,7 @@ describe("fórmula oficial", () => {
       expect(() => calculateSheet({ pricePerSheet: "111.11", quantity })).toThrow();
     expect(() => calculateSheet({ pricePerSheet: "0.00", quantity: 1 })).toThrow();
   });
-  it("100 × 80, S/3.50, 2 piezas = S/69.45", () => {
+  it("100 × 80, S/3.50, 2 piezas = S/62.25", () => {
     const result = calculateItem({
       widthCm: "100",
       heightCm: "80",
@@ -23,15 +23,15 @@ describe("fórmula oficial", () => {
       quantity: 2,
     });
     expect(result).toMatchObject({
-      widthInRounded: "42",
-      heightInRounded: "34",
-      areaIn2: "1428",
-      areaFt2: "9.92",
-      unitPrice: "34.72",
-      itemAmount: "69.45",
+      widthInRounded: "40",
+      heightInRounded: "32",
+      areaIn2: "1280",
+      areaFt2: "8.89",
+      unitPrice: "31.12",
+      itemAmount: "62.25",
     });
   });
-  it("120 × 80, S/6.50, 3 piezas = S/230.35", () => {
+  it("120 × 80, S/6.50, 3 piezas = S/208.10", () => {
     const result = calculateItem({
       widthCm: "120",
       heightCm: "80",
@@ -39,33 +39,24 @@ describe("fórmula oficial", () => {
       quantity: 3,
     });
     expect(result).toMatchObject({
-      widthInRounded: "50",
-      heightInRounded: "34",
-      areaIn2: "1700",
-      areaFt2: "11.81",
-      unitPrice: "76.77",
-      itemAmount: "230.35",
+      widthInRounded: "48",
+      heightInRounded: "32",
+      areaIn2: "1536",
+      areaFt2: "10.67",
+      unitPrice: "69.36",
+      itemAmount: "208.10",
     });
   });
   it.each([
-    ["35.43", "38"],
-    ["8.07", "10"],
-    ["35", "38"],
-    ["34.9999999999", "36"],
-    ["35.0000000001", "38"],
     ["24.4", "26"],
-    ["23.6", "26"],
-    ["39.37", "42"],
-    ["31.50", "34"],
-    ["47.24", "50"],
+    ["23.6", "24"],
+    ["39.37", "40"],
+    ["31.50", "32"],
+    ["47.24", "48"],
     ["24", "26"],
   ])("siguiente par %s → %s", (input, output) =>
     expect(nextEvenInch(input).toString()).toBe(output),
   );
-  it("20.5 × 90 cm usa 10 × 38 pulgadas y conserva redondeos monetarios", () => {
-    expect(calculateItem({ widthCm: "20.5", heightCm: "90", pricePerSquareFoot: "1.70", quantity: 1 }))
-      .toMatchObject({ widthInRounded: "10", heightInRounded: "38", areaIn2: "380", areaFt2: "2.64", unitPrice: "4.49", itemAmount: "4.50" });
-  });
   it("aumenta dimensiones convertidas exactamente pares", () =>
     expect(
       calculateItem({

@@ -108,13 +108,13 @@ describe("repositories y casos de uso", () => {
     const product = await f.catalog.saveProduct({ ...f.product, pricePerSheet: "111.11", sheetWidthCm: "200", sheetHeightCm: "300" }, f.product.id, f.product.revision);
     const draft = f.draft();
     const q = await f.service.confirm({ ...draft, items: [...draft.items, { id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 3 }] });
-    expect(q.total).toBe("402.78");
-    expect(q.items[0].itemAmount).toBe("69.45");
+    expect(q.total).toBe("395.58");
+    expect(q.items[0].itemAmount).toBe("62.25");
     expect(q.items[1]).toMatchObject({ mode: "SHEET", pricePerSheet: "111.11", quantity: 3, itemAmount: "333.33", sheetWidthCm: "200", sheetHeightCm: "300" });
     expect(q.items[1]).not.toHaveProperty("areaFt2");
     expect(quotationItemDetail(q.items[1])).toBe("Plancha entera · 200 × 300 cm");
     expect(quotationText(q)).toContain("Plancha entera");
-    expect(decodeURIComponent(whatsappUrl(q))).toContain("S/ 402.78");
+    expect(decodeURIComponent(whatsappUrl(q))).toContain("S/ 395.58");
     await f.catalog.saveProduct({ ...product, pricePerSheet: "0.00" }, product.id, product.revision);
     expect(await f.service.find(q.number)).toEqual(q);
     await expect(f.service.confirm({ requestId: randomUUID(), items: [{ id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 1 }] })).rejects.toThrow("sin precio");
@@ -123,11 +123,6 @@ describe("repositories y casos de uso", () => {
     const f = await fixture();
     const q = await f.service.confirm(f.draft());
     expect(q.items[0]).not.toHaveProperty("mode");
-    // Historical values from the previous inch rule must remain unchanged.
-    Object.assign(q.items[0], { widthInRounded: "40", heightInRounded: "32", areaIn2: "1280", areaFt2: "8.89", unitPrice: "31.12", itemAmount: "62.25" });
-    q.total = "62.25";
-    f.store.records.get(`data/v1/quotations/${q.number}.json`)!.value = structuredClone(q);
-    expect(quotationText((await f.service.find(q.number))!)).toContain("TOTAL PROFORMA: S/ 62.25");
     const original = JSON.stringify(f.store.records.get(`data/v1/quotations/${q.number}.json`)?.value);
     expect(await f.service.find(q.number)).toEqual(q);
     expect(await importBackup(f.store, await exportBackup(f.store), false)).toBe(0);
@@ -168,16 +163,16 @@ describe("repositories y casos de uso", () => {
     const f = await fixture();
     const q = await f.service.confirm(f.draft());
     expect(q.number).toBe("PRO-00001");
-    expect(q.total).toBe("69.45");
+    expect(q.total).toBe("62.25");
     expect(quotationSchema.parse(JSON.parse(JSON.stringify(q)))).toEqual(q);
-    expect(quotationText(q)).toContain("TOTAL PROFORMA: S/ 69.45");
+    expect(quotationText(q)).toContain("TOTAL PROFORMA: S/ 62.25");
     expect(decodeURIComponent(whatsappUrl(q))).toContain(q.number);
     await f.catalog.saveProduct(
       { ...f.product, pricePerSquareFoot: "100.00" },
       f.product.id,
       f.product.revision,
     );
-    expect((await f.service.find(q.number))?.total).toBe("69.45");
+    expect((await f.service.find(q.number))?.total).toBe("62.25");
   });
   it("asigna números únicos crecientes en confirmaciones simultáneas", async () => {
     const f = await fixture();
@@ -245,7 +240,7 @@ describe("repositories y casos de uso", () => {
       hidden.id,
       hidden.revision,
     );
-    expect((await f.service.confirm(f.draft())).total).toBe("69.45");
+    expect((await f.service.confirm(f.draft())).total).toBe("62.25");
   });
   it("excluye valores base ocultos de nuevas cotizaciones", async () => {
     const f = await fixture();

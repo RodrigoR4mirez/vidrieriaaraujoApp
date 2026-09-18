@@ -56,7 +56,7 @@ npm run build
 npm run verify
 ```
 
-`verify` ejecuta lint, tipos, unitarias/integración, build y generación PDF con el paquete aislado del despliegue. Los casos oficiales dan **S/ 69.45** y **S/ 230.35**. Playwright usa el servidor real y Blob de Preview/desarrollo, no una base simulada:
+`verify` ejecuta lint, tipos, unitarias/integración, build y generación PDF con el paquete aislado del despliegue. Los casos oficiales dan **S/ 62.25** y **S/ 208.10**. Playwright usa el servidor real y Blob de Preview/desarrollo, no una base simulada:
 
 ```sh
 npx playwright install chromium
