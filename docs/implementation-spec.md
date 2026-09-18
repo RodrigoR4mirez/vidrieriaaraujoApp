@@ -1405,3 +1405,7 @@ No detenerse después de una sola fase salvo bloqueo real.
 ### Selección guiada del vidrio
 
 En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial automática. Cada control permanece deshabilitado hasta completar el anterior; medidas y cantidad requieren un vidrio seleccionado. Al cambiar modalidad o familia se descarta la selección dependiente. Solo se ofrecen familias con productos activos y cotizables (precio > 0 en esa modalidad), y el combo de vidrio se limita a esa familia. Se elimina el selector adicional de espesor. El detalle muestra el diseño cuando corresponda (por ejemplo, Arabesco, sin el prefijo Catedral), color, grosor, medidas de plancha si están registradas, y código entre paréntesis en texto pequeño. No se inventan dimensiones ni se repite la familia. La edición de ítems conserva su modalidad, familia y producto; permite cambiar medidas/cantidad como antes. Cálculos y snapshots históricos permanecen iguales.
+
+### Continuidad del borrador en la pestaña
+
+Indicador ámbar con pulso suave, estático con movimiento reducido. Copia temporal de UI en sessionStorage (usuario/pestaña), incluyendo formulario sin agregar y edición, para navegar y recargar sin reiniciar. Se limpia al confirmar, descartar y cerrar sesión. Catálogos e históricos siguen en Blob; precios y disponibilidad se validan nuevamente al confirmar. No implica sincronización de borradores entre dispositivos.

@@ -3,7 +3,7 @@ import { services } from "@/application/container";
 import { PageHeader } from "@/components/layout";
 import { QuotationBuilder } from "@/components/quotation-builder";
 export default async function Page() {
-  await requireSession();
+  const currentSession = await requireSession();
   const app = services();
   const [catalog, next] = await Promise.all([
     app.catalog.load(),
@@ -13,11 +13,12 @@ export default async function Page() {
     <>
       <PageHeader
         eyebrow="Proforma · borrador"
+        draft
         title={`Nº ${next}`}
         description="Número provisional; se asigna al confirmar."
         date={new Date().toISOString()}
       />
-      <QuotationBuilder catalog={catalog} />
+      <QuotationBuilder catalog={catalog} owner={currentSession.sub!} />
     </>
   );
 }

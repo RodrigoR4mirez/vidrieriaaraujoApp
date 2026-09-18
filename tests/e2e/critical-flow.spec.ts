@@ -150,12 +150,40 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   };
   await add(code, "100", "2");
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.25");
+  await page.getByLabel("Ancho (cm)", { exact: true }).fill("75");
+  await page.getByLabel("Alto (cm)", { exact: true }).fill("40");
+  await page.getByLabel("Cantidad", { exact: true }).fill("4");
+  await page.getByLabel("Condiciones comerciales (opcional)").fill("Borrador conservado");
+  await page.getByRole("link", { name: "Vidrios", exact: true }).click();
+  await page.getByRole("link", { name: "Cotizador", exact: true }).click();
+  await expect(page).toHaveURL(/\/cotizador$/);
+  await expect(page.getByTestId("quotation-total")).toBeVisible();
+  await page.reload();
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.25");
+  await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveValue("75");
+  await expect(page.getByLabel("Alto (cm)", { exact: true })).toHaveValue("40");
+  await expect(page.getByLabel("Cantidad", { exact: true })).toHaveValue("4");
+  await expect(page.getByLabel("Condiciones comerciales (opcional)")).toHaveValue("Borrador conservado");
+  await expect(page.locator(".draft-light")).toBeVisible();
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".draft-light")).toHaveCSS("animation-name", "none");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await expect(page.locator(".draft-light")).toHaveCSS("animation-name", "draft-pulse");
+
   await add(`${tag}-LAM`, "120", "3");
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.35");
   await page
     .getByRole("button", { name: "Editar ítem 1", exact: true })
     .click();
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("110");
+  await page.getByRole("link", { name: "Histórico", exact: true }).click();
+  await page.getByRole("link", { name: "Cotizador", exact: true }).click();
+  await expect(page).toHaveURL(/\/cotizador$/);
+  await expect(page.getByTestId("quotation-total")).toBeVisible();
+  await page.reload();
+  await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveValue("110");
+  await expect(page.getByRole("button", { name: "Guardar cambios", exact: true })).toBeVisible();
+
   await page.getByRole("button", { name: "Aumentar cantidad" }).click();
   await page.getByRole("button", { name: "Guardar cambios" }).click();
   await expect(page.getByTestId("quotation-total")).not.toHaveText("S/ 270.35");
@@ -302,6 +330,20 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     `PRO-${String(Number(number.slice(4)) + 1).padStart(5, "0")}`,
   );
   await expect(secondPage.getByTestId("quotation-total")).toHaveText("S/ 0.00");
+  await page.emulateMedia({ media: "screen" });
+  await page.goto("/cotizador");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 0.00");
+  await expect(page.getByLabel("Cotizar por")).toHaveValue("");
+  await page.getByLabel("Condiciones comerciales (opcional)").fill("Descartar");
+  await page.getByRole("button", { name: "Nueva proforma", exact: true }).click();
+  await page.getByRole("button", { name: "Descartar borrador" }).click();
+  await page.reload();
+  await expect(page.getByLabel("Condiciones comerciales (opcional)")).toHaveValue("");
+  await page.getByLabel("Condiciones comerciales (opcional)").fill("Cerrar sesión");
+  await page.getByRole("button", { name: "Cerrar sesión" }).click();
+  await expect(page).toHaveURL(/\/login$/);
+  await login(page);
+  await expect(page.getByLabel("Condiciones comerciales (opcional)")).toHaveValue("");
   await device.close();
   expect(errors).toEqual([]);
 });

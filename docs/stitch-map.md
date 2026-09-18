@@ -37,3 +37,5 @@ Ampliación autorizada: el formulario incorpora selector Pie²/Plancha entera. P
 Selección guiada autorizada: modalidad → familia → vidrio, sin selección inicial automática y con controles dependientes deshabilitados. Se elimina el selector de espesor duplicado. El combo de vidrio muestra el diseño cuando corresponda, sin el prefijo de familia Catedral, color, grosor, medidas de plancha registradas y SKU pequeño entre paréntesis; no repite la familia. Al cambiar modalidad/familia se limpia el vidrio anterior. Se mantienen los assets y cálculos existentes.
 
 Pie de página actualizado según referencias del usuario: créditos de Distribuidora Araujo/R3 Consulting y valores Calidad, Confianza, Tu proyecto, nuestra prioridad. Texto e iconos vectoriales compactos, dos bloques en escritorio y apilados en móvil; compartido entre acceso y pantallas de la aplicación.
+
+Borrador: indicador ámbar con pulso suave (estático si se solicita movimiento reducido). Se conserva temporalmente en la pestaña al navegar y recargar, incluyendo formulario sin agregar y edición en curso. Confirmar, descartar o cerrar sesión limpia la copia temporal.

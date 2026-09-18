@@ -1,4 +1,5 @@
 "use client";
+import { clearDraftCaches } from "@/lib/quotation-draft-cache";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Calculator, Layers, Settings2, History, LogOut } from "lucide-react";
@@ -33,7 +34,7 @@ export function Navigation() {
           ) : null,
         )}
       </div>
-      <form action={logoutAction}>
+      <form action={logoutAction} onSubmit={clearDraftCaches}>
         <button title="Cerrar sesión" aria-label="Cerrar sesión">
           <LogOut size={17} />
           <span>Salir</span>

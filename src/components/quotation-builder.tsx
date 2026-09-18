@@ -1,4 +1,6 @@
 "use client";
+import { useQuotationDraft } from "./use-quotation-draft";
+import { emptyForm, type QuotationForm } from "@/lib/quotation-draft-cache";
 import { useHydrated } from "./use-hydrated";
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -20,14 +22,13 @@ import { money } from "@/lib/formatting";
 import { Button, Dialog, Notice, QuantityControl } from "./ui";
 import { GlassPicker } from "./glass-picker";
 import { QuotationSummary } from "./quotation-summary";
-export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
-  const [items, setItems] = useState<DraftItem[]>([]);
-  const [editId, setEditId] = useState<string | null>(null);
-  const [conditions, setConditions] = useState("");
+export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; owner: string }) {
+  const { draft, update, clear: clearCache, warning, get } = useQuotationDraft(owner);
+  const { items, editId, conditions, requestId, form } = draft;
+  const hydrated = useHydrated();
   const [error, setError] = useState("");
   const [resetOpen, setResetOpen] = useState(false);
   const [pending, startTransition] = useTransition();
-  const [requestId, setRequestId] = useState("");
   const router = useRouter();
   let priced: QuotationItem[] = [];
   let pricingError = "";
@@ -37,26 +38,27 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
     pricingError = error instanceof Error ? error.message : "Revisa los ítems.";
   }
   useEffect(() => {
-    if (!items.length && !conditions) return;
+    if (!warning || (!items.length && !conditions && !form.mode)) return;
     const leave = (event: BeforeUnloadEvent) => {
       event.preventDefault();
     };
     window.addEventListener("beforeunload", leave);
     return () => window.removeEventListener("beforeunload", leave);
-  }, [items.length, conditions]);
-  const changed = () => {
-    setRequestId("");
-    setError("");
-  };
+  }, [items.length, conditions, form.mode, warning]);
+  const cancelEdit = () => update((old) => ({ ...old, editId: null, form: emptyForm() }));
   const clear = () => {
-    setItems([]);
-    setConditions("");
-    setEditId(null);
-    changed();
+    clearCache();
+    setError("");
     setResetOpen(false);
   };
+  const remove = (id: string) => {
+    update((old) => ({ ...old, items: old.items.filter((item) => item.id !== id), requestId: "",
+      ...(old.editId === id ? { editId: null, form: emptyForm() } : {}),
+    }));
+    setError("");
+  };
   return (
-    <fieldset disabled={pending} className="quotation-layout">
+    <fieldset disabled={pending || !hydrated} className="quotation-layout">
       <aside className="panel glass quote-form">
         <h2>
           <Ruler size={20} />
@@ -65,19 +67,19 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
         <p className="muted">Elige por pie² o por plancha entera.</p>
         {catalog.products.length ? (
           <ItemForm
-            key={editId || "new"}
             catalog={catalog}
             editing={items.find((i) => i.id === editId)}
+            form={form}
+            onFormChange={(next) => update((old) => ({ ...old, form: next }))}
             onSave={(item) => {
-              setItems((old) =>
-                editId
-                  ? old.map((i) => (i.id === editId ? item : i))
-                  : [...old, item],
-              );
-              setEditId(null);
-              changed();
+              update((old) => ({ ...old,
+                items: old.editId ? old.items.map((i) => i.id === old.editId ? item : i) : [...old.items, item],
+                editId: null, requestId: "",
+                form: old.editId ? emptyForm() : { ...old.form, widthCm: "", heightCm: "", quantity: 1 },
+              }));
+              setError("");
             }}
-            onCancel={() => setEditId(null)}
+            onCancel={cancelEdit}
           />
         ) : (
           <Notice>
@@ -90,12 +92,18 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
       <section className="panel glass quote-summary">
         <QuotationSummary
           items={priced}
-          onEdit={(id) => setEditId(id)}
-          onDelete={(id) => {
-            setItems((old) => old.filter((i) => i.id !== id));
-            if (editId === id) setEditId(null);
-            changed();
+          onEdit={(id) => {
+            const item = items.find((i) => i.id === id);
+            if (!item) return;
+            update((old) => ({ ...old, editId: id, form: {
+              mode: item.mode ?? "SQUARE_FOOT", productId: item.productId,
+              familyId: catalog.products.find((p) => p.id === item.productId)?.familyId || "",
+              quantity: item.quantity,
+              widthCm: item.mode !== "SHEET" ? item.widthCm : "",
+              heightCm: item.mode !== "SHEET" ? item.heightCm : "",
+            } }));
           }}
+          onDelete={remove}
         />
         <div className="field conditions-field">
           <label htmlFor="conditions">Condiciones comerciales (opcional)</label>
@@ -106,11 +114,18 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
             placeholder="Indica las condiciones acordadas para esta proforma."
             value={conditions}
             onChange={(e) => {
-              setConditions(e.target.value);
-              changed();
+              update((old) => ({ ...old, conditions: e.target.value, requestId: "" }));
+              setError("");
             }}
           />
         </div>
+        {warning && <Notice error>{warning}</Notice>}
+        {pricingError && <ul className="draft-recovery">
+          {items.map((item) => <li key={item.id}>
+            <span>{catalog.products.find((p) => p.id === item.productId)?.code || "Vidrio no disponible"} · Cantidad: {item.quantity}</span>
+            <Button variant="secondary" onClick={() => remove(item.id)}>Retirar ítem</Button>
+          </li>)}
+        </ul>}
         {(error || pricingError) && (
           <Notice error>{error || pricingError}</Notice>
         )}
@@ -119,7 +134,7 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
             variant="secondary"
             disabled={pending}
             onClick={() =>
-              items.length || conditions ? setResetOpen(true) : clear()
+              items.length || conditions || form.mode || form.widthCm || form.heightCm ? setResetOpen(true) : clear()
             }
           >
             <RotateCcw size={17} />
@@ -130,7 +145,7 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
             onClick={() =>
               startTransition(async () => {
                 const id = requestId || crypto.randomUUID();
-                setRequestId(id);
+                update((old) => ({ ...old, requestId: id }));
                 const result = await confirmAction({
                   requestId: id,
                   items,
@@ -138,8 +153,7 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
                 });
                 if (!result.ok) setError(result.error);
                 else {
-                  setItems([]);
-                  setConditions("");
+                  if (get().draft.requestId === id) clearCache();
                   router.push(`/proformas/${result.data.number}`);
                   router.refresh();
                 }
@@ -174,35 +188,26 @@ export function QuotationBuilder({ catalog }: { catalog: CatalogState }) {
 function ItemForm({
   catalog,
   editing,
+  form,
+  onFormChange,
   onSave,
   onCancel,
 }: {
   catalog: CatalogState;
   editing?: DraftItem;
+  form: QuotationForm;
+  onFormChange: (form: QuotationForm) => void;
   onSave: (item: DraftItem) => void;
   onCancel: () => void;
 }) {
   const hydrated = useHydrated();
-  const [mode, setMode] = useState<SaleMode | "">(editing ? editing.mode ?? "SQUARE_FOOT" : "");
-  const [familyId, setFamilyId] = useState(
-    editing ? catalog.products.find((p) => p.id === editing.productId)?.familyId || "" : "",
-  );
-  const [productId, setProductId] = useState(editing?.productId || "");
+  const { mode, familyId, productId, widthCm, heightCm, quantity } = form;
+  const patch = (change: Partial<QuotationForm>) => onFormChange({ ...form, ...change });
   const available = mode ? catalog.products.filter((p) => isQuotable(p, catalog.values, mode)) : [];
   const families = catalog.values.filter((v) => v.category === "families" && available.some((p) => p.familyId === v.id));
   const familyProducts = available.filter((p) => p.familyId === familyId);
-  const [widthCm, setWidth] = useState(editing && editing.mode !== "SHEET" ? editing.widthCm : "");
-  const [heightCm, setHeight] = useState(editing && editing.mode !== "SHEET" ? editing.heightCm : "");
-  const [quantity, setQuantity] = useState(editing?.quantity || 1);
   const [error, setError] = useState("");
   const product = familyProducts.find((p) => p.id === productId);
-  function clearProduct() {
-    setProductId("");
-    setWidth("");
-    setHeight("");
-    setQuantity(1);
-    setError("");
-  }
   const candidate = {
     productId: product?.id || "",
     mode,
@@ -233,20 +238,15 @@ function ItemForm({
         }
         onSave(parsed.data);
         setError("");
-        if (!editing) {
-          setWidth("");
-          setHeight("");
-          setQuantity(1);
-        }
+
       }}
     >
       {editing && <Notice>{mode === "SHEET" ? "Editar cantidad de planchas" : "Editar medidas y cantidad"}</Notice>}
       <div className="field">
         <label htmlFor="sale-mode">Cotizar por</label>
         <select id="sale-mode" value={mode} disabled={!!editing} onChange={(event) => {
-          setMode(event.target.value as SaleMode | "");
-          setFamilyId("");
-          clearProduct();
+          onFormChange({ ...emptyForm(), mode: event.target.value as SaleMode | "" });
+          setError("");
         }}>
           <option value="">Selecciona la modalidad</option>
           <option value="SQUARE_FOOT">Pie² (por medidas)</option>
@@ -257,14 +257,14 @@ function ItemForm({
       <div className="field">
         <label htmlFor="family-select">Familia</label>
         <select id="family-select" value={familyId} disabled={!!editing || !mode || !families.length}
-          onChange={(event) => { setFamilyId(event.target.value); clearProduct(); }} required>
+          onChange={(event) => { onFormChange({ ...emptyForm(), mode, familyId: event.target.value }); setError(""); }} required>
           <option value="">Selecciona la familia</option>
           {families.map((family) => <option key={family.id} value={family.id}>{family.name}</option>)}
         </select>
       </div>
       <GlassPicker key={`${mode}-${familyId}`} products={familyProducts} values={catalog.values}
         value={productId} disabled={!!editing || !mode || !familyId || !familyProducts.length}
-        onChange={setProductId} />
+        onChange={(productId) => patch({ productId })} />
       <fieldset disabled={!product} className="item-measures form-stack">
       {mode === "SQUARE_FOOT" && <div className="form-grid">
         <div className="field">
@@ -277,7 +277,7 @@ function ItemForm({
             min="0.000001"
             inputMode="decimal"
             value={widthCm}
-            onChange={(e) => setWidth(e.target.value)}
+            onChange={(e) => patch({ widthCm: e.target.value })}
             required
           />
         </div>
@@ -291,12 +291,12 @@ function ItemForm({
             min="0.000001"
             inputMode="decimal"
             value={heightCm}
-            onChange={(e) => setHeight(e.target.value)}
+            onChange={(e) => patch({ heightCm: e.target.value })}
             required
           />
         </div>
       </div>}
-      <QuantityControl value={quantity} onChange={setQuantity} label={mode === "SHEET" ? "Cantidad de planchas" : "Cantidad de paños / piezas"} />
+      <QuantityControl value={quantity ?? NaN} onChange={(quantity) => patch({ quantity: Number.isFinite(quantity) ? quantity : null })} label={mode === "SHEET" ? "Cantidad de planchas" : "Cantidad de paños / piezas"} />
       </fieldset>
       <div className="estimate">
         <span>Importe estimado</span>

@@ -31,7 +31,7 @@ El histórico tiene un archivo por proforma. La fecha se almacena ISO UTC junto 
 
 `Brand`, `PageHeader`, `Panel`, `Button`, `Notice`, `StatusBadge`, `Dialog` y `EmptyState` son compartidos. `QuantityControl`, `ItemForm`, `QuotationSummary`, `ShareActions` y `PrintButton` cubren cotización y salidas. El modal usa `<dialog>` con foco nativo y cierre Escape. Los controles están etiquetados y los errores se anuncian con `role=alert`.
 
-El borrador se mantiene en memoria del componente, sin persistencia de negocio en el navegador. Nueva proforma confirma el descarte. Hay aviso al cerrar/recargar con cambios pendientes. Las acciones se deshabilitan durante confirmación.
+El borrador usa un store de UI con `useSyncExternalStore` y copia temporal validada con Zod en `sessionStorage`, por usuario y pestaña. Guarda entradas, formulario incompleto, edición y requestId; no guarda precios, totales ni credenciales. Las escrituras son sincrónicas con cada cambio para no perder el último campo al navegar. Confirmar, descartar o cerrar sesión limpia la copia. Si el almacenamiento falla se conserva memoria durante navegación y se avisa antes de recargar/cerrar. El servidor sigue siendo autoritativo al confirmar, y los precios se recalculan desde el catálogo vigente. Las acciones se deshabilitan durante confirmación.
 
 ## Seguridad y límites
 

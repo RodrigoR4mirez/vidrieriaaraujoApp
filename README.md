@@ -1,6 +1,6 @@
 # Distribuidora Araujo — Vidriería & Aluminios
 
-MVP privado de catálogo de vidrios, cotización por medidas y planchas enteras y proformas históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador solo permanece en memoria hasta confirmarlo.
+MVP privado de catálogo de vidrios, cotización por medidas y planchas enteras y proformas históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador se conserva temporalmente en la misma pestaña al navegar y recargar, hasta confirmarlo o descartarlo.
 
 Aplicación: [vidrieria-araujo.vercel.app](https://vidrieria-araujo.vercel.app). El catálogo inicia vacío para cargar los datos reales del negocio. Resultados de pruebas y URL Preview en [Despliegue](docs/deployment.md#resultados).
 
@@ -93,3 +93,5 @@ Los originales STITCH permanecen intactos y están excluidos del despliegue. El 
 ### Selección guiada del vidrio
 
 En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial automática. Cada control permanece deshabilitado hasta completar el anterior; medidas y cantidad requieren un vidrio seleccionado. Al cambiar modalidad o familia se descarta la selección dependiente. Solo se ofrecen familias con productos activos y cotizables (precio > 0 en esa modalidad), y el combo de vidrio se limita a esa familia. Se elimina el selector adicional de espesor. El detalle muestra el diseño cuando corresponda (por ejemplo, Arabesco, sin el prefijo Catedral), color, grosor, medidas de plancha si están registradas, y código entre paréntesis en texto pequeño. No se inventan dimensiones ni se repite la familia. La edición de ítems conserva su modalidad, familia y producto; permite cambiar medidas/cantidad como antes. Cálculos y snapshots históricos permanecen iguales.
+
+El borrador temporal incluye campos aún sin agregar y ediciones pendientes. Se limpia al confirmar, descartar o cerrar sesión; no se sincroniza entre dispositivos. Si el navegador bloquea el almacenamiento temporal se muestra un aviso.
