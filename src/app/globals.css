@@ -509,9 +509,13 @@ tbody tr:hover {
   padding: 10px 13px;
 }
 .dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
   width: 620px;
   max-width: calc(100vw - 32px);
   max-height: 90vh;
+  max-height: 90dvh;
   padding: 28px;
   border-radius: 23px;
   overflow-y: auto;
