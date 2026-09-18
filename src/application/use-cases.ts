@@ -1,6 +1,7 @@
 import {
   baseInputSchema,
   productInputSchema,
+  priceInputSchema,
   isQuotable,
   productDetails,
 } from "@/domain/catalogs/models";
@@ -48,8 +49,18 @@ export class CatalogService {
   load() {
     return this.glass.catalog();
   }
-  saveProduct(raw: unknown, id?: string, revision?: number) {
-    return this.glass.save(productInputSchema.parse(raw), id, revision);
+  async saveProduct(raw: unknown, id?: string, revision?: number) {
+    const input = productInputSchema.parse(raw);
+    const existing = id
+      ? (await this.glass.catalog()).products.find((p) => p.id === id)
+      : undefined;
+    for (const field of ["pricePerSquareFoot", "pricePerSheet"] as const) {
+      const price = input[field];
+      // Existing prices stay exact until explicitly changed; no data migration.
+      if (price !== undefined && price !== existing?.[field])
+        priceInputSchema.parse(price);
+    }
+    return this.glass.save(input, id, revision);
   }
   saveBase(raw: unknown, id?: string, revision?: number) {
     return this.bases.save(baseInputSchema.parse(raw), id, revision);

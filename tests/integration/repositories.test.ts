@@ -10,6 +10,8 @@ import {
 import type { JsonStore } from "@/infrastructure/persistence/blob/store";
 import { QuotationService, CatalogService } from "@/application/use-cases";
 import { quotationSchema } from "@/domain/quotation/models";
+import { catalogStateSchema } from "@/domain/catalogs/models";
+import { validateBackup } from "@/application/backup";
 import { quotationText, whatsappUrl } from "@/lib/sharing";
 class MemoryStore implements JsonStore {
   records = new Map<string, { value: unknown; etag: string }>();
@@ -82,13 +84,36 @@ async function fixture() {
   };
 }
 describe("repositories y casos de uso", () => {
+  it("edita bases sin códigos y preserva campos antiguos, IDs y precios existentes", async () => {
+    const f = await fixture();
+    const record = f.store.records.get("data/v1/catalog.json")!;
+    const state = catalogStateSchema.parse(record.value);
+    const family = state.values.find((v) => v.id === f.family.id)!;
+    family.code = "LEGACY";
+    family.observation = "Observación existente";
+    state.products[0].pricePerSquareFoot = "3.505";
+    record.value = state;
+    const updated = await f.catalog.saveBase({
+      name: "Familia actualizada", description: "", category: family.category, status: family.status,
+    }, family.id, family.revision);
+    expect(updated).toMatchObject({ id: family.id, code: "LEGACY", observation: "Observación existente" });
+    await f.catalog.saveBase({ name: "Otra familia", category: "families", status: "ACTIVE" });
+    await f.catalog.saveProduct({ ...state.products[0], status: "HIDDEN" }, f.product.id, f.product.revision);
+    const loaded = await f.catalog.load();
+    expect(loaded.products[0]).toMatchObject({ familyId: family.id, pricePerSquareFoot: "3.505" });
+    expect(loaded.values.find((v) => v.name === "Otra familia")).not.toHaveProperty("code");
+    expect(() => validateBackup({ schemaVersion: 1, exportedAt: new Date().toISOString(),
+      entries: [{ pathname: "data/v1/catalog.json", value: loaded }],
+    })).not.toThrow();
+    await expect(f.catalog.saveProduct({ ...f.product, code: "INVALID", pricePerSquareFoot: "1.111" })).rejects.toThrow("dos decimales");
+  });
   it("conserva ambas altas cuando dos dispositivos inicializan el catálogo", async () => {
     const store = new MemoryStore();
     const bases = new VercelBlobBaseCatalogRepository(new BlobCatalogDocument(store));
     await Promise.all(["COM", "LAM"].map((code) => bases.save({
-      category: "families", code, name: code, status: "ACTIVE", description: "", observation: "",
+      category: "families", name: code, status: "ACTIVE", description: "",
     })));
-    expect((await bases.list()).map((value) => value.code).sort()).toEqual(["COM", "LAM"]);
+    expect((await bases.list()).map((value) => value.name).sort()).toEqual(["COM", "LAM"]);
   });
   it("confirma, serializa y comparte el mismo snapshot", async () => {
     const f = await fixture();
@@ -99,7 +124,7 @@ describe("repositories y casos de uso", () => {
     expect(quotationText(q)).toContain("TOTAL PROFORMA: S/ 62.25");
     expect(decodeURIComponent(whatsappUrl(q))).toContain(q.number);
     await f.catalog.saveProduct(
-      { ...f.product, pricePerSquareFoot: "100" },
+      { ...f.product, pricePerSquareFoot: "100.00" },
       f.product.id,
       f.product.revision,
     );
@@ -145,18 +170,18 @@ describe("repositories y casos de uso", () => {
   it("detecta edición obsoleta sin perder el cambio anterior", async () => {
     const f = await fixture();
     await f.catalog.saveProduct(
-      { ...f.product, pricePerSquareFoot: "4" },
+      { ...f.product, pricePerSquareFoot: "4.00" },
       f.product.id,
       1,
     );
     await expect(
       f.catalog.saveProduct(
-        { ...f.product, pricePerSquareFoot: "5" },
+        { ...f.product, pricePerSquareFoot: "5.00" },
         f.product.id,
         1,
       ),
     ).rejects.toBeInstanceOf(ConflictError);
-    expect((await f.catalog.load()).products[0].pricePerSquareFoot).toBe("4");
+    expect((await f.catalog.load()).products[0].pricePerSquareFoot).toBe("4.00");
   });
   it("oculta, conserva y reactiva productos", async () => {
     const f = await fixture();

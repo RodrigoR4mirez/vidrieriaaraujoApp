@@ -30,7 +30,7 @@ export function BaseCatalogManager({ values }: { values: BaseValue[] }) {
     (v) =>
       v.category === category &&
       (status === "ALL" || v.status === status) &&
-      `${v.code} ${v.name}`.toLowerCase().includes(query.toLowerCase()),
+      `${v.name} ${v.description}`.toLowerCase().includes(query.toLowerCase()),
   );
   return (
     <div className="base-layout">
@@ -67,7 +67,7 @@ export function BaseCatalogManager({ values }: { values: BaseValue[] }) {
             <Search size={18} />
             <input
               aria-label="Buscar catálogo base"
-              placeholder="Buscar por código o nombre…"
+              placeholder="Buscar por nombre o descripción…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -88,7 +88,6 @@ export function BaseCatalogManager({ values }: { values: BaseValue[] }) {
             <table>
               <thead>
                 <tr>
-                  <th>Código</th>
                   <th>Nombre / descripción</th>
                   <th>Estado</th>
                   <th>Acciones</th>
@@ -97,9 +96,6 @@ export function BaseCatalogManager({ values }: { values: BaseValue[] }) {
               <tbody>
                 {filtered.map((v) => (
                   <tr key={v.id}>
-                    <td>
-                      <strong>{v.code}</strong>
-                    </td>
                     <td>
                       {v.name}
                       <small>{v.description}</small>
@@ -111,7 +107,7 @@ export function BaseCatalogManager({ values }: { values: BaseValue[] }) {
                       <div className="row-actions">
                         <button
                           className="icon-button"
-                          aria-label={`Editar ${v.code}`}
+                          aria-label={`Editar ${v.name}`}
                           onClick={() => {
                             setEditing(v);
                             setGeneration((n) => n + 1);
@@ -122,7 +118,7 @@ export function BaseCatalogManager({ values }: { values: BaseValue[] }) {
                         <button
                           className="icon-button"
                           disabled={pending}
-                          aria-label={`${v.status === "ACTIVE" ? "Ocultar" : "Reactivar"} ${v.code}`}
+                          aria-label={`${v.status === "ACTIVE" ? "Ocultar" : "Reactivar"} ${v.name}`}
                           onClick={() =>
                             startTransition(async () => {
                               const result = await saveBaseAction(
@@ -197,10 +193,8 @@ function BaseCatalogForm({
   } = useForm<BaseInput>({
     defaultValues: editing || {
       category,
-      code: "",
       name: "",
       description: "",
-      observation: "",
       status: "ACTIVE",
     },
   });
@@ -225,10 +219,6 @@ function BaseCatalogForm({
         })}
       >
         <div className="field">
-          <label htmlFor="base-code">Código *</label>
-          <input id="base-code" required maxLength={40} {...register("code")} />
-        </div>
-        <div className="field">
           <label htmlFor="base-name">Nombre *</label>
           <input
             id="base-name"
@@ -251,15 +241,6 @@ function BaseCatalogForm({
             <option value="ACTIVE">Activo</option>
             <option value="HIDDEN">Oculto</option>
           </select>
-        </div>
-        <div className="field">
-          <label htmlFor="base-note">Observación (opcional)</label>
-          <textarea
-            id="base-note"
-            rows={3}
-            maxLength={200}
-            {...register("observation")}
-          />
         </div>
         {error && <Notice error>{error}</Notice>}
         <div className="form-actions">

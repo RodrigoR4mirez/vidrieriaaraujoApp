@@ -2,7 +2,8 @@
 import { useHydrated } from "./use-hydrated";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { PriceInput } from "./price-input";
 import { Plus, Pencil, Eye, EyeOff, Search } from "lucide-react";
 import {
   type CatalogState,
@@ -229,6 +230,7 @@ function ProductForm({
   const [error, setError] = useState("");
   const {
     register,
+    control,
     handleSubmit,
     formState: { isSubmitting },
   } = useForm<ProductInput>({
@@ -357,7 +359,23 @@ function ProductForm({
               {s.label}
               {s.required ? " *" : ""}
             </label>
-            <input
+            {s.field === "pricePerSquareFoot" || s.field === "pricePerSheet" ? (
+              <Controller
+                name={s.field}
+                control={control}
+                render={({ field }) => (
+                  <PriceInput
+                    id={s.field}
+                    name={field.name}
+                    value={field.value}
+                    onChange={field.onChange}
+                    onBlur={field.onBlur}
+                    inputRef={field.ref}
+                    required={s.required}
+                  />
+                )}
+              />
+            ) : <input
               id={s.field}
               inputMode="decimal"
               type="number"
@@ -365,7 +383,7 @@ function ProductForm({
               step="any"
               required={s.required}
               {...register(s.field as keyof ProductInput)}
-            />
+            />}
           </div>
         ))}
       </div>

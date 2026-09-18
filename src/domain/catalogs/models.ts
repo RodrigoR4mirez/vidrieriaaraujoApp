@@ -38,10 +38,8 @@ const codeSchema = z
   .regex(/^[A-Z0-9_-]+$/, "Usa letras, números, guiones o guion bajo");
 const idSchema = z.string().uuid();
 export const baseInputSchema = z.object({
-  code: codeSchema,
   name: z.string().trim().min(1, "El nombre es obligatorio").max(100),
   description: z.string().trim().max(300).default(""),
-  observation: z.string().trim().max(200).default(""),
   status: statusSchema,
   category: categorySchema,
 });
@@ -52,7 +50,16 @@ const metadata = {
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 };
-export const baseValueSchema = baseInputSchema.extend(metadata);
+export const baseValueSchema = baseInputSchema.extend({
+  ...metadata,
+  // Preserve legacy fields without requiring them for new base values.
+  code: codeSchema.optional(),
+  observation: z.string().max(200).optional(),
+});
+export const priceInputSchema = positiveDecimal.regex(
+  /^\d+\.\d{2}$/,
+  "El precio debe tener exactamente dos decimales",
+);
 export const productInputSchema = z.object({
   code: codeSchema,
   familyId: idSchema,

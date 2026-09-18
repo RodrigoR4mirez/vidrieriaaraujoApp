@@ -485,6 +485,8 @@ Evitar depender de un contador mutable como única fuente de verdad.
 
 ## 16. Catálogos base
 
+Formulario simplificado: nombre, descripción opcional y estado. No solicitar ni mostrar código u observación. Conservar esos campos de registros antiguos internamente, sin cambiar IDs ni referencias existentes.
+
 Solo:
 
 1. Familias
@@ -545,6 +547,8 @@ updatedAt
 ```
 
 Código único.
+
+Los precios se ingresan desde los centavos, con dos decimales fijos: teclear `11100` muestra `111.00`. Aplicar a precio por pie² y por plancha, manteniendo este último opcional. Validar nuevos precios o cambios en servidor y conservar exactamente precios existentes no modificados. No aplicar esta máscara a medidas ni cantidades.
 
 El botón `+ Nuevo vidrio` abre el modal STITCH con blur discreto.
 

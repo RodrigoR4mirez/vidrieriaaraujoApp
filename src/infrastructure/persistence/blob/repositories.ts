@@ -120,16 +120,7 @@ export class VercelBlobBaseCatalogRepository implements BaseCatalogRepository {
       ensureRevision(existing, id, revision);
       if (existing && existing.category !== input.category)
         throw new DomainError("No se puede cambiar el tipo de catálogo.");
-      if (
-        state.values.some(
-          (v) =>
-            v.category === input.category &&
-            v.code === input.code &&
-            v.id !== id,
-        )
-      )
-        throw new DomainError("Código duplicado.");
-      const value = { ...input, ...metadata(existing) };
+      const value = { ...existing, ...input, ...metadata(existing) };
       state.values = [...state.values.filter((v) => v.id !== id), value];
       return value;
     });

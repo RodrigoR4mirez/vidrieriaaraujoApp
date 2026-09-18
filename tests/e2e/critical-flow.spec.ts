@@ -48,24 +48,24 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   expect(cookie?.httpOnly).toBe(true);
   expect(cookie?.sameSite).toBe("Lax");
   await page.getByRole("link", { name: "Catálogos base", exact: true }).click();
-  for (const [category, code, name] of [
-    ["Familias", `${tag}-F`, names.family],
-    ["Colores / acabados", `${tag}-C`, names.color],
-    ["Espesores", `${tag}-E`, names.thickness],
-    ["Diseños catedral", `${tag}-D`, names.design],
+  for (const [category, name] of [
+    ["Familias", names.family],
+    ["Colores / acabados", names.color],
+    ["Espesores", names.thickness],
+    ["Diseños catedral", names.design],
   ]) {
     await page
       .getByRole("button", {
         name: new RegExp(`^${category.replace("/", "\\/")}`),
       })
       .click();
-    await page.getByLabel(/^Código/).fill(code);
+    await expect(page.locator("#base-code, #base-note")).toHaveCount(0);
     await page.getByLabel(/^Nombre/).fill(name);
     await page
       .getByRole("button", { name: "Guardar cambio", exact: true })
       .click();
     await expect(
-      page.getByRole("cell", { name: code, exact: true }),
+      page.getByRole("cell", { name, exact: true }),
     ).toBeVisible();
   }
   await page.getByRole("link", { name: "Vidrios", exact: true }).click();

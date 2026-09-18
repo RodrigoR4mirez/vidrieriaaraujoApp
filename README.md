@@ -44,6 +44,8 @@ El segundo comando genera el secreto de sesión. En archivos dotenv, **escapar c
 
 Ocultar conserva registros. Un producto con cualquier referencia base oculta tampoco puede seleccionarse para una nueva cotización. Para resolver conflictos de edición, recargar y volver a aplicar los cambios. Cambiar precios nunca recalcula el histórico.
 
+Los catálogos base solo solicitan nombre, descripción opcional y estado. Los precios se escriben desde los centavos: `1` → `0.01`, `11100` → `111.00`; precio por plancha puede quedar vacío. Los datos antiguos se conservan sin migración destructiva.
+
 ## Verificar
 
 ```sh

@@ -26,9 +26,10 @@ export function validateBackup(raw: unknown) {
         state.products.length
       )
         throw new DomainError("Backup con códigos de vidrio duplicados.");
+      const legacyCodes = state.values.filter((v) => v.code);
       if (
-        new Set(state.values.map((v) => `${v.category}/${v.code}`)).size !==
-        state.values.length
+        new Set(legacyCodes.map((v) => `${v.category}/${v.code}`)).size !==
+        legacyCodes.length
       )
         throw new DomainError("Backup con códigos base duplicados.");
       if (
