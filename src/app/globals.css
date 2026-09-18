@@ -812,18 +812,36 @@ tbody tr:hover {
   color: var(--blue);
   font-weight: 700;
 }
-.app-footer {
+ .app-footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
   border-top: 1px solid #dbe4ef;
   margin-top: 28px;
-  padding: 22px 6px 8px;
-  font-size: 10px;
-  color: #718399;
+  padding: 20px 6px 8px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #62748d;
 }
-.app-footer span:last-child {
-  color: #5483be;
+.footer-credits p { margin: 0; }
+.footer-credits strong { color: #263e5e; font-weight: 700; }
+.footer-credits .footer-developer { color: #1d6ae5; }
+.footer-rights { font-size: 10px; }
+.footer-values {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 12px 0; list-style: none; padding: 0; margin: 0;
+}
+.footer-values li { display: flex; align-items: center; gap: 8px; padding: 0 14px; }
+.footer-values li + li { border-left: 1px solid #cbd6e5; }
+.footer-values svg { flex-shrink: 0; }
+.login-page > .app-footer { width: 100%; max-width: 1100px; margin-top: 36px; }
+@media (max-width: 800px) {
+  .app-footer { flex-direction: column; gap: 16px; text-align: center; }
+}
+@media (max-width: 520px) {
+  .footer-values li { padding: 0 10px; }
+  .footer-values li:last-child { flex-basis: 100%; justify-content: center; border-left: 0; }
 }
 .login-page {
   min-height: 100vh;
@@ -1047,9 +1065,6 @@ tbody tr:hover {
   .navigation a {
     padding: 9px 11px;
   }
-  .app-footer {
-    font-size: 9px;
-  }
 }
 @media (max-width: 520px) {
   .app-shell {
@@ -1130,9 +1145,6 @@ tbody tr:hover {
   }
   .base-form .form-stack {
     display: flex;
-  }
-  .app-footer span:last-child {
-    display: none;
   }
   .confirmed-banner {
     padding: 17px;

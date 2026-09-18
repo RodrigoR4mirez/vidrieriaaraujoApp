@@ -1,3 +1,4 @@
+import { AppFooter } from "@/components/app-footer";
 import { redirect } from "next/navigation";
 import { session } from "@/infrastructure/auth/session";
 import { Brand } from "@/components/brand";
@@ -11,7 +12,7 @@ export default async function LoginPage() {
         <p className="login-subtitle">Sistema de Cotización y Proformas</p>
         <LoginForm />
       </section>
-      <p className="login-footer">Soluciones en vidrio para un mejor mañana</p>
+      <AppFooter />
     </main>
   );
 }
