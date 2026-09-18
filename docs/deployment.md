@@ -69,7 +69,7 @@ Verificación final: 18 de septiembre de 2026. Código de aplicación: commit `3
 | Lint | Correcto, sin errores ni warnings de ESLint |
 | Typecheck | Correcto |
 | Unitarias e integración | 43/43 |
-| Fórmula oficial | S/ 62.25 y S/ 208.10 exactos |
+| Fórmula original al primer despliegue | S/ 62.25 y S/ 208.10; sustituida posteriormente por la regla dimensional de `business-rules.md` |
 | Build local y Vercel | Correctos |
 | PDF con paquete aislado | Correcto; fuentes normal/negrita incluidas |
 | E2E local con Blob real | 2/2 |

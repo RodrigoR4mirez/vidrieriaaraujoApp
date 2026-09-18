@@ -30,7 +30,7 @@ Logo real disponible en `LOGOS/logo 1 - 3d - glass.png`, coincidente con el isot
 
 ## Adaptaciones funcionales
 
-Prevalece `docs/business-rules.md`. Fórmula exclusiva en `src/domain/quotation/calculation.ts`, con decimal.js: cm / 2.54 → siguiente par estrictamente mayor → área / 144 redondeada half-up a 2 decimales → precio unitario half-up a 2 → cantidad → múltiplo superior de 0.05. Total = suma de importes. Los ejemplos de precios/productos y datos fiscales del mock no se precargan en producción. Las condiciones comerciales se ingresan opcionalmente y quedan congeladas al confirmar; STITCH contiene plazos contradictorios. El borrador muestra el próximo folio como provisional; el folio definitivo se asigna al confirmar. Persistencia central privada; no se implementan fases futuras del roadmap STITCH.
+Prevalece `docs/business-rules.md`. Fórmula exclusiva en `src/domain/quotation/calculation.ts`, con decimal.js: cm / 2.54 → par más cercano HALF_UP + 2 pulgadas → área / 144 redondeada half-up a 2 decimales → precio unitario half-up a 2 → cantidad → múltiplo superior de 0.05. Total = suma de importes. Los ejemplos de precios/productos y datos fiscales del mock no se precargan en producción. Las condiciones comerciales se ingresan opcionalmente y quedan congeladas al confirmar; STITCH contiene plazos contradictorios. El borrador muestra el próximo folio como provisional; el folio definitivo se asigna al confirmar. Persistencia central privada; no se implementan fases futuras del roadmap STITCH.
 
 Ampliación autorizada: el formulario incorpora selector Pie²/Plancha entera. Plancha muestra vidrio y cantidad, sin medidas de corte. Cada modo filtra activos con precio disponible (> 0); ambos admiten líneas en un mismo resumen. Resumen, WhatsApp, PDF y ticket identifican la modalidad. Precios vacíos del catálogo se muestran/guardan como `0.00`. Los originales STITCH se conservan.
 
@@ -41,3 +41,5 @@ Pie de página actualizado según referencias del usuario: créditos de Distribu
 Borrador: indicador ámbar con pulso suave (estático si se solicita movimiento reducido). Se conserva temporalmente en la pestaña al navegar y recargar, incluyendo formulario sin agregar y edición en curso. Confirmar, descartar o cerrar sesión limpia la copia temporal.
 
 Navegación ágil: precarga completa de enlaces principales y reutilización de pantallas en memoria durante 30 segundos. Acción Actualizar datos para solicitar información reciente; guardar continúa invalidando vistas. Solo el borrador se guarda en sessionStorage.
+
+Corrección dimensional autorizada: redondear las pulgadas al par más cercano y sumar 2. UI y salidas mantienen el único motor del dominio; importes monetarios y snapshots históricos se conservan con sus reglas existentes.

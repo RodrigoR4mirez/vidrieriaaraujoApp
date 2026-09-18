@@ -24,7 +24,7 @@ export function roundHalfUp(value: Decimal.Value, decimals = 2) {
   return new D(value).toDecimalPlaces(decimals, Decimal.ROUND_HALF_UP);
 }
 export function nextEvenInch(value: Decimal.Value) {
-  return new D(value).div(2).floor().plus(1).times(2);
+  return roundHalfUp(new D(value).div(2), 0).plus(1).times(2);
 }
 export function ceilToMultiple(
   value: Decimal.Value,

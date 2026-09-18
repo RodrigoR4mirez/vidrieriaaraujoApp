@@ -337,20 +337,20 @@ No duplicar fórmulas en:
 - resumen;
 - repositories.
 
-Tests obligatorios:
+Tests obligatorios (actualizados por la corrección autorizada: par más cercano HALF_UP + 2 pulgadas; los redondeos monetarios no cambian):
 
 ```text
 100 x 80 cm
 S/ 3.50 / pie²
 cantidad 2
-resultado S/ 62.25
+resultado S/ 69.45
 ```
 
 ```text
 120 x 80 cm
 S/ 6.50 / pie²
 cantidad 3
-resultado S/ 208.10
+resultado S/ 230.35
 ```
 
 No desplegar si esos tests fallan.

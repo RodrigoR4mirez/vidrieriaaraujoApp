@@ -44,30 +44,28 @@ altoInRaw  = altoCm / 2.54
 
 ### Paso 2 — siguiente número entero par
 
-Cada dimensión convertida debe subir al siguiente entero par.
-
-Regla exacta:
+Cada dimensión convertida se redondea al entero par más cercano y luego se suman 2 pulgadas. Se utiliza redondeo HALF_UP: en un empate exacto entre pares se elige el superior antes de sumar 2. No redondear previamente las pulgadas convertidas.
 
 ```text
-siguientePar(x) = 2 * (floor(x / 2) + 1)
+parMasCercano(x) = 2 * roundHalfUp(x / 2, 0)
+siguientePar(x) = parMasCercano(x) + 2
 ```
-
-El resultado debe ser estrictamente mayor que el valor convertido.
 
 Ejemplos:
 
 ```text
-24.4  -> 26
-23.6  -> 24
-39.37 -> 40
-31.50 -> 32
-47.24 -> 48
-24.0  -> 26
+35.43 -> 36 -> 38
+39.37 -> 40 -> 42
+8.07  ->  8 -> 10
+23.6  -> 24 -> 26
+24.4  -> 24 -> 26
+31.50 -> 32 -> 34
+47.24 -> 48 -> 50
+24.0  -> 24 -> 26
+35.0  -> 36 -> 38 (empate)
 ```
 
-Si el valor convertido es exactamente un entero par, también se sube al siguiente par.
-
-Aplicar la regla de forma independiente a ancho y alto.
+Aplicar la regla de forma independiente a ancho y alto. Esta actualización reemplaza únicamente el redondeo dimensional anterior; conserva todos los redondeos monetarios siguientes y no recalcula proformas confirmadas.
 
 ### Paso 3 — área en pulgadas cuadradas
 
@@ -180,26 +178,26 @@ Cantidad: 2
 Cálculo:
 
 ```text
-100 / 2.54 = 39.370... -> 40"
-80 / 2.54  = 31.496... -> 32"
+100 / 2.54 = 39.370... -> 40 (par cercano) -> 42"
+80 / 2.54  = 31.496... -> 32 (par cercano) -> 34"
 
-40 * 32 = 1280 in²
+42 * 34 = 1428 in²
 
-1280 / 144 = 8.888888...
-areaFt2 = 8.89
+1428 / 144 = 9.916666...
+areaFt2 = 9.92
 
-8.89 * 3.50 = 31.115
-unitPrice = 31.12
+9.92 * 3.50 = 34.72
+unitPrice = 34.72
 
-31.12 * 2 = 62.24
+34.72 * 2 = 69.44
 
-62.24 -> 62.25
+69.44 -> 69.45
 ```
 
 Resultado:
 
 ```text
-S/ 62.25
+S/ 69.45
 ```
 
 ---
@@ -218,26 +216,26 @@ Cantidad: 3
 Cálculo:
 
 ```text
-120 / 2.54 = 47.244... -> 48"
-80 / 2.54  = 31.496... -> 32"
+120 / 2.54 = 47.244... -> 48 (par cercano) -> 50"
+80 / 2.54  = 31.496... -> 32 (par cercano) -> 34"
 
-48 * 32 = 1536 in²
+50 * 34 = 1700 in²
 
-1536 / 144 = 10.666666...
-areaFt2 = 10.67
+1700 / 144 = 11.805555...
+areaFt2 = 11.81
 
-10.67 * 6.50 = 69.355
-unitPrice = 69.36
+11.81 * 6.50 = 76.765
+unitPrice = 76.77
 
-69.36 * 3 = 208.08
+76.77 * 3 = 230.31
 
-208.08 -> 208.10
+230.31 -> 230.35
 ```
 
 Resultado:
 
 ```text
-S/ 208.10
+S/ 230.35
 ```
 
 ---
@@ -327,10 +325,10 @@ Todos deben vivir en el dominio y tener tests unitarios.
 
 ```text
 24.4 -> 26
-23.6 -> 24
-39.37 -> 40
-31.50 -> 32
-47.24 -> 48
+23.6 -> 26
+39.37 -> 42
+31.50 -> 34
+47.24 -> 50
 24.0 -> 26
 ```
 
@@ -340,7 +338,7 @@ Todos deben vivir en el dominio y tener tests unitarios.
 100 x 80 cm
 S/ 3.50 / pie²
 cantidad 2
-resultado: S/ 62.25
+resultado: S/ 69.45
 ```
 
 ### Caso oficial 2
@@ -349,7 +347,7 @@ resultado: S/ 62.25
 120 x 80 cm
 S/ 6.50 / pie²
 cantidad 3
-resultado: S/ 208.10
+resultado: S/ 230.35
 ```
 
 ### Redondeo comercial
@@ -427,3 +425,7 @@ En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial
 ### Continuidad del borrador
 
 Se permite una copia temporal de UI en `sessionStorage`, aislada por usuario y pestaña: ítems, condiciones, formulario incompleto, edición y solicitud de confirmación. No es una proforma confirmada ni la fuente principal del negocio. El catálogo y precios se releen y la confirmación sigue validándose en servidor y persistiendo únicamente en Blob. Al confirmar, descartar explícitamente o cerrar sesión se limpia el borrador. No se promete sincronización del borrador entre dispositivos ni conservación al cerrar la pestaña.
+
+### Ejemplo del cambio dimensional
+
+20.5 × 90 cm, S/ 1.70 por pie², cantidad 1: pulgadas crudas 8.070866… × 35.433070… → pares cercanos 8 × 36 → medidas de cobro 10 × 38. Área 380 in² → 2.64 ft² (HALF_UP a dos decimales), precio unitario S/ 4.49, importe final S/ 4.50 aplicando el redondeo comercial ya existente. No se modifica la venta por plancha.
