@@ -3,7 +3,7 @@ import { useHydrated } from "./use-hydrated";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { Plus, Pencil, Eye, EyeOff, Layers, Search, Save } from "lucide-react";
+import { Pencil, Eye, EyeOff, Layers, Search, Save } from "lucide-react";
 import {
   type BaseValue,
   type BaseInput,
@@ -61,10 +61,6 @@ export function BaseCatalogManager({ values }: { values: BaseValue[] }) {
             <h2>Listado del catálogo</h2>
             <p className="muted">{categoryLabels[category]}</p>
           </div>
-          <Button onClick={reset}>
-            <Plus size={17} />
-            Nuevo valor
-          </Button>
         </div>
         <div className="toolbar">
           <div className="search-field">

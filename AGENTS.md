@@ -437,6 +437,17 @@ npm run verify
 
 No declarar terminado si build o tests críticos fallan.
 
+### Ahorro de créditos en trabajos futuros
+
+Este proyecto es un MVP. Priorizar el ahorro de créditos y mantener el alcance limitado a lo solicitado por el usuario.
+
+- Elegir la comprobación mínima necesaria según el cambio y su riesgo.
+- No repetir pruebas que ya pasaron sobre código que no cambió, salvo un fallo o una duda concreta que lo justifique.
+- Evitar baterías completas, auditorías extensas, pruebas redundantes y mejoras no solicitadas para cambios pequeños.
+- Para cambios exclusivamente de documentación o instrucciones, revisar el diff; no ejecutar lint, typecheck, tests, build ni desplegar.
+- Probar los flujos afectados. Mantener las verificaciones críticas de fórmula, autenticación, persistencia y confirmación cuando el cambio pueda afectarlas.
+- Antes de un despliegue funcional, cumplir los controles críticos de este archivo y reutilizar resultados válidos del mismo código cuando corresponda.
+
 ---
 
 ## 14. Archivos y deployment
