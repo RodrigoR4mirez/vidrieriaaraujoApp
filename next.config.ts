@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
   agentRules: false,
+  // Reuse short-lived, authenticated route payloads in browser memory.
+  experimental: { staleTimes: { dynamic: 30, static: 30 } },
   logging: { serverFunctions: false },
   serverExternalPackages: ["@react-pdf/renderer"],
   outputFileTracingIncludes: {

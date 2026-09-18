@@ -154,10 +154,13 @@ export class VercelBlobQuotationRepository implements QuotationRepository {
     return record ? quotationSchema.parse(record.value) : null;
   }
   async nextNumber() {
-    const all = await this.list();
-    return formatQuotationNumber(
-      Math.max(0, ...all.map((q) => Number(q.number.slice(4)))) + 1,
-    );
+    // Only the provisional folio is needed here, not every historical snapshot.
+    let maximum = 0;
+    for (const path of await this.store.paths(QUOTATION_PREFIX)) {
+      const match = /^PRO-(\d{5,})\.json$/.exec(path.slice(QUOTATION_PREFIX.length));
+      if (match) maximum = Math.max(maximum, Number(match[1]));
+    }
+    return formatQuotationNumber(maximum + 1);
   }
   async confirm(snapshot: Omit<Quotation, "number">) {
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {

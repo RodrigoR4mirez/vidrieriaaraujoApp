@@ -42,3 +42,7 @@ Es un MVP de catálogo pequeño: listar histórico lee snapshots con concurrenci
 ## Modalidades de venta
 
 `calculation.ts` mantiene la fórmula oficial por pie² y `calculateSheet` para precio de plancha × cantidad. `priceDraft` selecciona el cálculo y valida producto/referencias activas y precio de la modalidad mayor que cero, tanto en UI como en confirmación del servidor. PDF, ticket y mensajes usan los importes y modalidad del snapshot. Precios de catálogo vacíos se normalizan a `0.00`; no se migran ni sobrescriben históricos. El esquema admite ítems antiguos sin modalidad como pie² y conserva su JSON para backups idempotentes.
+
+### Navegación y datos recientes
+
+Los enlaces principales precargan sus pantallas; el Router Cache de Next reutiliza sus respuestas privadas en memoria durante 30 segundos. No se guardan catálogos ni históricos en sessionStorage/localStorage. `Actualizar` solicita los datos recientes en la pantalla actual, conservando el borrador. Las mutaciones mantienen revalidación y la confirmación relee precios en servidor. La primera visita o un caché vencido aún puede requerir espera de red. El número provisional se obtiene de los nombres de archivos, sin descargar snapshots; la reserva definitiva y el control de concurrencia permanecen sin cambios.

@@ -39,3 +39,5 @@ Selección guiada autorizada: modalidad → familia → vidrio, sin selección i
 Pie de página actualizado según referencias del usuario: créditos de Distribuidora Araujo/R3 Consulting y valores Calidad, Confianza, Tu proyecto, nuestra prioridad. Texto e iconos vectoriales compactos, dos bloques en escritorio y apilados en móvil; compartido entre acceso y pantallas de la aplicación.
 
 Borrador: indicador ámbar con pulso suave (estático si se solicita movimiento reducido). Se conserva temporalmente en la pestaña al navegar y recargar, incluyendo formulario sin agregar y edición en curso. Confirmar, descartar o cerrar sesión limpia la copia temporal.
+
+Navegación ágil: precarga completa de enlaces principales y reutilización de pantallas en memoria durante 30 segundos. Acción Actualizar datos para solicitar información reciente; guardar continúa invalidando vistas. Solo el borrador se guarda en sessionStorage.

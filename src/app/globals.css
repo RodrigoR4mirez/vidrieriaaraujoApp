@@ -1214,3 +1214,8 @@ fieldset.quotation-layout {
 @media (prefers-reduced-motion: reduce) { .draft-light { animation: none; } }
 .draft-recovery { list-style: none; padding: 0; }
 .draft-recovery li { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 8px 0; }
+
+.navigation-actions { justify-content: flex-end; }
+.refresh-spin { animation: refresh-spin .8s linear infinite; }
+@keyframes refresh-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .refresh-spin { animation: none; } }

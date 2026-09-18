@@ -265,3 +265,14 @@ describe("repositories y casos de uso", () => {
     ).rejects.toThrow();
   });
 });
+
+it("el folio provisional usa solo pathnames, sin descargar el histórico", async () => {
+  const store: JsonStore = {
+    async paths() { return ["data/v1/quotations/PRO-00002.json", "data/v1/quotations/PRO-100001.json", "data/v1/quotations/backup.json"]; },
+    async read() { throw new Error("No debe descargar snapshots para el folio provisional"); },
+    async write() { throw new Error("No debe reservar el folio provisional"); },
+  };
+  expect(await new VercelBlobQuotationRepository(store).nextNumber()).toBe("PRO-100002");
+  store.paths = async () => [];
+  expect(await new VercelBlobQuotationRepository(store).nextNumber()).toBe("PRO-00001");
+});

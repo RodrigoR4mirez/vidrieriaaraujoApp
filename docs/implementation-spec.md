@@ -1409,3 +1409,7 @@ En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial
 ### Continuidad del borrador en la pestaña
 
 Indicador ámbar con pulso suave, estático con movimiento reducido. Copia temporal de UI en sessionStorage (usuario/pestaña), incluyendo formulario sin agregar y edición, para navegar y recargar sin reiniciar. Se limpia al confirmar, descartar y cerrar sesión. Catálogos e históricos siguen en Blob; precios y disponibilidad se validan nuevamente al confirmar. No implica sincronización de borradores entre dispositivos.
+
+### Navegación y datos recientes
+
+Los enlaces principales precargan sus pantallas; el Router Cache de Next reutiliza sus respuestas privadas en memoria durante 30 segundos. No se guardan catálogos ni históricos en sessionStorage/localStorage. `Actualizar` solicita los datos recientes en la pantalla actual, conservando el borrador. Las mutaciones mantienen revalidación y la confirmación relee precios en servidor. La primera visita o un caché vencido aún puede requerir espera de red. El número provisional se obtiene de los nombres de archivos, sin descargar snapshots; la reserva definitiva y el control de concurrencia permanecen sin cambios.
