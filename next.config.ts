@@ -3,6 +3,9 @@ const config: NextConfig = {
   agentRules: false,
   logging: { serverFunctions: false },
   serverExternalPackages: ["@react-pdf/renderer"],
+  outputFileTracingIncludes: {
+    "/api/proformas/*/pdf": ["./node_modules/pdfkit/js/standard-fonts/**/*"],
+  },
   poweredByHeader: false,
   async headers() {
     return [

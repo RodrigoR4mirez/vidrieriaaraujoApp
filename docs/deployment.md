@@ -35,12 +35,16 @@ vercel env pull .env.local --environment=development
 npm ci
 npm run verify
 npm run test:e2e
-vercel deploy --yes --scope rodrigor4mirezs-projects
+vercel deploy --target=preview --yes --scope rodrigor4mirezs-projects
 # Validar el Preview con sus propios datos y dos sesiones de navegador.
 vercel deploy --prod --yes --scope rodrigor4mirezs-projects
 ```
 
 Production se construye con variables de Production; no se promueve un artefacto que contiene variables del store de pruebas. No hacer deploy si los tests oficiales fallan. `STITCH/`, `LOGOS/`, secretos, backups y resultados de pruebas están excluidos del despliegue. `public/brand/` y fuentes instaladas son los assets de runtime.
+
+Indicar `--target=preview` explícitamente: la CLI puede clasificar el primer despliegue de un proyecto nuevo como Production. Las funciones se ejecutan en `gru1`; la región de la máquina de build puede ser diferente.
+
+El PDF necesita los módulos CommonJS de las fuentes estándar de PDFKit. `outputFileTracingIncludes` los incluye explícitamente porque el trazador automático solo detectaba la variante ESM. `npm run test:bundle`, incluido al final de `verify`, copia exclusivamente los archivos del trace a un directorio temporal y genera un PDF A4 con Helvetica normal/negrita; así detecta archivos faltantes antes de desplegar.
 
 Preview puede tener protección adicional de Vercel. Para pruebas automatizadas usar una credencial de bypass de automatización, sin desactivar la protección. Este bypass no reemplaza el login de la aplicación.
 

@@ -13,7 +13,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run build && npm run test:bundle",
+    "test:bundle": "node scripts/verify-pdf-bundle.mjs",
     "auth:hash": "node scripts/password-hash.mjs",
     "backup:export": "tsx --env-file-if-exists=.env.local scripts/backup.ts export",
     "backup:import": "tsx --env-file-if-exists=.env.local scripts/backup.ts import"
