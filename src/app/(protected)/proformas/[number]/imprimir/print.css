@@ -53,11 +53,15 @@
   gap: 10px;
 }
 .print-total {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   gap: 12px;
   padding: 18px 0;
   font-size: 14px;
+}
+.print-total div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
 }
 .print-conditions {
   white-space: pre-wrap;

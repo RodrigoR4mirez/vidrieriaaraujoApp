@@ -42,32 +42,27 @@ anchoInRaw = anchoCm / 2.54
 altoInRaw  = altoCm / 2.54
 ```
 
-### Paso 2 — siguiente número entero par
+### Paso 2 — redondeo por merma
 
-Cada dimensión convertida debe subir al siguiente entero par.
-
-Regla exacta:
+Cada dimensión se evalúa por separado. Se obtiene el par inmediato superior, se calcula la merma y se salta otro par cuando la merma disponible es menor a media pulgada:
 
 ```text
-siguientePar(x) = 2 * (floor(x / 2) + 1)
+parInmediato = ceil(pulgadas / 2) * 2
+merma = parInmediato - pulgadas
+resultado = merma < 0.5 ? parInmediato + 2 : parInmediato
 ```
 
-El resultado debe ser estrictamente mayor que el valor convertido.
+Con merma exactamente `0.5` se conserva el par inmediato. Una medida que cae exactamente en un par produce merma cero y siempre sube al siguiente par.
 
 Ejemplos:
 
 ```text
-24.4  -> 26
-23.6  -> 24
-39.37 -> 40
-31.50 -> 32
-47.24 -> 48
-24.0  -> 26
+35.43 -> par 36, merma 0.57 -> 36
+35.51 -> par 36, merma 0.49 -> 38
+31.90 -> par 32, merma 0.10 -> 34
+36.00 -> par 36, merma 0.00 -> 38
+36.40 -> par 38, merma 1.60 -> 38
 ```
-
-Si el valor convertido es exactamente un entero par, también se sube al siguiente par.
-
-Aplicar la regla de forma independiente a ancho y alto.
 
 ### Paso 3 — área en pulgadas cuadradas
 
@@ -93,30 +88,13 @@ unitPrice = roundHalfUp(unitPriceRaw, 2)
 
 Usar `areaFt2` ya redondeada.
 
-### Paso 6 — cantidad
+### Paso 6 — importe del ítem
 
 ```text
-amountBeforeCommercialRounding = unitPrice * cantidad
+itemAmount = unitPrice * cantidad
 ```
 
-### Paso 7 — redondeo comercial final
-
-El importe final del ítem se redondea **hacia arriba** al múltiplo de `S/ 0.05` más cercano:
-
-```text
-itemAmount = ceilToMultiple(amountBeforeCommercialRounding, 0.05)
-```
-
-Ejemplos:
-
-```text
-62.24  -> 62.25
-62.25  -> 62.25
-62.26  -> 62.30
-208.08 -> 208.10
-```
-
-Si el valor ya es múltiplo exacto de S/ 0.05, se conserva.
+El importe de cada ítem conserva sus dos decimales normales. No se aplica a los ítems el redondeo final de la proforma.
 
 ---
 
@@ -126,8 +104,8 @@ Si el valor ya es múltiplo exacto de S/ 0.05, se conserva.
 anchoInRaw = anchoCm / 2.54
 altoInRaw  = altoCm / 2.54
 
-anchoIn = siguientePar(anchoInRaw)
-altoIn  = siguientePar(altoInRaw)
+anchoIn = redondearMerma(anchoInRaw)
+altoIn  = redondearMerma(altoInRaw)
 
 areaIn2 = anchoIn * altoIn
 
@@ -135,9 +113,7 @@ areaFt2 = roundHalfUp(areaIn2 / 144, 2)
 
 unitPrice = roundHalfUp(areaFt2 * precioPie2, 2)
 
-amountBeforeCommercialRounding = unitPrice * cantidad
-
-itemAmount = ceilToMultiple(amountBeforeCommercialRounding, 0.05)
+itemAmount = unitPrice * cantidad
 ```
 
 ---
@@ -145,8 +121,14 @@ itemAmount = ceilToMultiple(amountBeforeCommercialRounding, 0.05)
 ## 5. Total de la proforma
 
 ```text
-quotationTotal = suma(itemAmount)
+quotationSubtotal = suma(itemAmount)
+
+si la fracción es 0.00: quotationTotal = quotationSubtotal
+si la fracción está entre 0.01 y 0.50: quotationTotal = siguiente 0.50
+si la fracción está entre 0.51 y 0.99: quotationTotal = siguiente entero
 ```
+
+Este redondeo se aplica una sola vez, únicamente al total final. La interfaz, PDF, WhatsApp y ticket muestran el subtotal exacto y el total a cobrar.
 
 No aplicar impuesto adicional.
 
@@ -191,15 +173,14 @@ areaFt2 = 8.89
 8.89 * 3.50 = 31.115
 unitPrice = 31.12
 
-31.12 * 2 = 62.24
-
-62.24 -> 62.25
+31.12 * 2 = subtotal S/ 62.24
+total a cobrar = S/ 62.50
 ```
 
 Resultado:
 
 ```text
-S/ 62.25
+S/ 62.50
 ```
 
 ---
@@ -229,15 +210,14 @@ areaFt2 = 10.67
 10.67 * 6.50 = 69.355
 unitPrice = 69.36
 
-69.36 * 3 = 208.08
-
-208.08 -> 208.10
+69.36 * 3 = subtotal S/ 208.08
+total a cobrar = S/ 208.50
 ```
 
 Resultado:
 
 ```text
-S/ 208.10
+S/ 208.50
 ```
 
 ---
@@ -251,18 +231,19 @@ El usuario ingresa:
 - alto en cm;
 - cantidad.
 
-El resumen puede mostrar:
+El resumen muestra:
 
 - vidrio;
 - espesor;
 - medidas originales en cm;
 - cantidad;
 - precio unitario calculado;
-- importe final.
-
-Las conversiones a pulgadas y pies cuadrados son internas.
-
-No mostrarlas como información principal de la pantalla.
+- importe del ítem;
+- pulgadas convertidas de ancho y alto;
+- merma calculada por lado;
+- pulgadas redondeadas;
+- área en pie²;
+- subtotal exacto y total final redondeado.
 
 ---
 
@@ -287,6 +268,8 @@ precioPie2
 
 anchoInRaw
 altoInRaw
+anchoMermaIn
+altoMermaIn
 anchoInRedondeado
 altoInRedondeado
 
@@ -314,7 +297,7 @@ Helpers mínimos:
 ```text
 roundHalfUp(value, decimals)
 nextEvenInch(value)
-ceilToMultiple(value, 0.05)
+roundQuotationTotal(value)
 ```
 
 Todos deben vivir en el dominio y tener tests unitarios.
@@ -323,15 +306,18 @@ Todos deben vivir en el dominio y tener tests unitarios.
 
 ## 11. Tests obligatorios
 
-### Siguiente par
+### Redondeo por merma
 
 ```text
-24.4 -> 26
-23.6 -> 24
-39.37 -> 40
-31.50 -> 32
-47.24 -> 48
-24.0 -> 26
+35.43 -> 36
+35.49 -> 36
+35.51 -> 38
+35.83 -> 38
+31.49 -> 32
+31.90 -> 34
+36.00 -> 38
+36.40 -> 38
+20.5 cm (8.07 pulgadas) -> 10
 ```
 
 ### Caso oficial 1
@@ -340,7 +326,8 @@ Todos deben vivir en el dominio y tener tests unitarios.
 100 x 80 cm
 S/ 3.50 / pie²
 cantidad 2
-resultado: S/ 62.25
+subtotal: S/ 62.24
+total: S/ 62.50
 ```
 
 ### Caso oficial 2
@@ -349,16 +336,20 @@ resultado: S/ 62.25
 120 x 80 cm
 S/ 6.50 / pie²
 cantidad 3
-resultado: S/ 208.10
+subtotal: S/ 208.08
+total: S/ 208.50
 ```
 
-### Redondeo comercial
+### Redondeo del total final
 
 ```text
-62.24 -> 62.25
-62.25 -> 62.25
-62.26 -> 62.30
-208.08 -> 208.10
+120.12 -> 120.50
+120.01 -> 120.50
+120.50 -> 120.50
+120.51 -> 121.00
+120.67 -> 121.00
+120.99 -> 121.00
+120.00 -> 120.00
 ```
 
 ### Validaciones
@@ -415,8 +406,8 @@ Actualización aprobada: el catálogo admite `0.00` en precio por pie² y por pl
 Cada ítem nuevo elige una modalidad: `SQUARE_FOOT` (por pie², con medidas) o `SHEET` (plancha entera). Una misma proforma puede combinar ambas. En el selector solo aparecen productos activos, con referencias base activas y precio estrictamente mayor que cero en la modalidad elegida. El servidor verifica esto al confirmar.
 
 - Por pie²: se conserva exactamente la fórmula de las secciones 2–4 y sus casos oficiales.
-- Por plancha: cantidad entera >= 1; precio unitario = precio de catálogo por plancha; importe = precio por plancha × cantidad, expresado con dos decimales. No aplicar conversiones de área, siguiente par ni redondeo comercial a múltiplos de 0.05. Las medidas de plancha del catálogo son opcionales e informativas; no se solicitan medidas de corte.
-- Total de proforma: suma de importes de ambas modalidades.
+- Por plancha: cantidad entera >= 1; precio unitario = precio de catálogo por plancha; importe = precio por plancha × cantidad, expresado con dos decimales. No aplicar conversiones de área ni redondeo por merma. Las medidas de plancha del catálogo son opcionales e informativas; no se solicitan medidas de corte.
+- Subtotal de proforma: suma exacta de importes de ambas modalidades. Total a cobrar: subtotal redondeado hacia arriba a `0.50` o al siguiente entero según la sección 5.
 
 El snapshot de plancha conserva modalidad, producto y descripción, precio por plancha, cantidad, precio unitario, importe y medidas de plancha del catálogo si existen. Cambios posteriores del catálogo no alteran el histórico. Los snapshots anteriores sin modalidad se interpretan como venta por pie² y se leen sin reescribirlos. Resumen, PDF, WhatsApp y ticket identifican claramente las planchas enteras.
 

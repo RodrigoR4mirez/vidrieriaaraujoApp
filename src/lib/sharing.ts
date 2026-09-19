@@ -1,6 +1,7 @@
 import { quotationItemDetail } from "@/lib/quotation-item";
 import type { Quotation } from "@/domain/quotation/models";
 import { limaDate, money } from "./formatting";
+import { quotationSubtotal } from "@/domain/quotation/calculation";
 export function quotationText(q: Quotation) {
   return [
     "DISTRIBUIDORA ARAUJO",
@@ -15,7 +16,8 @@ export function quotationText(q: Quotation) {
       `Precio unitario: ${money(i.unitPrice)} · Importe: ${money(i.itemAmount)}`,
       "",
     ]),
-    `TOTAL PROFORMA: ${money(q.total)}`,
+    `SUBTOTAL EXACTO: ${money(q.subtotal ?? quotationSubtotal(q.items))}`,
+    `TOTAL A COBRAR: ${money(q.total)}`,
     ...(q.conditions ? ["", "Condiciones:", q.conditions] : []),
     "",
     "¡Gracias por cotizar con nosotros!",

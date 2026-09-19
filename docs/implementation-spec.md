@@ -389,7 +389,7 @@ Soportar:
 
 Agrupar visualmente por tipo de vidrio cuando corresponda al diseño STITCH.
 
-No mostrar conversiones internas a pulgadas/pie² como información principal.
+Mostrar en el desglose de cálculo las pulgadas convertidas, la merma por lado, las pulgadas cobradas, el área en pie², el subtotal exacto y el total a cobrar. Mantener el resumen principal legible.
 
 ---
 
@@ -454,7 +454,7 @@ No IGV.
 
 No impuestos.
 
-Total = suma de `itemAmount`.
+Subtotal = suma exacta de `itemAmount`. Total a cobrar = subtotal redondeado hacia arriba a `.50` cuando la fracción está entre `.01` y `.50`, o al siguiente entero cuando está entre `.51` y `.99`.
 
 ---
 
@@ -592,8 +592,8 @@ No duplicar.
 Tests oficiales deben dar:
 
 ```text
-S/ 62.25
-S/ 208.10
+Subtotal S/ 62.24 → total S/ 62.50
+Subtotal S/ 208.08 → total S/ 208.50
 ```
 
 ---
@@ -613,6 +613,7 @@ interface Quotation {
   createdAt: string
   confirmedAt: string
   timezone: 'America/Lima'
+  subtotal?: string // Opcional solo para compatibilidad con históricos anteriores.
   total: string
   items: QuotationItem[]
 }
@@ -637,6 +638,8 @@ interface SquareFootQuotationItem {
 
   widthInRaw: string
   heightInRaw: string
+  widthWasteIn?: string // Opcional en históricos anteriores.
+  heightWasteIn?: string
   widthInRounded: string
   heightInRounded: string
 
@@ -809,7 +812,8 @@ Cantidad ...
 Precio unitario ...
 Importe ...
 
-TOTAL PROFORMA: S/ ...
+SUBTOTAL EXACTO: S/ ...
+TOTAL A COBRAR: S/ ...
 ```
 
 Sin IGV.
@@ -1041,8 +1045,8 @@ Como mínimo:
 No desplegar si fallan:
 
 ```text
-100 x 80 cm / S/3.50 / cantidad 2 = S/62.25
-120 x 80 cm / S/6.50 / cantidad 3 = S/208.10
+100 x 80 cm / S/3.50 / cantidad 2 = subtotal S/62.24, total S/62.50
+120 x 80 cm / S/6.50 / cantidad 3 = subtotal S/208.08, total S/208.50
 ```
 
 ---

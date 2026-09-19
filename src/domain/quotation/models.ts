@@ -27,6 +27,7 @@ const cutItemSchema = cutDraftSchema.extend({
   ...snapshot,
   pricePerSquareFoot: positiveDecimal,
   widthInRaw: decimalString, heightInRaw: decimalString,
+  widthWasteIn: decimalString.optional(), heightWasteIn: decimalString.optional(),
   widthInRounded: decimalString, heightInRounded: decimalString,
   areaIn2: decimalString, areaFt2: decimalString,
 }).strict();
@@ -49,6 +50,7 @@ export const quotationSchema = z
     createdAt: z.string().datetime(),
     confirmedAt: z.string().datetime(),
     timezone: z.literal("America/Lima"),
+    subtotal: decimalString.optional(),
     total: decimalString,
     conditions: z.string().max(2000),
     items: z.array(quotationItemSchema).min(1).max(200),

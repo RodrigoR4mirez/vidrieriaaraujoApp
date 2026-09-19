@@ -3,16 +3,18 @@ import { quotationItemDetail } from "@/lib/quotation-item";
 import { useState } from "react";
 import { Pencil, Trash2, List, Rows3 } from "lucide-react";
 import type { QuotationItem } from "@/domain/quotation/models";
-import { quotationTotal } from "@/domain/quotation/calculation";
+import { quotationSubtotal, quotationTotal } from "@/domain/quotation/calculation";
 import { money } from "@/lib/formatting";
 import { EmptyState } from "./ui";
 export function QuotationSummary({
   items,
+  subtotal,
   total,
   onEdit,
   onDelete,
 }: {
   items: QuotationItem[];
+  subtotal?: string;
   total?: string;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
@@ -93,6 +95,11 @@ export function QuotationSummary({
                         <strong>
                           {quotationItemDetail(item)}
                         </strong>
+                        {!compact && item.mode !== "SHEET" && item.widthWasteIn && item.heightWasteIn && (
+                          <small className="item-calculation">
+                            Ancho {Number(item.widthInRaw).toFixed(2)}″ → merma {Number(item.widthWasteIn).toFixed(2)}″ → {item.widthInRounded}″ · Alto {Number(item.heightInRaw).toFixed(2)}″ → merma {Number(item.heightWasteIn).toFixed(2)}″ → {item.heightInRounded}″ · Área {item.areaFt2} ft²
+                          </small>
+                        )}
                       </td>
                       <td>{item.quantity}</td>
                       <td className="numeric muted">{money(item.unitPrice)}</td>
@@ -129,7 +136,13 @@ export function QuotationSummary({
       </div>
       <div className="totals">
         <div>
-          <span>Total proforma</span>
+          <span>Subtotal exacto</span>
+          <strong data-testid="quotation-subtotal">
+            {money(subtotal ?? quotationSubtotal(items))}
+          </strong>
+        </div>
+        <div>
+          <span>Total a cobrar</span>
           <strong data-testid="quotation-total">
             {money(total ?? quotationTotal(items))}
           </strong>

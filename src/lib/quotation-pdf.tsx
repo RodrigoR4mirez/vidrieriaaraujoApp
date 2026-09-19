@@ -1,4 +1,5 @@
 import { quotationItemDetail } from "@/lib/quotation-item";
+import { quotationSubtotal } from "@/domain/quotation/calculation";
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import type { Quotation } from "@/domain/quotation/models";
 import { limaDate, money } from "./formatting";
@@ -34,6 +35,11 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica-Bold",
     fontSize: 16,
     marginTop: 22,
+  },
+  subtotal: {
+    textAlign: "right",
+    fontSize: 10,
+    marginTop: 18,
   },
   conditions: { marginTop: 24, lineHeight: 1.5 },
   footer: {
@@ -79,7 +85,8 @@ export function QuotationPdf({ quotation: q }: { quotation: Quotation }) {
             <Text style={styles.amount}>{money(i.itemAmount)}</Text>
           </View>
         ))}
-        <Text style={styles.total}>TOTAL PROFORMA: {money(q.total)}</Text>
+        <Text style={styles.subtotal}>SUBTOTAL EXACTO: {money(q.subtotal ?? quotationSubtotal(q.items))}</Text>
+        <Text style={[styles.total, { marginTop: 5 }]}>TOTAL A COBRAR: {money(q.total)}</Text>
         {q.conditions && (
           <View style={styles.conditions}>
             <Text style={{ fontFamily: "Helvetica-Bold" }}>

@@ -149,7 +149,8 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
       .click();
   };
   await add(code, "100", "2");
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.25");
+  await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 62.24");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.50");
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("75");
   await page.getByLabel("Alto (cm)", { exact: true }).fill("40");
   await page.getByLabel("Cantidad", { exact: true }).fill("4");
@@ -159,7 +160,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page).toHaveURL(/\/cotizador$/);
   await expect(page.getByTestId("quotation-total")).toBeVisible();
   await page.reload();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.25");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.50");
   await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveValue("75");
   await expect(page.getByLabel("Alto (cm)", { exact: true })).toHaveValue("40");
   await expect(page.getByLabel("Cantidad", { exact: true })).toHaveValue("4");
@@ -171,7 +172,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page.locator(".draft-light")).toHaveCSS("animation-name", "draft-pulse");
 
   await add(`${tag}-LAM`, "120", "3");
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.35");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.50");
   await page
     .getByRole("button", { name: "Editar ítem 1", exact: true })
     .click();
@@ -186,17 +187,17 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
 
   await page.getByRole("button", { name: "Aumentar cantidad" }).click();
   await page.getByRole("button", { name: "Guardar cambios" }).click();
-  await expect(page.getByTestId("quotation-total")).not.toHaveText("S/ 270.35");
+  await expect(page.getByTestId("quotation-total")).not.toHaveText("S/ 270.50");
   await page
     .getByRole("button", { name: "Editar ítem 1", exact: true })
     .click();
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("100");
   await page.getByLabel("Cantidad", { exact: true }).fill("2");
   await page.getByRole("button", { name: "Guardar cambios" }).click();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.35");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.50");
   await add(code, "50", "1");
   await page.getByRole("button", { name: "Eliminar ítem 3" }).click();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.35");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.50");
   await page.getByRole("button", { name: "Compacto", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Compacto", exact: true }),
@@ -226,12 +227,13 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Enter");
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Agregar ítem", exact: true }).click();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 603.68");
+  await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 603.65");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 604.00");
   await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
   await expect(page.getByLabel("Cotizar por")).toHaveValue("SHEET");
   await page.getByLabel("Cantidad", { exact: true }).fill("2");
   await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 492.57");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 493.00");
   await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
@@ -275,7 +277,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page).toHaveURL(/\/proformas\/PRO-\d+$/);
   const number = page.url().split("/").pop()!;
   await page.reload();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 603.68");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 604.00");
   await expect(page.getByText("Solo lectura", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Compartir proforma" }).click();
   await page
@@ -283,7 +285,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     .click();
   await expect(page.getByRole("status")).toContainText("Proforma copiada");
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
-    "S/ 603.68",
+    "S/ 604.00",
   );
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain("Plancha entera");
   await expect(page.getByRole("link", { name: /WhatsApp/ })).toHaveAttribute(
@@ -295,7 +297,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   expect(pdf.headers()["content-type"]).toBe("application/pdf");
   expect((await pdf.body()).subarray(0, 4).toString()).toBe("%PDF");
   await page.goto(`/proformas/${number}/imprimir`);
-  await expect(page.locator(".ticket")).toContainText("S/ 603.68");
+  await expect(page.locator(".ticket")).toContainText("S/ 604.00");
   await expect(page.locator(".ticket")).toContainText("Plancha entera");
   await expect(page.locator(".ticket")).toContainText("333.33");
   await page.evaluate(() => {
@@ -321,7 +323,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await login(secondPage);
   await secondPage.goto(`/proformas/${number}`);
   await expect(secondPage.getByTestId("quotation-total")).toHaveText(
-    "S/ 603.68",
+    "S/ 604.00",
   );
   await secondPage
     .getByRole("link", { name: "Nueva proforma", exact: true })

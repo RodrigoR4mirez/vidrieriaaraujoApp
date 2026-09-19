@@ -3,8 +3,10 @@ import {
   calculateItem,
   calculateSheet,
   nextEvenInch,
+  roundInchesForWaste,
   roundHalfUp,
-  ceilToMultiple,
+  quotationSubtotal,
+  roundQuotationTotal,
   quotationTotal,
 } from "@/domain/quotation/calculation";
 describe("fórmula oficial", () => {
@@ -15,7 +17,7 @@ describe("fórmula oficial", () => {
       expect(() => calculateSheet({ pricePerSheet: "111.11", quantity })).toThrow();
     expect(() => calculateSheet({ pricePerSheet: "0.00", quantity: 1 })).toThrow();
   });
-  it("100 × 80, S/3.50, 2 piezas = S/62.25", () => {
+  it("100 × 80 conserva S/62.24 por ítem y cobra S/62.50", () => {
     const result = calculateItem({
       widthCm: "100",
       heightCm: "80",
@@ -28,10 +30,13 @@ describe("fórmula oficial", () => {
       areaIn2: "1280",
       areaFt2: "8.89",
       unitPrice: "31.12",
-      itemAmount: "62.25",
+      itemAmount: "62.24",
     });
+    expect(result.widthWasteIn).toMatch(/^0\.6299/);
+    expect(result.heightWasteIn).toMatch(/^0\.5039/);
+    expect(quotationTotal([result])).toBe("62.50");
   });
-  it("120 × 80, S/6.50, 3 piezas = S/208.10", () => {
+  it("120 × 80 conserva S/208.08 por ítem y cobra S/208.50", () => {
     const result = calculateItem({
       widthCm: "120",
       heightCm: "80",
@@ -44,42 +49,51 @@ describe("fórmula oficial", () => {
       areaIn2: "1536",
       areaFt2: "10.67",
       unitPrice: "69.36",
-      itemAmount: "208.10",
+      itemAmount: "208.08",
     });
+    expect(quotationTotal([result])).toBe("208.50");
   });
   it.each([
-    ["24.4", "26"],
-    ["23.6", "24"],
-    ["39.37", "40"],
-    ["31.50", "32"],
-    ["47.24", "48"],
-    ["24", "26"],
-  ])("siguiente par %s → %s", (input, output) =>
+    ["35.43", "36"],
+    ["35.49", "36"],
+    ["35.51", "38"],
+    ["35.83", "38"],
+    ["31.49", "32"],
+    ["31.90", "34"],
+    ["36.00", "38"],
+    ["36.40", "38"],
+  ])("redondeo por merma %s → %s", (input, output) =>
     expect(nextEvenInch(input).toString()).toBe(output),
   );
-  it("aumenta dimensiones convertidas exactamente pares", () =>
-    expect(
-      calculateItem({
-        widthCm: "60.96",
-        heightCm: "60.96",
-        pricePerSquareFoot: "1",
-        quantity: 1,
-      }).widthInRounded,
-    ).toBe("26"));
+  it("20.5 cm convierte 8.07 pulgadas y redondea a 10", () => {
+    const result = calculateItem({ widthCm: "20.5", heightCm: "20.5", pricePerSquareFoot: "1", quantity: 1 });
+    expect(result.widthInRaw).toMatch(/^8\.0708/);
+    expect(result.widthWasteIn).toMatch(/^1\.9291/);
+    expect(result.widthInRounded).toBe("10");
+  });
   it.each([
-    ["62.24", "62.25"],
-    ["62.25", "62.25"],
-    ["62.26", "62.30"],
-    ["208.08", "208.10"],
-  ])("comercial %s → %s", (a, b) =>
-    expect(ceilToMultiple(a).toFixed(2)).toBe(b),
+    ["120.12", "120.50"],
+    ["120.01", "120.50"],
+    ["120.50", "120.50"],
+    ["120.51", "121.00"],
+    ["120.67", "121.00"],
+    ["120.99", "121.00"],
+    ["120.00", "120.00"],
+  ])("total %s → %s", (input, expected) =>
+    expect(roundQuotationTotal(input)).toBe(expected),
   );
+  it("la merma exacta de 0.5 se queda en el par inmediato", () => {
+    const result = roundInchesForWaste("35.5");
+    expect(result.waste.toString()).toBe("0.5");
+    expect(result.rounded.toString()).toBe("36");
+  });
   it("half-up decimal exacto", () =>
     expect(roundHalfUp("31.115").toFixed(2)).toBe("31.12"));
-  it("suma solo los importes finales", () =>
-    expect(
-      quotationTotal([{ itemAmount: "62.25" }, { itemAmount: "208.10" }]),
-    ).toBe("270.35"));
+  it("muestra subtotal exacto y redondea únicamente el total final", () => {
+    const items = [{ itemAmount: "62.24" }, { itemAmount: "208.08" }];
+    expect(quotationSubtotal(items)).toBe("270.32");
+    expect(quotationTotal(items)).toBe("270.50");
+  });
   it.each([
     { widthCm: "0" },
     { widthCm: "-1" },

@@ -33,7 +33,7 @@ export default async function Page({
         <span className="badge active">Solo lectura</span>
       </div>
       <section className="panel glass confirmed-summary">
-        <QuotationSummary items={q.items} total={q.total} />
+        <QuotationSummary items={q.items} subtotal={q.subtotal} total={q.total} />
         {q.conditions && (
           <div className="conditions">
             <h3>Condiciones comerciales</h3>

@@ -6,7 +6,7 @@ import {
   productDetails,
 } from "@/domain/catalogs/models";
 import { DomainError } from "@/domain/errors";
-import { calculateItem, calculateSheet, quotationTotal } from "@/domain/quotation/calculation";
+import { calculateItem, calculateSheet, quotationSubtotal, quotationTotal } from "@/domain/quotation/calculation";
 import {
   draftSchema,
   type DraftItem,
@@ -100,6 +100,7 @@ export class QuotationService {
       confirmedAt: now,
       timezone: "America/Lima",
       conditions: draft.conditions,
+      subtotal: quotationSubtotal(items),
       total: quotationTotal(items),
       items,
     });

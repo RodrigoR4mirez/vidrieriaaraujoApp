@@ -22,9 +22,9 @@ Estados: ACTIVE/HIDDEN. No hay borrado físico. Decimales persistidos como strin
 
 Los precios nuevos o modificados requieren exactamente dos decimales y un importe no negativo (cero indica no disponible). La entrada desplaza dígitos desde los centavos (`11100` → `111.00`). Los precios históricos o existentes no se migran ni redondean en almacenamiento; un precio antiguo sin modificar se conserva incluso al editar otros campos del producto.
 
-`Quotation`: schemaVersion, id de solicitud UUID, number PRO-XXXXX, status CONFIRMED, createdAt, confirmedAt, timezone America/Lima, conditions, total, items.
+`Quotation`: schemaVersion, id de solicitud UUID, number PRO-XXXXX, status CONFIRMED, createdAt, confirmedAt, timezone America/Lima, conditions, subtotal exacto, total redondeado e items. `subtotal` es opcional al leer snapshots antiguos.
 
-Cada ítem por pie² (`mode: SQUARE_FOOT`, opcional para históricos antiguos) conserva id, productId, productCode, productDescription, family, colorFinish, thickness, cathedralDesign, widthCm, heightCm, quantity, pricePerSquareFoot, widthInRaw, heightInRaw, widthInRounded, heightInRounded, areaIn2, areaFt2, unitPrice e itemAmount. El snapshot histórico no depende de referencias vigentes para mostrarse.
+Cada ítem por pie² (`mode: SQUARE_FOOT`, opcional para históricos antiguos) conserva id, productId, productCode, productDescription, family, colorFinish, thickness, cathedralDesign, widthCm, heightCm, quantity, pricePerSquareFoot, widthInRaw, heightInRaw, widthWasteIn, heightWasteIn, widthInRounded, heightInRounded, areaIn2, areaFt2, unitPrice e itemAmount. Las mermas son opcionales al leer históricos anteriores. El snapshot histórico no depende de referencias vigentes para mostrarse.
 
 ## Migración futura
 

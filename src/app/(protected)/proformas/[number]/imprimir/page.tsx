@@ -5,6 +5,7 @@ import { services } from "@/application/container";
 import { numberSchema } from "@/domain/quotation/models";
 import { limaDate, money } from "@/lib/formatting";
 import { PrintButton } from "@/components/print-button";
+import { quotationSubtotal } from "@/domain/quotation/calculation";
 import "./print.css";
 export default async function Page({
   params,
@@ -50,8 +51,8 @@ export default async function Page({
           </section>
         ))}
         <div className="print-total">
-          <strong>TOTAL PROFORMA</strong>
-          <strong>{money(q.total)}</strong>
+          <div><span>Subtotal exacto</span><span>{money(q.subtotal ?? quotationSubtotal(q.items))}</span></div>
+          <div><strong>TOTAL A COBRAR</strong><strong>{money(q.total)}</strong></div>
         </div>
         {q.conditions && (
           <section className="print-conditions">

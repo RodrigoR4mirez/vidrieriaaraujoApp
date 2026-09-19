@@ -311,7 +311,8 @@ Aplica a:
 El total es:
 
 ```text
-totalProforma = suma de los importes finales de los ítems
+subtotalProforma = suma exacta de los importes de los ítems
+totalProforma = subtotalProforma redondeado hacia arriba a .50 o al entero
 ```
 
 ---
@@ -343,14 +344,14 @@ Tests obligatorios:
 100 x 80 cm
 S/ 3.50 / pie²
 cantidad 2
-resultado S/ 62.25
+subtotal S/ 62.24; total S/ 62.50
 ```
 
 ```text
 120 x 80 cm
 S/ 6.50 / pie²
 cantidad 3
-resultado S/ 208.10
+subtotal S/ 208.08; total S/ 208.50
 ```
 
 No desplegar si esos tests fallan.

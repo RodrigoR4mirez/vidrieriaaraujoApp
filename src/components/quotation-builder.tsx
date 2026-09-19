@@ -214,11 +214,11 @@ function ItemForm({
     quantity,
     ...(mode === "SQUARE_FOOT" ? { widthCm, heightCm } : {}),
   };
-  let estimate = "";
+  let estimate: QuotationItem | undefined;
   if (product) {
     try {
       const item = draftItemSchema.parse({ ...candidate, id: editing?.id || product.id });
-      estimate = priceDraft([item], catalog)[0].itemAmount;
+      estimate = priceDraft([item], catalog)[0];
     } catch {
       /* Incomplete input has no estimate. */
     }
@@ -300,8 +300,15 @@ function ItemForm({
       </fieldset>
       <div className="estimate">
         <span>Importe estimado</span>
-        <strong>{estimate ? money(estimate) : "S/ —"}</strong>
+        <strong>{estimate ? money(estimate.itemAmount) : "S/ —"}</strong>
       </div>
+      {estimate && estimate.mode !== "SHEET" && (
+        <div className="calculation-breakdown" aria-label="Desglose del cálculo estimado">
+          <span>Ancho: {Number(estimate.widthInRaw).toFixed(2)}″ · merma {Number(estimate.widthWasteIn).toFixed(2)}″ · cobra {estimate.widthInRounded}″</span>
+          <span>Alto: {Number(estimate.heightInRaw).toFixed(2)}″ · merma {Number(estimate.heightWasteIn).toFixed(2)}″ · cobra {estimate.heightInRounded}″</span>
+          <span>Área: {estimate.areaFt2} ft² · precio final del ítem: {money(estimate.itemAmount)}</span>
+        </div>
+      )}
       {error && <Notice error>{error}</Notice>}
       {editing ? (
         <div className="form-actions">
