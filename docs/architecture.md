@@ -29,7 +29,7 @@ El histórico tiene un archivo por proforma. La fecha se almacena ISO UTC junto 
 
 ## Interfaz
 
-`Brand`, `PageHeader`, `Panel`, `Button`, `Notice`, `StatusBadge`, `Dialog` y `EmptyState` son compartidos. `QuantityControl`, `ItemForm`, `QuotationSummary`, `ShareActions` y `PrintButton` cubren cotización y salidas. El modal usa `<dialog>` con foco nativo y cierre Escape. Los controles están etiquetados y los errores se anuncian con `role=alert`.
+`Brand`, `PageHeader`, `Panel`, `Button`, `Notice`, `StatusBadge`, `Dialog` y `EmptyState` son compartidos. `QuantityControl`, `ItemForm`, `QuotationSummary`, `ShareActions` y `PrintButton` cubren cotización y salidas. `quotationItemDetail` centraliza el detalle comercial; el voucher interno usa un helper separado que nunca expone importes. El modal usa `<dialog>` con foco nativo y cierre Escape. Los controles están etiquetados y los errores se anuncian con `role=alert`.
 
 El borrador usa un store de UI con `useSyncExternalStore` y copia temporal validada con Zod en `sessionStorage`, por usuario y pestaña. Guarda entradas, formulario incompleto, edición y requestId; no guarda precios, totales ni credenciales. Las escrituras son sincrónicas con cada cambio para no perder el último campo al navegar. Confirmar, descartar o cerrar sesión limpia la copia. Si el almacenamiento falla se conserva memoria durante navegación y se avisa antes de recargar/cerrar. El servidor sigue siendo autoritativo al confirmar, y los precios se recalculan desde el catálogo vigente. Las acciones se deshabilitan durante confirmación.
 

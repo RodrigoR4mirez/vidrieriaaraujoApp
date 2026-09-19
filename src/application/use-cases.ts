@@ -99,6 +99,7 @@ export class QuotationService {
       createdAt: now,
       confirmedAt: now,
       timezone: "America/Lima",
+      customerName: draft.customerName,
       conditions: draft.conditions,
       subtotal: quotationSubtotal(items),
       total: quotationTotal(items),

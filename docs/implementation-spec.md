@@ -613,6 +613,7 @@ interface Quotation {
   createdAt: string
   confirmedAt: string
   timezone: 'America/Lima'
+  customerName?: string // Obligatorio en nuevas proformas; opcional al leer históricos antiguos.
   subtotal?: string // Opcional solo para compatibilidad con históricos anteriores.
   total: string
   items: QuotationItem[]
@@ -804,6 +805,7 @@ DISTRIBUIDORA ARAUJO
 Vidriería & Aluminios
 
 PROFORMA N° PRO-00001
+Cliente: ...
 Fecha: ...
 
 Vidrio ...

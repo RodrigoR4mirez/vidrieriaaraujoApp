@@ -226,6 +226,7 @@ S/ 208.50
 
 El usuario ingresa:
 
+- nombre del cliente, obligatorio;
 - tipo/vidrio;
 - ancho en cm;
 - alto en cm;
@@ -233,6 +234,7 @@ El usuario ingresa:
 
 El resumen muestra:
 
+- nombre del cliente;
 - vidrio;
 - espesor;
 - medidas originales en cm;
@@ -386,6 +388,14 @@ No duplicarla en:
 
 Todos consumen el mismo resultado del motor de dominio.
 
+El detalle comercial visible de un ítem por pie² usa un único formato compartido:
+
+```text
+Ancho [pulgadas convertidas]″ → [pulgadas cobradas]″ · Alto [pulgadas convertidas]″ → [pulgadas cobradas]″ · Área [pie²] ft² · S/ [precio] pie²
+```
+
+La merma permanece en el snapshot y en el cálculo, pero no se muestra en ese texto.
+
 ---
 
 ## 13. Prioridad
@@ -410,6 +420,12 @@ Cada ítem nuevo elige una modalidad: `SQUARE_FOOT` (por pie², con medidas) o `
 - Subtotal de proforma: suma exacta de importes de ambas modalidades. Total a cobrar: subtotal redondeado hacia arriba a `0.50` o al siguiente entero según la sección 5.
 
 El snapshot de plancha conserva modalidad, producto y descripción, precio por plancha, cantidad, precio unitario, importe y medidas de plancha del catálogo si existen. Cambios posteriores del catálogo no alteran el histórico. Los snapshots anteriores sin modalidad se interpretan como venta por pie² y se leen sin reescribirlos. Resumen, PDF, WhatsApp y ticket identifican claramente las planchas enteras.
+
+### Cliente y vouchers
+
+Toda nueva proforma exige un nombre de cliente y lo congela en el histórico. Pantalla, PDF, impresión, texto copiado y WhatsApp lo muestran. El histórico permite buscarlo. Los snapshots anteriores sin nombre siguen siendo legibles como `No registrado`.
+
+El voucher del cliente conserva importes y condiciones. El voucher interno del taller es una salida separada y contiene exclusivamente nombre del cliente, descripción completa del vidrio, medidas, cantidad con modalidad, fecha y hora. No incluye precios, subtotal, total ni condiciones comerciales.
 
 ### Selección guiada del vidrio
 

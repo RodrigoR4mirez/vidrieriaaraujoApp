@@ -13,8 +13,12 @@ const sheetDraftSchema = z.object({
   quantity: quantitySchema,
 }).strict();
 export const draftItemSchema = z.union([sheetDraftSchema, cutDraftSchema]);
+export const customerNameSchema = z.string().trim()
+  .min(1, "Ingresa el nombre del cliente")
+  .max(160, "El nombre del cliente es demasiado largo");
 export const draftSchema = z.object({
   requestId: z.string().uuid(),
+  customerName: customerNameSchema,
   items: z.array(draftItemSchema).min(1, "Agrega al menos un vidrio").max(200),
   conditions: z.string().trim().max(2000).default(""),
 }).strict();
@@ -50,6 +54,8 @@ export const quotationSchema = z
     createdAt: z.string().datetime(),
     confirmedAt: z.string().datetime(),
     timezone: z.literal("America/Lima"),
+    // Optional only so confirmed quotations created before this field remain readable.
+    customerName: customerNameSchema.optional(),
     subtotal: decimalString.optional(),
     total: decimalString,
     conditions: z.string().max(2000),

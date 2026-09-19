@@ -34,6 +34,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     throw new Error("No ejecutar pruebas mutables en Production.");
   const tag = `E2E-${Date.now().toString(36).toUpperCase()}`;
   const names = {
+    customer: `Cliente ${tag}`,
     family: `Cristal ${tag}`,
     color: `Incoloro ${tag}`,
     thickness: `6 mm ${tag}`,
@@ -151,9 +152,13 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await add(code, "100", "2");
   await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 62.24");
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.50");
+  await page.getByRole("button", { name: "Confirmar proforma", exact: true }).click();
+  await expect(page.getByRole("alert").filter({ hasText: "nombre del cliente" })).toBeVisible();
+  await expect(page).toHaveURL(/\/cotizador$/);
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("75");
   await page.getByLabel("Alto (cm)", { exact: true }).fill("40");
   await page.getByLabel("Cantidad", { exact: true }).fill("4");
+  await page.getByLabel("Nombre del cliente").fill(names.customer);
   await page.getByLabel("Condiciones comerciales (opcional)").fill("Borrador conservado");
   await page.getByRole("link", { name: "Vidrios", exact: true }).click();
   await page.getByRole("link", { name: "Cotizador", exact: true }).click();
@@ -164,6 +169,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveValue("75");
   await expect(page.getByLabel("Alto (cm)", { exact: true })).toHaveValue("40");
   await expect(page.getByLabel("Cantidad", { exact: true })).toHaveValue("4");
+  await expect(page.getByLabel("Nombre del cliente")).toHaveValue(names.customer);
   await expect(page.getByLabel("Condiciones comerciales (opcional)")).toHaveValue("Borrador conservado");
   await expect(page.locator(".draft-light")).toBeVisible();
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -278,6 +284,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   const number = page.url().split("/").pop()!;
   await page.reload();
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 604.00");
+  await expect(page.getByText(names.customer, { exact: true })).toBeVisible();
   await expect(page.getByText("Solo lectura", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Compartir proforma" }).click();
   await page
@@ -296,10 +303,19 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   expect(pdf.status()).toBe(200);
   expect(pdf.headers()["content-type"]).toBe("application/pdf");
   expect((await pdf.body()).subarray(0, 4).toString()).toBe("%PDF");
+  await page.goto(`/proformas/${number}/interno`);
+  const internalVoucher = page.locator(".internal-voucher");
+  await expect(internalVoucher).toContainText(names.customer);
+  await expect(internalVoucher).toContainText("Modalidad: Por pie²");
+  await expect(internalVoucher).toContainText("Modalidad: Por planchas");
+  await expect(internalVoucher).not.toContainText("S/");
+  await expect(internalVoucher).not.toContainText("Precio");
+  await expect(internalVoucher).not.toContainText("Total");
   await page.goto(`/proformas/${number}/imprimir`);
   await expect(page.locator(".ticket")).toContainText("S/ 604.00");
   await expect(page.locator(".ticket")).toContainText("Plancha entera");
   await expect(page.locator(".ticket")).toContainText("333.33");
+  await expect(page.locator(".ticket")).toContainText(names.customer);
   await page.evaluate(() => {
     window.print = () => {
       document.body.dataset.printed = "true";
@@ -325,6 +341,10 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(secondPage.getByTestId("quotation-total")).toHaveText(
     "S/ 604.00",
   );
+  await secondPage.goto("/proformas");
+  await secondPage.getByLabel("Buscar proforma").fill(names.customer);
+  await expect(secondPage.getByRole("link", { name: number, exact: true })).toBeVisible();
+  await secondPage.goto(`/proformas/${number}`);
   await secondPage
     .getByRole("link", { name: "Nueva proforma", exact: true })
     .click();

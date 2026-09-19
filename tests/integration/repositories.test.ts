@@ -12,7 +12,7 @@ import { QuotationService, CatalogService } from "@/application/use-cases";
 import { quotationSchema } from "@/domain/quotation/models";
 import { catalogStateSchema, isQuotable } from "@/domain/catalogs/models";
 import { validateBackup, exportBackup, importBackup } from "@/application/backup";
-import { quotationItemDetail } from "@/lib/quotation-item";
+import { internalVoucherItemDetail, quotationItemDetail } from "@/lib/quotation-item";
 import { quotationText, whatsappUrl } from "@/lib/sharing";
 class MemoryStore implements JsonStore {
   records = new Map<string, { value: unknown; etag: string }>();
@@ -61,6 +61,7 @@ async function fixture() {
   });
   const draft = () => ({
     requestId: randomUUID(),
+    customerName: "María Pérez",
     conditions: "Entrega coordinada con el cliente.",
     items: [
       {
@@ -110,16 +111,18 @@ describe("repositories y casos de uso", () => {
     const q = await f.service.confirm({ ...draft, items: [...draft.items, { id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 3 }] });
     expect(q.subtotal).toBe("395.57");
     expect(q.total).toBe("396.00");
+    expect(q.customerName).toBe("María Pérez");
     expect(q.items[0].itemAmount).toBe("62.24");
     expect(q.items[1]).toMatchObject({ mode: "SHEET", pricePerSheet: "111.11", quantity: 3, itemAmount: "333.33", sheetWidthCm: "200", sheetHeightCm: "300" });
     expect(q.items[1]).not.toHaveProperty("areaFt2");
     expect(quotationItemDetail(q.items[1])).toBe("Plancha entera · 200 × 300 cm");
+    expect(internalVoucherItemDetail(q.items[1])).toBe("Medidas: 200 × 300 cm · Cantidad: 3 planchas · Modalidad: Por planchas");
     expect(quotationText(q)).toContain("Plancha entera");
     expect(decodeURIComponent(whatsappUrl(q))).toContain("SUBTOTAL EXACTO: S/ 395.57");
     expect(decodeURIComponent(whatsappUrl(q))).toContain("TOTAL A COBRAR: S/ 396.00");
     await f.catalog.saveProduct({ ...product, pricePerSheet: "0.00" }, product.id, product.revision);
     expect(await f.service.find(q.number)).toEqual(q);
-    await expect(f.service.confirm({ requestId: randomUUID(), items: [{ id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 1 }] })).rejects.toThrow("sin precio");
+    await expect(f.service.confirm({ requestId: randomUUID(), customerName: "María Pérez", items: [{ id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 1 }] })).rejects.toThrow("sin precio");
   });
   it("lee y respalda el histórico sin modalidad sin modificar su JSON", async () => {
     const f = await fixture();
@@ -167,9 +170,12 @@ describe("repositories y casos de uso", () => {
     expect(q.number).toBe("PRO-00001");
     expect(q.subtotal).toBe("62.24");
     expect(q.total).toBe("62.50");
+    expect(quotationItemDetail(q.items[0])).toBe("Ancho 39.37″ → 40″ · Alto 31.50″ → 32″ · Área 8.89 ft² · S/ 3.50 pie²");
+    expect(internalVoucherItemDetail(q.items[0])).toBe("Medidas: 100 × 80 cm · Cantidad: 2 piezas · Modalidad: Por pie²");
     expect(quotationSchema.parse(JSON.parse(JSON.stringify(q)))).toEqual(q);
     expect(quotationText(q)).toContain("SUBTOTAL EXACTO: S/ 62.24");
     expect(quotationText(q)).toContain("TOTAL A COBRAR: S/ 62.50");
+    expect(quotationText(q)).toContain("Cliente: María Pérez");
     expect(decodeURIComponent(whatsappUrl(q))).toContain(q.number);
     await f.catalog.saveProduct(
       { ...f.product, pricePerSquareFoot: "100.00" },
@@ -267,6 +273,10 @@ describe("repositories y casos de uso", () => {
     await expect(
       f.service.confirm({ ...f.draft(), total: "0.01" }),
     ).rejects.toThrow();
+  });
+  it("exige el nombre del cliente en nuevas confirmaciones", async () => {
+    const f = await fixture();
+    await expect(f.service.confirm({ ...f.draft(), customerName: "   " })).rejects.toThrow("nombre del cliente");
   });
 });
 

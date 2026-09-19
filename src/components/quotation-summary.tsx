@@ -95,11 +95,6 @@ export function QuotationSummary({
                         <strong>
                           {quotationItemDetail(item)}
                         </strong>
-                        {!compact && item.mode !== "SHEET" && item.widthWasteIn && item.heightWasteIn && (
-                          <small className="item-calculation">
-                            Ancho {Number(item.widthInRaw).toFixed(2)}″ → merma {Number(item.widthWasteIn).toFixed(2)}″ → {item.widthInRounded}″ · Alto {Number(item.heightInRaw).toFixed(2)}″ → merma {Number(item.heightWasteIn).toFixed(2)}″ → {item.heightInRounded}″ · Área {item.areaFt2} ft²
-                          </small>
-                        )}
                       </td>
                       <td>{item.quantity}</td>
                       <td className="numeric muted">{money(item.unitPrice)}</td>

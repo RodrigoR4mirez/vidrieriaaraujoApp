@@ -769,6 +769,21 @@ tbody tr:hover {
   max-width: 1000px;
   margin: auto;
 }
+.quotation-client {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #ffffff8f;
+}
+.quotation-client span {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+}
 .conditions {
   margin-top: 22px;
   font-size: 12px;

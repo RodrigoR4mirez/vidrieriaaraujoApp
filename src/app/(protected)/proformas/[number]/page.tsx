@@ -33,6 +33,10 @@ export default async function Page({
         <span className="badge active">Solo lectura</span>
       </div>
       <section className="panel glass confirmed-summary">
+        <div className="quotation-client">
+          <span>Cliente</span>
+          <strong>{q.customerName || "No registrado"}</strong>
+        </div>
         <QuotationSummary items={q.items} subtotal={q.subtotal} total={q.total} />
         {q.conditions && (
           <div className="conditions">

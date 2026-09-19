@@ -37,10 +37,10 @@ El segundo comando genera el secreto de sesión. En archivos dotenv, **escapar c
 1. Crear familias y espesores en **Catálogos base**, y opcionalmente colores/acabados y diseños catedral.
 2. Crear vidrios con códigos únicos y precios por pie² y/o plancha (sin precio: `0.00`). El catálogo de producción inicia vacío.
 3. En **Cotizador**, elegir **Pie² (por medidas)** o **Plancha entera**, vidrio y cantidad; solo por pie² ingresar ancho y alto en cm. Se pueden mezclar ambas modalidades en una proforma. Agregar, editar, eliminar y alternar vistas.
-4. Ingresar condiciones comerciales opcionales. El sistema no asume plazos de entrega, vigencia ni datos fiscales de los mocks.
-5. Confirmar. El servidor valida el catálogo activo, calcula y guarda una proforma inmutable con número definitivo.
-6. Abrir **Compartir proforma** para copiar, abrir WhatsApp, descargar PDF A4 o imprimir A4/ticket 80 mm.
-7. Consultar el histórico desde cualquier otro dispositivo autenticado.
+4. Ingresar obligatoriamente el nombre del cliente y, si corresponde, condiciones comerciales opcionales. El sistema no asume plazos de entrega, vigencia ni datos fiscales de los mocks.
+5. Confirmar. El servidor valida el nombre, el catálogo activo, calcula y guarda una proforma inmutable con número definitivo.
+6. Abrir **Compartir proforma** para copiar, abrir WhatsApp, descargar PDF A4, imprimir A4/ticket 80 mm o imprimir el voucher interno del taller sin precios.
+7. Consultar el histórico desde cualquier otro dispositivo autenticado y buscar por cliente, número o fecha.
 
 Ocultar conserva registros. Un producto con cualquier referencia base oculta tampoco puede seleccionarse para una nueva cotización. Para resolver conflictos de edición, recargar y volver a aplicar los cambios. Cambiar precios nunca recalcula el histórico.
 

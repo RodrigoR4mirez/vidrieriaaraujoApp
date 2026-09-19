@@ -7,11 +7,11 @@ import { EmptyState } from "./ui";
 export function HistoryList({
   quotations,
 }: {
-  quotations: Pick<Quotation, "number" | "confirmedAt" | "total">[];
+  quotations: Pick<Quotation, "number" | "confirmedAt" | "customerName" | "total">[];
 }) {
   const [query, setQuery] = useState("");
   const filtered = quotations.filter((q) =>
-    `${q.number} ${limaDate(q.confirmedAt)}`
+    `${q.number} ${q.customerName || ""} ${limaDate(q.confirmedAt)}`
       .toLowerCase()
       .includes(query.toLowerCase()),
   );
@@ -20,7 +20,7 @@ export function HistoryList({
       <div className="toolbar">
         <input
           aria-label="Buscar proforma"
-          placeholder="Buscar por número o fecha…"
+          placeholder="Buscar por cliente, número o fecha…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -34,6 +34,7 @@ export function HistoryList({
             <thead>
               <tr>
                 <th>Proforma</th>
+                <th>Cliente</th>
                 <th>Fecha y hora</th>
                 <th>Total</th>
                 <th>Estado</th>
@@ -47,6 +48,7 @@ export function HistoryList({
                       {q.number}
                     </Link>
                   </td>
+                  <td>{q.customerName || "No registrado"}</td>
                   <td>{limaDate(q.confirmedAt)}</td>
                   <td>{money(q.total)}</td>
                   <td>

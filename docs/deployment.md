@@ -68,12 +68,12 @@ Verificación final: 18 de septiembre de 2026. Código de aplicación: commit `3
 | npm ci | Correcto; auditoría sin vulnerabilidades |
 | Lint | Correcto, sin errores ni warnings de ESLint |
 | Typecheck | Correcto |
-| Unitarias e integración | 43/43 |
+| Vitest: unitarias e integración | 62/62 |
 | Fórmula oficial | Subtotales S/ 62.24 y S/ 208.08; totales S/ 62.50 y S/ 208.50 |
 | Build local y Vercel | Correctos |
 | PDF con paquete aislado | Correcto; fuentes normal/negrita incluidas |
 | E2E local con Blob real | 2/2 |
-| E2E Preview en Vercel | 2/2; incluye PDF, impresión, clipboard y segundo navegador |
+| E2E Preview en Vercel | 3/3; incluye nombre obligatorio, búsqueda por cliente, PDF, ambos vouchers, impresión, clipboard y segundo navegador |
 | Concurrencia real Blob | Tres confirmaciones simultáneas con números distintos; reintento concurrente conserva un único número |
 | Backup real | Exportación e importación idempotente correctas, sin sobrescribir históricos |
 | Production | Login, logout, cookie Secure/HttpOnly/Lax y autorización servidor correctos; sin errores JavaScript |

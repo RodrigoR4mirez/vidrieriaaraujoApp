@@ -61,6 +61,7 @@ export function QuotationPdf({ quotation: q }: { quotation: Quotation }) {
           <Text style={styles.company}>DISTRIBUIDORA ARAUJO</Text>
           <Text>Vidriería &amp; Aluminios</Text>
           <Text style={styles.number}>PROFORMA N° {q.number}</Text>
+          <Text>Cliente: {q.customerName || "No registrado"}</Text>
           <Text>Fecha y hora: {limaDate(q.confirmedAt)} · Moneda: Soles</Text>
         </View>
         <View style={[styles.row, styles.tableHeader]} fixed>
@@ -74,8 +75,6 @@ export function QuotationPdf({ quotation: q }: { quotation: Quotation }) {
           <View style={styles.row} key={i.id} wrap={false}>
             <Text style={styles.description}>
               {i.productDescription}
-              {"\n"}
-              {i.productCode}
             </Text>
             <Text style={styles.measures}>
               {quotationItemDetail(i)}

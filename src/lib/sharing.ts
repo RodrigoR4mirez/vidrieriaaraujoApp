@@ -8,6 +8,7 @@ export function quotationText(q: Quotation) {
     "Vidriería & Aluminios",
     "",
     `PROFORMA N° ${q.number}`,
+    `Cliente: ${q.customerName || "No registrado"}`,
     `Fecha: ${limaDate(q.confirmedAt)}`,
     "",
     ...q.items.flatMap((i) => [

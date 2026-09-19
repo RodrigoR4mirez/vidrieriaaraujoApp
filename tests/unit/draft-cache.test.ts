@@ -15,7 +15,7 @@ function memoryStorage(): Storage {
 it("recupera entradas incompletas y solicitud sin guardar precios; limpiar impide que reaparezcan", () => {
   const storage = memoryStorage();
   const store = createDraftCache("user-a", () => storage);
-  store.update((draft) => ({ ...draft, conditions: "Entrega acordada",
+  store.update((draft) => ({ ...draft, customerName: "Ana Torres", conditions: "Entrega acordada",
     requestId: "00000000-0000-4000-8000-000000000001",
     form: { ...draft.form, mode: "SQUARE_FOOT", widthCm: "75", quantity: null },
   }));
@@ -24,6 +24,15 @@ it("recupera entradas incompletas y solicitud sin guardar precios; limpiar impid
   expect(createDraftCache("user-b", () => storage).get().draft).toEqual(emptyDraft());
   restored.clear();
   expect(createDraftCache("user-a", () => storage).get().draft).toEqual(emptyDraft());
+});
+it("recupera borradores anteriores sin nombre como campo vacío", () => {
+  const storage = memoryStorage();
+  const legacy = emptyDraft();
+  const withoutCustomer = Object.fromEntries(
+    Object.entries(legacy).filter(([key]) => key !== "customerName"),
+  );
+  storage.setItem("draft", JSON.stringify(withoutCustomer));
+  expect(createDraftCache("draft", () => storage).get().draft.customerName).toBe("");
 });
 it("un caché corrupto no impide crear otra proforma", () => {
   const storage = memoryStorage();

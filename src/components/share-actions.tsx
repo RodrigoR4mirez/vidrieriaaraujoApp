@@ -7,6 +7,7 @@ import {
   Printer,
   FileDown,
   ArrowUpRight,
+  ClipboardList,
 } from "lucide-react";
 import type { Quotation } from "@/domain/quotation/models";
 import { quotationText, whatsappUrl } from "@/lib/sharing";
@@ -81,6 +82,19 @@ export function ShareActions({ quotation }: { quotation: Quotation }) {
                 <strong>Descargar PDF</strong>
                 <small>Documento A4 monocromático</small>
               </span>
+            </a>
+            <a
+              className="share-option"
+              href={`/proformas/${quotation.number}/interno`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ClipboardList size={22} />
+              <span>
+                <strong>Imprimir voucher interno</strong>
+                <small>Formato del taller sin precios</small>
+              </span>
+              <ArrowUpRight size={18} />
             </a>
             <a
               className="share-option"

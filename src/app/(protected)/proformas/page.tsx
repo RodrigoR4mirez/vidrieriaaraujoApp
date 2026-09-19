@@ -13,9 +13,10 @@ export default async function Page() {
         description="Consulta y comparte tus proformas guardadas."
       />
       <HistoryList
-        quotations={quotations.map(({ number, confirmedAt, total }) => ({
+        quotations={quotations.map(({ number, confirmedAt, customerName, total }) => ({
           number,
           confirmedAt,
+          customerName,
           total,
         }))}
       />

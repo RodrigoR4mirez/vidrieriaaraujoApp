@@ -19,12 +19,13 @@ import {
 import { priceDraft } from "@/application/use-cases";
 import { confirmAction } from "@/app/actions";
 import { money } from "@/lib/formatting";
+import { quotationItemDetail } from "@/lib/quotation-item";
 import { Button, Dialog, Notice, QuantityControl } from "./ui";
 import { GlassPicker } from "./glass-picker";
 import { QuotationSummary } from "./quotation-summary";
 export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; owner: string }) {
   const { draft, update, clear: clearCache, warning, get } = useQuotationDraft(owner);
-  const { items, editId, conditions, requestId, form } = draft;
+  const { items, editId, customerName, conditions, requestId, form } = draft;
   const hydrated = useHydrated();
   const [error, setError] = useState("");
   const [resetOpen, setResetOpen] = useState(false);
@@ -38,13 +39,13 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
     pricingError = error instanceof Error ? error.message : "Revisa los ítems.";
   }
   useEffect(() => {
-    if (!warning || (!items.length && !conditions && !form.mode)) return;
+    if (!warning || (!items.length && !customerName && !conditions && !form.mode)) return;
     const leave = (event: BeforeUnloadEvent) => {
       event.preventDefault();
     };
     window.addEventListener("beforeunload", leave);
     return () => window.removeEventListener("beforeunload", leave);
-  }, [items.length, conditions, form.mode, warning]);
+  }, [items.length, customerName, conditions, form.mode, warning]);
   const cancelEdit = () => update((old) => ({ ...old, editId: null, form: emptyForm() }));
   const clear = () => {
     clearCache();
@@ -106,6 +107,21 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
           onDelete={remove}
         />
         <div className="field conditions-field">
+          <label htmlFor="customer-name">Nombre del cliente *</label>
+          <input
+            id="customer-name"
+            maxLength={160}
+            required
+            autoComplete="name"
+            placeholder="Ej. María Pérez"
+            value={customerName}
+            onChange={(e) => {
+              update((old) => ({ ...old, customerName: e.target.value, requestId: "" }));
+              setError("");
+            }}
+          />
+        </div>
+        <div className="field conditions-field">
           <label htmlFor="conditions">Condiciones comerciales (opcional)</label>
           <textarea
             id="conditions"
@@ -134,7 +150,7 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
             variant="secondary"
             disabled={pending}
             onClick={() =>
-              items.length || conditions || form.mode || form.widthCm || form.heightCm ? setResetOpen(true) : clear()
+              items.length || customerName || conditions || form.mode || form.widthCm || form.heightCm ? setResetOpen(true) : clear()
             }
           >
             <RotateCcw size={17} />
@@ -142,12 +158,17 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
           </Button>
           <Button
             disabled={!items.length || !!pricingError || pending || !!editId}
-            onClick={() =>
+            onClick={() => {
+              if (!customerName.trim()) {
+                setError("Ingresa el nombre del cliente antes de confirmar la proforma.");
+                return;
+              }
               startTransition(async () => {
                 const id = requestId || crypto.randomUUID();
                 update((old) => ({ ...old, requestId: id }));
                 const result = await confirmAction({
                   requestId: id,
+                  customerName,
                   items,
                   conditions,
                 });
@@ -157,8 +178,8 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
                   router.push(`/proformas/${result.data.number}`);
                   router.refresh();
                 }
-              })
-            }
+              });
+            }}
           >
             {pending ? "Confirmando…" : "Confirmar proforma"}
             <ArrowRight size={18} />
@@ -304,9 +325,7 @@ function ItemForm({
       </div>
       {estimate && estimate.mode !== "SHEET" && (
         <div className="calculation-breakdown" aria-label="Desglose del cálculo estimado">
-          <span>Ancho: {Number(estimate.widthInRaw).toFixed(2)}″ · merma {Number(estimate.widthWasteIn).toFixed(2)}″ · cobra {estimate.widthInRounded}″</span>
-          <span>Alto: {Number(estimate.heightInRaw).toFixed(2)}″ · merma {Number(estimate.heightWasteIn).toFixed(2)}″ · cobra {estimate.heightInRounded}″</span>
-          <span>Área: {estimate.areaFt2} ft² · precio final del ítem: {money(estimate.itemAmount)}</span>
+          <span>{quotationItemDetail(estimate)}</span>
         </div>
       )}
       {error && <Notice error>{error}</Notice>}

@@ -9,6 +9,7 @@ const formSchema = z.object({
 const cacheSchema = z.object({
   version: z.literal(1),
   items: z.array(draftItemSchema).max(200),
+  customerName: z.string().max(160).default(""),
   conditions: z.string().max(2000),
   editId: z.string().uuid().nullable(),
   requestId: z.union([z.literal(""), z.string().uuid()]),
@@ -20,7 +21,7 @@ export const emptyForm = (): QuotationForm => ({
   mode: "", familyId: "", productId: "", widthCm: "", heightCm: "", quantity: 1,
 });
 export const emptyDraft = (): CachedDraft => ({
-  version: 1, items: [], conditions: "", editId: null, requestId: "", form: emptyForm(),
+  version: 1, items: [], customerName: "", conditions: "", editId: null, requestId: "", form: emptyForm(),
 });
 const prefix = "araujo:quotation-draft:v1:";
 type Snapshot = { draft: CachedDraft; warning: string };
