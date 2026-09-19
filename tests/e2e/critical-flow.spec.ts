@@ -308,12 +308,24 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   expect((await pdf.body()).subarray(0, 4).toString()).toBe("%PDF");
   await page.goto(`/proformas/${number}/interno`);
   const internalVoucher = page.locator(".internal-voucher");
-  await expect(internalVoucher).toContainText(names.customer);
-  await expect(internalVoucher).toContainText("Modalidad: Por pie²");
-  await expect(internalVoucher).toContainText("Modalidad: Por planchas");
+  await expect(internalVoucher.getByRole("heading", { level: 1 })).toHaveText("VOUCHER INTERNO - CORTE");
+  await expect(internalVoucher).toContainText(names.customer.toLocaleUpperCase("es-PE"));
+  await expect(internalVoucher.locator(".internal-glass-name")).toHaveCount(3);
+  await expect(internalVoucher.locator(".internal-measure").first()).toHaveText("100 × 80 cm");
+  await expect(internalVoucher).toContainText("Cant: 2 pz · Por pie²");
+  await expect(internalVoucher).toContainText("Cant: 3 pln · Por plancha");
   await expect(internalVoucher).not.toContainText("S/");
   await expect(internalVoucher).not.toContainText("Precio");
   await expect(internalVoucher).not.toContainText("Total");
+  for (const width of [240, 320]) {
+    await page.setViewportSize({ width, height: 800 });
+    const voucherBox = await internalVoucher.boundingBox();
+    expect(voucherBox!.x).toBeGreaterThanOrEqual(0);
+    expect(voucherBox!.x + voucherBox!.width).toBeLessThanOrEqual(width);
+  }
+  await page.emulateMedia({ media: "print" });
+  expect((await internalVoucher.boundingBox())!.width).toBeLessThanOrEqual(198);
+  await page.emulateMedia({ media: "screen" });
   await page.goto(`/proformas/${number}/imprimir`);
   await expect(page.locator(".ticket")).toContainText("S/ 604.00");
   await expect(page.locator(".ticket")).toContainText("Plancha entera");

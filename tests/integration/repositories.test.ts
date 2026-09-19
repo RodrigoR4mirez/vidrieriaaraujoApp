@@ -12,7 +12,7 @@ import { QuotationService, CatalogService } from "@/application/use-cases";
 import { quotationSchema } from "@/domain/quotation/models";
 import { catalogStateSchema, isQuotable } from "@/domain/catalogs/models";
 import { validateBackup, exportBackup, importBackup } from "@/application/backup";
-import { internalVoucherItemDetail, quotationItemDetail, quotationTechnicalDetail } from "@/lib/quotation-item";
+import { internalVoucherMeasure, internalVoucherMeta, quotationItemDetail, quotationTechnicalDetail } from "@/lib/quotation-item";
 import { quotationText, whatsappUrl } from "@/lib/sharing";
 class MemoryStore implements JsonStore {
   records = new Map<string, { value: unknown; etag: string }>();
@@ -116,7 +116,8 @@ describe("repositories y casos de uso", () => {
     expect(q.items[1]).toMatchObject({ mode: "SHEET", pricePerSheet: "111.11", quantity: 3, itemAmount: "333.33", sheetWidthCm: "200", sheetHeightCm: "300" });
     expect(q.items[1]).not.toHaveProperty("areaFt2");
     expect(quotationItemDetail(q.items[1])).toBe("Plancha entera · 200 × 300 cm");
-    expect(internalVoucherItemDetail(q.items[1])).toBe("Medidas: 200 × 300 cm · Cantidad: 3 planchas · Modalidad: Por planchas");
+    expect(internalVoucherMeasure(q.items[1])).toBe("200 × 300 cm");
+    expect(internalVoucherMeta(q.items[1])).toBe("Cant: 3 pln · Por plancha");
     expect(quotationText(q)).toContain("Plancha entera");
     expect(decodeURIComponent(whatsappUrl(q))).toContain("SUBTOTAL EXACTO: S/ 395.57");
     expect(decodeURIComponent(whatsappUrl(q))).toContain("TOTAL A COBRAR: S/ 396.00");
@@ -172,7 +173,8 @@ describe("repositories y casos de uso", () => {
     expect(q.total).toBe("62.50");
     expect(quotationItemDetail(q.items[0])).toBe("Por pie² · 100 × 80 cm");
     expect(quotationTechnicalDetail(q.items[0])).toBe("Ancho 39.37″ → 40″ · Alto 31.50″ → 32″ · Área 8.89 ft² · S/ 3.50 pie²");
-    expect(internalVoucherItemDetail(q.items[0])).toBe("Medidas: 100 × 80 cm · Cantidad: 2 piezas · Modalidad: Por pie²");
+    expect(internalVoucherMeasure(q.items[0])).toBe("100 × 80 cm");
+    expect(internalVoucherMeta(q.items[0])).toBe("Cant: 2 pz · Por pie²");
     expect(quotationSchema.parse(JSON.parse(JSON.stringify(q)))).toEqual(q);
     expect(quotationText(q)).toContain("SUBTOTAL EXACTO: S/ 62.24");
     expect(quotationText(q)).toContain("TOTAL A COBRAR: S/ 62.50");

@@ -16,6 +16,57 @@
   width: 80mm;
   font: 11px/1.5 monospace;
 }
+.print-document.internal-voucher {
+  box-sizing: border-box;
+  width: min(58mm, calc(100vw - 24px));
+  padding: 3mm;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10px;
+  line-height: 1.25;
+}
+.internal-voucher header {
+  padding-bottom: 2mm;
+  text-align: left;
+}
+.internal-voucher h1 {
+  margin: 0 0 2mm;
+  font-size: 13px;
+  text-align: center;
+}
+.internal-header-meta {
+  display: grid;
+  gap: 1mm;
+}
+.internal-header-meta p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.internal-cut-line {
+  display: grid;
+  gap: 1mm;
+  padding: 2.5mm 0;
+  border-bottom: 1px dashed #222;
+  break-inside: avoid;
+}
+.internal-glass-name {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5mm;
+  align-items: start;
+  font-size: 11px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.internal-measure {
+  padding-left: 6mm;
+  font-size: 15px;
+  line-height: 1.1;
+}
+.internal-meta {
+  padding-left: 6mm;
+  font-size: 9px;
+  line-height: 1.2;
+}
 .print-document.a4 {
   max-width: 210mm;
   min-height: 250mm;
@@ -97,5 +148,11 @@
   }
   .print-line {
     break-inside: avoid;
+  }
+  .print-document.internal-voucher {
+    width: 100% !important;
+    max-width: 52mm !important;
+    margin: 0 auto !important;
+    font-family: "Courier New", Courier, monospace;
   }
 }

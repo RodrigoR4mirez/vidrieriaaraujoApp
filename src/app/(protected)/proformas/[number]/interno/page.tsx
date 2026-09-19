@@ -1,4 +1,4 @@
-import { internalVoucherItemDetail } from "@/lib/quotation-item";
+import { internalVoucherMeasure, internalVoucherMeta } from "@/lib/quotation-item";
 import { notFound } from "next/navigation";
 import { requireSession } from "@/infrastructure/auth/session";
 import { services } from "@/application/container";
@@ -20,21 +20,27 @@ export default async function InternalVoucherPage({
 
   return (
     <>
-      <style>{"@page{size:80mm 297mm;margin:3mm}"}</style>
+      <style>{"@page{margin:3mm}"}</style>
       <div className="print-toolbar no-print">
         <span>Voucher interno del taller</span>
         <PrintButton />
       </div>
       <article className="print-document ticket internal-voucher">
         <header>
-          <h1>VOUCHER INTERNO</h1>
-          <p><strong>Cliente:</strong> {quotation.customerName || "No registrado"}</p>
-          <p>{limaDate(quotation.confirmedAt)}</p>
+          <h1>VOUCHER INTERNO - CORTE</h1>
+          <div className="internal-header-meta">
+            <p><strong>Cliente:</strong> {(quotation.customerName || "No registrado").toLocaleUpperCase("es-PE")}</p>
+            <p>{limaDate(quotation.confirmedAt)}</p>
+          </div>
         </header>
-        {quotation.items.map((item) => (
-          <section key={item.id} className="print-line">
-            <strong>{item.productDescription}</strong>
-            <p>{internalVoucherItemDetail(item)}</p>
+        {quotation.items.map((item, index) => (
+          <section key={item.id} className="internal-cut-line">
+            <div className="internal-glass-name">
+              <span>[{index + 1}]</span>
+              <strong>{item.productDescription.toLocaleUpperCase("es-PE")}</strong>
+            </div>
+            <strong className="internal-measure">{internalVoucherMeasure(item)}</strong>
+            <small className="internal-meta">{internalVoucherMeta(item)}</small>
           </section>
         ))}
       </article>

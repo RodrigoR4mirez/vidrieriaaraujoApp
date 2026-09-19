@@ -425,7 +425,7 @@ El snapshot de plancha conserva modalidad, producto y descripción, precio por p
 
 Toda nueva proforma exige un nombre de cliente y lo congela en el histórico. Pantalla, PDF, impresión, texto copiado y WhatsApp lo muestran. El histórico permite buscarlo. Los snapshots anteriores sin nombre siguen siendo legibles como `No registrado`.
 
-El voucher del cliente conserva importes y condiciones. El voucher interno del taller es una salida separada y contiene exclusivamente nombre del cliente, descripción completa del vidrio, medidas, cantidad con modalidad, fecha y hora. No incluye precios, subtotal, total ni condiciones comerciales.
+El voucher del cliente conserva importes y condiciones. El voucher interno del taller es una salida térmica angosta compatible con papel de 58–80 mm y contiene exclusivamente nombre del cliente, descripción completa del vidrio en mayúsculas, medidas destacadas, cantidad abreviada con modalidad, fecha y hora. Numera los vidrios y separa bloques con un borde corto. No incluye precios, subtotal, total ni condiciones comerciales.
 
 ### Selección guiada del vidrio
 
