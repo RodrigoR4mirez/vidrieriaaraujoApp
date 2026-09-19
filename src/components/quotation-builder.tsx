@@ -19,7 +19,7 @@ import {
 import { priceDraft } from "@/application/use-cases";
 import { confirmAction } from "@/app/actions";
 import { money } from "@/lib/formatting";
-import { quotationItemDetail } from "@/lib/quotation-item";
+import { quotationTechnicalDetail } from "@/lib/quotation-item";
 import { Button, Dialog, Notice, QuantityControl } from "./ui";
 import { GlassPicker } from "./glass-picker";
 import { QuotationSummary } from "./quotation-summary";
@@ -325,7 +325,7 @@ function ItemForm({
       </div>
       {estimate && estimate.mode !== "SHEET" && (
         <div className="calculation-breakdown" aria-label="Desglose del cálculo estimado">
-          <span>{quotationItemDetail(estimate)}</span>
+          <span>{quotationTechnicalDetail(estimate)}</span>
         </div>
       )}
       {error && <Notice error>{error}</Notice>}

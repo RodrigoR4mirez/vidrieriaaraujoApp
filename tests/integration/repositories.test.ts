@@ -12,7 +12,7 @@ import { QuotationService, CatalogService } from "@/application/use-cases";
 import { quotationSchema } from "@/domain/quotation/models";
 import { catalogStateSchema, isQuotable } from "@/domain/catalogs/models";
 import { validateBackup, exportBackup, importBackup } from "@/application/backup";
-import { internalVoucherItemDetail, quotationItemDetail } from "@/lib/quotation-item";
+import { internalVoucherItemDetail, quotationItemDetail, quotationTechnicalDetail } from "@/lib/quotation-item";
 import { quotationText, whatsappUrl } from "@/lib/sharing";
 class MemoryStore implements JsonStore {
   records = new Map<string, { value: unknown; etag: string }>();
@@ -170,12 +170,14 @@ describe("repositories y casos de uso", () => {
     expect(q.number).toBe("PRO-00001");
     expect(q.subtotal).toBe("62.24");
     expect(q.total).toBe("62.50");
-    expect(quotationItemDetail(q.items[0])).toBe("Ancho 39.37″ → 40″ · Alto 31.50″ → 32″ · Área 8.89 ft² · S/ 3.50 pie²");
+    expect(quotationItemDetail(q.items[0])).toBe("Por pie² · 100 × 80 cm");
+    expect(quotationTechnicalDetail(q.items[0])).toBe("Ancho 39.37″ → 40″ · Alto 31.50″ → 32″ · Área 8.89 ft² · S/ 3.50 pie²");
     expect(internalVoucherItemDetail(q.items[0])).toBe("Medidas: 100 × 80 cm · Cantidad: 2 piezas · Modalidad: Por pie²");
     expect(quotationSchema.parse(JSON.parse(JSON.stringify(q)))).toEqual(q);
     expect(quotationText(q)).toContain("SUBTOTAL EXACTO: S/ 62.24");
     expect(quotationText(q)).toContain("TOTAL A COBRAR: S/ 62.50");
     expect(quotationText(q)).toContain("Cliente: María Pérez");
+    expect(quotationText(q)).not.toContain("Ancho 39.37″");
     expect(decodeURIComponent(whatsappUrl(q))).toContain(q.number);
     await f.catalog.saveProduct(
       { ...f.product, pricePerSquareFoot: "100.00" },

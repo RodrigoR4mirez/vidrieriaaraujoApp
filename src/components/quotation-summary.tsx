@@ -1,5 +1,5 @@
 "use client";
-import { quotationItemDetail } from "@/lib/quotation-item";
+import { quotationItemDetail, quotationTechnicalDetail } from "@/lib/quotation-item";
 import { useState } from "react";
 import { Pencil, Trash2, List, Rows3 } from "lucide-react";
 import type { QuotationItem } from "@/domain/quotation/models";
@@ -95,6 +95,11 @@ export function QuotationSummary({
                         <strong>
                           {quotationItemDetail(item)}
                         </strong>
+                        {!compact && item.mode !== "SHEET" && (
+                          <small className="item-calculation">
+                            {quotationTechnicalDetail(item)}
+                          </small>
+                        )}
                       </td>
                       <td>{item.quantity}</td>
                       <td className="numeric muted">{money(item.unitPrice)}</td>

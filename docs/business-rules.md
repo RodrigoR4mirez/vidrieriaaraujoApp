@@ -388,13 +388,13 @@ No duplicarla en:
 
 Todos consumen el mismo resultado del motor de dominio.
 
-El detalle comercial visible de un ítem por pie² usa un único formato compartido:
+La cotización en pantalla y su vista histórica detallada muestran, en texto secundario gris, esta línea técnica:
 
 ```text
 Ancho [pulgadas convertidas]″ → [pulgadas cobradas]″ · Alto [pulgadas convertidas]″ → [pulgadas cobradas]″ · Área [pie²] ft² · S/ [precio] pie²
 ```
 
-La merma permanece en el snapshot y en el cálculo, pero no se muestra en ese texto.
+La merma permanece en el snapshot y en el cálculo, pero no se muestra en ese texto. Esta línea técnica no se incluye en PDF, voucher del cliente, impresión, WhatsApp ni texto copiado; esas salidas conservan la descripción simple de modalidad y medidas en centímetros.
 
 ---
 

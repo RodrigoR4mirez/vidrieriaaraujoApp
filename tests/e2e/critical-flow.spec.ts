@@ -152,6 +152,8 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await add(code, "100", "2");
   await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 62.24");
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.50");
+  await expect(page.locator(".item-calculation").first()).toContainText("Ancho 39.37″ → 40″");
+  await expect(page.locator(".item-calculation").first()).not.toContainText("merma");
   await page.getByRole("button", { name: "Confirmar proforma", exact: true }).click();
   await expect(page.getByRole("alert").filter({ hasText: "nombre del cliente" })).toBeVisible();
   await expect(page).toHaveURL(/\/cotizador$/);
@@ -295,6 +297,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     "S/ 604.00",
   );
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain("Plancha entera");
+  expect(await page.evaluate(() => navigator.clipboard.readText())).not.toContain("Ancho 39.37″");
   await expect(page.getByRole("link", { name: /WhatsApp/ })).toHaveAttribute(
     "href",
     /^https:\/\/wa.me\/\?text=/,
@@ -316,6 +319,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page.locator(".ticket")).toContainText("Plancha entera");
   await expect(page.locator(".ticket")).toContainText("333.33");
   await expect(page.locator(".ticket")).toContainText(names.customer);
+  await expect(page.locator(".ticket")).not.toContainText("Área");
   await page.evaluate(() => {
     window.print = () => {
       document.body.dataset.printed = "true";

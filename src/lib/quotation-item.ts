@@ -3,12 +3,16 @@ import { money } from "@/lib/formatting";
 
 // Shared presentation only: every amount is already calculated by the domain.
 export function quotationItemDetail(item: QuotationItem) {
-  if (item.mode !== "SHEET")
-    return `Ancho ${Number(item.widthInRaw).toFixed(2)}″ → ${item.widthInRounded}″ · Alto ${Number(item.heightInRaw).toFixed(2)}″ → ${item.heightInRounded}″ · Área ${Number(item.areaFt2)} ft² · ${money(item.pricePerSquareFoot)} pie²`;
+  if (item.mode !== "SHEET") return `Por pie² · ${item.widthCm} × ${item.heightCm} cm`;
   const size = item.sheetWidthCm && item.sheetHeightCm
     ? ` · ${item.sheetWidthCm} × ${item.sheetHeightCm} cm`
     : "";
   return `Plancha entera${size}`;
+}
+
+export function quotationTechnicalDetail(item: QuotationItem) {
+  if (item.mode === "SHEET") return "";
+  return `Ancho ${Number(item.widthInRaw).toFixed(2)}″ → ${item.widthInRounded}″ · Alto ${Number(item.heightInRaw).toFixed(2)}″ → ${item.heightInRounded}″ · Área ${Number(item.areaFt2)} ft² · ${money(item.pricePerSquareFoot)} pie²`;
 }
 
 export function internalVoucherItemDetail(item: QuotationItem) {

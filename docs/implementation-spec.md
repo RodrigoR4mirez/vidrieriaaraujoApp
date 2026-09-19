@@ -389,7 +389,7 @@ Soportar:
 
 Agrupar visualmente por tipo de vidrio cuando corresponda al diseño STITCH.
 
-Mostrar en el desglose de cálculo las pulgadas convertidas, la merma por lado, las pulgadas cobradas, el área en pie², el subtotal exacto y el total a cobrar. Mantener el resumen principal legible.
+Mostrar únicamente en la cotización en pantalla y el detalle histórico una línea gris con pulgadas convertidas, pulgadas cobradas, área en pie² y precio por pie². No mostrar la merma ni propagar esa línea a PDF, voucher, impresión, WhatsApp o texto copiado. Mantener el resumen principal legible.
 
 ---
 
