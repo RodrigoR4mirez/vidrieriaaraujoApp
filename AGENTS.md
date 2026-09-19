@@ -198,7 +198,7 @@ Persistir centralmente:
 - espesores;
 - diseños catedral;
 - catálogo de vidrios;
-- proformas confirmadas;
+- cotizaciones confirmadas;
 - metadatos necesarios.
 
 Todas las operaciones Blob deben ejecutarse server-side.
@@ -233,11 +233,11 @@ Para actualizar un blob existente:
 - usar `ifMatch`;
 - si ocurre `BlobPreconditionFailedError`, recargar y reintentar o informar conflicto.
 
-Las proformas confirmadas son inmutables:
+Las cotizaciones confirmadas son inmutables:
 
 - pathname único;
 - `allowOverwrite: false`;
-- nunca sobrescribir una proforma confirmada.
+- nunca sobrescribir una cotización confirmada.
 
 Después de mutaciones:
 
@@ -283,7 +283,7 @@ El código/SKU debe ser único.
 
 ## 9. Regla crítica: NO IGV
 
-La proforma del MVP no maneja IGV.
+La cotización del MVP no maneja IGV.
 
 No calcular, mostrar ni almacenar:
 
@@ -311,8 +311,8 @@ Aplica a:
 El total es:
 
 ```text
-subtotalProforma = suma exacta de los importes de los ítems
-totalProforma = subtotalProforma redondeado hacia arriba a .50 o al entero
+subtotalCotizacion = suma exacta de los importes de los ítems
+totalCotizacion = subtotalCotizacion redondeado hacia arriba a .50 o al entero
 ```
 
 ---

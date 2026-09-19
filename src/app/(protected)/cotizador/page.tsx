@@ -12,7 +12,7 @@ export default async function Page() {
   return (
     <>
       <PageHeader
-        eyebrow="Proforma · borrador"
+        eyebrow="Cotización · borrador"
         draft
         title={`Nº ${next}`}
         description="Número provisional; se asigna al confirmar."

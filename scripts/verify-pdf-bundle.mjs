@@ -6,7 +6,7 @@ import { execFileSync } from "node:child_process";
 
 // Exercise only the files shipped to the function, without the full node_modules.
 const root = process.cwd();
-const route = resolve(".next/server/app/api/proformas/[number]/pdf");
+const route = resolve(".next/server/app/api/cotizaciones/[number]/pdf");
 const trace = JSON.parse(await readFile(resolve(route, "route.js.nft.json"), "utf8"));
 const isolated = await mkdtemp(resolve(tmpdir(), "araujo-pdf-bundle-"));
 try {
@@ -24,7 +24,7 @@ try {
       import {createElement as h} from ${moduleUrl("react/index.js")};
       import {renderToBuffer, Document, Page, Text} from ${moduleUrl("@react-pdf/renderer/lib/react-pdf.js")};
       const pdf = await renderToBuffer(h(Document, null, h(Page, {size:"A4"},
-        h(Text, null, "Proforma Araujo"),
+        h(Text, null, "Cotización Araujo"),
         h(Text, {style:{fontFamily:"Helvetica-Bold"}}, "S/ 62.25"))));
       if (pdf.subarray(0,4).toString() !== "%PDF") throw Error("PDF inválido");
       console.log("PDF A4 generado con el paquete aislado de Vercel: OK");

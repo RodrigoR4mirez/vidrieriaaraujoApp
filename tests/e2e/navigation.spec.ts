@@ -11,8 +11,8 @@ test("reutiliza pantallas y actualizar conserva el borrador", async ({ page }) =
   const routes = [
     ["Vidrios", "Catálogo principal de vidrios"],
     ["Catálogos base", "Catálogos base"],
-    ["Histórico", "Proformas confirmadas"],
-    ["Cotizador", "Nº PRO-"],
+    ["Histórico", "Cotizaciones confirmadas"],
+    ["Cotizador", "Nº COT-"],
   ];
   // Warm the visited routes; the second pass must reuse their payloads.
   for (const [link, heading] of routes) {
@@ -22,7 +22,7 @@ test("reutiliza pantallas y actualizar conserva el borrador", async ({ page }) =
   const requests: string[] = [];
   page.on("request", (request) => {
     const path = new URL(request.url()).pathname;
-    if (request.headers().rsc === "1" && ["/catalogo", "/catalogos", "/proformas", "/cotizador"].includes(path)) requests.push(path);
+    if (request.headers().rsc === "1" && ["/catalogo", "/catalogos", "/cotizaciones", "/cotizador"].includes(path)) requests.push(path);
   });
   const timings: Record<string, number> = {};
   for (const [link, heading] of routes) {
@@ -40,6 +40,6 @@ test("reutiliza pantallas y actualizar conserva el borrador", async ({ page }) =
   await expect(page.getByRole("button", { name: "Actualizar datos" })).toHaveAttribute("aria-busy", "false");
   await expect(page.getByLabel("Condiciones comerciales (opcional)")).toHaveValue("Borrador de navegación");
   console.log("Transiciones con caché (ms):", timings);
-  await page.getByRole("button", { name: "Nueva proforma", exact: true }).click();
+  await page.getByRole("button", { name: "Nueva cotización", exact: true }).click();
   await page.getByRole("button", { name: "Descartar borrador" }).click();
 });

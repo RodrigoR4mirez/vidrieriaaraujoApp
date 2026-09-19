@@ -51,11 +51,9 @@ export function validateBackup(raw: unknown) {
             throw new DomainError("Backup con referencias inválidas.");
         }
       entry.value = state;
-    } else if (
-      /^data\/v1\/quotations\/PRO-\d{5,}\.json$/.test(entry.pathname)
-    ) {
+    } else if (/^data\/v1\/quotations\/[A-Z]{3}-\d{5,}\.json$/.test(entry.pathname)) {
       const q = quotationSchema.parse(entry.value);
-      if (entry.pathname !== `data/v1/quotations/${q.number}.json`)
+      if (!entry.pathname.endsWith(`-${q.number.slice(4)}.json`))
         throw new DomainError("El número no coincide con el archivo.");
       entry.value = q;
     } else throw new DomainError("Ruta no admitida en backup.");
@@ -95,7 +93,7 @@ export async function importBackup(
         return null;
       if (current && entry.pathname.includes("/quotations/"))
         throw new DomainError(
-          "Una proforma confirmada nunca puede sobrescribirse.",
+          "Una cotización confirmada nunca puede sobrescribirse.",
         );
       if (current && !overwrite)
         throw new DomainError(

@@ -16,7 +16,7 @@ export async function GET(
   try {
     const quotation = await services().quotations.find(number);
     if (!quotation)
-      return new Response("Proforma inexistente", { status: 404 });
+      return new Response("Cotización inexistente", { status: 404 });
     const buffer = await renderToBuffer(<QuotationPdf quotation={quotation} />);
     return new Response(new Uint8Array(buffer), {
       headers: {

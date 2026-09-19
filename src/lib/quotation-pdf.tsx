@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
 });
 export function QuotationPdf({ quotation: q }: { quotation: Quotation }) {
   return (
-    <Document title={`Proforma ${q.number}`} author="Distribuidora Araujo">
+    <Document title={`Cotización ${q.number}`} author="Distribuidora Araujo">
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           <Text style={styles.company}>DISTRIBUIDORA ARAUJO</Text>
           <Text>Vidriería &amp; Aluminios</Text>
-          <Text style={styles.number}>PROFORMA N° {q.number}</Text>
+          <Text style={styles.number}>COTIZACIÓN N° {q.number}</Text>
           <Text>Cliente: {q.customerName || "No registrado"}</Text>
           <Text>Fecha y hora: {limaDate(q.confirmedAt)} · Moneda: Soles</Text>
         </View>

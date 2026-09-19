@@ -20,15 +20,15 @@ export default async function Page({
   return (
     <>
       <PageHeader
-        eyebrow="Proforma"
+        eyebrow="Cotización"
         title={`Nº ${q.number}`}
         date={q.confirmedAt}
       />
       <div className="confirmed-banner">
         <CheckCircle2 size={30} />
         <div>
-          <h2>Proforma confirmada</h2>
-          <p>La proforma {q.number} fue registrada correctamente.</p>
+          <h2>Cotización confirmada</h2>
+          <p>La cotización {q.number} fue registrada correctamente.</p>
         </div>
         <span className="badge active">Solo lectura</span>
       </div>
@@ -47,7 +47,7 @@ export default async function Page({
         <div className="form-actions">
           <Link className="button secondary" href="/cotizador">
             <Plus size={18} />
-            Nueva proforma
+            Nueva cotización
           </Link>
           <ShareActions quotation={q} />
         </div>

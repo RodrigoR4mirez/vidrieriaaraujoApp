@@ -28,7 +28,7 @@ export function priceDraft(
       throw new DomainError("Producto inexistente. Actualiza el catálogo.");
     if (!isQuotable(product, catalog.values, item.mode ?? "SQUARE_FOOT"))
       throw new DomainError(
-        "Producto oculto, con opciones ocultas o sin precio para esta modalidad. Actualiza la proforma.",
+        "Producto oculto, con opciones ocultas o sin precio para esta modalidad. Actualiza la cotización.",
       );
     const description = {
       productCode: product.code,

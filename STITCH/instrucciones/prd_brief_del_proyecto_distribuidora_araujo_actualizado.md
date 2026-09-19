@@ -1,5 +1,5 @@
 # Documento de Requisitos del Producto (PRD) & Brief del Proyecto
-## Sistema de Cotización, Proformas y Gestión de Catálogos — Distribuidora Araujo
+## Sistema de Cotización, Cotizaciones y Gestión de Catálogos — Distribuidora Araujo
 
 ---
 
@@ -13,7 +13,7 @@ El proyecto consiste en una **solución web responsiva y táctil de alto rendimi
 
 ### 2. Objetivos del Negocio y Métricas Clave (KPIs)
 
-* **Reducción de tiempos de atención:** Disminución del tiempo de generación de proforma de más de 5 minutos manuales a **menos de 30 segundos**.
+* **Reducción de tiempos de atención:** Disminución del tiempo de generación de cotización de más de 5 minutos manuales a **menos de 30 segundos**.
 * **Eliminación de errores de cálculo:** 0% de discrepancias en tarifas, cálculo de mermas, áreas efectivas e I.G.V. (18%).
 * **Agilidad en la comunicación omnicanal:** Envío de presupuestos inmediatos vía WhatsApp estructurado con un solo clic, aumentando la tasa de cierre en un **35%**.
 * **Eficiencia operativa en taller:** Emisión de órdenes claras mediante ticket térmico de 80 mm para corte rápido y documento A4 para validación formal con contratistas.
@@ -25,7 +25,7 @@ El proyecto consiste en una **solución web responsiva y táctil de alto rendimi
 | Rol | Entorno de Operación | Principales Tareas / Necesidades |
 | :--- | :--- | :--- |
 | **Asesor de Mostrador** | Terminal de escritorio / pantalla táctil en tienda física | Ingreso rápido de medidas ($cm$), selección rápida de espesores con un clic, emisión de ticket de 80 mm. |
-| **Vendedor Digital / WhatsApp** | Laptop / Tablet / Móvil | Armado de proformas a distancia y copia de resumen enriquecido para WhatsApp instantáneo. |
+| **Vendedor Digital / WhatsApp** | Laptop / Tablet / Móvil | Armado de cotizaciones a distancia y copia de resumen enriquecido para WhatsApp instantáneo. |
 | **Jefe de Taller / Producción** | Mesa de corte e inspección | Lectura de especificaciones claras (espesores, medidas, tipos de vidrio y folios de seguimiento). |
 | **Administrador / Gerencia** | Oficina administrativa | Mantenimiento de precios base por pie² y plancha, catálogo de familias, acabados y espesores. |
 
@@ -42,12 +42,12 @@ El proyecto consiste en una **solución web responsiva y táctil de alto rendimi
      - *Vista Detallada:* Agrupación por tipo de vidrio con desglose de medidas, precio unitario e importe acumulado.
      - *Vista Compacta:* Tabla tabular condensada para cotizaciones de alto volumen (≥ 5 ítems).
      - *Acciones de ítem:* Botón de edición inline (`✏️`) y eliminación (`🗑️`).
-   - **Panel de totales contables:** Total Proforma ($S/.$), desglose de I.G.V. (18%), subtotal neto, contador de piezas totales y tipos de vidrio.
+   - **Panel de totales contables:** Total Cotización ($S/.$), desglose de I.G.V. (18%), subtotal neto, contador de piezas totales y tipos de vidrio.
    - **Navegación superior:** Icono de tuerca (`⚙️`) con acceso directo a catálogos.
 3. **Modal de Edición en Línea (Inline Editing):**
-   - Permite corregir ancho, alto o cantidad de una pieza específica directamente dentro del contexto de la proforma, recalculando totales sin refrescar la página.
+   - Permite corregir ancho, alto o cantidad de una pieza específica directamente dentro del contexto de la cotización, recalculando totales sin refrescar la página.
 4. **Pantalla de Confirmación & Modal de Compartir:**
-   - Asignación de folio correlativo oficial (ej. `PRO-00001`) y estado de registro exitoso.
+   - Asignación de folio correlativo oficial (ej. `COT-00001`) y estado de registro exitoso.
    - **Módulo de Salidas Omnicanal:**
      - 🟢 **WhatsApp:** Formato optimizado con negritas, emojis técnicos y cláusulas comerciales.
      - 📋 **Copiar Texto:** Copia limpia al portapapeles para correos o mensajería interna.
@@ -86,4 +86,4 @@ El proyecto consiste en una **solución web responsiva y táctil de alto rendimi
 | **Fase 1** | UI/UX completo, cotizador dinámico, vouchers 80 mm, PDF A4, vistas WhatsApp y demostración guiada. | **Completado (En Lienzo)** |
 | **Fase 2** | Persistencia en base de datos local / nube (PostgreSQL/Supabase) y gestión de clientes recurrentes. | Próxima implementación |
 | **Fase 3** | Motor de manufacturas adicionales (cantos pulidos, biseles, perforaciones y saques). | Planificado |
-| **Fase 4** | Integración de pasarelas de pago digitales (códigos QR Yape, Plin y transferencias bancarias en proforma). | Planificado |
+| **Fase 4** | Integración de pasarelas de pago digitales (códigos QR Yape, Plin y transferencias bancarias en cotización). | Planificado |

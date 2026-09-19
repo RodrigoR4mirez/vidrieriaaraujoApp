@@ -19,13 +19,13 @@ export function HistoryList({
     <section className="panel glass">
       <div className="toolbar">
         <input
-          aria-label="Buscar proforma"
+          aria-label="Buscar cotización"
           placeholder="Buscar por cliente, número o fecha…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
         <Link className="button primary" href="/cotizador">
-          Nueva proforma
+          Nueva cotización
         </Link>
       </div>
       {filtered.length ? (
@@ -33,7 +33,7 @@ export function HistoryList({
           <table>
             <thead>
               <tr>
-                <th>Proforma</th>
+                <th>Cotización</th>
                 <th>Cliente</th>
                 <th>Fecha y hora</th>
                 <th>Total</th>
@@ -44,7 +44,7 @@ export function HistoryList({
               {filtered.map((q) => (
                 <tr key={q.number}>
                   <td>
-                    <Link className="text-link" href={`/proformas/${q.number}`}>
+                    <Link className="text-link" href={`/cotizaciones/${q.number}`}>
                       {q.number}
                     </Link>
                   </td>
@@ -60,8 +60,8 @@ export function HistoryList({
           </table>
         </div>
       ) : (
-        <EmptyState title="Sin proformas para mostrar">
-          Las proformas confirmadas aparecerán aquí.
+        <EmptyState title="Sin cotizaciones para mostrar">
+          Las cotizaciones confirmadas aparecerán aquí.
         </EmptyState>
       )}
     </section>

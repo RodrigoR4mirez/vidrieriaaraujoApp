@@ -296,7 +296,7 @@ Proteger:
 - cotizador;
 - catálogo;
 - catálogos base;
-- proformas;
+- cotizaciones;
 - endpoints internos.
 
 ---
@@ -314,9 +314,9 @@ EDITAR / ELIMINAR / CAMBIAR CANTIDAD
   ↓
 VISTA DETALLADA / COMPACTA
   ↓
-CONFIRMAR PROFORMA
+CONFIRMAR COTIZACIÓN
   ↓
-PROFORMA CONFIRMADA
+COTIZACIÓN CONFIRMADA
   ↓
 COMPARTIR
      ├── WhatsApp
@@ -324,7 +324,7 @@ COMPARTIR
      ├── Imprimir
      └── Descargar PDF
   ↓
-NUEVA PROFORMA
+NUEVA COTIZACIÓN
 ```
 
 Además:
@@ -340,7 +340,7 @@ CATÁLOGOS BASE
 
 Cabecera:
 
-- Proforma Nº `PRO-XXXXX`;
+- Cotización Nº `COT-XXXXX`;
 - fecha;
 - hora;
 - logo/identidad.
@@ -410,13 +410,13 @@ Al editar:
 - recalcular con el dominio;
 - actualizar total.
 
-Una proforma confirmada queda solo lectura.
+Una cotización confirmada queda solo lectura.
 
 ---
 
-## 13. Nueva proforma
+## 13. Nueva cotización
 
-`Nueva proforma` limpia únicamente el borrador actual.
+`Nueva cotización` limpia únicamente el borrador actual.
 
 Si hay cambios no confirmados:
 
@@ -458,27 +458,27 @@ Subtotal = suma exacta de `itemAmount`. Total a cobrar = subtotal redondeado hac
 
 ---
 
-## 15. Numeración PRO-XXXXX
+## 15. Numeración COT-XXXXX
 
 Formato:
 
 ```text
-PRO-00001
-PRO-00002
-PRO-00003
+COT-00001
+COT-00002
+COT-00003
 ```
 
 Debe ser única y creciente.
 
 Para el MVP con Blob:
 
-1. listar proformas confirmadas por prefijo;
+1. listar cotizaciones confirmadas por prefijo;
 2. determinar el mayor número existente;
 3. proponer `max + 1`;
 4. guardar en pathname único con `allowOverwrite: false`;
 5. si existe colisión por concurrencia, volver a listar y reintentar.
 
-No sobrescribir una proforma existente.
+No sobrescribir una cotización existente.
 
 Evitar depender de un contador mutable como única fuente de verdad.
 
@@ -598,7 +598,7 @@ Subtotal S/ 208.08 → total S/ 208.50
 
 ---
 
-## 19. Modelo de proforma
+## 19. Modelo de cotización
 
 Ejemplo conceptual:
 
@@ -613,7 +613,7 @@ interface Quotation {
   createdAt: string
   confirmedAt: string
   timezone: 'America/Lima'
-  customerName?: string // Obligatorio en nuevas proformas; opcional al leer históricos antiguos.
+  customerName?: string // Obligatorio en nuevas cotizaciones; opcional al leer históricos antiguos.
   subtotal?: string // Opcional solo para compatibilidad con históricos anteriores.
   total: string
   items: QuotationItem[]
@@ -652,7 +652,7 @@ interface SquareFootQuotationItem {
 }
 ```
 
-Una proforma admite ambas modalidades simultáneamente. La otra variante es `SheetQuotationItem`, con `mode: 'SHEET'`, los mismos IDs y datos descriptivos, `quantity`, `pricePerSheet`, `unitPrice`, `itemAmount` y dimensiones de plancha opcionales. No lleva conversiones ni medidas de corte. `QuotationItem = SquareFootQuotationItem | SheetQuotationItem`. Plancha entera calcula precio de catálogo × cantidad con dos decimales, sin redondeo a 0.05. El servidor vuelve a validar disponibilidad y precios al confirmar. Los históricos sin modalidad permanecen intactos y se presentan por pie².
+Una cotización admite ambas modalidades simultáneamente. La otra variante es `SheetQuotationItem`, con `mode: 'SHEET'`, los mismos IDs y datos descriptivos, `quantity`, `pricePerSheet`, `unitPrice`, `itemAmount` y dimensiones de plancha opcionales. No lleva conversiones ni medidas de corte. `QuotationItem = SquareFootQuotationItem | SheetQuotationItem`. Plancha entera calcula precio de catálogo × cantidad con dos decimales, sin redondeo a 0.05. El servidor vuelve a validar disponibilidad y precios al confirmar. Los históricos sin modalidad permanecen intactos y se presentan por pie².
 
 Persistir valores decimales como string si ayuda a evitar pérdida de precisión.
 
@@ -726,7 +726,7 @@ Al actualizar un registro existente:
 - capturar `BlobPreconditionFailedError`;
 - informar conflicto o reintentar con datos frescos.
 
-Para proformas confirmadas:
+Para cotizaciones confirmadas:
 
 ```text
 allowOverwrite: false
@@ -746,8 +746,8 @@ data/v1/catalogs/cathedral-designs/{id}.json
 
 data/v1/products/{id}.json
 
-data/v1/quotations/PRO-00001.json
-data/v1/quotations/PRO-00002.json
+data/v1/quotations/COT-00001.json
+data/v1/quotations/COT-00002.json
 ...
 ```
 
@@ -759,7 +759,7 @@ Cada JSON importante:
 }
 ```
 
-No guardar todas las proformas en un solo archivo gigante.
+No guardar todas las cotizaciones en un solo archivo gigante.
 
 ---
 
@@ -790,7 +790,7 @@ Después de confirmar:
 3. Imprimir
 4. Descargar PDF
 
-Todos consumen la proforma confirmada, no recalculan por separado.
+Todos consumen la cotización confirmada, no recalculan por separado.
 
 ---
 
@@ -804,7 +804,7 @@ Ejemplo de estructura:
 DISTRIBUIDORA ARAUJO
 Vidriería & Aluminios
 
-PROFORMA N° PRO-00001
+COTIZACIÓN N° COT-00001
 Cliente: ...
 Fecha: ...
 
@@ -833,7 +833,7 @@ Usar Clipboard API.
 Mostrar feedback visual:
 
 ```text
-Proforma copiada
+Cotización copiada
 ```
 
 ---
@@ -950,7 +950,7 @@ Ejemplos:
 - Medidas inválidas
 - Cantidad inválida
 - Conflicto de actualización
-- Error guardando proforma
+- Error guardando cotización
 - Error cargando catálogo
 - Error generando PDF
 
@@ -1028,7 +1028,7 @@ Como mínimo:
 8. editar vidrio;
 9. ocultar vidrio;
 10. reactivar vidrio;
-11. crear proforma;
+11. crear cotización;
 12. agregar varios productos;
 13. editar medidas;
 14. cambiar cantidad;
@@ -1039,8 +1039,8 @@ Como mínimo:
 19. compartir/copiar;
 20. generar PDF;
 21. imprimir 80 mm;
-22. nueva proforma;
-23. siguiente número PRO-XXXXX.
+22. nueva cotización;
+23. siguiente número COT-XXXXX.
 
 ### Fórmula crítica
 
@@ -1302,7 +1302,7 @@ Descubrirlos inspeccionando STITCH.
 - private Blob;
 - no exponer `BLOB_READ_WRITE_TOKEN`;
 - no loggear secrets;
-- no permitir overwrite de proformas confirmadas;
+- no permitir overwrite de cotizaciones confirmadas;
 - validar sesión en mutaciones.
 
 ---
@@ -1349,7 +1349,7 @@ Debe funcionar:
 - copiar;
 - PDF;
 - impresión;
-- nueva proforma;
+- nueva cotización;
 - backup;
 - tests;
 - build;
@@ -1403,7 +1403,7 @@ No detenerse después de una sola fase salvo bloqueo real.
 - Next.js 16.3.5 es el patch estable elegido mediante npm; versiones exactas en package.json/package-lock.json.
 - `tsc` usa TypeScript 7.0.2 a través del alias `@typescript/native`. El paquete oficial de compatibilidad `@typescript/typescript6` se publica bajo el alias `typescript` para herramientas que aún consumen su API. ESLint 10 usa `@eslint/compat` para los plugins heredados de eslint-config-next, sin desactivar reglas.
 - Webpack es el compilador de desarrollo/build por una restricción local de puertos en el proceso auxiliar CSS de Turbopack.
-- Catálogos base y productos comparten `data/v1/catalog.json` para unicidad de SKU y control de versiones mediante una única operación ETag. Las proformas mantienen un archivo inmutable por folio.
+- Catálogos base y productos comparten `data/v1/catalog.json` para unicidad de SKU y control de versiones mediante una única operación ETag. Las cotizaciones mantienen un archivo inmutable por folio.
 - Condiciones comerciales opcionales se ingresan expresamente y se guardan en el snapshot. No se toman plazos ni datos fiscales contradictorios de los mocks como valores de producción.
 - Fecha UTC persistida y zona America/Lima explícita; presentación siempre en Lima.
 - Autenticación con scrypt para hash y jose para sesión. Secretos definidos en Vercel; producción inicia con catálogo vacío.

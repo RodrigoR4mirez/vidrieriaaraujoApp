@@ -44,12 +44,18 @@ const sheetItemSchema = sheetDraftSchema.extend({
 export const quotationItemSchema = z.union([sheetItemSchema, cutItemSchema]);
 export const numberSchema = z
   .string()
-  .regex(/^PRO-\d{5,}$/, "Número de proforma inválido");
+  .regex(/^COT-\d{5,}$/, "Número de cotización inválido");
+const storedNumberSchema = z.string().regex(/^[A-Z]{3}-\d{5,}$/);
+function normalizeStoredNumber(number: string) {
+  return `COT-${number.slice(4)}`;
+}
 export const quotationSchema = z
   .object({
     schemaVersion: z.literal(1),
     id: z.string().uuid(),
-    number: numberSchema,
+    // Historical documents can retain their original pathname. Their public
+    // number is normalized when read, while newly written documents use COT.
+    number: storedNumberSchema.transform(normalizeStoredNumber),
     status: z.literal("CONFIRMED"),
     createdAt: z.string().datetime(),
     confirmedAt: z.string().datetime(),
@@ -67,5 +73,5 @@ export type DraftItem = z.infer<typeof draftItemSchema>;
 export type QuotationItem = z.infer<typeof quotationItemSchema>;
 export type Quotation = z.infer<typeof quotationSchema>;
 export function formatQuotationNumber(value: number) {
-  return `PRO-${String(value).padStart(5, "0")}`;
+  return `COT-${String(value).padStart(5, "0")}`;
 }

@@ -8,12 +8,12 @@ Inspección inicial: repositorio sin aplicación, Git limpio. Todos los archivos
 | cotizador_vista_detallada_sin_editar/code.html | Cotizador | /cotizador | vacío, borrador detallado | seleccionar vidrio, medidas, cantidad, agregar | QuotationBuilder, ItemForm, QuantityControl, QuotationSummary |
 | cotizador_vista_compacta_sin_editar/code.html | Cotizador compacto | /cotizador | borrador compacto | alternar vista, eliminar | QuotationSummary |
 | cotizador_modo_edici_n_activo_detallado/code.html | Edición | /cotizador | ítem editándose | guardar sin duplicar, cancelar | ItemForm |
-| proforma_confirmada_versi_n_limpia/code.html | Confirmada | /proformas/[number] | solo lectura | nueva proforma, compartir | QuotationSummary, ShareActions |
-| proforma_confirmada_opciones_de_compartir_interactivo/code.html | Compartir | /proformas/[number] | modal abierto, copiado, error | copiar, WhatsApp, PDF, imprimir | Dialog, ShareActions |
-| vista_previa_formato_whatsapp_texto_limpio/code.html | Mensaje | /proformas/[number] | vista previa | copiar, abrir WhatsApp | ShareActions |
-| plantilla_pdf_impresi_n_a4_b_n_sin_logo_distribuidora_araujo/code.html | Documento A4 | /api/proformas/[number]/pdf | documento confirmado | descargar, imprimir | QuotationPdf |
-| plantilla_voucher_t_rmico_80mm_distribuidora_araujo/code.html | Ticket | /proformas/[number]/imprimir | papel 80 mm | imprimir | PrintDocument |
-| Ampliación funcional aprobada | Voucher interno | /proformas/[number]/interno | ticket térmico 58–80 mm para taller/corte, bloques compactos sin datos económicos | imprimir | InternalVoucherPage, PrintButton |
+| cotizacion_confirmada_versi_n_limpia/code.html | Confirmada | /cotizaciones/[number] | solo lectura | nueva cotización, compartir | QuotationSummary, ShareActions |
+| cotizacion_confirmada_opciones_de_compartir_interactivo/code.html | Compartir | /cotizaciones/[number] | modal abierto, copiado, error | copiar, WhatsApp, PDF, imprimir | Dialog, ShareActions |
+| vista_previa_formato_whatsapp_texto_limpio/code.html | Mensaje | /cotizaciones/[number] | vista previa | copiar, abrir WhatsApp | ShareActions |
+| plantilla_pdf_impresi_n_a4_b_n_sin_logo_distribuidora_araujo/code.html | Documento A4 | /api/cotizaciones/[number]/pdf | documento confirmado | descargar, imprimir | QuotationPdf |
+| plantilla_voucher_t_rmico_80mm_distribuidora_araujo/code.html | Ticket | /cotizaciones/[number]/imprimir | papel 80 mm | imprimir | PrintDocument |
+| Ampliación funcional aprobada | Voucher interno | /cotizaciones/[number]/interno | ticket térmico 58–80 mm para taller/corte, bloques compactos sin datos económicos | imprimir | InternalVoucherPage, PrintButton |
 | cat_logo_principal_de_vidrios_distribuidora_araujo/code.html | Catálogo y modal | /catalogo | alta, edición, error | guardar, cancelar | GlassCatalog, ProductForm, Dialog |
 | cat_logo_principal_de_vidrios_vista_completa/code.html | Vidrios | /catalogo | activos, ocultos, todos, vacío | buscar, filtrar, editar, ocultar, reactivar | GlassCatalog, StatusBadge |
 | cat_logos_base_gesti_n_de_familias_colores_espesores_y_dise_os/code.html | Familias | /catalogos | alta, edición, vacío | buscar, guardar, ocultar, reactivar | BaseCatalogManager, BaseCatalogForm |
@@ -23,7 +23,7 @@ Inspección inicial: repositorio sin aplicación, Git limpio. Todos los archivos
 
 ## Secuencia completa
 
-Acceso → cotizador vacío → ingresar cliente y agregar líneas → alternar vistas → editar medidas/cantidad o eliminar → confirmar en servidor → número reservado por creación inmutable → detalle histórico → compartir/copiar/PDF/ticket del cliente o voucher interno → nueva proforma. Reiniciar un borrador requiere confirmación. Desde la navegación se accede a vidrios, cuatro catálogos base y al histórico `/proformas`, que busca también por cliente. Lecturas y mutaciones requieren sesión; errores, guardado pendiente y catálogos vacíos tienen estados explícitos. Conflictos de edición requieren recargar.
+Acceso → cotizador vacío → ingresar cliente y agregar líneas → alternar vistas → editar medidas/cantidad o eliminar → confirmar en servidor → número reservado por creación inmutable → detalle histórico → compartir/copiar/PDF/ticket del cliente o voucher interno → nueva cotización. Reiniciar un borrador requiere confirmación. Desde la navegación se accede a vidrios, cuatro catálogos base y al histórico `/cotizaciones`, que busca también por cliente. Lecturas y mutaciones requieren sesión; errores, guardado pendiente y catálogos vacíos tienen estados explícitos. Conflictos de edición requieren recargar.
 
 ## Assets y diseño
 

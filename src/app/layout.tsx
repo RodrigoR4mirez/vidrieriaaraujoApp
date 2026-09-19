@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@fontsource-variable/plus-jakarta-sans";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "Distribuidora Araujo | Proformas",
+  title: "Distribuidora Araujo | Cotizaciones",
   description: "Vidriería & Aluminios · Sistema de cotización",
   robots: { index: false, follow: false },
 };

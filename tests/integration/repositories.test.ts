@@ -104,7 +104,7 @@ describe("repositories y casos de uso", () => {
     await expect(f.service.confirm({ ...f.draft(), items: [{ id: randomUUID(), productId: zero.id, mode: "SHEET", quantity: 1 }] })).rejects.toThrow("sin precio");
     await expect(f.service.confirm({ ...f.draft(), items: [{ ...f.draft().items[0], productId: zero.id }] })).rejects.toThrow("sin precio");
   });
-  it("confirma una proforma mixta y conserva precio/modalidad tras modificar catálogo", async () => {
+  it("confirma una cotización mixta y conserva precio/modalidad tras modificar catálogo", async () => {
     const f = await fixture();
     const product = await f.catalog.saveProduct({ ...f.product, pricePerSheet: "111.11", sheetWidthCm: "200", sheetHeightCm: "300" }, f.product.id, f.product.revision);
     const draft = f.draft();
@@ -133,6 +133,27 @@ describe("repositories y casos de uso", () => {
     expect(await f.service.find(q.number)).toEqual(q);
     expect(await importBackup(f.store, await exportBackup(f.store), false)).toBe(0);
     expect(JSON.stringify(f.store.records.get(`data/v1/quotations/${q.number}.json`)?.value)).toBe(original);
+  });
+  it("mantiene accesible un documento histórico al adoptar el folio COT", async () => {
+    const f = await fixture();
+    const q = await f.service.confirm(f.draft());
+    const currentPath = `data/v1/quotations/${q.number}.json`;
+    const historicalPath = "data/v1/quotations/OLD-00001.json";
+    const stored = f.store.records.get(currentPath)!;
+    f.store.records.delete(currentPath);
+    f.store.records.set(historicalPath, {
+      ...stored,
+      value: { ...stored.value as object, number: "OLD-00001" },
+    });
+
+    expect((await f.service.find("COT-00001"))?.number).toBe("COT-00001");
+    expect((await f.service.list())[0]?.number).toBe("COT-00001");
+    expect(await f.service.nextNumber()).toBe("COT-00002");
+    expect(() => validateBackup({
+      schemaVersion: 1,
+      exportedAt: new Date().toISOString(),
+      entries: [{ pathname: historicalPath, value: stored.value }],
+    })).not.toThrow();
   });
   it("edita bases sin códigos y preserva campos antiguos, IDs y precios existentes", async () => {
     const f = await fixture();
@@ -168,7 +189,7 @@ describe("repositories y casos de uso", () => {
   it("confirma, serializa y comparte el mismo snapshot", async () => {
     const f = await fixture();
     const q = await f.service.confirm(f.draft());
-    expect(q.number).toBe("PRO-00001");
+    expect(q.number).toBe("COT-00001");
     expect(q.subtotal).toBe("62.24");
     expect(q.total).toBe("62.50");
     expect(quotationItemDetail(q.items[0])).toBe("Por pie² · 100 × 80 cm");
@@ -194,7 +215,7 @@ describe("repositories y casos de uso", () => {
       Array.from({ length: 8 }, () => f.service.confirm(f.draft())),
     );
     expect(new Set(results.map((q) => q.number)).size).toBe(8);
-    expect(await f.service.nextNumber()).toBe("PRO-00009");
+    expect(await f.service.nextNumber()).toBe("COT-00009");
   });
   it("un reintento concurrente de la misma confirmación no duplica", async () => {
     const f = await fixture(),
@@ -206,7 +227,7 @@ describe("repositories y casos de uso", () => {
     expect(results[0].number).toBe(results[1].number);
     expect(await f.service.list()).toHaveLength(1);
   });
-  it("no sobrescribe proformas confirmadas", async () => {
+  it("no sobrescribe cotizaciones confirmadas", async () => {
     const f = await fixture(),
       q = await f.service.confirm(f.draft());
     await expect(
@@ -286,11 +307,11 @@ describe("repositories y casos de uso", () => {
 
 it("el folio provisional usa solo pathnames, sin descargar el histórico", async () => {
   const store: JsonStore = {
-    async paths() { return ["data/v1/quotations/PRO-00002.json", "data/v1/quotations/PRO-100001.json", "data/v1/quotations/backup.json"]; },
+    async paths() { return ["data/v1/quotations/COT-00002.json", "data/v1/quotations/COT-100001.json", "data/v1/quotations/backup.json"]; },
     async read() { throw new Error("No debe descargar snapshots para el folio provisional"); },
     async write() { throw new Error("No debe reservar el folio provisional"); },
   };
-  expect(await new VercelBlobQuotationRepository(store).nextNumber()).toBe("PRO-100002");
+  expect(await new VercelBlobQuotationRepository(store).nextNumber()).toBe("COT-100002");
   store.paths = async () => [];
-  expect(await new VercelBlobQuotationRepository(store).nextNumber()).toBe("PRO-00001");
+  expect(await new VercelBlobQuotationRepository(store).nextNumber()).toBe("COT-00001");
 });

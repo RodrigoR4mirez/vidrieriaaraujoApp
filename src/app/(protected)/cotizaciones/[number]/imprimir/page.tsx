@@ -35,7 +35,7 @@ export default async function Page({
         <header>
           <h1>DISTRIBUIDORA ARAUJO</h1>
           <p>Vidriería &amp; Aluminios</p>
-          <h2>PROFORMA {q.number}</h2>
+          <h2>COTIZACIÓN {q.number}</h2>
           <p><strong>Cliente:</strong> {q.customerName || "No registrado"}</p>
           <p>{limaDate(q.confirmedAt)}</p>
         </header>

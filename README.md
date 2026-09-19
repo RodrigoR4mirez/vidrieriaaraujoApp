@@ -1,6 +1,6 @@
 # Distribuidora Araujo — Vidriería & Aluminios
 
-MVP privado de catálogo de vidrios, cotización por medidas y planchas enteras y proformas históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador se conserva temporalmente en la misma pestaña al navegar y recargar, hasta confirmarlo o descartarlo.
+MVP privado de catálogo de vidrios, cotización por medidas y planchas enteras y cotizaciones históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador se conserva temporalmente en la misma pestaña al navegar y recargar, hasta confirmarlo o descartarlo.
 
 Aplicación: [vidrieria-araujo.vercel.app](https://vidrieria-araujo.vercel.app). El catálogo inicia vacío para cargar los datos reales del negocio. Resultados de pruebas y URL Preview en [Despliegue](docs/deployment.md#resultados).
 
@@ -36,10 +36,10 @@ El segundo comando genera el secreto de sesión. En archivos dotenv, **escapar c
 
 1. Crear familias y espesores en **Catálogos base**, y opcionalmente colores/acabados y diseños catedral.
 2. Crear vidrios con códigos únicos y precios por pie² y/o plancha (sin precio: `0.00`). El catálogo de producción inicia vacío.
-3. En **Cotizador**, elegir **Pie² (por medidas)** o **Plancha entera**, vidrio y cantidad; solo por pie² ingresar ancho y alto en cm. Se pueden mezclar ambas modalidades en una proforma. Agregar, editar, eliminar y alternar vistas.
+3. En **Cotizador**, elegir **Pie² (por medidas)** o **Plancha entera**, vidrio y cantidad; solo por pie² ingresar ancho y alto en cm. Se pueden mezclar ambas modalidades en una cotización. Agregar, editar, eliminar y alternar vistas.
 4. Ingresar obligatoriamente el nombre del cliente y, si corresponde, condiciones comerciales opcionales. El sistema no asume plazos de entrega, vigencia ni datos fiscales de los mocks.
-5. Confirmar. El servidor valida el nombre, el catálogo activo, calcula y guarda una proforma inmutable con número definitivo.
-6. Abrir **Compartir proforma** para copiar, abrir WhatsApp, descargar PDF A4, imprimir A4/ticket 80 mm o imprimir el voucher interno del taller sin precios.
+5. Confirmar. El servidor valida el nombre, el catálogo activo, calcula y guarda una cotización inmutable con número definitivo.
+6. Abrir **Compartir cotización** para copiar, abrir WhatsApp, descargar PDF A4, imprimir A4/ticket 80 mm o imprimir el voucher interno del taller sin precios.
 7. Consultar el histórico desde cualquier otro dispositivo autenticado y buscar por cliente, número o fecha.
 
 Ocultar conserva registros. Un producto con cualquier referencia base oculta tampoco puede seleccionarse para una nueva cotización. Para resolver conflictos de edición, recargar y volver a aplicar los cambios. Cambiar precios nunca recalcula el histórico.
@@ -77,7 +77,7 @@ npm run backup:import -- backups/archivo.json
 npm run backup:import -- backups/archivo.json --overwrite
 ```
 
-Los backups reales están ignorados por Git y se crean con permisos 600. Importar valida esquema, rutas, códigos y referencias antes de escribir. Sin flag no sobrescribe datos diferentes. Ni siquiera `--overwrite` permite cambiar una proforma confirmada. Un fallo parcial se puede reintentar; archivos idénticos se omiten. Exportar durante baja actividad: Blob no ofrece una transacción de snapshot entre varios archivos. Guardar copias fuera del equipo en almacenamiento privado.
+Los backups reales están ignorados por Git y se crean con permisos 600. Importar valida esquema, rutas, códigos y referencias antes de escribir. Sin flag no sobrescribe datos diferentes. Ni siquiera `--overwrite` permite cambiar una cotización confirmada. Un fallo parcial se puede reintentar; archivos idénticos se omiten. Exportar durante baja actividad: Blob no ofrece una transacción de snapshot entre varios archivos. Guardar copias fuera del equipo en almacenamiento privado.
 
 ## Documentación
 

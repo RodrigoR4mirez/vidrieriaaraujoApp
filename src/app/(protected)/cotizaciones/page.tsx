@@ -9,8 +9,8 @@ export default async function Page() {
     <>
       <PageHeader
         eyebrow="Histórico"
-        title="Proformas confirmadas"
-        description="Consulta y comparte tus proformas guardadas."
+        title="Cotizaciones confirmadas"
+        description="Consulta y comparte tus cotizaciones guardadas."
       />
       <HistoryList
         quotations={quotations.map(({ number, confirmedAt, customerName, total }) => ({

@@ -7,7 +7,7 @@ export function quotationText(q: Quotation) {
     "DISTRIBUIDORA ARAUJO",
     "Vidriería & Aluminios",
     "",
-    `PROFORMA N° ${q.number}`,
+    `COTIZACIÓN N° ${q.number}`,
     `Cliente: ${q.customerName || "No registrado"}`,
     `Fecha: ${limaDate(q.confirmedAt)}`,
     "",

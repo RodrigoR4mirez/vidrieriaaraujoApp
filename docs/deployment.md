@@ -50,9 +50,9 @@ Preview puede tener protección adicional de Vercel. Para pruebas automatizadas 
 
 ## Recuperación y continuidad
 
-Exportar regularmente usando el token correcto y guardar el archivo en almacenamiento privado. Probar restauración en un store separado, nunca encima de datos reales durante pruebas. `--overwrite` restaura el catálogo con ETag; proformas diferentes preexistentes siempre bloquean. Los archivos idénticos se omiten para permitir reintentos. Los backups no son atómicos entre todos los documentos: preferir baja actividad.
+Exportar regularmente usando el token correcto y guardar el archivo en almacenamiento privado. Probar restauración en un store separado, nunca encima de datos reales durante pruebas. `--overwrite` restaura el catálogo con ETag; cotizaciones diferentes preexistentes siempre bloquean. Los archivos idénticos se omiten para permitir reintentos. Los backups no son atómicos entre todos los documentos: preferir baja actividad.
 
-Si Blob falla, la UI informa que no pudo cargar/guardar y permite reintentar. Ante timeout después de confirmar, conservar el borrador y volver a intentar recupera la confirmación por ID de solicitud. El histórico también permite encontrar la proforma ya confirmada.
+Si Blob falla, la UI informa que no pudo cargar/guardar y permite reintentar. Ante timeout después de confirmar, conservar el borrador y volver a intentar recupera la confirmación por ID de solicitud. El histórico también permite encontrar la cotización ya confirmada.
 
 ## Resultados
 

@@ -16,7 +16,7 @@ export function Navigation() {
           ["/cotizador", "Cotizador", Calculator],
           ["/catalogo", "Vidrios", Layers],
           ["/catalogos", "Catálogos base", Settings2],
-          ["/proformas", "Histórico", History],
+          ["/cotizaciones", "Histórico", History],
         ].map(([href, label, Icon]) =>
           typeof href === "string" &&
           typeof label === "string" &&

@@ -164,11 +164,11 @@
 <!-- BEGIN: ApplicationLayoutContainer -->
 <main class="w-full max-w-7xl mx-auto space-y-6" data-purpose="cotizador-glass-app">
 <!-- BEGIN: GlassHeaderSection -->
-<header class="glass-panel rounded-3xl p-6 sm:p-7 relative overflow-hidden" data-purpose="proforma-header"><div class="absolute -right-20 -top-20 w-72 h-72 bg-gradient-to-br from-white via-sky-200/30 to-transparent rounded-full blur-2xl pointer-events-none"></div>
+<header class="glass-panel rounded-3xl p-6 sm:p-7 relative overflow-hidden" data-purpose="cotización-header"><div class="absolute -right-20 -top-20 w-72 h-72 bg-gradient-to-br from-white via-sky-200/30 to-transparent rounded-full blur-2xl pointer-events-none"></div>
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative z-10">
   <div class="flex flex-col">
-    <span class="text-[11px] font-bold tracking-widest text-slate-400 uppercase">PROFORMA</span>
-    <div class="text-3xl font-black text-[#1d63ed] tracking-tight mt-0.5">Nº PRO-00001</div>
+    <span class="text-[11px] font-bold tracking-widest text-slate-400 uppercase">COTIZACIÓN</span>
+    <div class="text-3xl font-black text-[#1d63ed] tracking-tight mt-0.5">Nº COT-00001</div>
     <div class="flex items-center gap-2 text-xs text-slate-500 font-medium mt-1">
       <span class="">Fecha: <strong class="text-slate-700 font-semibold">24/01/2025</strong></span>
       <span class="text-slate-300">·</span>
@@ -301,12 +301,12 @@
 </section>
 <!-- END: LeftColumnForm -->
 <!-- BEGIN: RightColumnSummary -->
-<section class="lg:col-span-7 space-y-6" data-purpose="resumen-proforma-section">
+<section class="lg:col-span-7 space-y-6" data-purpose="resumen-cotización-section">
 <div class="glass-panel rounded-3xl p-6 sm:p-7">
 <!-- Summary Header & Pill Switcher -->
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-5 border-b border-white/60 gap-4">
 <div>
-<h2 class="text-2xl font-bold text-slate-800 tracking-tight">Resumen de proforma</h2>
+<h2 class="text-2xl font-bold text-slate-800 tracking-tight">Resumen de cotización</h2>
 <p class="text-sm text-slate-500 mt-0.5">Productos agregados listos para cotizar</p>
 </div>
 <!-- Segment switch: Detallado (activo) / Compacto -->
@@ -505,7 +505,7 @@
 <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/80 text-center sm:text-left">
 <!-- Metric 1: Total -->
 <div class="py-2 sm:py-0 sm:px-4">
-<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 block">Total proforma</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 block">Total cotización</span>
 <div class="text-2xl sm:text-3xl font-black text-blue-600 tracking-tight mt-1">
                   S/ 540.00
                 </div>
@@ -528,16 +528,16 @@
 </div>
 <!-- Bottom Action Buttons -->
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 pt-2">
-<!-- Botón Secundario: Nueva Proforma -->
+<!-- Botón Secundario: Nueva Cotización -->
 <button class="liquid-btn-clear h-12 sm:h-14 rounded-2xl text-blue-600 font-bold text-sm tracking-wide flex items-center justify-center cursor-pointer" type="button">
 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
-<span class="">Nueva proforma</span>
+<span class="">Nueva cotización</span>
 </button>
-<!-- Botón Primario: Confirmar Proforma -->
+<!-- Botón Primario: Confirmar Cotización -->
 <button class="liquid-btn-blue h-12 sm:h-14 rounded-2xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 cursor-pointer shadow-xl" type="button">
-<span class="">Confirmar proforma</span>
+<span class="">Confirmar cotización</span>
 <svg class="w-4 h-4 stroke-[2.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>

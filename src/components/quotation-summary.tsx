@@ -27,14 +27,14 @@ export function QuotationSummary({
     <>
       <div className="section-heading">
         <div>
-          <h2>Resumen de proforma</h2>
+          <h2>Resumen de cotización</h2>
           <p className="muted">
             {onEdit
               ? "Productos agregados listos para cotizar"
-              : "Detalle de la proforma confirmada"}
+              : "Detalle de la cotización confirmada"}
           </p>
         </div>
-        <div className="segments" aria-label="Vista de proforma">
+        <div className="segments" aria-label="Vista de cotización">
           <button
             aria-pressed={!compact}
             className={!compact ? "selected" : ""}

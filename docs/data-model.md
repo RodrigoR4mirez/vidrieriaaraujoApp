@@ -7,8 +7,8 @@ data/v1/catalog.json
   schemaVersion: 1
   values: BaseValue[]
   products: Product[]
-data/v1/quotations/PRO-00001.json
-data/v1/quotations/PRO-00002.json
+data/v1/quotations/COT-00001.json
+data/v1/quotations/COT-00002.json
 ...
 ```
 
@@ -22,7 +22,7 @@ Estados: ACTIVE/HIDDEN. No hay borrado físico. Decimales persistidos como strin
 
 Los precios nuevos o modificados requieren exactamente dos decimales y un importe no negativo (cero indica no disponible). La entrada desplaza dígitos desde los centavos (`11100` → `111.00`). Los precios históricos o existentes no se migran ni redondean en almacenamiento; un precio antiguo sin modificar se conserva incluso al editar otros campos del producto.
 
-`Quotation`: schemaVersion, id de solicitud UUID, number PRO-XXXXX, status CONFIRMED, createdAt, confirmedAt, timezone America/Lima, customerName, conditions, subtotal exacto, total redondeado e items. `customerName` y `subtotal` son opcionales únicamente al leer snapshots antiguos; toda confirmación nueva exige el nombre.
+`Quotation`: schemaVersion, id de solicitud UUID, number COT-XXXXX, status CONFIRMED, createdAt, confirmedAt, timezone America/Lima, customerName, conditions, subtotal exacto, total redondeado e items. `customerName` y `subtotal` son opcionales únicamente al leer snapshots antiguos; toda confirmación nueva exige el nombre.
 
 Cada ítem por pie² (`mode: SQUARE_FOOT`, opcional para históricos antiguos) conserva id, productId, productCode, productDescription, family, colorFinish, thickness, cathedralDesign, widthCm, heightCm, quantity, pricePerSquareFoot, widthInRaw, heightInRaw, widthWasteIn, heightWasteIn, widthInRounded, heightInRounded, areaIn2, areaFt2, unitPrice e itemAmount. Las mermas son opcionales al leer históricos anteriores. El snapshot histórico no depende de referencias vigentes para mostrarse.
 
@@ -33,7 +33,7 @@ Cada ítem por pie² (`mode: SQUARE_FOOT`, opcional para históricos antiguos) c
 | values | base_catalog_values | PK id, category, status; campos antiguos opcionales |
 | products | glass_products | PK id, UNIQUE(code), referencias base, revision |
 | quotations | quotations | PK id, UNIQUE(number), solo inserciones |
-| quotation.items | quotation_items | PK id por proforma, FK quotation, snapshots completos |
+| quotation.items | quotation_items | PK id por cotización, FK quotation, snapshots completos |
 
 Implementar nuevos repositorios con las mismas interfaces. No modificar UI, casos de uso, cálculo, PDF ni mensajes. La migración usaría una transacción y una secuencia o bloqueo apropiado para folios; no se incorpora base relacional al MVP.
 

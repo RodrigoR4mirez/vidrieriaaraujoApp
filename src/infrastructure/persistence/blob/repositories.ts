@@ -130,7 +130,7 @@ export class VercelBlobQuotationRepository implements QuotationRepository {
   constructor(private store: JsonStore) {}
   async list() {
     const paths = (await this.store.paths(QUOTATION_PREFIX)).filter((p) =>
-      /\/PRO-\d{5,}\.json$/.test(p),
+      /\/[A-Z]{3}-\d{5,}\.json$/.test(p),
     );
     const values: Quotation[] = [];
     // Bound read concurrency for a growing history.
@@ -150,14 +150,21 @@ export class VercelBlobQuotationRepository implements QuotationRepository {
   }
   async find(number: string) {
     numberSchema.parse(number);
-    const record = await this.store.read(`${QUOTATION_PREFIX}${number}.json`);
+    const suffix = `-${number.slice(4)}.json`;
+    const pathname = (await this.store.paths(QUOTATION_PREFIX)).find((path) =>
+      path.endsWith(suffix),
+    );
+    if (!pathname) return null;
+    const record = await this.store.read(pathname);
     return record ? quotationSchema.parse(record.value) : null;
   }
   async nextNumber() {
     // Only the provisional folio is needed here, not every historical snapshot.
     let maximum = 0;
     for (const path of await this.store.paths(QUOTATION_PREFIX)) {
-      const match = /^PRO-(\d{5,})\.json$/.exec(path.slice(QUOTATION_PREFIX.length));
+      const match = /^[A-Z]{3}-(\d{5,})\.json$/.exec(
+        path.slice(QUOTATION_PREFIX.length),
+      );
       if (match) maximum = Math.max(maximum, Number(match[1]));
     }
     return formatQuotationNumber(maximum + 1);
@@ -181,7 +188,7 @@ export class VercelBlobQuotationRepository implements QuotationRepository {
       }
     }
     throw new ConflictError(
-      "Hay otras proformas confirmándose. Vuelve a intentarlo.",
+      "Hay otras cotizaciones confirmándose. Vuelve a intentarlo.",
     );
   }
 }

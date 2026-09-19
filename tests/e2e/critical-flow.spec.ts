@@ -11,7 +11,7 @@ async function login(page: Page) {
 test("protección de rutas y acceso incorrecto", async ({ page, request }) => {
   await page.goto("/catalogo");
   await expect(page).toHaveURL(/\/login$/);
-  expect((await request.get("/api/proformas/PRO-00001/pdf")).status()).toBe(
+  expect((await request.get("/api/cotizaciones/COT-00001/pdf")).status()).toBe(
     401,
   );
   await page.getByLabel("Usuario o correo").fill("incorrecto");
@@ -154,7 +154,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.50");
   await expect(page.locator(".item-calculation").first()).toContainText("Ancho 39.37″ → 40″");
   await expect(page.locator(".item-calculation").first()).not.toContainText("merma");
-  await page.getByRole("button", { name: "Confirmar proforma", exact: true }).click();
+  await page.getByRole("button", { name: "Confirmar cotización", exact: true }).click();
   await expect(page.getByRole("alert").filter({ hasText: "nombre del cliente" })).toBeVisible();
   await expect(page).toHaveURL(/\/cotizador$/);
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("75");
@@ -212,7 +212,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   ).toHaveAttribute("aria-pressed", "true");
   await page.getByRole("button", { name: "Detallado", exact: true }).click();
   await page
-    .getByRole("button", { name: "Nueva proforma", exact: true })
+    .getByRole("button", { name: "Nueva cotización", exact: true })
     .click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.getByRole("button", { name: "Seguir editando" }).click();
@@ -280,19 +280,19 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   }
   await page.screenshot({ path: "test-results/cotizador.png", fullPage: true });
   await page
-    .getByRole("button", { name: "Confirmar proforma", exact: true })
+    .getByRole("button", { name: "Confirmar cotización", exact: true })
     .click();
-  await expect(page).toHaveURL(/\/proformas\/PRO-\d+$/);
+  await expect(page).toHaveURL(/\/cotizaciones\/COT-\d+$/);
   const number = page.url().split("/").pop()!;
   await page.reload();
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 604.00");
   await expect(page.getByText(names.customer, { exact: true })).toBeVisible();
   await expect(page.getByText("Solo lectura", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "Compartir proforma" }).click();
+  await page.getByRole("button", { name: "Compartir cotización" }).click();
   await page
     .getByRole("button", { name: "Copiar texto", exact: false })
     .click();
-  await expect(page.getByRole("status")).toContainText("Proforma copiada");
+  await expect(page.getByRole("status")).toContainText("Cotización copiada");
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
     "S/ 604.00",
   );
@@ -302,11 +302,11 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     "href",
     /^https:\/\/wa.me\/\?text=/,
   );
-  const pdf = await page.context().request.get(`/api/proformas/${number}/pdf`);
+  const pdf = await page.context().request.get(`/api/cotizaciones/${number}/pdf`);
   expect(pdf.status()).toBe(200);
   expect(pdf.headers()["content-type"]).toBe("application/pdf");
   expect((await pdf.body()).subarray(0, 4).toString()).toBe("%PDF");
-  await page.goto(`/proformas/${number}/interno`);
+  await page.goto(`/cotizaciones/${number}/interno`);
   const internalVoucher = page.locator(".internal-voucher");
   await expect(internalVoucher.getByRole("heading", { level: 1 })).toHaveText("VOUCHER INTERNO - CORTE");
   await expect(internalVoucher).toContainText(names.customer.toLocaleUpperCase("es-PE"));
@@ -326,7 +326,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.emulateMedia({ media: "print" });
   expect((await internalVoucher.boundingBox())!.width).toBeLessThanOrEqual(198);
   await page.emulateMedia({ media: "screen" });
-  await page.goto(`/proformas/${number}/imprimir`);
+  await page.goto(`/cotizaciones/${number}/imprimir`);
   await expect(page.locator(".ticket")).toContainText("S/ 604.00");
   await expect(page.locator(".ticket")).toContainText("Plancha entera");
   await expect(page.locator(".ticket")).toContainText("333.33");
@@ -353,19 +353,19 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   });
   const secondPage = await device.newPage();
   await login(secondPage);
-  await secondPage.goto(`/proformas/${number}`);
+  await secondPage.goto(`/cotizaciones/${number}`);
   await expect(secondPage.getByTestId("quotation-total")).toHaveText(
     "S/ 604.00",
   );
-  await secondPage.goto("/proformas");
-  await secondPage.getByLabel("Buscar proforma").fill(names.customer);
+  await secondPage.goto("/cotizaciones");
+  await secondPage.getByLabel("Buscar cotización").fill(names.customer);
   await expect(secondPage.getByRole("link", { name: number, exact: true })).toBeVisible();
-  await secondPage.goto(`/proformas/${number}`);
+  await secondPage.goto(`/cotizaciones/${number}`);
   await secondPage
-    .getByRole("link", { name: "Nueva proforma", exact: true })
+    .getByRole("link", { name: "Nueva cotización", exact: true })
     .click();
   await expect(secondPage.getByRole("heading", { level: 1 })).toContainText(
-    `PRO-${String(Number(number.slice(4)) + 1).padStart(5, "0")}`,
+    `COT-${String(Number(number.slice(4)) + 1).padStart(5, "0")}`,
   );
   await expect(secondPage.getByTestId("quotation-total")).toHaveText("S/ 0.00");
   await page.emulateMedia({ media: "screen" });
@@ -373,7 +373,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 0.00");
   await expect(page.getByLabel("Cotizar por")).toHaveValue("");
   await page.getByLabel("Condiciones comerciales (opcional)").fill("Descartar");
-  await page.getByRole("button", { name: "Nueva proforma", exact: true }).click();
+  await page.getByRole("button", { name: "Nueva cotización", exact: true }).click();
   await page.getByRole("button", { name: "Descartar borrador" }).click();
   await page.reload();
   await expect(page.getByLabel("Condiciones comerciales (opcional)")).toHaveValue("");

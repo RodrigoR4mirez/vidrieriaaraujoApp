@@ -9,7 +9,7 @@ export default async function LoginPage() {
     <main className="login-page">
       <section className="login-card glass">
         <Brand large />
-        <p className="login-subtitle">Sistema de Cotización y Proformas</p>
+        <p className="login-subtitle">Sistema de Cotización y Cotizaciones</p>
         <LoginForm />
       </section>
       <AppFooter />

@@ -2,11 +2,11 @@
 
 ## 1. Alcance
 
-Este documento define la regla oficial para calcular proformas de vidrio del MVP de **Distribuidora Araujo – Vidriería & Aluminios**.
+Este documento define la regla oficial para calcular cotizaciones de vidrio del MVP de **Distribuidora Araujo – Vidriería & Aluminios**.
 
 Es la fuente de verdad funcional del motor de cálculo.
 
-> La proforma NO maneja IGV.
+> La cotización NO maneja IGV.
 
 No calcular, mostrar, almacenar ni desglosar IGV en cotizador, PDF, ticket, WhatsApp, impresión ni persistencia.
 
@@ -29,7 +29,7 @@ Validaciones:
 - `altoCm > 0`
 - `cantidad` entero `>= 1`
 - `precioPie2 > 0`
-- el vidrio debe estar `Activo` para nuevas proformas
+- el vidrio debe estar `Activo` para nuevas cotizaciones
 
 ---
 
@@ -94,7 +94,7 @@ Usar `areaFt2` ya redondeada.
 itemAmount = unitPrice * cantidad
 ```
 
-El importe de cada ítem conserva sus dos decimales normales. No se aplica a los ítems el redondeo final de la proforma.
+El importe de cada ítem conserva sus dos decimales normales. No se aplica a los ítems el redondeo final de la cotización.
 
 ---
 
@@ -118,7 +118,7 @@ itemAmount = unitPrice * cantidad
 
 ---
 
-## 5. Total de la proforma
+## 5. Total de la cotización
 
 ```text
 quotationSubtotal = suma(itemAmount)
@@ -282,7 +282,7 @@ unitPrice
 itemAmount
 ```
 
-Una proforma confirmada es histórica.
+Una cotización confirmada es histórica.
 
 Cambios posteriores de catálogo o precio no deben recalcularla.
 
@@ -413,17 +413,17 @@ Si existe contradicción:
 
 Actualización aprobada: el catálogo admite `0.00` en precio por pie² y por plancha. Los precios vacíos o no ingresados se guardan como `0.00`; no se permiten negativos. Cero significa que esa modalidad no está disponible, no que el vidrio se cotiza gratis.
 
-Cada ítem nuevo elige una modalidad: `SQUARE_FOOT` (por pie², con medidas) o `SHEET` (plancha entera). Una misma proforma puede combinar ambas. En el selector solo aparecen productos activos, con referencias base activas y precio estrictamente mayor que cero en la modalidad elegida. El servidor verifica esto al confirmar.
+Cada ítem nuevo elige una modalidad: `SQUARE_FOOT` (por pie², con medidas) o `SHEET` (plancha entera). Una misma cotización puede combinar ambas. En el selector solo aparecen productos activos, con referencias base activas y precio estrictamente mayor que cero en la modalidad elegida. El servidor verifica esto al confirmar.
 
 - Por pie²: se conserva exactamente la fórmula de las secciones 2–4 y sus casos oficiales.
 - Por plancha: cantidad entera >= 1; precio unitario = precio de catálogo por plancha; importe = precio por plancha × cantidad, expresado con dos decimales. No aplicar conversiones de área ni redondeo por merma. Las medidas de plancha del catálogo son opcionales e informativas; no se solicitan medidas de corte.
-- Subtotal de proforma: suma exacta de importes de ambas modalidades. Total a cobrar: subtotal redondeado hacia arriba a `0.50` o al siguiente entero según la sección 5.
+- Subtotal de cotización: suma exacta de importes de ambas modalidades. Total a cobrar: subtotal redondeado hacia arriba a `0.50` o al siguiente entero según la sección 5.
 
 El snapshot de plancha conserva modalidad, producto y descripción, precio por plancha, cantidad, precio unitario, importe y medidas de plancha del catálogo si existen. Cambios posteriores del catálogo no alteran el histórico. Los snapshots anteriores sin modalidad se interpretan como venta por pie² y se leen sin reescribirlos. Resumen, PDF, WhatsApp y ticket identifican claramente las planchas enteras.
 
 ### Cliente y vouchers
 
-Toda nueva proforma exige un nombre de cliente y lo congela en el histórico. Pantalla, PDF, impresión, texto copiado y WhatsApp lo muestran. El histórico permite buscarlo. Los snapshots anteriores sin nombre siguen siendo legibles como `No registrado`.
+Toda nueva cotización exige un nombre de cliente y lo congela en el histórico. Pantalla, PDF, impresión, texto copiado y WhatsApp lo muestran. El histórico permite buscarlo. Los snapshots anteriores sin nombre siguen siendo legibles como `No registrado`.
 
 El voucher del cliente conserva importes y condiciones. El voucher interno del taller es una salida térmica angosta compatible con papel de 58–80 mm y contiene exclusivamente nombre del cliente, descripción completa del vidrio en mayúsculas, medidas destacadas, cantidad abreviada con modalidad, fecha y hora. Numera los vidrios y separa bloques con un borde corto. No incluye precios, subtotal, total ni condiciones comerciales.
 
@@ -433,4 +433,4 @@ En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial
 
 ### Continuidad del borrador
 
-Se permite una copia temporal de UI en `sessionStorage`, aislada por usuario y pestaña: ítems, condiciones, formulario incompleto, edición y solicitud de confirmación. No es una proforma confirmada ni la fuente principal del negocio. El catálogo y precios se releen y la confirmación sigue validándose en servidor y persistiendo únicamente en Blob. Al confirmar, descartar explícitamente o cerrar sesión se limpia el borrador. No se promete sincronización del borrador entre dispositivos ni conservación al cerrar la pestaña.
+Se permite una copia temporal de UI en `sessionStorage`, aislada por usuario y pestaña: ítems, condiciones, formulario incompleto, edición y solicitud de confirmación. No es una cotización confirmada ni la fuente principal del negocio. El catálogo y precios se releen y la confirmación sigue validándose en servidor y persistiendo únicamente en Blob. Al confirmar, descartar explícitamente o cerrar sesión se limpia el borrador. No se promete sincronización del borrador entre dispositivos ni conservación al cerrar la pestaña.

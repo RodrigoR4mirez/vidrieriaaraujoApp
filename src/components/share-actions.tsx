@@ -20,11 +20,11 @@ export function ShareActions({ quotation }: { quotation: Quotation }) {
     <>
       <Button onClick={() => setOpen(true)}>
         <Share2 size={18} />
-        Compartir proforma
+        Compartir cotización
       </Button>
       {open && (
-        <Dialog title="Compartir proforma" onClose={() => setOpen(false)}>
-          <p className="muted">Elige cómo enviar la proforma al cliente.</p>
+        <Dialog title="Compartir cotización" onClose={() => setOpen(false)}>
+          <p className="muted">Elige cómo enviar la cotización al cliente.</p>
           <div className="share-options">
             <a
               className="share-option whatsapp"
@@ -44,7 +44,7 @@ export function ShareActions({ quotation }: { quotation: Quotation }) {
               onClick={async () => {
                 try {
                   await navigator.clipboard.writeText(quotationText(quotation));
-                  setFeedback("Proforma copiada");
+                  setFeedback("Cotización copiada");
                   setError(false);
                 } catch {
                   setFeedback(
@@ -62,7 +62,7 @@ export function ShareActions({ quotation }: { quotation: Quotation }) {
             </button>
             <a
               className="share-option"
-              href={`/proformas/${quotation.number}/imprimir`}
+              href={`/cotizaciones/${quotation.number}/imprimir`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -74,7 +74,7 @@ export function ShareActions({ quotation }: { quotation: Quotation }) {
             </a>
             <a
               className="share-option"
-              href={`/api/proformas/${quotation.number}/pdf`}
+              href={`/api/cotizaciones/${quotation.number}/pdf`}
               download
             >
               <FileDown size={22} />
@@ -85,7 +85,7 @@ export function ShareActions({ quotation }: { quotation: Quotation }) {
             </a>
             <a
               className="share-option"
-              href={`/proformas/${quotation.number}/interno`}
+              href={`/cotizaciones/${quotation.number}/interno`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -98,7 +98,7 @@ export function ShareActions({ quotation }: { quotation: Quotation }) {
             </a>
             <a
               className="share-option"
-              href={`/proformas/${quotation.number}/imprimir?formato=a4`}
+              href={`/cotizaciones/${quotation.number}/imprimir?formato=a4`}
               target="_blank"
               rel="noopener noreferrer"
             >

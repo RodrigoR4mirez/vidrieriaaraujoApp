@@ -127,7 +127,7 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
             id="conditions"
             rows={2}
             maxLength={2000}
-            placeholder="Indica las condiciones acordadas para esta proforma."
+            placeholder="Indica las condiciones acordadas para esta cotización."
             value={conditions}
             onChange={(e) => {
               update((old) => ({ ...old, conditions: e.target.value, requestId: "" }));
@@ -154,13 +154,13 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
             }
           >
             <RotateCcw size={17} />
-            Nueva proforma
+            Nueva cotización
           </Button>
           <Button
             disabled={!items.length || !!pricingError || pending || !!editId}
             onClick={() => {
               if (!customerName.trim()) {
-                setError("Ingresa el nombre del cliente antes de confirmar la proforma.");
+                setError("Ingresa el nombre del cliente antes de confirmar la cotización.");
                 return;
               }
               startTransition(async () => {
@@ -175,24 +175,24 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
                 if (!result.ok) setError(result.error);
                 else {
                   if (get().draft.requestId === id) clearCache();
-                  router.push(`/proformas/${result.data.number}`);
+                  router.push(`/cotizaciones/${result.data.number}`);
                   router.refresh();
                 }
               });
             }}
           >
-            {pending ? "Confirmando…" : "Confirmar proforma"}
+            {pending ? "Confirmando…" : "Confirmar cotización"}
             <ArrowRight size={18} />
           </Button>
         </div>
       </section>
       {resetOpen && (
         <Dialog
-          title="¿Crear una nueva proforma?"
+          title="¿Crear una nueva cotización?"
           onClose={() => setResetOpen(false)}
         >
           <p>
-            Se descartará el borrador actual. Las proformas confirmadas se
+            Se descartará el borrador actual. Las cotizaciones confirmadas se
             conservan.
           </p>
           <div className="form-actions">

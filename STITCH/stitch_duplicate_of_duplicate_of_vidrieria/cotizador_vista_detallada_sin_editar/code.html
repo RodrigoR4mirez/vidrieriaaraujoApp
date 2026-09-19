@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="es" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Cotizador Profesional - Liquid Glass Proforma</title>
+<title>Cotizador Profesional - Liquid Glass Cotización</title>
 <!-- Tailwind CSS v3 with Forms Plugin -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Font Google: Plus Jakarta Sans -->
@@ -172,10 +172,10 @@
 <!-- BEGIN: ApplicationLayoutContainer -->
 <main class="w-full max-w-7xl glass-panel rounded-3xl p-6 sm:p-9 space-y-7" data-purpose="cotizador-glass-app">
 <!-- BEGIN: GlassHeaderSection -->
-<header class="glass-card rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-white/80" data-purpose="proforma-header"><div class="space-y-1.5">
-  <p class="text-xs uppercase tracking-wider font-semibold text-slate-500">PROFORMA</p>
+<header class="glass-card rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-white/80" data-purpose="cotización-header"><div class="space-y-1.5">
+  <p class="text-xs uppercase tracking-wider font-semibold text-slate-500">COTIZACIÓN</p>
   <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-[#1d6ae5] drop-shadow-sm">
-    Nº PRO-00001
+    Nº COT-00001
   </h1>
   <p class="text-xs sm:text-sm text-slate-600 font-medium pt-0.5 flex items-center gap-1.5">
     <span class="text-slate-400">Fecha:</span>
@@ -283,12 +283,12 @@
 </section>
 <!-- END: LeftColumnForm -->
 <!-- BEGIN: RightColumnSummary -->
-<section class="lg:col-span-8 space-y-6" data-purpose="resumen-proforma-section">
+<section class="lg:col-span-8 space-y-6" data-purpose="resumen-cotización-section">
 <div class="glass-card rounded-2xl p-6 sm:p-7 space-y-6">
 <!-- Summary Header & Pill Switcher: Pestaña activa en "Detallado" -->
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-slate-200/70 gap-3">
 <div>
-<h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Resumen de proforma</h2>
+<h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Resumen de cotización</h2>
 <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Productos agregados listos para cotizar</p>
 </div>
 <!-- Switch Detallado / Compacto (Detallado ACTIVO) -->
@@ -462,9 +462,9 @@
 </div>
 <!-- Total Summary Glass Card: LIMPIO según corrección 6 (Total: precio simple sin IGV, Ítems: solo "3", Tipos: solo "2") -->
 <div class="glass-card rounded-2xl p-5 grid grid-cols-3 divide-x divide-slate-200/80 border border-white/90" data-purpose="totales-resumen">
-<!-- Métrica 1: Total Proforma (Solo precio limpio, sin IGV) -->
+<!-- Métrica 1: Total Cotización (Solo precio limpio, sin IGV) -->
 <div class="px-2 sm:px-4 text-left">
-<span class="text-[11px] uppercase font-semibold text-slate-500">Total proforma</span>
+<span class="text-[11px] uppercase font-semibold text-slate-500">Total cotización</span>
 <p class="text-xl sm:text-3xl font-black text-[#1d6ae5] mt-1 tracking-tight">S/ 540.00</p>
 </div>
 <!-- Métrica 2: Ítems Totales (Solo número "3", sin "paños" ni m2) -->
@@ -478,15 +478,15 @@
 <p class="text-xl sm:text-3xl font-black text-[#1d6ae5] mt-1 tracking-tight">2</p>
 </div>
 </div>
-<!-- Bottom Action Buttons: Consistentes con diseño fase de proforma -->
+<!-- Bottom Action Buttons: Consistentes con diseño fase de cotización -->
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-<!-- Botón Secundario: Nueva Proforma -->
+<!-- Botón Secundario: Nueva Cotización -->
 <button class="liquid-btn-clear h-12 sm:h-14 rounded-2xl text-slate-700 hover:text-[#1d6ae5] font-bold text-sm tracking-wide flex items-center justify-center cursor-pointer" type="button">
-        Nueva proforma
+        Nueva cotización
       </button>
-<!-- Botón Primario: Confirmar Proforma con azul vibrante #1D6AE5 -->
+<!-- Botón Primario: Confirmar Cotización con azul vibrante #1D6AE5 -->
 <button class="liquid-btn-blue h-12 sm:h-14 rounded-2xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 cursor-pointer shadow-xl" type="button">
-<span class="">Confirmar proforma</span>
+<span class="">Confirmar cotización</span>
 <svg class="w-4 h-4 stroke-[2.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>

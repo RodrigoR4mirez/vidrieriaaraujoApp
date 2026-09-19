@@ -1,5 +1,5 @@
 # Roadmap de Desarrollo y Fases del Proyecto (v2.0)
-## Sistema de Cotización, Proformas y Gestión de Catálogos — Distribuidora Araujo
+## Sistema de Cotización, Cotizaciones y Gestión de Catálogos — Distribuidora Araujo
 
 ---
 
@@ -31,7 +31,7 @@ El plan de desarrollo de **Distribuidora Araujo** se organiza en **5 fases progr
 | :--- | :--- | :--- | :--- | :--- |
 | **Fase 1** | **Diseño UI/UX, Cotizador Base y Salidas Omnicanal** | Interfaz *Liquid Glass*, cotizador paramétrico por m² y pie², Login, Ticket POS 80mm, PDF A4, WhatsApp y Demo Guiada. | 4 semanas | 🟢 **100% Completado** |
 | **Fase 2** | **Motor de Manufacturas Adicionales & Acabados de Taller** | Pulidos (recto, redondo, arrisado), biseles por ancho, selector táctil de lados, perforaciones, saques y desglose para taller. | 3 semanas | 🟡 **Especificado / En UI** |
-| **Fase 3** | **Persistencia Backend, Base de Datos y Gestión de Folios** | API REST / Supabase (PostgreSQL), autenticación JWT, correlativos automáticos (`PRO-XXXXX`), historial de clientes y proformas guardadas. | 4 semanas | ⚪ **Planificado (Sprint 1)** |
+| **Fase 3** | **Persistencia Backend, Base de Datos y Gestión de Folios** | API REST / Supabase (PostgreSQL), autenticación JWT, correlativos automáticos (`COT-XXXXX`), historial de clientes y cotizaciones guardadas. | 4 semanas | ⚪ **Planificado (Sprint 1)** |
 | **Fase 4** | **Cobranzas Digitales, Pasarelas y Control de Anticipos** | Códigos QR automáticos (Yape, Plin), cuentas bancarias BCP/BBVA en vouchers y control de estado de pago (Pendiente / Anticipo / Pagado). | 2 semanas | ⚪ **Planificado (Sprint 2)** |
 | **Fase 5** | **Tracking en Taller por Códigos QR y Despacho** | Vista de producción para operarios de mesa de corte, escaneo de tickets POS, validación de tolerancias y notificación automática al cliente. | 5 semanas | ⚪ **Roadmap Futuro** |
 
@@ -46,9 +46,9 @@ El plan de desarrollo de **Distribuidora Araujo** se organiza en **5 fases progr
 * **Entregables:**
   - [x] Pantalla de **Inicio de Sesión (Login)** neumórfico con identidad de marca y logo 3D.
   - [x] **Cotizador Principal de Vidrios** con selector rápido de familias, espesores (`6mm`, `8mm`, `10mm`, `12mm`) y cálculo paramétrico en tiempo real.
-  - [x] Modos de visualización de proforma: **Vista Detallada** y **Vista Compacta**.
+  - [x] Modos de visualización de cotización: **Vista Detallada** y **Vista Compacta**.
   - [x] **Modal de Edición Inline** para corregir ancho, alto y cantidad sin recargar la página.
-  - [x] Pantalla de **Confirmación de Proforma** con folio oficial correlativo.
+  - [x] Pantalla de **Confirmación de Cotización** con folio oficial correlativo.
   - [x] **Módulo de Salidas Omnicanal:**
     - Generador de mensaje estructurado para **WhatsApp** con emojis y formato limpio.
     - Plantilla de **Voucher Térmico 80 mm POS** con tipografía monoespaciada y código de barras.
@@ -70,21 +70,21 @@ El plan de desarrollo de **Distribuidora Araujo** se organiza en **5 fases progr
   - [ ] **Configurador de Biselado:** Anchos de bisel (`1/2"`, `3/4"`, `1"`, `1 1/2"`).
   - [ ] **Mecanizados:** Contadores de perforaciones (Ø 10-35 mm) y saques para cerrajería/bisagras.
   - [ ] **Actualización de Tickets y Vouchers:** Inclusión de glosa técnica de taller con metros lineales procesados para operarios de corte.
-* **Criterio de Aceptación:** El cotizador calcula en vivo el costo de vidrio + manufacturas y lo refleja con exactitud en el ticket de 80 mm y la proforma de WhatsApp.
+* **Criterio de Aceptación:** El cotizador calcula en vivo el costo de vidrio + manufacturas y lo refleja con exactitud en el ticket de 80 mm y la cotización de WhatsApp.
 
 ---
 
 #### ⚪ FASE 3: Arquitectura Backend, Base de Datos & Gestión de Clientes
-* **Objetivo:** Proveer almacenamiento seguro y permanente de proformas, clientes recurrentes y control de folios inmutables.
+* **Objetivo:** Proveer almacenamiento seguro y permanente de cotizaciones, clientes recurrentes y control de folios inmutables.
 * **Stack Tecnológico:** PostgreSQL / Supabase, Node.js / Next.js API Routes, Autenticación JWT / Row Level Security (RLS).
 * **Entregables:**
   - [ ] **Modelo de Datos Relacional:**
-    - Tablas: `users`, `clients`, `proformas`, `proforma_items`, `manufacturas_item`, `catalog_vidrios`, `catalog_manufacturas`.
-  - [ ] **Generador de Folio Correlativo Inmutable:** Secuencia atómica segura en base de datos (`PRO-00001`, `PRO-00002`, etc.).
-  - [ ] **Módulo de Gestión de Clientes:** Búsqueda rápida por DNI / RUC o nombre comercial al iniciar proforma.
-  - [ ] **Historial de Proformas:** Buscador por fecha, cliente, estado (*Borrador*, *Emitida*, *Aprobada*, *Vencida*) y montos.
-  - [ ] **Replicación y Edición de Folios Existentes:** Opción "Duplicar proforma" para clientes con compras recurrentes.
-* **Criterio de Aceptación:** Guardado y recuperación de cualquier proforma en menos de 300 ms con persistencia en la nube.
+    - Tablas: `users`, `clients`, `cotizaciones`, `cotización_items`, `manufacturas_item`, `catalog_vidrios`, `catalog_manufacturas`.
+  - [ ] **Generador de Folio Correlativo Inmutable:** Secuencia atómica segura en base de datos (`COT-00001`, `COT-00002`, etc.).
+  - [ ] **Módulo de Gestión de Clientes:** Búsqueda rápida por DNI / RUC o nombre comercial al iniciar cotización.
+  - [ ] **Historial de Cotizaciones:** Buscador por fecha, cliente, estado (*Borrador*, *Emitida*, *Aprobada*, *Vencida*) y montos.
+  - [ ] **Replicación y Edición de Folios Existentes:** Opción "Duplicar cotización" para clientes con compras recurrentes.
+* **Criterio de Aceptación:** Guardado y recuperación de cualquier cotización en menos de 300 ms con persistencia en la nube.
 
 ---
 
@@ -92,8 +92,8 @@ El plan de desarrollo de **Distribuidora Araujo** se organiza en **5 fases progr
 * **Objetivo:** Acelerar el cierre comercial permitiendo al cliente pagar señas o el total directamente desde el WhatsApp o ticket.
 * **Entregables:**
   - [ ] **Generación Dinámica de Códigos QR:**
-    - Código QR de **Yape** y **Plin** con monto pre-cargado de la proforma o del 50% de anticipo.
-  - [ ] **Datos Bancarios Institucionales:** Cuentas corrientes y CCI (BCP, BBVA, Interbank) impresas en el pie de página de la proforma A4 y voucher 80 mm.
+    - Código QR de **Yape** y **Plin** con monto pre-cargado de la cotización o del 50% de anticipo.
+  - [ ] **Datos Bancarios Institucionales:** Cuentas corrientes y CCI (BCP, BBVA, Interbank) impresas en el pie de página de la cotización A4 y voucher 80 mm.
   - [ ] **Control de Estado de Pago en Sistema:**
     - Estados: `Sin Pago (Cotización)`, `Anticipo 50% Recibido (En Fabricación)`, `Cancelado 100% (Listo para Despacho)`.
   - [ ] **Comprobante de Anticipo Térmico:** Impresión de recibo de caja de 80 mm acreditando el abono inicial.

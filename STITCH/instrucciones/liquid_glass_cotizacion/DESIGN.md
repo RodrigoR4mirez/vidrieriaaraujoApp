@@ -1,5 +1,5 @@
 ---
-name: Liquid Glass Proforma
+name: Liquid Glass Cotización
 colors:
   surface: '#f8f9ff'
   surface-dim: '#cbdbf5'
@@ -138,7 +138,7 @@ spacing:
 
 ## Brand & Style
 
-Liquid Glass Proforma combines hyper-realistic **Glassmorphism** with high-precision enterprise utility. Built for professional architectural and industrial quoting (glazing, aluminum fabrication, materials estimation), the visual identity balances technical confidence with an ethereal, optical-depth feel.
+Liquid Glass Cotización combines hyper-realistic **Glassmorphism** with high-precision enterprise utility. Built for professional architectural and industrial quoting (glazing, aluminum fabrication, materials estimation), the visual identity balances technical confidence with an ethereal, optical-depth feel.
 
 ### Personality & Values
 - **Optical Precision:** Reflected through crisp translucent glass panels, internal light refractions, and sub-pixel high-contrast white rim lighting.
@@ -225,7 +225,7 @@ The design system employs a soft, pebble-smooth corner radius philosophy (`round
 - **Multi-Segment Switcher:** Pill-shaped recessed track (`rgba(226, 232, 240, 0.65)`) holding floating active state capsules.
 - **Dimension Selector Buttons:** 4-column compact grid of pills; active items receive primary liquid gradients while inactive items sit in semi-translucent frosted glass.
 
-### Tables & Proforma Lists
+### Tables & Cotización Lists
 - Grouped inside nested glass cards with colored category tags (blue accent dot with uppercase group name).
 - Minimalist hairline dividers (`border-slate-100/80`) replacing heavy table borders.
 - Hover-activated row highlight (`hover:bg-white/30`) for comfortable scanning.

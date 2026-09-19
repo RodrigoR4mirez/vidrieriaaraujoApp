@@ -86,7 +86,7 @@ export async function confirmAction(raw: unknown) {
   await requireSession();
   return result(async () => {
     const saved = await services().quotations.confirm(raw);
-    revalidatePath("/proformas");
+    revalidatePath("/cotizaciones");
     return { number: saved.number };
   });
 }

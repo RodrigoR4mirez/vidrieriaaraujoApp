@@ -34,7 +34,7 @@ it("recupera borradores anteriores sin nombre como campo vacío", () => {
   storage.setItem("draft", JSON.stringify(withoutCustomer));
   expect(createDraftCache("draft", () => storage).get().draft.customerName).toBe("");
 });
-it("un caché corrupto no impide crear otra proforma", () => {
+it("un caché corrupto no impide crear otra cotización", () => {
   const storage = memoryStorage();
   storage.setItem("draft", '{"version":999}');
   const store = createDraftCache("draft", () => storage);
