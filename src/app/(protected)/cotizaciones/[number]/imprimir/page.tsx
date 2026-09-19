@@ -25,13 +25,13 @@ export default async function Page({
       <style>
         {a4
           ? "@page{size:A4;margin:15mm}"
-          : "@page{size:80mm 297mm;margin:3mm}"}
+          : "@page{size:80mm auto;margin:0}"}
       </style>
       <div className="print-toolbar no-print">
         <span>{a4 ? "Documento A4" : "Ticket térmico 80 mm"}</span>
         <PrintButton />
       </div>
-      <article className={`print-document ${a4 ? "a4" : "ticket"}`}>
+      <article className={`print-document ${a4 ? "a4" : "ticket voucher"}`}>
         <header>
           <h1>DISTRIBUIDORA ARAUJO</h1>
           <p>Vidriería &amp; Aluminios</p>

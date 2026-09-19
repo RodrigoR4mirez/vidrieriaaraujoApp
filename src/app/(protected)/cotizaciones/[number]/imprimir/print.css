@@ -124,7 +124,14 @@
   font-size: 10px;
 }
 @media print {
+  /* Change 80mm to 58mm here and in the route @page declarations if needed. */
+  html,
   body {
+    width: 80mm;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0;
+    padding: 0;
     background: white;
     color: black;
   }
@@ -135,6 +142,8 @@
     padding: 0;
     max-width: none;
     margin: 0;
+    min-height: 0 !important;
+    height: auto !important;
   }
   .print-document {
     margin: 0 !important;
@@ -143,6 +152,18 @@
     min-height: 0 !important;
     box-shadow: none;
   }
+  .print-document.ticket.voucher {
+    width: 80mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 4mm !important;
+    box-sizing: border-box;
+    break-after: avoid-page;
+    break-inside: avoid-page;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
   .print-document h1 {
     font-size: 17px;
   }
@@ -150,9 +171,7 @@
     break-inside: avoid;
   }
   .print-document.internal-voucher {
-    width: 100% !important;
-    max-width: 52mm !important;
-    margin: 0 auto !important;
+    max-width: none !important;
     font-family: "Courier New", Courier, monospace;
   }
 }

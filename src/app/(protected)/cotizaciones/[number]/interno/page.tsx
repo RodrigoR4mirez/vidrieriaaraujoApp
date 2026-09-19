@@ -20,12 +20,12 @@ export default async function InternalVoucherPage({
 
   return (
     <>
-      <style>{"@page{margin:3mm}"}</style>
+      <style>{"@page{size:80mm auto;margin:0}"}</style>
       <div className="print-toolbar no-print">
         <span>Voucher interno del taller</span>
         <PrintButton />
       </div>
-      <article className="print-document ticket internal-voucher">
+      <article className="print-document ticket voucher internal-voucher">
         <header>
           <h1>VOUCHER INTERNO - CORTE</h1>
           <div className="internal-header-meta">
