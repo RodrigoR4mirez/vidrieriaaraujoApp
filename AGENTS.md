@@ -510,6 +510,7 @@ Aplicar obligatoriamente `docs/release-workflow.md` al cerrar cada sesión con c
 
 - Para cambios funcionales de riesgo bajo, usar validación focalizada y Production directa; Preview no es obligatorio.
 - Todo cambio importante de pantalla o funcionalidad debe quedar primero en Preview. Entregar la URL al usuario y esperar su aprobación explícita antes de integrar en `main` o pasar a Production.
+- Cuando el Preview esté `Ready`, mostrar siempre la solicitud de aprobación en la sesión: URL, resumen de cambios revisados y la pregunta “¿Apruebas que continúe y pase a Producción?”. Usar un control interactivo si la plataforma lo ofrece; de lo contrario, usar ese mensaje en el chat.
 - Para fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración, Preview también es obligatorio y requiere la misma aprobación explícita antes de Production.
 - El silencio o el paso del tiempo no cuentan como aprobación. Continuar a Production únicamente cuando el usuario responda afirmativamente, por ejemplo “continúa”, “aprobado” o “pasa a producción”.
 - Los cambios exclusivamente documentales se confirman en Git, pero no ejecutan tests, build ni despliegue.

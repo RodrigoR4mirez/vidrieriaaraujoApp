@@ -105,7 +105,16 @@ vercel deploy --target=preview --yes --scope rodrigor4mirezs-projects
 # Validar únicamente los flujos afectados con datos de Preview.
 ```
 
-Cuando el Preview esté `Ready`, entregar su URL al usuario e indicar con claridad que el siguiente paso es pasar a Producción. Detenerse y esperar una respuesta afirmativa explícita, por ejemplo: “aprobado”, “continúa” o “pasa a producción”. El silencio, el paso del tiempo o una validación técnica del agente no cuentan como aprobación.
+Cuando el Preview esté `Ready`, mostrar siempre la solicitud de aprobación al usuario. Si la interfaz de la sesión ofrece un control de confirmación interactivo, usarlo; de lo contrario, mostrar este mensaje claro en el chat:
+
+```text
+Preview listo para revisar
+URL: <preview-url>
+Cambios revisados: <resumen breve>
+¿Apruebas que continúe y pase a Producción?
+```
+
+Detenerse y esperar una respuesta afirmativa explícita, por ejemplo: “aprobado”, “continúa” o “pasa a producción”. El silencio, el paso del tiempo o una validación técnica del agente no cuentan como aprobación. Esta solicitud es parte obligatoria de cada cambio importante; no es un popup dentro de la aplicación ni altera la experiencia de sus usuarios.
 
 Solo después de recibir esa aprobación:
 
