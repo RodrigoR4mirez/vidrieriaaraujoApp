@@ -506,11 +506,14 @@ Separar Preview y Production para no contaminar datos reales con pruebas:
 
 Seleccionar región del Blob cercana a usuarios y funciones; para este proyecto en Perú, preferir una región sudamericana como `gru1` si está disponible y usar la misma región para las funciones que acceden al store.
 
-Primero Preview.
+Aplicar obligatoriamente `docs/release-workflow.md` al cerrar cada sesión con cambios.
 
-Validar flujo completo.
-
-Luego Production.
+- Para cambios funcionales de riesgo bajo, usar validación focalizada y Production directa; Preview no es obligatorio.
+- Para cambios de riesgo medio, usar Preview cuando sea necesario para comprobar el flujo afectado.
+- Para fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración, Preview es obligatorio antes de Production.
+- Los cambios exclusivamente documentales se confirman en Git, pero no ejecutan tests, build ni despliegue.
+- Todo cambio funcional terminado debe quedar en un commit, integrado en `main`, publicado en `origin` y desplegado en Vercel, salvo instrucción contraria del usuario o bloqueo real.
+- Si Vercel ya despliega automáticamente al publicar `main`, no iniciar un segundo despliegue idéntico por CLI.
 
 ---
 
@@ -525,6 +528,7 @@ Mantener:
 - `docs/data-model.md`
 - `docs/stitch-map.md`
 - `docs/deployment.md`
+- `docs/release-workflow.md`
 
 No mantener documentación contradictoria.
 

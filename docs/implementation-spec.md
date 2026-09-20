@@ -1204,24 +1204,16 @@ Para usuarios principalmente en Perú, preferir `gru1` (São Paulo) si está dis
 
 ## 40. Preview y Production
 
-Orden:
+Seguir `docs/release-workflow.md`. La verificación y el destino se eligen según el riesgo:
 
-1. build local;
-2. lint;
-3. typecheck;
-4. tests;
-5. deploy Preview;
-6. probar login;
-7. probar catálogos;
-8. probar crear/editar vidrio;
-9. probar cotizador;
-10. probar confirmar;
-11. verificar persistencia;
-12. abrir desde otro navegador y confirmar datos compartidos;
-13. probar compartir/PDF;
-14. Production.
+- documentación: revisar diff y confirmar en Git, sin deploy;
+- riesgo bajo: validación focalizada y Production directa;
+- riesgo medio: Preview cuando la revisión local no sea suficiente;
+- riesgo alto: tests críticos, Preview obligatorio y después Production.
 
-No hacer Production si Preview está roto.
+Se consideran de riesgo alto los cambios en fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias y configuración Vercel. No hacer Production si una comprobación crítica o el Preview requerido están rotos.
+
+Todo cambio funcional terminado debe tener commit, quedar integrado en `main`, publicarse en `origin` y finalizar con Vercel en estado `Ready`. No duplicar el despliegue por CLI si la integración Git ya desplegó el mismo commit.
 
 ---
 

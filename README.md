@@ -87,6 +87,7 @@ Los backups reales están ignorados por Git y se crean con permisos 600. Importa
 - [Modelo de datos y migración futura](docs/data-model.md)
 - [Mapa STITCH](docs/stitch-map.md)
 - [Vercel, entornos y despliegue](docs/deployment.md)
+- [Flujo automático de entrega por sesión](docs/release-workflow.md)
 
 Los originales STITCH permanecen intactos y están excluidos del despliegue. El logo real está en `public/brand/logo.png`; las fuentes se sirven localmente desde el paquete de Fontsource.
 

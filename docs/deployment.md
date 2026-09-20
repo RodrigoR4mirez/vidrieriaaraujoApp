@@ -26,6 +26,8 @@ Configurar en los tres entornos; el token Blob difiere entre Production y Previe
 
 ## Procedimiento
 
+El flujo operativo obligatorio y la decisión entre Preview y Production directa están en [Flujo de entrega por sesión](release-workflow.md). Resumen:
+
 ```sh
 vercel --version
 vercel whoami
@@ -33,12 +35,14 @@ vercel teams ls
 vercel link --project vidrieria-araujo --scope rodrigor4mirezs-projects
 vercel env pull .env.local --environment=development
 npm ci
-npm run verify
-npm run test:e2e
+# Ejecutar únicamente las comprobaciones proporcionales al riesgo.
+# Riesgo medio/alto cuando corresponda:
 vercel deploy --target=preview --yes --scope rodrigor4mirezs-projects
-# Validar el Preview con sus propios datos y dos sesiones de navegador.
+# Tras integrar y publicar main:
 vercel deploy --prod --yes --scope rodrigor4mirezs-projects
 ```
+
+Preview no es obligatorio para documentación ni cambios funcionales de riesgo bajo. Los cambios exclusivamente documentales no se despliegan. Para fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración, Preview sí es obligatorio. Si el push de `main` ya inició el despliegue mediante la integración Git, inspeccionar ese despliegue y no repetirlo con la CLI.
 
 Production se construye con variables de Production; no se promueve un artefacto que contiene variables del store de pruebas. No hacer deploy si los tests oficiales fallan. `STITCH/`, `LOGOS/`, secretos, backups y resultados de pruebas están excluidos del despliegue. `public/brand/` y fuentes instaladas son los assets de runtime.
 
