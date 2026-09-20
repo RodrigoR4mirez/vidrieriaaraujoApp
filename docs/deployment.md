@@ -36,13 +36,14 @@ vercel link --project vidrieria-araujo --scope rodrigor4mirezs-projects
 vercel env pull .env.local --environment=development
 npm ci
 # Ejecutar únicamente las comprobaciones proporcionales al riesgo.
-# Riesgo medio/alto cuando corresponda:
+# Cambio importante o de riesgo alto:
 vercel deploy --target=preview --yes --scope rodrigor4mirezs-projects
-# Tras integrar y publicar main:
+# Entregar la URL y esperar aprobación explícita del usuario.
+# Solo después de su aprobación, integrar y publicar main:
 vercel deploy --prod --yes --scope rodrigor4mirezs-projects
 ```
 
-Preview no es obligatorio para documentación ni cambios funcionales de riesgo bajo. Los cambios exclusivamente documentales no se despliegan. Para fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración, Preview sí es obligatorio. Si el push de `main` ya inició el despliegue mediante la integración Git, inspeccionar ese despliegue y no repetirlo con la CLI.
+Preview no es obligatorio para documentación ni cambios funcionales de riesgo bajo. Los cambios exclusivamente documentales no se despliegan. Todo cambio importante de pantalla o funcionalidad debe permanecer en Preview hasta que el usuario lo valide y autorice expresamente el paso a Production. La misma regla se aplica a fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración. Si el push de `main` ya inició el despliegue mediante la integración Git, inspeccionar ese despliegue y no repetirlo con la CLI.
 
 Production se construye con variables de Production; no se promueve un artefacto que contiene variables del store de pruebas. No hacer deploy si los tests oficiales fallan. `STITCH/`, `LOGOS/`, secretos, backups y resultados de pruebas están excluidos del despliegue. `public/brand/` y fuentes instaladas son los assets de runtime.
 

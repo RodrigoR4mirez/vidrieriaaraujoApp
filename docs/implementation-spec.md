@@ -1208,12 +1208,12 @@ Seguir `docs/release-workflow.md`. La verificación y el destino se eligen segú
 
 - documentación: revisar diff y confirmar en Git, sin deploy;
 - riesgo bajo: validación focalizada y Production directa;
-- riesgo medio: Preview cuando la revisión local no sea suficiente;
-- riesgo alto: tests críticos, Preview obligatorio y después Production.
+- cambio importante de pantalla o funcionalidad: Preview obligatorio y aprobación explícita del usuario antes de Production;
+- riesgo alto: tests críticos, Preview obligatorio y aprobación explícita del usuario antes de Production.
 
-Se consideran de riesgo alto los cambios en fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias y configuración Vercel. No hacer Production si una comprobación crítica o el Preview requerido están rotos.
+Se consideran importantes los cambios visibles en pantallas principales, responsive, navegación, formularios, componentes interactivos, PDF, tickets y flujos funcionales. Se consideran de riesgo alto los cambios en fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias y configuración Vercel. En ambos casos, entregar la URL Preview y detenerse hasta que el usuario autorice expresamente Production. No hacer Production si una comprobación crítica o el Preview requerido están rotos.
 
-Todo cambio funcional terminado debe tener commit, quedar integrado en `main`, publicarse en `origin` y finalizar con Vercel en estado `Ready`. No duplicar el despliegue por CLI si la integración Git ya desplegó el mismo commit.
+Un cambio importante permanece en su rama mientras se valida el Preview. Tras la aprobación debe quedar integrado en `main`, publicarse en `origin` y finalizar con Production en estado `Ready`. No duplicar el despliegue por CLI si la integración Git ya desplegó el mismo commit.
 
 ---
 

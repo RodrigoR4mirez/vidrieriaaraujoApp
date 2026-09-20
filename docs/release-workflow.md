@@ -14,6 +14,8 @@ Una modificación funcional se considera terminada cuando:
 6. Vercel terminó el despliegue correspondiente con estado `Ready`;
 7. se reportaron commit, URL, estado del despliegue y `git status`.
 
+Para un cambio importante, el cierre ocurre en dos etapas: primero se entrega un Preview `Ready` y se espera la aprobación explícita del usuario; únicamente después se integra en `main` y se publica en Production. Mientras se espera esa respuesta, el trabajo queda correctamente pausado en Preview, no incompleto.
+
 Los cambios exclusivamente documentales se confirman en Git, pero no ejecutan tests, build ni despliegue.
 
 ## Rama y commits
@@ -25,7 +27,8 @@ git status --short --branch
 git branch --show-current
 ```
 
-- Si la sesión ya está en `main`, se trabaja y se confirma directamente allí. No existe un paso de merge adicional.
+- Si la tarea es pequeña y la sesión ya está en `main`, se trabaja y se confirma directamente allí. No existe un paso de merge adicional.
+- Si la tarea contiene un cambio importante de pantalla o funcionalidad, se crea una rama de tarea desde `main` antes de modificar. Esa rama no se integra ni se publica en `main` hasta que el usuario apruebe el Preview.
 - Si la sesión está en una rama creada para la tarea actual, se valida y confirma allí; después se integra en `main` sin perder cambios.
 - Si la rama encontrada pertenece a otro trabajo, no se mezcla. Se cambia a `main` antes de editar.
 - Nunca se hace merge con archivos sin confirmar ni se sobrescribe trabajo ajeno.
@@ -52,8 +55,8 @@ Preview no es obligatorio para todo cambio.
 |---|---|---|
 | Documentación | README, instrucciones, documentos | Revisar diff y commit. Sin deploy. |
 | Bajo | Texto, CSS aislado, alineación, etiqueta, cambio visual pequeño | Comprobación focalizada y Production directa. |
-| Medio | Componentes interactivos, navegación, PDF/ticket, formulario sin cambio de negocio | Prueba focalizada. Usar Preview si la revisión visual o el flujo no puede comprobarse localmente con confianza. |
-| Alto | Fórmula, autenticación, sesión, Blob, concurrencia, numeración, backups, esquema persistido, dependencias o configuración Vercel | Preview obligatorio, pruebas críticas afectadas y luego Production. |
+| Medio / importante | Pantallas principales, responsive, componentes interactivos, navegación, PDF/ticket, formularios o cambios visibles que alteran el uso | Preview obligatorio. Entregar URL y esperar aprobación explícita antes de Production. |
+| Alto | Fórmula, autenticación, sesión, Blob, concurrencia, numeración, backups, esquema persistido, dependencias o configuración Vercel | Preview obligatorio y pruebas críticas afectadas. Esperar aprobación explícita antes de Production. |
 
 Nunca desplegar si falla una comprobación crítica o si el cambio está incompleto.
 
@@ -100,6 +103,17 @@ vercel --prod --yes --scope rodrigor4mirezs-projects
 ```sh
 vercel deploy --target=preview --yes --scope rodrigor4mirezs-projects
 # Validar únicamente los flujos afectados con datos de Preview.
+```
+
+Cuando el Preview esté `Ready`, entregar su URL al usuario e indicar con claridad que el siguiente paso es pasar a Producción. Detenerse y esperar una respuesta afirmativa explícita, por ejemplo: “aprobado”, “continúa” o “pasa a producción”. El silencio, el paso del tiempo o una validación técnica del agente no cuentan como aprobación.
+
+Solo después de recibir esa aprobación:
+
+```sh
+git switch main
+git merge --ff-only <rama-de-la-tarea>
+git push origin main
+# Si el push no inició el despliegue Git de Vercel:
 vercel deploy --prod --yes --scope rodrigor4mirezs-projects
 ```
 
@@ -136,8 +150,8 @@ Commit: <sha corto>
 Rama final: main
 Validación: <comprobaciones ejecutadas>
 Preview: <URL o “no necesario por riesgo bajo”>
-Production: https://distribuidora-araujo.vercel.app
-Vercel: Ready
+Production: <URL, o “pendiente de aprobación del usuario”>
+Vercel: <Preview Ready / Production Ready>
 Git status: limpio
 Pendientes: ninguno o bloqueo real
 ```

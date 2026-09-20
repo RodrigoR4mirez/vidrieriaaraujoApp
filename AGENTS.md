@@ -509,10 +509,11 @@ Seleccionar región del Blob cercana a usuarios y funciones; para este proyecto 
 Aplicar obligatoriamente `docs/release-workflow.md` al cerrar cada sesión con cambios.
 
 - Para cambios funcionales de riesgo bajo, usar validación focalizada y Production directa; Preview no es obligatorio.
-- Para cambios de riesgo medio, usar Preview cuando sea necesario para comprobar el flujo afectado.
-- Para fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración, Preview es obligatorio antes de Production.
+- Todo cambio importante de pantalla o funcionalidad debe quedar primero en Preview. Entregar la URL al usuario y esperar su aprobación explícita antes de integrar en `main` o pasar a Production.
+- Para fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración, Preview también es obligatorio y requiere la misma aprobación explícita antes de Production.
+- El silencio o el paso del tiempo no cuentan como aprobación. Continuar a Production únicamente cuando el usuario responda afirmativamente, por ejemplo “continúa”, “aprobado” o “pasa a producción”.
 - Los cambios exclusivamente documentales se confirman en Git, pero no ejecutan tests, build ni despliegue.
-- Todo cambio funcional terminado debe quedar en un commit, integrado en `main`, publicado en `origin` y desplegado en Vercel, salvo instrucción contraria del usuario o bloqueo real.
+- Los cambios importantes permanecen en su rama y Preview mientras esperan validación. Después de la aprobación deben quedar integrados en `main`, publicados en `origin` y desplegados en Vercel, salvo bloqueo real.
 - Si Vercel ya despliega automáticamente al publicar `main`, no iniciar un segundo despliegue idéntico por CLI.
 
 ---
