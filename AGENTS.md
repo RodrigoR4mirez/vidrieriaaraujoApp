@@ -508,14 +508,16 @@ Seleccionar región del Blob cercana a usuarios y funciones; para este proyecto 
 
 Aplicar obligatoriamente `docs/release-workflow.md` al cerrar cada sesión con cambios.
 
-- Para cambios funcionales de riesgo bajo, usar validación focalizada y Production directa; Preview no es obligatorio.
+- GitHub (`origin`) es la fuente de verdad y el único flujo de despliegue permitido es Local → GitHub → Vercel. Nunca ejecutar un despliegue directo de Vercel desde archivos locales.
+- Para cambios funcionales de riesgo bajo, usar validación focalizada, push seguro a `main` y Production generada por la integración Git de Vercel; Preview no es obligatorio.
 - Todo cambio importante de pantalla o funcionalidad debe quedar primero en Preview. Entregar la URL al usuario y esperar su aprobación explícita antes de integrar en `main` o pasar a Production.
 - Cuando el Preview esté `Ready`, mostrar siempre la solicitud de aprobación en la sesión: URL, resumen de cambios revisados y la pregunta “¿Apruebas que continúe y pase a Producción?”. Usar un control interactivo si la plataforma lo ofrece; de lo contrario, usar ese mensaje en el chat.
 - Para fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración, Preview también es obligatorio y requiere la misma aprobación explícita antes de Production.
 - El silencio o el paso del tiempo no cuentan como aprobación. Continuar a Production únicamente cuando el usuario responda afirmativamente, por ejemplo “continúa”, “aprobado” o “pasa a producción”.
 - Los cambios exclusivamente documentales se confirman en Git, pero no ejecutan tests, build ni despliegue.
-- Los cambios importantes permanecen en su rama y Preview mientras esperan validación. Después de la aprobación deben quedar integrados en `main`, publicados en `origin` y desplegados en Vercel, salvo bloqueo real.
-- Si Vercel ya despliega automáticamente al publicar `main`, no iniciar un segundo despliegue idéntico por CLI.
+- Los cambios importantes permanecen en su rama y Preview mientras esperan validación. Después de la aprobación deben quedar integrados en `main`, publicados en `origin` y desplegados por la integración Git de Vercel, salvo bloqueo real.
+- Antes de todo push, ejecutar `git fetch origin main --prune` y confirmar que `origin/main` es ancestro de `main`. Nunca usar force push, reset, rebase destructivo ni reescribir historial. Si hay divergencia, detenerse y explicarla.
+- Si hacer push, usar GitHub, inspeccionar Vercel o configurar la integración requiere autenticación, permisos, autorización o una acción del usuario, pedirla explícitamente antes de continuar. No usar despliegues locales directos como alternativa.
 
 ---
 

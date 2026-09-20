@@ -1207,13 +1207,13 @@ Para usuarios principalmente en Perú, preferir `gru1` (São Paulo) si está dis
 Seguir `docs/release-workflow.md`. La verificación y el destino se eligen según el riesgo:
 
 - documentación: revisar diff y confirmar en Git, sin deploy;
-- riesgo bajo: validación focalizada y Production directa;
-- cambio importante de pantalla o funcionalidad: Preview obligatorio y aprobación explícita del usuario antes de Production;
-- riesgo alto: tests críticos, Preview obligatorio y aprobación explícita del usuario antes de Production.
+- riesgo bajo: validación focalizada, push seguro a GitHub `main` y Production creada por Vercel desde GitHub;
+- cambio importante de pantalla o funcionalidad: push de la rama a GitHub, Preview obligatorio y aprobación explícita del usuario antes de Production;
+- riesgo alto: tests críticos, push de la rama a GitHub, Preview obligatorio y aprobación explícita del usuario antes de Production.
 
 Se consideran importantes los cambios visibles en pantallas principales, responsive, navegación, formularios, componentes interactivos, PDF, tickets y flujos funcionales. Se consideran de riesgo alto los cambios en fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias y configuración Vercel. En ambos casos, entregar la URL Preview y detenerse hasta que el usuario autorice expresamente Production. No hacer Production si una comprobación crítica o el Preview requerido están rotos.
 
-Un cambio importante permanece en su rama mientras se valida el Preview. Tras la aprobación debe quedar integrado en `main`, publicarse en `origin` y finalizar con Production en estado `Ready`. No duplicar el despliegue por CLI si la integración Git ya desplegó el mismo commit.
+GitHub es la fuente de verdad: el flujo es Local → GitHub → Vercel y no se permiten despliegues de Vercel desde archivos locales. Un cambio importante permanece en su rama mientras se valida el Preview generado desde GitHub. Tras la aprobación debe quedar integrado en `main`, publicarse con un push seguro en `origin` y finalizar con Production en estado `Ready`. Antes de push confirmar que `origin/main` sea ancestro de `main`; si hay divergencia o si se requieren permisos/autenticación/configuración de GitHub o Vercel, detenerse y pedirlos explícitamente al usuario.
 
 ---
 

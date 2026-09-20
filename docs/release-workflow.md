@@ -1,6 +1,6 @@
 # Flujo de entrega y despliegue por sesión
 
-Este documento define cómo debe cerrar una sesión de trabajo en **Distribuidora Araujo**. Su objetivo es que el código, Git y Vercel queden sincronizados sin ejecutar pruebas o despliegues innecesarios para un MVP.
+Este documento define cómo debe cerrar una sesión de trabajo en **Distribuidora Araujo**. GitHub (`origin`) es la fuente de verdad del código versionado y Vercel despliega exclusivamente desde GitHub. El flujo obligatorio es **Local → GitHub → Vercel**; nunca se despliega a Vercel directamente desde archivos locales.
 
 ## Resultado esperado
 
@@ -10,15 +10,15 @@ Una modificación funcional se considera terminada cuando:
 2. pasó la comprobación mínima proporcional a su riesgo;
 3. existe un commit descriptivo;
 4. el commit quedó integrado en `main`;
-5. `main` quedó publicado en `origin`;
-6. Vercel terminó el despliegue correspondiente con estado `Ready`;
+5. `main` quedó publicado en `origin` mediante un push seguro;
+6. Vercel detectó ese commit de GitHub y terminó el despliegue correspondiente con estado `Ready`;
 7. se reportaron commit, URL, estado del despliegue y `git status`.
 
 Para un cambio importante, el cierre ocurre en dos etapas: primero se entrega un Preview `Ready` y se espera la aprobación explícita del usuario; únicamente después se integra en `main` y se publica en Production. Mientras se espera esa respuesta, el trabajo queda correctamente pausado en Preview, no incompleto.
 
 Los cambios exclusivamente documentales se confirman en Git, pero no ejecutan tests, build ni despliegue.
 
-## Rama y commits
+## Rama, commits y sincronización segura
 
 Antes de modificar:
 
@@ -47,6 +47,16 @@ Si el fast-forward no es posible, revisar la divergencia y resolverla consciente
 git push origin main
 ```
 
+Antes de cada `push`, confirmar que el remoto no contiene historia que falte localmente:
+
+```sh
+git fetch origin main --prune
+git merge-base --is-ancestor origin/main main
+git rev-list --left-right --count origin/main...main
+```
+
+Solo se permite un push normal si `origin/main` es ancestro de `main`; ese resultado significa que GitHub avanzará sin eliminar, sobrescribir ni reescribir commits. Si existe divergencia, si el push deja de ser fast-forward, o si la autenticación/permisos fallan, detenerse y explicarle al usuario antes de hacer cualquier otra acción. Nunca usar `--force`, `push --force-with-lease`, `reset`, rebase destructivo ni atajos equivalentes.
+
 ## Cuándo usar Preview
 
 Preview no es obligatorio para todo cambio.
@@ -54,9 +64,9 @@ Preview no es obligatorio para todo cambio.
 | Riesgo | Ejemplos | Verificación y destino |
 |---|---|---|
 | Documentación | README, instrucciones, documentos | Revisar diff y commit. Sin deploy. |
-| Bajo | Texto, CSS aislado, alineación, etiqueta, cambio visual pequeño | Comprobación focalizada y Production directa. |
-| Medio / importante | Pantallas principales, responsive, componentes interactivos, navegación, PDF/ticket, formularios o cambios visibles que alteran el uso | Preview obligatorio. Entregar URL y esperar aprobación explícita antes de Production. |
-| Alto | Fórmula, autenticación, sesión, Blob, concurrencia, numeración, backups, esquema persistido, dependencias o configuración Vercel | Preview obligatorio y pruebas críticas afectadas. Esperar aprobación explícita antes de Production. |
+| Bajo | Texto, CSS aislado, alineación, etiqueta, cambio visual pequeño | Comprobación focalizada, push seguro a GitHub `main` y Production generada por la integración Git de Vercel. |
+| Medio / importante | Pantallas principales, responsive, componentes interactivos, navegación, PDF/ticket, formularios o cambios visibles que alteran el uso | Push seguro de la rama a GitHub para generar Preview. Entregar URL y esperar aprobación explícita antes de Production. |
+| Alto | Fórmula, autenticación, sesión, Blob, concurrencia, numeración, backups, esquema persistido, dependencias o configuración Vercel | Push seguro de la rama a GitHub para generar Preview y pruebas críticas afectadas. Esperar aprobación explícita antes de Production. |
 
 Nunca desplegar si falla una comprobación crítica o si el cambio está incompleto.
 
@@ -92,17 +102,21 @@ vercel teams ls
 
 ### Cambio de riesgo bajo sin Preview
 
-Después de confirmar e integrar el cambio en `main`, publicar directamente:
+Después de confirmar e integrar el cambio en `main`, validar el avance seguro y publicarlo en GitHub:
 
 ```sh
-vercel --prod --yes --scope rodrigor4mirezs-projects
+git fetch origin main --prune
+git merge-base --is-ancestor origin/main main
+git push origin main
 ```
+
+Vercel debe crear Production a partir de ese push. No ejecutar `vercel --prod`, `vercel deploy --prod` ni ningún despliegue desde la carpeta local.
 
 ### Cambio que requiere Preview
 
 ```sh
-vercel deploy --target=preview --yes --scope rodrigor4mirezs-projects
-# Validar únicamente los flujos afectados con datos de Preview.
+git push -u origin <rama-de-la-tarea>
+# Vercel crea Preview desde el commit de GitHub. Validar únicamente los flujos afectados.
 ```
 
 Cuando el Preview esté `Ready`, mostrar siempre la solicitud de aprobación al usuario. Si la interfaz de la sesión ofrece un control de confirmación interactivo, usarlo; de lo contrario, mostrar este mensaje claro en el chat:
@@ -121,14 +135,14 @@ Solo después de recibir esa aprobación:
 ```sh
 git switch main
 git merge --ff-only <rama-de-la-tarea>
+git fetch origin main --prune
+git merge-base --is-ancestor origin/main main
 git push origin main
-# Si el push no inició el despliegue Git de Vercel:
-vercel deploy --prod --yes --scope rodrigor4mirezs-projects
 ```
 
-Preview y Production usan stores Blob distintos. Por eso Production realiza su propio build con variables de Production; no se promueve directamente un artefacto construido con variables de Preview.
+Preview y Production usan stores Blob distintos. Por eso Vercel realiza un build nuevo de Production desde el commit publicado en GitHub `main`, con variables de Production. Si el push no crea el Preview o Production esperado, detenerse y pedir al usuario que autorice/configure la integración GitHub–Vercel; no usar un despliegue directo local como alternativa.
 
-Si la integración Git de Vercel ya inició un despliegue al hacer `git push origin main`, no ejecutar además `vercel --prod`: se inspecciona ese despliegue para evitar dos builds iguales. La CLI es el mecanismo directo cuando el despliegue Git no se inició o cuando la sesión ya venía trabajando de esa forma.
+La CLI de Vercel se usa únicamente para inspeccionar estado, logs o configuración. Si para `git fetch`, `git push`, la integración GitHub–Vercel o la inspección de Vercel se necesita autenticación, permisos, autorización o configuración adicional, pedirla explícitamente al usuario antes de continuar. No buscar atajos.
 
 ## Validación posterior
 
