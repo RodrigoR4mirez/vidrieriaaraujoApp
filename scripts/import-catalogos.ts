@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import ExcelJS from "exceljs";
 import Decimal from "decimal.js";
@@ -29,6 +29,7 @@ const output = {
   profiles: path.join(root, "public/profiles"),
 };
 const write = process.argv.includes("--write");
+const glassOnly = process.argv.includes("--glass-only");
 const createdAt = new Date().toISOString();
 
 type Cell = ExcelJS.CellValue | null | undefined;
@@ -97,6 +98,10 @@ function decimal(value: string, context: string) {
   } catch {
     throw new Error(`${context}: número inválido «${value}».`);
   }
+}
+
+function decimalOrZero(value: string, context: string) {
+  return value ? decimal(value, context) : "0.00";
 }
 
 function sheetCm(value: string, context: string) {
@@ -244,20 +249,29 @@ async function readGlass() {
   await workbook.xlsx.readFile(sources.glass);
   const sheet = workbook.worksheets[0];
   if (!sheet) throw new Error("El Excel de vidrios no tiene una hoja.");
-  const records: Array<{ row: number; family: string; description: string; width: string; height: string }> = [];
+  const records: Array<{
+    row: number; family: string; description: string; width: string; height: string;
+    pricePerSquareFoot: string; pricePerSheet: string;
+  }> = [];
   let family = "";
   for (let row = 1; row <= sheet.rowCount; row++) {
     const description = cellText(sheet.getCell(row, 2).value);
     const width = cellText(sheet.getCell(row, 3).value);
     const height = cellText(sheet.getCell(row, 5).value);
-    if (!description && !width && !height) continue;
+    const pricePerSquareFoot = cellText(sheet.getCell(row, 6).value);
+    const pricePerSheet = cellText(sheet.getCell(row, 7).value);
+    if (!description) continue;
     if (description && !width && !height && description === description.toUpperCase()) {
       family = canonical(description).toUpperCase();
       continue;
     }
     if (!description || !family) throw new Error(`Vidrios fila ${row}: falta descripción o familia.`);
     if (Boolean(width) !== Boolean(height)) throw new Error(`Vidrios fila ${row}: ambas medidas de plancha deben venir juntas.`);
-    records.push({ row, family, description: canonical(description), width, height });
+    records.push({
+      row, family, description: canonical(description), width, height,
+      pricePerSquareFoot: decimalOrZero(pricePerSquareFoot, `Vidrios fila ${row}, precio por pie²`),
+      pricePerSheet: decimalOrZero(pricePerSheet, `Vidrios fila ${row}, precio por plancha`),
+    });
   }
   const values: BaseValue[] = [];
   const valueId = new Map<string, string>();
@@ -279,7 +293,7 @@ async function readGlass() {
       ...metadata("glass-product", productCode), code: productCode, familyId, thicknessId, colorFinishId, cathedralDesignId,
       sheetWidthCm: record.width ? sheetCm(record.width, `Vidrios fila ${record.row}`) : undefined,
       sheetHeightCm: record.height ? sheetCm(record.height, `Vidrios fila ${record.row}`) : undefined,
-      pricePerSquareFoot: "0.00", pricePerSheet: "0.00", status: "ACTIVE",
+      pricePerSquareFoot: record.pricePerSquareFoot, pricePerSheet: record.pricePerSheet, status: "ACTIVE",
     };
   });
   return catalogStateSchema.parse({ schemaVersion: 1, values, products });
@@ -305,10 +319,10 @@ function report(result: ImportResult) {
 `- Los vidrios no traen código físico. Se genera \`GL-<fila>-<descripción>\`, por ejemplo \`GL-004-INCOLORO-2MM\`.\n` +
 `- Cada imagen de perfil se guarda como \`public/profiles/<CÓDIGO>.png\` cuando el Excel la ancla a esa fila.\n` +
 `- Las medidas de plancha de vidrios se convierten de metros a centímetros; \`1.60 × 2.20\` pasa a \`160 × 220 cm\`.\n` +
-`- El Excel de vidrios no contiene precios: ambos precios se cargan como \`0.00\`. La falta de espesor se representa como \`Sin especificar\`, sin inventar un espesor físico.\n\n` +
+`- Las columnas \`PIE\` y \`PLANCHA\` del Excel se conservan como precios por pie² y plancha, respectivamente; una celda vacía se guarda como \`0.00\`. La falta de espesor se representa como \`Sin especificar\`, sin inventar un espesor físico.\n\n` +
 `## Casos especiales\n\n` +
 `- Perfiles sin precio: ${result.zeroPriceProfiles.length ? result.zeroPriceProfiles.join(", ") : "ninguno"}.\n` +
-`- Vidrios sin precio: ${result.zeroPriceGlasses.length} (todos; el Excel solo aporta medidas de plancha).\n` +
+`- Vidrios sin precio en ambas modalidades: ${result.zeroPriceGlasses.length ? result.zeroPriceGlasses.join(", ") : "ninguno"}.\n` +
 `- Vidrios sin medida de plancha: ${result.glassesWithoutSheet.length ? result.glassesWithoutSheet.join(", ") : "ninguno"}.\n` +
 `- Perfiles sin imagen anclada: ${result.profilesWithoutImage.length ? result.profilesWithoutImage.join(", ") : "ninguno"}.\n` +
 `- Códigos normalizados: ${result.normalizedCodes.length ? result.normalizedCodes.map((entry) => `${entry.original} → ${entry.final} (fila ${entry.row})`).join("; ") : "ninguno"}.\n` +
@@ -321,21 +335,30 @@ function report(result: ImportResult) {
 
 async function writeAssets(result: ImportResult) {
   await mkdir(path.dirname(output.backup), { recursive: true });
-  await mkdir(output.profiles, { recursive: true });
+  const existing = glassOnly
+    ? validateBackup(JSON.parse(await readFile(output.backup, "utf8")))
+    : undefined;
   const backup = validateBackup({
     schemaVersion: 1 as const, exportedAt: createdAt,
-    entries: [
-      { pathname: "data/v1/catalog.json", value: result.glass },
-      { pathname: "data/v1/aluminum-catalog.json", value: result.aluminum },
-    ],
+    entries: existing
+      ? existing.entries.map((entry) => entry.pathname === "data/v1/catalog.json"
+        ? { pathname: entry.pathname, value: result.glass }
+        : entry)
+      : [
+        { pathname: "data/v1/catalog.json", value: result.glass },
+        { pathname: "data/v1/aluminum-catalog.json", value: result.aluminum },
+      ],
   });
   await writeFile(output.backup, `${JSON.stringify(backup, null, 2)}\n`);
-  await writeFile(output.aluminumSeed, `${JSON.stringify(result.aluminum, null, 2)}\n`);
-  for (const [code, image] of result.profileImages)
-    await writeFile(path.join(output.profiles, `${code}.${image.extension}`), image.buffer);
-  const existing = await readdir(output.profiles);
-  await Promise.all(existing.filter((name) => /^image\d+\.png$/i.test(name))
-    .map((name) => rm(path.join(output.profiles, name))));
+  if (!glassOnly) {
+    await mkdir(output.profiles, { recursive: true });
+    await writeFile(output.aluminumSeed, `${JSON.stringify(result.aluminum, null, 2)}\n`);
+    for (const [code, image] of result.profileImages)
+      await writeFile(path.join(output.profiles, `${code}.${image.extension}`), image.buffer);
+    const existingProfiles = await readdir(output.profiles);
+    await Promise.all(existingProfiles.filter((name) => /^image\d+\.png$/i.test(name))
+      .map((name) => rm(path.join(output.profiles, name))));
+  }
   await writeFile(output.report, report(result));
 }
 
@@ -346,7 +369,9 @@ async function main() {
     aluminum: aluminum.catalog, glass, profileImages: aluminum.profileImages,
     normalizedCodes: aluminum.normalizedCodes, droppedDuplicates: aluminum.droppedDuplicates,
     zeroPriceProfiles: aluminum.zeroPriceProfiles,
-    zeroPriceGlasses: glass.products.map((product) => product.code),
+    zeroPriceGlasses: glass.products.filter((product) =>
+      product.pricePerSquareFoot === "0.00" && product.pricePerSheet === "0.00",
+    ).map((product) => product.code),
     glassesWithoutSheet: glass.products.filter((product) => !product.sheetWidthCm).map((product) => product.code),
     profilesWithoutImage: aluminum.catalog.profiles.filter((profile) => !profile.imagePath).map((profile) => profile.code),
   };
