@@ -35,6 +35,6 @@ Generado: 2026-09-21T18:32:31.760Z
 
 ## Respaldo, Preview y Producción
 
-- Respaldo de Blob: pendiente antes de importar en un store.
-- Preview: pendiente de despliegue e importación en el store de Preview.
-- Producción: pendiente de aprobación explícita del usuario después del Preview.
+- Respaldo de Blob: pendiente. No se exportó ni importó ningún dato persistente.
+- Preview: la rama quedó desplegada y lista para revisar, pero su `BLOB_READ_WRITE_TOKEN` coincide con el de Producción. No se importaron datos para evitar alterar Producción durante una prueba.
+- Producción: pendiente de un Blob aislado para Preview y de aprobación explícita del usuario después de validar allí el volcado.
