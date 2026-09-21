@@ -167,7 +167,6 @@ export function CatalogProductPicker({
   const input = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const queryRef = useRef("");
   const [active, setActive] = useState(0);
   const [recentIds, setRecentIds] = useState<string[]>(() =>
     typeof window === "undefined" ? [] : readRecent(recentKey));
@@ -180,15 +179,9 @@ export function CatalogProductPicker({
     const wasSelected = Boolean(previousValue.current);
     previousValue.current = value;
     if (value || !wasSelected) return;
-    let cancelled = false;
-    const queryAtTransition = queryRef.current;
-    queueMicrotask(() => {
-      if (cancelled || queryRef.current !== queryAtTransition) return;
-      queryRef.current = "";
-      setQuery("");
-      setActive(0);
-    });
-    return () => { cancelled = true; };
+    // The parent has just cleared the selected product; reset the picker UI.
+    setQuery("");
+    setActive(0);
   }, [value]);
 
   const matchingProducts = useMemo(() => products.filter((product) =>
@@ -245,7 +238,6 @@ export function CatalogProductPicker({
 
   function chooseProduct(product: PickerProduct) {
     onChange(product.id);
-    queryRef.current = "";
     setQuery("");
     setOpen(false);
     remember(product.id);
@@ -255,7 +247,6 @@ export function CatalogProductPicker({
     if (option.kind === "product") chooseProduct(option.product);
     else if (option.kind === "family") {
       onFamilyChange(option.family.id);
-      queryRef.current = "";
       setQuery("");
       setActive(0);
       setOpen(true);
@@ -269,7 +260,6 @@ export function CatalogProductPicker({
   function clear() {
     onChange("");
     onFamilyChange("");
-    queryRef.current = "";
     setQuery("");
     setOpen(true);
     input.current?.focus();
@@ -302,7 +292,6 @@ export function CatalogProductPicker({
           if (selected) event.currentTarget.select();
         }}
         onChange={(event) => {
-          queryRef.current = event.target.value;
           setQuery(event.target.value);
           if (selected) onChange("");
           setOpen(true);
