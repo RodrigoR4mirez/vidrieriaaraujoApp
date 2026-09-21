@@ -73,8 +73,8 @@ export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: Catalo
       const productType = isProfileDraftItem(item) ? "PROFILE" as const : "GLASS" as const;
       const fresh = { ...emptyForm(), productType };
       const nextForm = old.editId ? fresh : productType === "PROFILE"
-        ? { ...old.form, metersRequested: "", quantity: 1 }
-        : { ...old.form, widthCm: "", heightCm: "", quantity: 1 };
+        ? { ...old.form, profileId: "", profileFamilyId: "", colorId: "", metersRequested: "", quantity: 1 }
+        : { ...old.form, productId: "", familyId: "", widthCm: "", heightCm: "", quantity: 1 };
       return {
         ...old,
         items: old.editId ? old.items.map((entry) => entry.id === old.editId ? item : entry) : [...old.items, item],

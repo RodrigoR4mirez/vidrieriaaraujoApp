@@ -174,6 +174,17 @@ export function CatalogProductPicker({
   const familyMode = catalogFamilyMode(families.length);
   const selectedFamily = families.find((family) => family.id === familyId);
 
+  useEffect(() => {
+    if (value) return;
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (cancelled) return;
+      setQuery("");
+      setActive(0);
+    });
+    return () => { cancelled = true; };
+  }, [value]);
+
   const matchingProducts = useMemo(() => products.filter((product) =>
     (!familyId || product.familyId === familyId) &&
     matchesCatalogSearch(productSearchText(product), query),

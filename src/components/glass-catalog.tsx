@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { PriceInput } from "./price-input";
-import { Plus, Pencil, Eye, EyeOff, Search } from "lucide-react";
+import { Plus, Pencil, Eye, EyeOff, Search, SlidersHorizontal } from "lucide-react";
 import {
   type CatalogState,
   type Product,
@@ -24,6 +24,8 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
   const [color, setColor] = useState("");
   const [thickness, setThickness] = useState("");
   const [editing, setEditing] = useState<Product | null | undefined>();
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const activeFilters = [family, color, thickness].filter(Boolean).length + (status === "ALL" ? 0 : 1);
   const [error, setError] = useState("");
   const [pending, startTransition] = useTransition();
   const router = useRouter();
@@ -49,6 +51,17 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>
+        <button
+          type="button"
+          className="icon-button filters-toggle"
+          aria-label="Filtros"
+          aria-expanded={filtersOpen}
+          onClick={() => setFiltersOpen((open) => !open)}
+        >
+          <SlidersHorizontal size={18} />
+          {activeFilters > 0 && <span className="filters-count">{activeFilters}</span>}
+        </button>
+        <div className={`toolbar-filters ${filtersOpen ? "is-open" : ""}`}>
         {[
           {
             label: "Familia",
@@ -94,22 +107,20 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
           <option value="ACTIVE">Activos</option>
           <option value="HIDDEN">Ocultos</option>
         </select>
-        <Button onClick={() => setEditing(null)}>
+        </div>
+        <Button aria-label="Nuevo vidrio" onClick={() => setEditing(null)}>
           <Plus size={18} />
-          Nuevo vidrio
+          <span className="button-label">Nuevo vidrio</span>
         </Button>
       </div>
       {error && <Notice error>{error}</Notice>}
       {products.length ? (
         <div className="table-scroll">
-          <table>
+          <table className="glass-table">
             <thead>
               <tr>
                 <th>Código</th>
-                <th>Familia</th>
-                <th>Color / acabado</th>
-                <th>Espesor</th>
-                <th>Plancha (cm)</th>
+                <th>Vidrio</th>
                 <th>Pie²</th>
                 <th>Plancha</th>
                 <th>Estado</th>
@@ -120,29 +131,32 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
               {products.map((p) => {
                 const detail = productDetails(p, catalog.values);
                 return (
-                  <tr key={p.id}>
-                    <td>
+                  <tr key={p.id} className={p.status === "HIDDEN" ? "is-hidden" : ""}>
+                    <td className="cell-code">
                       <strong>{p.code}</strong>
                     </td>
-                    <td>
-                      {detail.family}
+                    <td className="cell-desc">
+                      {[detail.family, detail.colorFinish, detail.thickness]
+                        .filter(Boolean)
+                        .join(" · ")}
                       <small>{detail.cathedralDesign}</small>
                     </td>
-                    <td>{detail.colorFinish || "—"}</td>
-                    <td>{detail.thickness}</td>
-                    <td>
-                      {p.sheetWidthCm
-                        ? `${p.sheetWidthCm} × ${p.sheetHeightCm}`
-                        : "—"}
+                    <td className="numeric cell-price">
+                      {money(p.pricePerSquareFoot)}
+                      <small className="mobile-unit">pie²</small>
                     </td>
-                    <td className="numeric">{money(p.pricePerSquareFoot)}</td>
-                    <td className="numeric">
+                    <td className="numeric cell-sheet">
                       {money(p.pricePerSheet || "0.00")}
+                      <small>
+                        {p.sheetWidthCm
+                          ? `${p.sheetWidthCm} × ${p.sheetHeightCm} cm`
+                          : "—"}
+                      </small>
                     </td>
-                    <td>
+                    <td className="cell-status">
                       <StatusBadge status={p.status} />
                     </td>
-                    <td>
+                    <td className="cell-actions">
                       <div className="row-actions">
                         <button
                           className="icon-button"
