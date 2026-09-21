@@ -82,8 +82,8 @@ export function ProfileItemForm({
     mode: form.profileMode,
     quantity: form.quantity,
     ...(form.profileMode === "PROFILE_METERS" && form.metersRequested ? {
-      metersRequested: profileMeasurementInMeters(form.metersRequested, form.profileMeasurementUnit),
-      measurementUnit: form.profileMeasurementUnit,
+      metersRequested: profileMeasurementInMeters(form.metersRequested, "CENTIMETERS"),
+      measurementUnit: "CENTIMETERS" as const,
       measurementValue: form.metersRequested,
     } : {}),
   };
@@ -111,7 +111,7 @@ export function ProfileItemForm({
       profileId: keepProfile ? form.profileId : "",
       colorId: keepColor ? form.colorId : "",
       metersRequested: nextMode === "PROFILE_BAR" ? "" : form.metersRequested,
-      profileMeasurementUnit: nextMode === "PROFILE_BAR" ? "METERS" : form.profileMeasurementUnit,
+      profileMeasurementUnit: "CENTIMETERS",
     });
     setAvailabilityNotice(current && !keepProfile
       ? `Este producto no se vende ${nextMode === "PROFILE_BAR" ? "por barra" : "por medida"} y se quitó de la selección.`
@@ -192,20 +192,10 @@ export function ProfileItemForm({
           </div>
         </div>
         {form.profileMode === "PROFILE_METERS" && <div className="field">
-          <span className="field-label">Unidad de medida</span>
-          <div className="segments compact-segments" aria-label="Unidad de medida">
-            <button type="button" className={form.profileMeasurementUnit === "METERS" ? "selected" : ""}
-              aria-pressed={form.profileMeasurementUnit === "METERS"}
-              onClick={() => patch({ profileMeasurementUnit: "METERS", metersRequested: "" })}>Metros</button>
-            <button type="button" className={form.profileMeasurementUnit === "CENTIMETERS" ? "selected" : ""}
-              aria-pressed={form.profileMeasurementUnit === "CENTIMETERS"}
-              onClick={() => patch({ profileMeasurementUnit: "CENTIMETERS", metersRequested: "" })}>Centímetros</button>
-          </div>
-        </div>}
-        {form.profileMode === "PROFILE_METERS" && <div className="field">
-          <label htmlFor="meters-requested">Medida solicitada ({form.profileMeasurementUnit === "CENTIMETERS" ? "cm" : "m"})</label>
+          <label htmlFor="meters-requested">Medida de corte (cm)</label>
           <input id="meters-requested" type="number" inputMode="decimal" min="0.01" step="any"
             required value={form.metersRequested} onChange={(event) => patch({ metersRequested: event.target.value })} />
+          {estimate?.mode === "PROFILE_METERS" && <small className="muted">Equivale a {estimate.metersRequested} m</small>}
         </div>}
         <QuantityControl value={form.quantity ?? NaN}
           onChange={(quantity) => patch({ quantity: Number.isFinite(quantity) ? quantity : null })}

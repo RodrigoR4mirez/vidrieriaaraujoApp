@@ -105,6 +105,10 @@ export function profileMeasurementInMeters(
   return unit === "CENTIMETERS" ? new D(value).div(100).toFixed() : new D(value).toFixed();
 }
 
+export function profileMeasurementInCentimeters(value: Decimal.Value) {
+  return new D(value).times(100).toFixed();
+}
+
 export function calculateProfileMeters(raw: z.input<typeof profileMetersSchema>) {
   const input = profileMetersSchema.parse(raw);
   const meterUnitPrice = roundHalfUp(

@@ -447,19 +447,16 @@ Cada perfil cotizable tiene código único, descripción, familia, longitud de b
 
 ### Modalidades
 
-`PROFILE_METERS` vende tramos por medida. Entradas: perfil, color, una medida positiva en metros o centímetros y cantidad entera mayor o igual a uno. La unidad elegida y el valor ingresado se conservan en el ítem confirmado.
+`PROFILE_METERS` vende tramos por medida. Las nuevas cotizaciones ingresan siempre una medida positiva en centímetros; se muestra su equivalente en metros. La barra comercial conserva su longitud en metros. Las cotizaciones históricas que se registraron en metros siguen siendo legibles.
 
 ```text
 precioMetroRaw = precioBarra / longitudBarraMetros
 precioMetroConRecargoRaw = precioMetroRaw * 1.10
 precioUnitarioMetro = roundHalfUp(precioMetroConRecargoRaw, 2)
-si la unidad es metros:
-  importeItem = roundHalfUp(precioUnitarioMetro * metrosSolicitados * cantidad, 2)
-si la unidad es centímetros:
-  importeItem = roundHalfUp((precioUnitarioMetro / 100) * centimetrosSolicitados * cantidad, 2)
+importeItem = roundHalfUp((precioUnitarioMetro / 100) * centimetrosSolicitados * cantidad, 2)
 ```
 
-El recargo fijo para venta fraccionada es 10%. La longitud comercial inicial proveniente de la referencia aprobada es 6 metros, pero se conserva en cada perfil para no convertirla en un número mágico. En pantalla se muestra la fórmula con la unidad elegida; en centímetros se muestra explícitamente la conversión `centímetros ÷ 100`.
+El recargo fijo para venta fraccionada es 10%. La longitud comercial inicial proveniente de la referencia aprobada es 6 metros, pero se conserva en cada perfil para no convertirla en un número mágico. En pantalla se muestra la conversión `centímetros ÷ 100`.
 
 `PROFILE_BAR` vende barras completas. Entradas: perfil, color y cantidad entera mayor o igual a uno.
 
@@ -472,6 +469,6 @@ No se solicita cantidad de metros para barra completa. Todos los cálculos usan 
 
 ### Snapshot y total unificado
 
-El ítem confirmado congela como mínimo: tipo de ítem, modalidad, perfil y código, descripción y familia originales, color, imagen relativa versionada, longitud comercial, precio por barra, porcentaje de recargo cuando corresponda, medida solicitada, unidad elegida y su equivalente en metros, cantidad, precio unitario e importe.
+El ítem confirmado congela como mínimo: tipo de ítem, modalidad, perfil y código, descripción y familia originales, color, imagen relativa versionada, longitud comercial, precio por barra, porcentaje de recargo cuando corresponda, medida solicitada en centímetros y su equivalente en metros, cantidad, precio unitario e importe.
 
 El subtotal unificado es la suma exacta de los importes de vidrios y perfiles. El total a cobrar conserva la regla de la sección 5: se redondea una sola vez hacia arriba a `.50` o al entero. No se aplica IGV ni otro impuesto.

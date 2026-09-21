@@ -23,6 +23,7 @@ import { priceDraft } from "@/application/use-cases";
 import { confirmAction } from "@/app/actions";
 import { money } from "@/lib/formatting";
 import { quotationTechnicalDetail } from "@/lib/quotation-item";
+import { profileMeasurementInCentimeters } from "@/domain/quotation/calculation";
 import { Button, Dialog, Notice, QuantityControl } from "./ui";
 import {
   CatalogProductPicker,
@@ -73,7 +74,7 @@ export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: Catalo
       const productType = isProfileDraftItem(item) ? "PROFILE" as const : "GLASS" as const;
       const fresh = { ...emptyForm(), productType };
       const nextForm = old.editId ? fresh : productType === "PROFILE"
-        ? { ...old.form, profileId: "", profileFamilyId: "", colorId: "", metersRequested: "", profileMeasurementUnit: "METERS" as const, quantity: 1 }
+        ? { ...old.form, profileId: "", profileFamilyId: "", colorId: "", metersRequested: "", profileMeasurementUnit: "CENTIMETERS" as const, quantity: 1 }
         : { ...old.form, productId: "", familyId: "", widthCm: "", heightCm: "", quantity: 1 };
       return {
         ...old,
@@ -142,8 +143,10 @@ export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: Catalo
               update((old) => ({ ...old, editId: id, form: {
                 ...emptyForm(), productType: "PROFILE", profileMode: item.mode,
                 profileFamilyId: profile?.familyId || "", profileId: item.profileId,
-                colorId: item.colorId, metersRequested: item.mode === "PROFILE_METERS" ? item.measurementValue || item.metersRequested : "",
-                profileMeasurementUnit: item.mode === "PROFILE_METERS" ? item.measurementUnit : "METERS",
+                colorId: item.colorId, metersRequested: item.mode === "PROFILE_METERS"
+                  ? item.measurementUnit === "CENTIMETERS" ? item.measurementValue || item.metersRequested : profileMeasurementInCentimeters(item.metersRequested)
+                  : "",
+                profileMeasurementUnit: "CENTIMETERS",
                 quantity: item.quantity,
               } }));
               return;
