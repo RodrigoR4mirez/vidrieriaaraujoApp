@@ -162,10 +162,10 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
                       <strong>{p.code}</strong>
                     </td>
                     <td className="cell-desc">
-                      {[detail.family, detail.colorFinish, detail.thickness]
+                      {detail.productDescription}
+                      <small>{[detail.family, detail.colorFinish, detail.thickness, detail.cathedralDesign]
                         .filter(Boolean)
-                        .join(" · ")}
-                      <small>{detail.cathedralDesign}</small>
+                        .join(" · ")}</small>
                     </td>
                     <td className="numeric cell-price">
                       {money(p.pricePerSquareFoot)}
@@ -249,8 +249,7 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
             <span className="eyebrow">Código</span>
             <strong className="profile-code">{selected.code}</strong>
             <p>
-              {[detail.family, detail.colorFinish, detail.thickness].filter(Boolean).join(" · ")}
-              {detail.cathedralDesign ? ` · ${detail.cathedralDesign}` : ""}
+              {detail.productDescription}
             </p>
             <dl>
               <div><dt>Familia</dt><dd>{detail.family || "—"}</dd></div>
@@ -324,6 +323,7 @@ function ProductForm({
   } = useForm<ProductInput>({
     defaultValues: editing || {
       code: "",
+      description: "",
       familyId: "",
       thicknessId: "",
       colorFinishId: "",
@@ -390,6 +390,14 @@ function ProductForm({
           required
           maxLength={40}
           {...register("code")}
+        />
+      </div>
+      <div className="field">
+        <label htmlFor="product-description">Nombre / detalle (opcional)</label>
+        <input
+          id="product-description"
+          maxLength={240}
+          {...register("description")}
         />
       </div>
       <div className="form-grid">

@@ -21,7 +21,7 @@ Solo almacenamiento privado. Los stores de Preview/desarrollo y Production tiene
 
 `BaseValue`: id UUID, schemaVersion, revision, category, name, description, status, createdAt, updatedAt. Categorías: `families`, `colors-finishes`, `thicknesses`, `cathedral-designs`. Nuevos registros no tienen código ni observación. Los campos antiguos `code` y `observation` son opcionales y se conservan al leer, editar y respaldar datos existentes; no aparecen en la UI. Las relaciones usan siempre el ID.
 
-`Product`: id UUID, schemaVersion, revision, code único normalizado en mayúsculas, familyId, thicknessId, colorFinishId opcional, cathedralDesignId opcional, sheetWidthCm y sheetHeightCm opcionales e informativos de forma independiente, pricePerSquareFoot, pricePerSheet opcional, status, createdAt, updatedAt.
+`Product`: id UUID, schemaVersion, revision, code único normalizado en mayúsculas, `description` opcional con el nombre/detalle de origen, familyId, thicknessId, colorFinishId opcional, cathedralDesignId opcional, sheetWidthCm y sheetHeightCm opcionales e informativos de forma independiente, pricePerSquareFoot, pricePerSheet opcional, status, createdAt, updatedAt. Los productos históricos sin `description` siguen siendo válidos y muestran el detalle compuesto por sus referencias base.
 
 Estados: ACTIVE/HIDDEN. No hay borrado físico. Decimales persistidos como strings; cantidades como enteros. Las medidas de plancha son informativas. Su precio se usa exclusivamente en modalidad `SHEET`. Nuevas escrituras guardan ambos precios; ausentes o vacíos pasan a `0.00`. Lecturas antiguas conservan `pricePerSheet` ausente sin modificar el JSON.
 

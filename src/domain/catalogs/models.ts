@@ -65,6 +65,7 @@ export const priceInputSchema = catalogPrice.regex(
 );
 export const productInputSchema = z.object({
   code: codeSchema,
+  description: z.string().trim().max(240).default(""),
   familyId: idSchema,
   thicknessId: idSchema,
   colorFinishId: z
@@ -84,6 +85,8 @@ export const productInputSchema = z.object({
 // Reading legacy records must not insert fields or rewrite historic values.
 export const productSchema = productInputSchema.extend({
   ...metadata,
+  // Older catalog products did not persist the source description.
+  description: z.string().max(240).optional(),
   pricePerSquareFoot: catalogPrice,
   pricePerSheet: catalogPrice.optional(),
 });
@@ -115,7 +118,7 @@ export function productDetails(product: Product, values: BaseValue[]) {
     thickness,
     colorFinish,
     cathedralDesign,
-    productDescription: [family, colorFinish, thickness, cathedralDesign]
+    productDescription: product.description?.trim() || [family, colorFinish, thickness, cathedralDesign]
       .filter(Boolean)
       .join(" · "),
   };

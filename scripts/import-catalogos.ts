@@ -24,12 +24,14 @@ const sources = {
 };
 const output = {
   backup: path.join(root, "data/catalogos-importacion.json"),
+  glassBackup: path.join(root, "backups/catalogo-vidrios-importacion.json"),
   aluminumSeed: path.join(root, "src/data/aluminum-seed.json"),
   report: path.join(root, "INFORME-VOLCADO.md"),
   profiles: path.join(root, "public/profiles"),
 };
 const write = process.argv.includes("--write");
 const glassOnly = process.argv.includes("--glass-only");
+const glassBackup = process.argv.includes("--glass-backup");
 const createdAt = new Date().toISOString();
 
 type Cell = ExcelJS.CellValue | null | undefined;
@@ -118,9 +120,20 @@ function metadata(namespace: string, name: string) {
   return { id: stableId(namespace, name), schemaVersion: 1 as const, revision: 1, createdAt, updatedAt: createdAt };
 }
 
+function baseCode(category: Category, name: string) {
+  if (category === "thicknesses") {
+    const thickness = /^(\d+(?:[.,]\d+)?)\s*mm$/i.exec(name.trim());
+    if (thickness) return `${thickness[1].replace(",", ".").replace(".", "_")}MM`;
+  }
+  return normalizeCode(name);
+}
+
 function base(category: Category, name: string): BaseValue {
   const normalizedName = title(canonical(name));
-  return { ...metadata(`glass-${category}`, normalizedName), category, name: normalizedName, description: "", status: "ACTIVE" };
+  return {
+    ...metadata(`glass-${category}`, normalizedName), category, name: normalizedName,
+    code: baseCode(category, normalizedName), description: "", status: "ACTIVE",
+  };
 }
 
 function imageForRow(sheet: ExcelJS.Worksheet) {
@@ -248,7 +261,43 @@ function glassAttributes(family: string, description: string) {
 }
 
 function glassFamily(family: string) {
-  return ["INCOLOROS", "BRONCE", "GRIS"].includes(family) ? "Primario" : family;
+  if (["INCOLOROS", "BRONCE", "GRIS"].includes(family)) return "Primario";
+  if (family.startsWith("CATEDRAL")) return "Catedral";
+  if (family === "ESPEJOS") return "Espejo";
+  return title(family);
+}
+
+function catalogToken(value: BaseValue, siblings: BaseValue[]) {
+  const normalized = normalizeCode(value.code || value.name);
+  if (normalized.length > 4 && /[-_]/.test(normalized)) return normalized;
+  const prefix = normalized.slice(0, 4);
+  const collides = siblings.some((sibling) =>
+    sibling.id !== value.id && normalizeCode(sibling.code || sibling.name).startsWith(prefix),
+  );
+  return collides ? normalized : prefix;
+}
+
+function sheetCode(value: string) {
+  return sheetCm(value, "Código de medida").replace(".", "");
+}
+
+function glassProductCode(
+  family: BaseValue,
+  color: BaseValue | undefined,
+  thickness: BaseValue,
+  design: BaseValue | undefined,
+  families: BaseValue[],
+  colors: BaseValue[],
+  designs: BaseValue[],
+  width: string,
+  height: string,
+) {
+  const segments = [catalogToken(family, families)];
+  if (color) segments.push(catalogToken(color, colors));
+  if (design) segments.push(catalogToken(design, designs));
+  segments.push(normalizeCode(thickness.code || thickness.name));
+  if (width && height) segments.push(`${sheetCode(width)}X${sheetCode(height)}`);
+  return normalizeCode(segments.join("-"));
 }
 
 async function readGlass() {
@@ -295,14 +344,29 @@ async function readGlass() {
     const thicknessId = addBase("thicknesses", thickness);
     const colorFinishId = attributes.color ? addBase("colors-finishes", attributes.color) : undefined;
     const cathedralDesignId = attributes.design ? addBase("cathedral-designs", attributes.design) : undefined;
-    const productCode = normalizeCode(`GL-${String(record.row).padStart(3, "0")}-${record.description}`.slice(0, 40));
+    const familyValue = values.find((value) => value.id === familyId)!;
+    const colorValue = colorFinishId ? values.find((value) => value.id === colorFinishId) : undefined;
+    const thicknessValue = values.find((value) => value.id === thicknessId)!;
+    const designValue = cathedralDesignId ? values.find((value) => value.id === cathedralDesignId) : undefined;
+    const productCode = glassProductCode(
+      familyValue, colorValue, thicknessValue, designValue,
+      values.filter((value) => value.category === "families"),
+      values.filter((value) => value.category === "colors-finishes"),
+      values.filter((value) => value.category === "cathedral-designs"),
+      record.width, record.height,
+    );
     return {
-      ...metadata("glass-product", productCode), code: productCode, familyId, thicknessId, colorFinishId, cathedralDesignId,
+      ...metadata("glass-product", productCode), code: productCode, description: record.description,
+      familyId, thicknessId, colorFinishId, cathedralDesignId,
       sheetWidthCm: record.width ? sheetCm(record.width, `Vidrios fila ${record.row}`) : undefined,
       sheetHeightCm: record.height ? sheetCm(record.height, `Vidrios fila ${record.row}`) : undefined,
       pricePerSquareFoot: record.pricePerSquareFoot, pricePerSheet: record.pricePerSheet, status: "ACTIVE",
     };
   });
+  const duplicateCodes = products.map((product) => product.code)
+    .filter((code, index, codes) => codes.indexOf(code) !== index);
+  if (duplicateCodes.length)
+    throw new Error(`Vidrios: el código generado no es único: ${[...new Set(duplicateCodes)].join(", ")}.`);
   return catalogStateSchema.parse({ schemaVersion: 1, values, products });
 }
 
@@ -323,7 +387,7 @@ function report(result: ImportResult) {
 `## Convenciones\n\n` +
 `- Los códigos físicos de perfiles se normalizan a mayúsculas, sin acentos ni espacios. Ejemplo: \`U13\` permanece \`U13\`.\n` +
 `- Los duplicados que representan variantes de color se distinguen con sufijo: \`5220-MATE\` y \`5220-NEGRO\`.\n` +
-`- Los vidrios no traen código físico. Se genera \`GL-<fila>-<descripción>\`, por ejemplo \`GL-004-INCOLORO-2MM\`.\n` +
+`- Los vidrios no traen código físico. Se genera con familia (4 letras), color (4 letras si aplica), diseño catedral (4 letras si aplica), espesor y medidas de plancha. Ejemplos: \`PRIM-INCO-2MM-160X220\`, \`CATE-INCO-LLOV-5MM-183X244\`.\n` +
 `- Cada imagen de perfil se guarda como \`public/profiles/<CÓDIGO>.png\` cuando el Excel la ancla a esa fila.\n` +
 `- Las medidas de plancha de vidrios se convierten de metros a centímetros; \`1.60 × 2.20\` pasa a \`160 × 220 cm\`.\n` +
 `- Las columnas \`PIE\` y \`PLANCHA\` del Excel se conservan como precios por pie² y plancha, respectivamente; una celda vacía se guarda como \`0.00\`. La falta de espesor se representa como \`Sin especificar\`, sin inventar un espesor físico.\n\n` +
@@ -342,32 +406,41 @@ function report(result: ImportResult) {
 }
 
 async function writeAssets(result: ImportResult) {
-  await mkdir(path.dirname(output.backup), { recursive: true });
-  const existing = glassOnly
-    ? validateBackup(JSON.parse(await readFile(output.backup, "utf8")))
-    : undefined;
-  const backup = validateBackup({
-    schemaVersion: 1 as const, exportedAt: createdAt,
-    entries: existing
-      ? existing.entries.map((entry) => entry.pathname === "data/v1/catalog.json"
-        ? { pathname: entry.pathname, value: result.glass }
-        : entry)
-      : [
-        { pathname: "data/v1/catalog.json", value: result.glass },
-        { pathname: "data/v1/aluminum-catalog.json", value: result.aluminum },
-      ],
-  });
-  await writeFile(output.backup, `${JSON.stringify(backup, null, 2)}\n`);
-  if (!glassOnly) {
-    await mkdir(output.profiles, { recursive: true });
-    await writeFile(output.aluminumSeed, `${JSON.stringify(result.aluminum, null, 2)}\n`);
-    for (const [code, image] of result.profileImages)
-      await writeFile(path.join(output.profiles, `${code}.${image.extension}`), image.buffer);
-    const existingProfiles = await readdir(output.profiles);
-    await Promise.all(existingProfiles.filter((name) => /^image\d+\.png$/i.test(name))
-      .map((name) => rm(path.join(output.profiles, name))));
+  if (write) {
+    await mkdir(path.dirname(output.backup), { recursive: true });
+    const existing = glassOnly
+      ? validateBackup(JSON.parse(await readFile(output.backup, "utf8")))
+      : undefined;
+    const backup = validateBackup({
+      schemaVersion: 1 as const, exportedAt: createdAt,
+      entries: existing
+        ? existing.entries.map((entry) => entry.pathname === "data/v1/catalog.json"
+          ? { pathname: entry.pathname, value: result.glass }
+          : entry)
+        : [
+          { pathname: "data/v1/catalog.json", value: result.glass },
+          { pathname: "data/v1/aluminum-catalog.json", value: result.aluminum },
+        ],
+    });
+    await writeFile(output.backup, `${JSON.stringify(backup, null, 2)}\n`);
+    if (!glassOnly) {
+      await mkdir(output.profiles, { recursive: true });
+      await writeFile(output.aluminumSeed, `${JSON.stringify(result.aluminum, null, 2)}\n`);
+      for (const [code, image] of result.profileImages)
+        await writeFile(path.join(output.profiles, `${code}.${image.extension}`), image.buffer);
+      const existingProfiles = await readdir(output.profiles);
+      await Promise.all(existingProfiles.filter((name) => /^image\d+\.png$/i.test(name))
+        .map((name) => rm(path.join(output.profiles, name))));
+    }
+    await writeFile(output.report, report(result));
   }
-  await writeFile(output.report, report(result));
+  if (glassBackup) {
+    await mkdir(path.dirname(output.glassBackup), { recursive: true });
+    await writeFile(output.glassBackup, `${JSON.stringify(validateBackup({
+      schemaVersion: 1 as const, exportedAt: createdAt,
+      entries: [{ pathname: "data/v1/catalog.json", value: result.glass }],
+    }), null, 2)}\n`);
+  }
 }
 
 async function main() {
@@ -387,7 +460,7 @@ async function main() {
     { pathname: "data/v1/catalog.json", value: result.glass },
     { pathname: "data/v1/aluminum-catalog.json", value: result.aluminum },
   ] });
-  if (write) await writeAssets(result);
+  if (write || glassBackup) await writeAssets(result);
   console.log(JSON.stringify({
     mode: write ? "write" : "dry-run", profiles: result.aluminum.profiles.length,
     profileFamilies: result.aluminum.families.length, profileImages: result.profileImages.size,

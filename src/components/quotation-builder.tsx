@@ -301,8 +301,7 @@ function ItemForm({
   const product = available.find((entry) => entry.id === productId);
   const pickerProducts: PickerProduct[] = available.map((entry) => {
     const details = productDetails(entry, catalog.values);
-    const description = [details.cathedralDesign, details.colorFinish, details.thickness]
-      .filter(Boolean).join(" · ") || details.productDescription || entry.code;
+    const description = details.productDescription || entry.code;
     return {
       id: entry.id,
       code: entry.code,

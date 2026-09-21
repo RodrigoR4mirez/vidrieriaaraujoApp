@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "exportedAt": "2026-09-21T19:59:40.953Z",
+  "exportedAt": "2026-09-21T23:21:45.165Z",
   "entries": [
     {
       "pathname": "data/v1/catalog.json",
@@ -15,8 +15,9 @@
             "id": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "PRIMARIO"
           },
           {
             "name": "2 Mm",
@@ -26,8 +27,9 @@
             "id": "96b3c98b-b893-5086-8553-0c6eb92d75ae",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "2MM"
           },
           {
             "name": "Incoloro",
@@ -37,8 +39,9 @@
             "id": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "INCOLORO"
           },
           {
             "name": "3 Mm",
@@ -48,8 +51,9 @@
             "id": "f820bd0c-1219-5ec3-a6aa-16a056e0b442",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "3MM"
           },
           {
             "name": "4 Mm",
@@ -59,8 +63,9 @@
             "id": "fada05ae-0af8-528b-a2df-dd8b4288120b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "4MM"
           },
           {
             "name": "5.5 Mm",
@@ -70,8 +75,9 @@
             "id": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "5_5MM"
           },
           {
             "name": "6 Mm",
@@ -81,8 +87,9 @@
             "id": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "6MM"
           },
           {
             "name": "8 Mm",
@@ -92,8 +99,9 @@
             "id": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "8MM"
           },
           {
             "name": "10 Mm",
@@ -103,8 +111,9 @@
             "id": "1f6748f9-8660-530d-8af1-ec304536eaf0",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "10MM"
           },
           {
             "name": "Bronce",
@@ -114,8 +123,9 @@
             "id": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "BRONCE"
           },
           {
             "name": "Gris",
@@ -125,8 +135,9 @@
             "id": "be123abe-3ad0-5876-aed1-44c3aad59307",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "GRIS"
           },
           {
             "name": "Reflejante",
@@ -136,8 +147,9 @@
             "id": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "REFLEJANTE"
           },
           {
             "name": "Azul Cielo",
@@ -147,8 +159,9 @@
             "id": "c4d6bc8f-ee76-5955-8516-8b6f7d16c649",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "AZUL-CIELO"
           },
           {
             "name": "Azul Electra",
@@ -158,8 +171,9 @@
             "id": "d1811065-faad-5ef3-818f-fd8141053f18",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "AZUL-ELECTRA"
           },
           {
             "name": "Verde",
@@ -169,30 +183,33 @@
             "id": "b940dc71-9763-582d-b687-901d359f8f35",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "VERDE"
           },
           {
-            "name": "Espejos",
+            "name": "Espejo",
             "description": "",
             "status": "ACTIVE",
             "category": "families",
-            "id": "4f441059-9c16-50dc-afab-84b736894a33",
+            "id": "0a865db4-693c-57fa-b74e-53f094b952d5",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "ESPEJO"
           },
           {
-            "name": "Catedral Incoloro Ch",
+            "name": "Catedral",
             "description": "",
             "status": "ACTIVE",
             "category": "families",
-            "id": "03f104d6-cbe2-5252-b31c-b3818e90e1f9",
+            "id": "18448da1-2d04-523d-9e28-ede494e47e55",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "CATEDRAL"
           },
           {
             "name": "Sin Especificar",
@@ -202,8 +219,9 @@
             "id": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "SIN-ESPECIFICAR"
           },
           {
             "name": "Cuadriculado",
@@ -213,8 +231,9 @@
             "id": "5365d5eb-ec94-5022-81af-d5b7dc40c920",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "CUADRICULADO"
           },
           {
             "name": "Arabesco",
@@ -224,8 +243,9 @@
             "id": "e59b0504-a89d-5579-9af6-83b762f713c9",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "ARABESCO"
           },
           {
             "name": "Flora",
@@ -235,8 +255,9 @@
             "id": "0c81bcca-cdd4-541f-96b7-deca83125223",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "FLORA"
           },
           {
             "name": "Llovizna",
@@ -246,8 +267,9 @@
             "id": "fa047b05-b7da-5c67-bdb5-1da3454e8241",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "LLOVIZNA"
           },
           {
             "name": "5 Mm",
@@ -257,19 +279,9 @@
             "id": "3e650e0e-7a40-50bf-9ca7-41010ac2f76f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
-          },
-          {
-            "name": "Catedral Color Ch",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "families",
-            "id": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "5MM"
           },
           {
             "name": "Ambar",
@@ -279,8 +291,9 @@
             "id": "c14cf5f4-8ffa-5341-ac5d-ecf250f62c2e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "AMBAR"
           },
           {
             "name": "Oceanico",
@@ -290,8 +303,9 @@
             "id": "2b423a5e-5f5f-5c1a-a2ce-e5691d04c1f2",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "OCEANICO"
           },
           {
             "name": "Azul",
@@ -301,8 +315,9 @@
             "id": "da54d877-2f06-530e-ac18-0bde22fc8c04",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "AZUL"
           },
           {
             "name": "Laminado",
@@ -312,8 +327,9 @@
             "id": "a78cfa8e-bff5-5576-8858-62829eea2b5f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "LAMINADO"
           },
           {
             "name": "Arenado",
@@ -323,13 +339,15 @@
             "id": "96a47682-4cd1-5ee9-bc15-4fbefa399b35",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z",
+            "code": "ARENADO"
           }
         ],
         "products": [
           {
-            "code": "GL-004-INCOLORO-2MM",
+            "code": "PRIM-INCO-2MM-160X220",
+            "description": "incoloro 2mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "96b3c98b-b893-5086-8553-0c6eb92d75ae",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
@@ -338,14 +356,15 @@
             "pricePerSquareFoot": "1.70",
             "pricePerSheet": "54.00",
             "status": "ACTIVE",
-            "id": "9ee2f3d3-0da1-522d-bf90-bb0aec980947",
+            "id": "aa7018bc-66a3-59a5-a00d-f354e74265fc",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-005-INCOLORO-3MM",
+            "code": "PRIM-INCO-3MM-183X244",
+            "description": "incoloro 3mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "f820bd0c-1219-5ec3-a6aa-16a056e0b442",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
@@ -354,14 +373,15 @@
             "pricePerSquareFoot": "2.00",
             "pricePerSheet": "81.00",
             "status": "ACTIVE",
-            "id": "ed8dbc63-9132-55d1-9203-ef23050b233c",
+            "id": "0815f67b-7fc5-57ac-98e4-57176185f909",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-006-INCOLORO-4MM",
+            "code": "PRIM-INCO-4MM-214X330",
+            "description": "incoloro 4mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "fada05ae-0af8-528b-a2df-dd8b4288120b",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
@@ -370,14 +390,15 @@
             "pricePerSquareFoot": "2.30",
             "pricePerSheet": "147.00",
             "status": "ACTIVE",
-            "id": "70e0fa72-0cf5-555c-982d-95e6ab03274d",
+            "id": "d1c9fc0e-6ab5-5fa7-aab2-fca42e6c9670",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-007-INCOLORO-5-5MM",
+            "code": "PRIM-INCO-5_5MM-214X330",
+            "description": "incoloro 5,5mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
@@ -386,14 +407,15 @@
             "pricePerSquareFoot": "2.50",
             "pricePerSheet": "168.00",
             "status": "ACTIVE",
-            "id": "5a578670-4f95-5061-bd5b-d5d0bb2bebcc",
+            "id": "62e87f77-fd23-5ec9-82e9-87f69c69c353",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-008-INCOLORO-6MM",
+            "code": "PRIM-INCO-6MM-214X330",
+            "description": "incoloro 6mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
@@ -402,14 +424,15 @@
             "pricePerSquareFoot": "2.80",
             "pricePerSheet": "188.00",
             "status": "ACTIVE",
-            "id": "b27602cd-f05d-5497-8086-7640f374a518",
+            "id": "4089b599-e046-5251-beaf-a592a4f4ebc8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-009-INCOLORO-8MM",
+            "code": "PRIM-INCO-8MM-214X330",
+            "description": "incoloro 8mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
@@ -418,14 +441,15 @@
             "pricePerSquareFoot": "3.90",
             "pricePerSheet": "255.00",
             "status": "ACTIVE",
-            "id": "9309009a-3363-58a7-9b47-2aff3b1ca198",
+            "id": "3270c11f-da9a-55d3-b25d-f7db0880351b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-010-INCOLORO-10MM",
+            "code": "PRIM-INCO-10MM-214X330",
+            "description": "incoloro 10mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "1f6748f9-8660-530d-8af1-ec304536eaf0",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
@@ -434,14 +458,15 @@
             "pricePerSquareFoot": "0.00",
             "pricePerSheet": "0.00",
             "status": "ACTIVE",
-            "id": "67420de3-aa0a-56ad-83e6-0efd7fccfd94",
+            "id": "a24ba2da-33f4-5f4e-b6ab-81380f1dc435",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-013-BRONCE-4MM",
+            "code": "PRIM-BRON-4MM-214X330",
+            "description": "bronce 4mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "fada05ae-0af8-528b-a2df-dd8b4288120b",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
@@ -450,14 +475,15 @@
             "pricePerSquareFoot": "2.60",
             "pricePerSheet": "172.00",
             "status": "ACTIVE",
-            "id": "d62d482f-eca5-5f49-9a92-5ffc729e3c8d",
+            "id": "7da9f67c-eb0d-5b3a-a5dc-a5c500ed0bb3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-014-BRONCE-5-5-MM",
+            "code": "PRIM-BRON-5_5MM-214X330",
+            "description": "bronce 5.5 mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
@@ -466,14 +492,15 @@
             "pricePerSquareFoot": "2.90",
             "pricePerSheet": "188.00",
             "status": "ACTIVE",
-            "id": "fd79bc61-fc94-58e4-851c-344c07cabaa4",
+            "id": "815f15ac-6506-5a9a-8ae9-1799a102d643",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-015-BRONCE-6-MM",
+            "code": "PRIM-BRON-6MM-214X330",
+            "description": "bronce 6 mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
@@ -482,14 +509,15 @@
             "pricePerSquareFoot": "3.30",
             "pricePerSheet": "215.00",
             "status": "ACTIVE",
-            "id": "639f684a-a6c3-5193-985f-5f07d7d8845a",
+            "id": "1943a53a-8fe8-5f5c-ae43-ba63bb3b8eb1",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-016-BRONCE-8MM",
+            "code": "PRIM-BRON-8MM-214X330",
+            "description": "bronce 8mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
@@ -498,14 +526,15 @@
             "pricePerSquareFoot": "4.50",
             "pricePerSheet": "295.00",
             "status": "ACTIVE",
-            "id": "90919dcd-d50b-58e2-baad-d985f538259f",
+            "id": "8829651a-d321-54d0-82b0-1d10a0217c51",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-019-GRIS-5-5M",
+            "code": "PRIM-GRIS-5_5MM-214X330",
+            "description": "gris 5,5m",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
             "colorFinishId": "be123abe-3ad0-5876-aed1-44c3aad59307",
@@ -514,14 +543,15 @@
             "pricePerSquareFoot": "2.95",
             "pricePerSheet": "195.00",
             "status": "ACTIVE",
-            "id": "b57991d4-10e5-5680-a555-80550a8d1215",
+            "id": "961692b7-629d-5510-90ae-00ae20acaf1a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-020-GRIS-6MM",
+            "code": "PRIM-GRIS-6MM-214X330",
+            "description": "gris 6mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
             "colorFinishId": "be123abe-3ad0-5876-aed1-44c3aad59307",
@@ -530,14 +560,15 @@
             "pricePerSquareFoot": "3.32",
             "pricePerSheet": "216.00",
             "status": "ACTIVE",
-            "id": "76a1589b-75ba-5589-bffd-826493faec13",
+            "id": "0aab1640-8d0b-54c1-a121-6d6aab459ed3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-021-GRIS-8MM",
+            "code": "PRIM-GRIS-8MM-214X330",
+            "description": "gris 8mm",
             "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
             "colorFinishId": "be123abe-3ad0-5876-aed1-44c3aad59307",
@@ -546,14 +577,15 @@
             "pricePerSquareFoot": "4.65",
             "pricePerSheet": "310.00",
             "status": "ACTIVE",
-            "id": "8456f9ee-3c99-5732-8b13-4cdbe84f186d",
+            "id": "69a76f08-7c54-50ca-9d5e-a8afeb766df1",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-024-REF-AZUL-CIELO-5-5-MM",
+            "code": "REFL-AZUL-CIELO-5_5MM-214X330",
+            "description": "ref. azul cielo 5.5 mm",
             "familyId": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
             "colorFinishId": "c4d6bc8f-ee76-5955-8516-8b6f7d16c649",
@@ -562,14 +594,15 @@
             "pricePerSquareFoot": "3.10",
             "pricePerSheet": "210.00",
             "status": "ACTIVE",
-            "id": "ee9109e5-a86c-5057-8e84-a6bcf809bff5",
+            "id": "967a7c6e-eb3c-5bbf-baae-b767e42afa4c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-025-REF-AZUL-CIELO-6-MM",
+            "code": "REFL-AZUL-CIELO-6MM-214X330",
+            "description": "ref. azul cielo 6 mm",
             "familyId": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
             "colorFinishId": "c4d6bc8f-ee76-5955-8516-8b6f7d16c649",
@@ -578,14 +611,15 @@
             "pricePerSquareFoot": "3.60",
             "pricePerSheet": "245.00",
             "status": "ACTIVE",
-            "id": "8392b3e8-cdf9-5731-81aa-d623e894ceb7",
+            "id": "68fc655c-2a50-5739-a1bd-835fc960e337",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-026-REF-AZUL-CIELO-8-MM",
+            "code": "REFL-AZUL-CIELO-8MM-214X366",
+            "description": "ref. azul cielo 8 mm",
             "familyId": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
             "colorFinishId": "c4d6bc8f-ee76-5955-8516-8b6f7d16c649",
@@ -594,14 +628,15 @@
             "pricePerSquareFoot": "5.80",
             "pricePerSheet": "435.00",
             "status": "ACTIVE",
-            "id": "0eb7beb4-35f4-5e67-b47e-76f77301052b",
+            "id": "ef7092e1-9843-592a-9125-74d794b8df65",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-027-REF-AZUL-ELECTRA-5-5MM",
+            "code": "REFL-AZUL-ELECTRA-5_5MM-214X330",
+            "description": "ref. azul electra 5,5mm",
             "familyId": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
             "colorFinishId": "d1811065-faad-5ef3-818f-fd8141053f18",
@@ -610,14 +645,15 @@
             "pricePerSquareFoot": "3.20",
             "pricePerSheet": "222.00",
             "status": "ACTIVE",
-            "id": "6f142208-3840-5713-8428-1adbb1514439",
+            "id": "06f8f1e1-d4ff-56ab-a6ba-fd70dab83255",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-029-REF-BRONCE-5-5MM",
+            "code": "REFL-BRON-5_5MM-214X330",
+            "description": "ref. bronce 5,5mm",
             "familyId": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
@@ -626,14 +662,15 @@
             "pricePerSquareFoot": "3.10",
             "pricePerSheet": "210.00",
             "status": "ACTIVE",
-            "id": "a6ed3844-8071-58a1-a150-b43d394ae11e",
+            "id": "421c3993-1e30-52bc-8120-6ff12f6b7655",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-030-REF-BRONCE-8-MM",
+            "code": "REFL-BRON-8MM-214X330",
+            "description": "ref. bronce 8 mm",
             "familyId": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
@@ -642,14 +679,15 @@
             "pricePerSquareFoot": "5.80",
             "pricePerSheet": "390.00",
             "status": "ACTIVE",
-            "id": "6405fe35-b5d8-505a-9fde-3968a7e664af",
+            "id": "d8a88c71-ed2c-52e7-a630-9e88fbe270af",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-032-REF-VERDE-6-MM",
+            "code": "REFL-VERD-6MM-214X330",
+            "description": "ref. verde 6 mm",
             "familyId": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
             "colorFinishId": "b940dc71-9763-582d-b687-901d359f8f35",
@@ -658,60 +696,64 @@
             "pricePerSquareFoot": "4.70",
             "pricePerSheet": "335.00",
             "status": "ACTIVE",
-            "id": "6464d1ab-7e8a-546d-be31-5509c2940f5b",
+            "id": "fbabdf56-8b3b-5327-b60f-eda42e225668",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-035-ESPEJO-CHINO-2MM",
-            "familyId": "4f441059-9c16-50dc-afab-84b736894a33",
+            "code": "ESPE-2MM-160X220",
+            "description": "espejo chino 2mm",
+            "familyId": "0a865db4-693c-57fa-b74e-53f094b952d5",
             "thicknessId": "96b3c98b-b893-5086-8553-0c6eb92d75ae",
             "sheetWidthCm": "160",
             "sheetHeightCm": "220",
             "pricePerSquareFoot": "2.00",
             "pricePerSheet": "59.00",
             "status": "ACTIVE",
-            "id": "34ca2402-d568-5064-83fe-1319e85ba30c",
+            "id": "d9754477-c587-5d2b-b835-894e87f68b75",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-036-ESPEJO-CHINO-3MM",
-            "familyId": "4f441059-9c16-50dc-afab-84b736894a33",
+            "code": "ESPE-3MM-183X244",
+            "description": "espejo chino 3mm",
+            "familyId": "0a865db4-693c-57fa-b74e-53f094b952d5",
             "thicknessId": "f820bd0c-1219-5ec3-a6aa-16a056e0b442",
             "sheetWidthCm": "183",
             "sheetHeightCm": "244",
             "pricePerSquareFoot": "2.30",
             "pricePerSheet": "85.00",
             "status": "ACTIVE",
-            "id": "0397d3e1-b753-5469-97a8-45465fe42b98",
+            "id": "4df038d7-d9a4-5dcc-bb44-08db03abdbd1",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-037-ESPEJO-4MM-DOBLE-CAPA",
-            "familyId": "4f441059-9c16-50dc-afab-84b736894a33",
+            "code": "ESPE-4MM-214X330",
+            "description": "espejo 4mm doble capa",
+            "familyId": "0a865db4-693c-57fa-b74e-53f094b952d5",
             "thicknessId": "fada05ae-0af8-528b-a2df-dd8b4288120b",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "5.45",
             "pricePerSheet": "380.00",
             "status": "ACTIVE",
-            "id": "2a8f98e8-b07c-5361-9eee-73d8fbedb658",
+            "id": "db1c1ec9-52e3-5456-9d25-33936e2e3104",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-040-CAT-CUADRICULADO",
-            "familyId": "03f104d6-cbe2-5252-b31c-b3818e90e1f9",
+            "code": "CATE-INCO-CUAD-SIN-ESPECIFICAR-153X214",
+            "description": "cat cuadriculado",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "cathedralDesignId": "5365d5eb-ec94-5022-81af-d5b7dc40c920",
@@ -720,15 +762,16 @@
             "pricePerSquareFoot": "2.25",
             "pricePerSheet": "70.00",
             "status": "ACTIVE",
-            "id": "ac22b235-b36e-5e1a-90ff-fef6625ea427",
+            "id": "42251c8c-45cc-561c-a2ec-797fa4ed94d8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-041-CAT-ARABESCO",
-            "familyId": "03f104d6-cbe2-5252-b31c-b3818e90e1f9",
+            "code": "CATE-INCO-ARAB-SIN-ESPECIFICAR-150X200",
+            "description": "cat arabesco",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "cathedralDesignId": "e59b0504-a89d-5579-9af6-83b762f713c9",
@@ -737,15 +780,16 @@
             "pricePerSquareFoot": "2.25",
             "pricePerSheet": "65.00",
             "status": "ACTIVE",
-            "id": "d2f5476e-162a-5ce4-b843-66d08a459780",
+            "id": "eec9609c-af70-508f-b992-0d036c32e3c0",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-042-CAT-FLORA",
-            "familyId": "03f104d6-cbe2-5252-b31c-b3818e90e1f9",
+            "code": "CATE-INCO-FLOR-SIN-ESPECIFICAR-150X200",
+            "description": "cat flora",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "cathedralDesignId": "0c81bcca-cdd4-541f-96b7-deca83125223",
@@ -754,15 +798,16 @@
             "pricePerSquareFoot": "2.25",
             "pricePerSheet": "65.00",
             "status": "ACTIVE",
-            "id": "38feb85a-27a7-5075-b249-8ee79a514aba",
+            "id": "4a9952b2-6b2b-54f6-91bf-dbd8ab9615b0",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-043-CAT-LLOVIZNA",
-            "familyId": "03f104d6-cbe2-5252-b31c-b3818e90e1f9",
+            "code": "CATE-INCO-LLOV-SIN-ESPECIFICAR-150X200",
+            "description": "cat llovizna",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "cathedralDesignId": "fa047b05-b7da-5c67-bdb5-1da3454e8241",
@@ -771,15 +816,16 @@
             "pricePerSquareFoot": "2.25",
             "pricePerSheet": "65.00",
             "status": "ACTIVE",
-            "id": "a5148261-56a3-51df-953e-5ef6d425668e",
+            "id": "8f5b6eda-c209-51f1-99be-feba0084561f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-046-CAT-LLOVIZNA-5MM",
-            "familyId": "03f104d6-cbe2-5252-b31c-b3818e90e1f9",
+            "code": "CATE-INCO-LLOV-5MM-183X244",
+            "description": "cat llovizna 5mm",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "3e650e0e-7a40-50bf-9ca7-41010ac2f76f",
             "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "cathedralDesignId": "fa047b05-b7da-5c67-bdb5-1da3454e8241",
@@ -788,15 +834,16 @@
             "pricePerSquareFoot": "3.20",
             "pricePerSheet": "135.00",
             "status": "ACTIVE",
-            "id": "0e978b6c-b4f1-5c51-95c9-342328c9453b",
+            "id": "5c17e64d-2757-593a-93eb-9f9dd9c34fa8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-049-CAT-AMBAR-OCEANICO",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-AMBA-OCEA-SIN-ESPECIFICAR-160X250",
+            "description": "cat ambar oceanico",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "c14cf5f4-8ffa-5341-ac5d-ecf250f62c2e",
             "cathedralDesignId": "2b423a5e-5f5f-5c1a-a2ce-e5691d04c1f2",
@@ -805,15 +852,16 @@
             "pricePerSquareFoot": "3.90",
             "pricePerSheet": "160.00",
             "status": "ACTIVE",
-            "id": "3ff4c966-9aa3-5f90-8899-143c97d1eefb",
+            "id": "0f2d71c5-90a6-56c2-a657-48b4730762c2",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-050-CAT-AMBAR-LLOVIZNA",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-AMBA-LLOV-SIN-ESPECIFICAR-160X192",
+            "description": "cat ambar llovizna",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "c14cf5f4-8ffa-5341-ac5d-ecf250f62c2e",
             "cathedralDesignId": "fa047b05-b7da-5c67-bdb5-1da3454e8241",
@@ -822,15 +870,16 @@
             "pricePerSquareFoot": "3.90",
             "pricePerSheet": "125.00",
             "status": "ACTIVE",
-            "id": "639ec735-f7f4-55c0-b00b-9a66b1b4f901",
+            "id": "921629ab-0567-52e6-b2e2-b79d864c7953",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-051-CAT-BRONCE-LLOVIZNA-3MM",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-BRON-LLOV-3MM-165X200",
+            "description": "cat bronce llovizna 3mm",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "f820bd0c-1219-5ec3-a6aa-16a056e0b442",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "cathedralDesignId": "fa047b05-b7da-5c67-bdb5-1da3454e8241",
@@ -839,15 +888,16 @@
             "pricePerSquareFoot": "3.90",
             "pricePerSheet": "134.00",
             "status": "ACTIVE",
-            "id": "2243ef57-393e-5148-96b4-b1c96340a339",
+            "id": "50683162-2d44-5690-8fc6-b11ea13c1ffe",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-052-CAT-BRONCE-ARABESCO",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-BRON-ARAB-SIN-ESPECIFICAR-165X200",
+            "description": "cat bronce arabesco",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "cathedralDesignId": "e59b0504-a89d-5579-9af6-83b762f713c9",
@@ -856,15 +906,16 @@
             "pricePerSquareFoot": "3.90",
             "pricePerSheet": "134.00",
             "status": "ACTIVE",
-            "id": "a71832df-d1ad-5fe4-833a-a9256686c2d0",
+            "id": "cc814392-18b5-5168-9d03-8a1a6e4a5d3e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-053-CAT-GRIS-ARABESCO",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-GRIS-ARAB-SIN-ESPECIFICAR-140X214",
+            "description": "cat gris arabesco",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "be123abe-3ad0-5876-aed1-44c3aad59307",
             "cathedralDesignId": "e59b0504-a89d-5579-9af6-83b762f713c9",
@@ -873,15 +924,16 @@
             "pricePerSquareFoot": "4.20",
             "pricePerSheet": "129.00",
             "status": "ACTIVE",
-            "id": "c8521dc2-bb19-5d3c-ab30-eaf69d6e4001",
+            "id": "0ed52398-e053-560f-9851-a56a7c78fd09",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-054-CAT-VERDE-ARABESCO",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-VERD-ARAB-SIN-ESPECIFICAR-165X200",
+            "description": "cat verde arabesco",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "b940dc71-9763-582d-b687-901d359f8f35",
             "cathedralDesignId": "e59b0504-a89d-5579-9af6-83b762f713c9",
@@ -890,15 +942,16 @@
             "pricePerSquareFoot": "3.90",
             "pricePerSheet": "134.00",
             "status": "ACTIVE",
-            "id": "58f2e771-753c-5d99-929d-b5e52cc1a342",
+            "id": "5f8e96e0-efce-5a52-989a-30fe6d7d7fa2",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-056-CAT-AMBAR-ARABESCO",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-AMBA-ARAB-SIN-ESPECIFICAR-122X214",
+            "description": "cat ambar arabesco",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "c14cf5f4-8ffa-5341-ac5d-ecf250f62c2e",
             "cathedralDesignId": "e59b0504-a89d-5579-9af6-83b762f713c9",
@@ -907,15 +960,16 @@
             "pricePerSquareFoot": "3.90",
             "pricePerSheet": "108.00",
             "status": "ACTIVE",
-            "id": "8f7d79f0-f645-542a-9138-1d592fabee48",
+            "id": "a018bd34-457d-5792-a4d0-c79d076baae9",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-058-CAT-BRONCE-LLOVIZNA-5MM",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-BRON-LLOV-5MM-183X244",
+            "description": "cat bronce llovizna 5mm",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "3e650e0e-7a40-50bf-9ca7-41010ac2f76f",
             "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "cathedralDesignId": "fa047b05-b7da-5c67-bdb5-1da3454e8241",
@@ -924,15 +978,16 @@
             "pricePerSquareFoot": "5.50",
             "pricePerSheet": "242.00",
             "status": "ACTIVE",
-            "id": "0ff8ce08-1b99-5d05-bc68-2bfecb00497b",
+            "id": "bb285149-af5f-5c91-9c5a-fe02b8c6d922",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-060-CAT-AZUL-ARABESCO",
-            "familyId": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "code": "CATE-AZUL-ARAB-SIN-ESPECIFICAR-122X183",
+            "description": "cat azul arabesco",
+            "familyId": "18448da1-2d04-523d-9e28-ede494e47e55",
             "thicknessId": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
             "colorFinishId": "da54d877-2f06-530e-ac18-0bde22fc8c04",
             "cathedralDesignId": "e59b0504-a89d-5579-9af6-83b762f713c9",
@@ -941,14 +996,15 @@
             "pricePerSquareFoot": "3.90",
             "pricePerSheet": "94.00",
             "status": "ACTIVE",
-            "id": "69495c41-0350-5773-bdc5-63ed91b2d409",
+            "id": "0b489377-9106-52f2-9152-7bba893dec6f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-063-LAMINADO-6MM",
+            "code": "LAMI-6MM-214X330",
+            "description": "Laminado 6mm",
             "familyId": "a78cfa8e-bff5-5576-8858-62829eea2b5f",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
             "sheetWidthCm": "214",
@@ -956,14 +1012,15 @@
             "pricePerSquareFoot": "4.30",
             "pricePerSheet": "285.00",
             "status": "ACTIVE",
-            "id": "6b577202-b389-5af6-9e6d-11cb9c461990",
+            "id": "b8a65194-bb8a-528b-9801-44703a39bec9",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-064-LAMINADO-8MM",
+            "code": "LAMI-8MM-214X330",
+            "description": "Laminado 8mm",
             "familyId": "a78cfa8e-bff5-5576-8858-62829eea2b5f",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
             "sheetWidthCm": "214",
@@ -971,14 +1028,15 @@
             "pricePerSquareFoot": "4.95",
             "pricePerSheet": "335.00",
             "status": "ACTIVE",
-            "id": "fadc5698-a476-5a32-8bc3-9ca3d754369b",
+            "id": "793c8b40-94c2-50d3-a4f9-f76921bbe765",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-067-ARENADO-DE-4MM",
+            "code": "AREN-4MM-214X330",
+            "description": "Arenado de 4mm",
             "familyId": "96a47682-4cd1-5ee9-bc15-4fbefa399b35",
             "thicknessId": "fada05ae-0af8-528b-a2df-dd8b4288120b",
             "sheetWidthCm": "214",
@@ -986,14 +1044,15 @@
             "pricePerSquareFoot": "2.55",
             "pricePerSheet": "169.00",
             "status": "ACTIVE",
-            "id": "e850bb87-c2c6-5f6a-80a3-016cdf39fbc7",
+            "id": "232ec1fe-c389-542f-ba42-475b1261a3da",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           },
           {
-            "code": "GL-068-ARENADO-DE-6MM",
+            "code": "AREN-6MM-214X330",
+            "description": "Arenado de 6mm",
             "familyId": "96a47682-4cd1-5ee9-bc15-4fbefa399b35",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
             "sheetWidthCm": "214",
@@ -1001,11 +1060,11 @@
             "pricePerSquareFoot": "3.30",
             "pricePerSheet": "220.00",
             "status": "ACTIVE",
-            "id": "df01ac5b-ce74-56c3-a6cd-3837a6c6a3f6",
+            "id": "c06cc931-17fd-5644-b4d3-91a3d572718d",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:59:40.953Z",
-            "updatedAt": "2026-09-21T19:59:40.953Z"
+            "createdAt": "2026-09-21T23:21:45.165Z",
+            "updatedAt": "2026-09-21T23:21:45.165Z"
           }
         ]
       }
@@ -1022,8 +1081,8 @@
             "id": "8d4134f5-2bd7-59b0-9ea7-93efa69ab7ee",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Rieles Sistema Nova",
@@ -1032,8 +1091,8 @@
             "id": "a12ed3a9-55ef-57dc-94bb-9796c8bdfef5",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Rieles De Ventana",
@@ -1042,8 +1101,8 @@
             "id": "abb4e037-1b0c-56f7-8b18-5d5a1b75c6f5",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Zocalos H Y De Pared",
@@ -1052,8 +1111,8 @@
             "id": "bebed359-a2d8-5147-8fe8-505dff60236a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Canales",
@@ -1062,8 +1121,8 @@
             "id": "87a42574-2e9a-51cc-9110-ab470df97993",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Portafelpas",
@@ -1072,8 +1131,8 @@
             "id": "2c6cfae9-1e51-56c5-81e0-e84a26d7a2f4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Angulos",
@@ -1082,8 +1141,8 @@
             "id": "be27d947-5cb1-516f-9378-d34f147d079e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Tubos Cuadrados",
@@ -1092,8 +1151,8 @@
             "id": "90ad0bae-6d25-5b05-9252-65351dd9d6e6",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Tubos Multifuncionales",
@@ -1102,8 +1161,8 @@
             "id": "75ac1ffe-c0ef-59ad-9be2-5306973c50c8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Tubos Rectangulares",
@@ -1112,8 +1171,8 @@
             "id": "3ee1a7d2-9bc3-5b2a-9019-868c388003d3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Tubos Cuadrados Con Aleta",
@@ -1122,8 +1181,8 @@
             "id": "ac76d808-fcae-50ba-8473-ce555f2d525b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Tubos Redondos",
@@ -1132,8 +1191,8 @@
             "id": "63917d77-15f8-541f-a054-850a0e7af0c6",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Tope Junquillo Y Portajunquillo",
@@ -1142,8 +1201,8 @@
             "id": "315303e5-4c26-5e72-9f56-500c15cb9b64",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Cantonera",
@@ -1152,8 +1211,8 @@
             "id": "42212121-3e80-5da3-a850-814b27795e88",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Contramarcos",
@@ -1162,8 +1221,8 @@
             "id": "e084ab1d-dfcf-5217-93e5-4686584aa2c3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Pasamanos Y Barandas",
@@ -1172,8 +1231,8 @@
             "id": "e5254aca-b548-543a-8633-b890d5f69d99",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Puerta Ducha",
@@ -1182,8 +1241,8 @@
             "id": "c9e3722f-a940-53e6-9ab3-d6772721ca27",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Puerta Ducha Intermedio",
@@ -1192,8 +1251,8 @@
             "id": "8bbf3f31-e90a-5cb6-9243-6463c8483924",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Tee",
@@ -1202,8 +1261,8 @@
             "id": "a2e622ba-2685-54c0-a06c-e490733fe5e9",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Riel Closet",
@@ -1212,8 +1271,8 @@
             "id": "200cf8ad-71df-5518-bd07-5687a4aa15a9",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Platinas",
@@ -1222,8 +1281,8 @@
             "id": "95fc7113-2bcd-54a6-ae6c-10269d718738",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           }
         ],
         "colors": [
@@ -1234,8 +1293,8 @@
             "id": "ceaa2646-6473-53b2-ae51-e8b4560cc2e7",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           },
           {
             "name": "Negro",
@@ -1244,8 +1303,8 @@
             "id": "33397d38-5da4-5e7b-9b99-0801066a9dcf",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z"
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z"
           }
         ],
         "profiles": [
@@ -1269,8 +1328,8 @@
             "id": "6671e8d5-a45f-56a2-92f2-b12ff5970805",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2248",
             "originalDescription": "Riel mamp- ala corta Eco",
             "sourceRows": [
@@ -1297,8 +1356,8 @@
             "id": "b21ac851-594e-55c5-8e0b-e536512a7ca5",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2244",
             "originalDescription": "Riel mamp- ala larga Eco",
             "sourceRows": [
@@ -1325,8 +1384,8 @@
             "id": "0bfaa1c4-8c54-584b-b5eb-28513be4a077",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2249",
             "originalDescription": "Riel mamp- ala corta INT- limat(2244)",
             "sourceRows": [
@@ -1353,8 +1412,8 @@
             "id": "bb13bbec-0b32-55d3-bd58-b079c36cdf73",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2245",
             "originalDescription": "Riel mamp- ala larga INT- limat(2248)",
             "sourceRows": [
@@ -1376,8 +1435,8 @@
             "id": "d2164a6c-1870-5ea1-a7f8-8bc09408a02a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "1164",
             "originalDescription": "doble riel",
             "sourceRows": [
@@ -1404,8 +1463,8 @@
             "id": "9cd23a25-b8ea-57d5-af99-e2af2b2b7e40",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3181",
             "originalDescription": "Riel nova baja",
             "sourceRows": [
@@ -1432,8 +1491,8 @@
             "id": "226b16cf-ff56-54b3-af47-e6e5fc267fa7",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3182",
             "originalDescription": "Riel alta para nova",
             "sourceRows": [
@@ -1460,8 +1519,8 @@
             "id": "a1d51e3c-e5f8-5954-9f44-f33728dd6e4d",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8413",
             "originalDescription": "Riel angulo p/vent Limat(8413)",
             "sourceRows": [
@@ -1488,8 +1547,8 @@
             "id": "702f3d42-e2ff-5af3-af90-4bd8e5d26344",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8313",
             "originalDescription": "Riel angulo p/vent (2.77) Limat(8313)",
             "sourceRows": [
@@ -1512,8 +1571,8 @@
             "id": "8996009a-ec34-5f82-b225-599b07f4d9f4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8412",
             "originalDescription": "Riel alta p/vent eco",
             "sourceRows": [
@@ -1536,8 +1595,8 @@
             "id": "a94e9d69-2f39-534b-9047-3817d60fe935",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8410",
             "originalDescription": "Riel alta p/vent inter (2) Limat(8410)",
             "sourceRows": [
@@ -1564,8 +1623,8 @@
             "id": "861c023a-bb79-5f7f-9d9a-66c251e6656f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8444",
             "originalDescription": "Riel para sistema \"U\" (1.8) Limat(8444)",
             "sourceRows": [
@@ -1592,8 +1651,8 @@
             "id": "15ca722c-20b2-501c-963c-3df754b065f3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8445",
             "originalDescription": "Riel para sistema \"U\" Int (2.7) Limat(8445)",
             "sourceRows": [
@@ -1620,8 +1679,8 @@
             "id": "a218342e-2367-59d0-ad06-aa1657242a38",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8464",
             "originalDescription": "Riel para ventana alta eco Limat (8464)",
             "sourceRows": [
@@ -1644,8 +1703,8 @@
             "id": "ce8a3621-8d72-5bd4-a1e4-814218175e0c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8411",
             "originalDescription": "Riel para ventana alta INT(2) Limat (8411)",
             "sourceRows": [
@@ -1672,8 +1731,8 @@
             "id": "69a51dcd-c5d4-50eb-b62c-1283de66121f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8465",
             "originalDescription": "Riel para ventana baja eco",
             "sourceRows": [
@@ -1696,8 +1755,8 @@
             "id": "3ad0829c-f8fe-5467-96e2-06183c251ac9",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8415",
             "originalDescription": "Riel para ventana baja INT (2) Limat(8415)",
             "sourceRows": [
@@ -1724,8 +1783,8 @@
             "id": "e599e618-a570-5872-9757-e57b0362eb7e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7905",
             "originalDescription": "zócalo p/mamp\"H\" alta N",
             "sourceRows": [
@@ -1748,8 +1807,8 @@
             "id": "715d36c1-fb78-5273-8047-2c0b656d9e7a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7908",
             "originalDescription": "Zócalo p/mamp\"H\" alta",
             "sourceRows": [
@@ -1776,8 +1835,8 @@
             "id": "4d9a6a15-abfd-5ec9-bf8a-7078aa1938bd",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7906",
             "originalDescription": "zócalo p/mamp\"H\" alta ec",
             "sourceRows": [
@@ -1804,8 +1863,8 @@
             "id": "c6af3f24-2bf4-5aee-83b7-7fb7e6882cb4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8221",
             "originalDescription": "Zócalo p/sist \"H\" Ec",
             "sourceRows": [
@@ -1832,8 +1891,8 @@
             "id": "f89056a0-26c4-5953-a7e2-aee0db6fe7b3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8222",
             "originalDescription": "Zócalo p/sist \"H\" Int (2) Limat(8223)",
             "sourceRows": [
@@ -1860,8 +1919,8 @@
             "id": "3c85e3bb-70e3-5402-9c25-8f1392b302a9",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9150",
             "originalDescription": "Zòcalo p/vidrio 8mm",
             "sourceRows": [
@@ -1888,8 +1947,8 @@
             "id": "0b6e144e-c978-5955-a03e-23fc496efc02",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "U13",
             "originalDescription": "\"U\" 13",
             "sourceRows": [
@@ -1916,8 +1975,8 @@
             "id": "a525ac8f-ef7d-5df2-8ea9-7ec8e0a5b431",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "U12",
             "originalDescription": "\"U\" 12 Eco",
             "sourceRows": [
@@ -1944,8 +2003,8 @@
             "id": "43fa2bf7-c7b7-5740-81cc-3f1c99a0d0d8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3206",
             "originalDescription": "\"U\" p/vitrina 3/8",
             "sourceRows": [
@@ -1972,8 +2031,8 @@
             "id": "e72ee7cf-1301-5308-98ff-ffe71bdb9772",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3004",
             "originalDescription": "Canal 1/2\" eco",
             "sourceRows": [
@@ -1996,8 +2055,8 @@
             "id": "93cf4b1c-3b56-5b41-bb27-26d959a1ebc8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3001",
             "originalDescription": "Canal 1/2\" (0.8) Limat(3001)",
             "sourceRows": [
@@ -2024,8 +2083,8 @@
             "id": "a2ba5075-e39f-551c-859a-5b02bd475405",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3200",
             "originalDescription": "Canal 1/2\" (0.9) Limat(3200)",
             "sourceRows": [
@@ -2052,8 +2111,8 @@
             "id": "2fe952af-6579-5b6a-8c98-9eb3ef5df77c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3002",
             "originalDescription": "Canal 1/2\" inter (1.2)- limat(3002)",
             "sourceRows": [
@@ -2080,8 +2139,8 @@
             "id": "9ea12e2d-47da-5caf-b091-79df6ba0cd24",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3207",
             "originalDescription": "Canal 5/8\"",
             "sourceRows": [
@@ -2108,8 +2167,8 @@
             "id": "142a8041-3701-500e-9ac8-095c841361ef",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3208",
             "originalDescription": "Canal 5/8\" (1) Limat(3208)",
             "sourceRows": [
@@ -2132,8 +2191,8 @@
             "id": "107c6166-f1ba-53a6-b1ef-5674de985ca8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3310",
             "originalDescription": "Canal de 20mm p/melamine",
             "sourceRows": [
@@ -2156,8 +2215,8 @@
             "id": "797a7bfd-80d5-5c76-aebd-a6bed35b8cf1",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3007",
             "originalDescription": "Canal 3/4 - U113",
             "sourceRows": [
@@ -2180,8 +2239,8 @@
             "id": "03148fe9-c005-53f5-8cb6-624c99628145",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3008",
             "originalDescription": "Canal 3/4 - U113 INT",
             "sourceRows": [
@@ -2208,8 +2267,8 @@
             "id": "fd583852-c33c-584f-af31-5b8c5827511b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3009",
             "originalDescription": "Canal 1 1/4\"",
             "sourceRows": [
@@ -2236,8 +2295,8 @@
             "id": "c5538e43-8d8c-5fa6-97fa-10d393d58032",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7830",
             "originalDescription": "Canal 60,3 x 22,3 Ec",
             "sourceRows": [
@@ -2264,8 +2323,8 @@
             "id": "616b091e-02f5-595b-9295-4df0e7207ebd",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7831",
             "originalDescription": "Canal 60,3 x 22,3 int (1.19) Limat(7831)",
             "sourceRows": [
@@ -2292,8 +2351,8 @@
             "id": "05c2848b-5755-5582-b482-166a5b1c4024",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8430",
             "originalDescription": "Canal 60,3 x 22,3 Pes",
             "sourceRows": [
@@ -2320,8 +2379,8 @@
             "id": "a8513f4d-c1ba-5c21-bf16-3ee34ac55868",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7955",
             "originalDescription": "Canal 3/4\" x 1/2\" LT28 Ec",
             "sourceRows": [
@@ -2348,8 +2407,8 @@
             "id": "3874c64e-f5cf-5a23-ba40-ba82a5ff6743",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7956",
             "originalDescription": "Canal 3/4\" x 1/2\" LT28 Int (1.15)Lim(7956)",
             "sourceRows": [
@@ -2376,8 +2435,8 @@
             "id": "9cda0b6d-2f04-5005-8d40-4de32ebeaa43",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8629",
             "originalDescription": "Canal 3 1/4 x 1 Ec (0.9) Limat(8629)",
             "sourceRows": [
@@ -2404,8 +2463,8 @@
             "id": "13d659c6-f72b-53eb-80c0-6eb82993c398",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8630",
             "originalDescription": "Canal 3 1/4 x 1 Int (1.3) Limat(8630)",
             "sourceRows": [
@@ -2432,8 +2491,8 @@
             "id": "50104b69-5464-5ae4-b593-1bf201f36e6b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8631",
             "originalDescription": "Canal 3 1/4 x 1 pes (1.5) Limat(8631)",
             "sourceRows": [
@@ -2460,8 +2519,8 @@
             "id": "08be610b-bd46-5641-bb11-18f26e7518a3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3061",
             "originalDescription": "Riel alta vitrina",
             "sourceRows": [
@@ -2488,8 +2547,8 @@
             "id": "9c76fb89-1dee-50ec-9751-accc1e169960",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3062",
             "originalDescription": "Riel baja vitrina",
             "sourceRows": [
@@ -2516,8 +2575,8 @@
             "id": "82b953a2-9151-56df-9fe6-aeccd5c70f40",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3185",
             "originalDescription": "Riel sup, fija/corrediza",
             "sourceRows": [
@@ -2544,8 +2603,8 @@
             "id": "face0729-49ed-506c-a4bb-692afe178590",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3186",
             "originalDescription": "Riel sup, fija/corred alta (1.2) Limat(3186)",
             "sourceRows": [
@@ -2568,8 +2627,8 @@
             "id": "04c22dad-31a1-5c91-b3ad-12ade57fdb6b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "3188",
             "originalDescription": "Riel sup, 2 corredizas Limat(2002)",
             "sourceRows": [
@@ -2596,8 +2655,8 @@
             "id": "82e4c7be-38d8-5830-bd4a-f78de7665adb",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "1415",
             "originalDescription": "Canal c/portfel p.v/8m Ec",
             "sourceRows": [
@@ -2624,8 +2683,8 @@
             "id": "d830bccf-599c-5fa6-8921-635dca87f905",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "1417",
             "originalDescription": "Canal c/portfel p.v/8m int (1.2) Lim(JV114)",
             "sourceRows": [
@@ -2652,8 +2711,8 @@
             "id": "2e3eb988-bb80-5f39-83b6-b4fa0859fdc4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8116",
             "originalDescription": "Porta felpa A/Corta",
             "sourceRows": [
@@ -2680,8 +2739,8 @@
             "id": "be85e1d5-c6ff-509d-83d5-687875b7a993",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8118",
             "originalDescription": "Porta felpa A/Larga",
             "sourceRows": [
@@ -2708,8 +2767,8 @@
             "id": "ee095549-7fb4-53c1-8461-e2297fb0c630",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8114",
             "originalDescription": "Porta felpa Sin aleta",
             "sourceRows": [
@@ -2736,8 +2795,8 @@
             "id": "cd3ec0be-8987-5dc4-826d-6ddb9dbca4ea",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4104",
             "originalDescription": "Angulo de 1/2\" E",
             "sourceRows": [
@@ -2764,8 +2823,8 @@
             "id": "5bf0173c-2d4d-57ac-9468-db31ea3c0fe7",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4103",
             "originalDescription": "Angulo de 1/2\" (1) Int Limat(4103)",
             "sourceRows": [
@@ -2792,8 +2851,8 @@
             "id": "66ad8ef3-8d1d-5b39-ad26-ec0c7c3502ec",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4107",
             "originalDescription": "Angulo de 3/4\" E",
             "sourceRows": [
@@ -2820,8 +2879,8 @@
             "id": "2df742f9-6286-5a06-9a10-3042e79ad337",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4108",
             "originalDescription": "Agulo de 3/4\" Int (1.2) Limat(4107)",
             "sourceRows": [
@@ -2844,8 +2903,8 @@
             "id": "4711a1bd-5565-5213-a88b-780fba508562",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4109",
             "originalDescription": "Agulo de 3/4\" Int (1.52) Limat(4108)",
             "sourceRows": [
@@ -2872,8 +2931,8 @@
             "id": "17342ba5-6d60-5a08-a46b-63c2e5fb291f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4110",
             "originalDescription": "Angulo de 1\" E (0.85) Limat(4109)",
             "sourceRows": [
@@ -2896,8 +2955,8 @@
             "id": "39b53cb8-054a-50b4-8e11-ed928829f396",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4111",
             "originalDescription": "Angulo de 1\" Int (1.52) Limat(4110)",
             "sourceRows": [
@@ -2920,8 +2979,8 @@
             "id": "1cb94f5d-84a7-5c93-8285-688a18f1548c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4316",
             "originalDescription": "Angulo de 1\" 1/2 Int (1.52) Limat(4316)",
             "sourceRows": [
@@ -2944,8 +3003,8 @@
             "id": "19f1f90a-f9df-584f-8227-d67b64f9648b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "4011",
             "originalDescription": "Angulo espiga",
             "sourceRows": [
@@ -2968,8 +3027,8 @@
             "id": "ebbf8262-765c-5141-a667-04de478f4878",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5407",
             "originalDescription": "Tubo cuad 3/4\"",
             "sourceRows": [
@@ -2996,8 +3055,8 @@
             "id": "321c99b4-5941-5944-bea6-e46ee5c55e07",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5315",
             "originalDescription": "Tubo cuad 1\" ec",
             "sourceRows": [
@@ -3024,8 +3083,8 @@
             "id": "878075a0-4f39-503c-8bb2-278433479fb7",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5310",
             "originalDescription": "Tubo cuad 1\" Int (0.85) Limat(5310)",
             "sourceRows": [
@@ -3048,8 +3107,8 @@
             "id": "c59cced5-19f3-5c21-a04c-76b38b196d0e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5311",
             "originalDescription": "Tubo cuad 1\" Pes (1.2) Limat(5311)",
             "sourceRows": [
@@ -3076,8 +3135,8 @@
             "id": "bc8e5f85-f0db-59b8-b4bb-4921d1ec8634",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5213",
             "originalDescription": "Tubo cuad 30 ec (0.8) Limat(5213)",
             "sourceRows": [
@@ -3104,8 +3163,8 @@
             "id": "16c6cd9f-1d47-5bc1-82a3-6ab951db38c7",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5214",
             "originalDescription": "Tubo cuad 30 Int (1.1) Limat(5214)",
             "sourceRows": [
@@ -3132,8 +3191,8 @@
             "id": "d5477226-3c0e-5f00-8ae0-078bbf39460e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5414",
             "originalDescription": "Tubo cuad 1 1/2\" E",
             "sourceRows": [
@@ -3160,8 +3219,8 @@
             "id": "915d5a39-e6a4-58bf-9e32-cd88dec010ef",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5415",
             "originalDescription": "Tubo cuad 1 1/2\" Ec (0.8) Limat(5415)",
             "sourceRows": [
@@ -3187,8 +3246,8 @@
             "id": "cde8e804-62f9-5048-85ea-218d61a74c10",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5416",
             "originalDescription": "Tubo cuad 1 1/2\" Int (1.05) Limat(5416)",
             "sourceRows": [
@@ -3215,8 +3274,8 @@
             "id": "ea97ad1e-de31-5221-a972-0be95e41bed8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5417",
             "originalDescription": "Tubo cuad 1 1/2\" N (1.20) Limat (5417)",
             "sourceRows": [
@@ -3243,8 +3302,8 @@
             "id": "e201b690-9534-5f2f-933c-8635bdc6a25b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5283",
             "originalDescription": "Tubo multif.- Eco Corra (5283)",
             "sourceRows": [
@@ -3271,8 +3330,8 @@
             "id": "c12b858e-c6be-5817-82e7-712babd41f80",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5282",
             "originalDescription": "Tubo multif.- Intermedio Limat (5282)",
             "sourceRows": [
@@ -3298,8 +3357,8 @@
             "id": "27a28e62-2790-5b84-9b3e-d7d649918fca",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5285",
             "originalDescription": "Tubo multif. Doble- Eco Corra (5284)",
             "sourceRows": [
@@ -3326,8 +3385,8 @@
             "id": "9817a32e-b33a-5197-80d3-2eb23f915b89",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5284",
             "originalDescription": "Tubo multif. Doble- Intermedio Limat(2005)",
             "sourceRows": [
@@ -3354,8 +3413,8 @@
             "id": "5d825ee3-1cbc-5d72-99e2-e449a8fb7a65",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5225",
             "originalDescription": "Tubo rect 2 x 1\" s.e",
             "sourceRows": [
@@ -3382,8 +3441,8 @@
             "id": "69e4603f-a2bd-51b8-8650-30b1a72e5969",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5221",
             "originalDescription": "Tubo rect 2 x 1\" Ec (0.8) Limat(5221)",
             "sourceRows": [
@@ -3410,8 +3469,8 @@
             "id": "95943605-2642-5683-a60c-615e70d12ea8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5223",
             "originalDescription": "Tubo rect 2 x 1\" Int (1.05) Limat(5223)",
             "sourceRows": [
@@ -3438,8 +3497,8 @@
             "id": "2326a461-373a-56bd-9b86-91e37900dc78",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7852",
             "originalDescription": "Tubo rect 1 x 2 3/8\" s.e",
             "sourceRows": [
@@ -3466,8 +3525,8 @@
             "id": "57f596a1-1ad9-5423-83ca-579862644b63",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7851",
             "originalDescription": "Tubo rect 1 x 2 3/8\" Ec (0.8) Limat(7851)",
             "sourceRows": [
@@ -3494,8 +3553,8 @@
             "id": "b2d72095-c835-5bea-b350-d40d0c6d7b49",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7850",
             "originalDescription": "Tubo rect 1 x 2 3/8\" Int (1.2) Limat(7852)",
             "sourceRows": [
@@ -3518,8 +3577,8 @@
             "id": "c55dbf73-6315-5ac5-b8a2-24b408a96b9b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5224",
             "originalDescription": "Tubo rect 1 x 2 3/8\" N",
             "sourceRows": [
@@ -3546,8 +3605,8 @@
             "id": "0dee4344-fcf6-5599-b8ec-9a8fe9adb721",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5227",
             "originalDescription": "Tubo rect 3 1/4 x 1 1/2- s.e",
             "sourceRows": [
@@ -3574,8 +3633,8 @@
             "id": "11681715-37b3-53aa-802c-45e2e3f110e4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5228",
             "originalDescription": "Tubo rect 3 1/4 x 1 1/2 e (1.05) Lim(5228)",
             "sourceRows": [
@@ -3602,8 +3661,8 @@
             "id": "576c59ba-302a-52a3-aa61-0f277075dd74",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5230",
             "originalDescription": "Tubo rect 3 1/4 x 1 1/2 Int (1.25) Lim(5229)",
             "sourceRows": [
@@ -3630,8 +3689,8 @@
             "id": "76d8d367-afb3-5f7d-a9c4-de5f238b115a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5231",
             "originalDescription": "Tubo rect 3 1/4 x 1 1/2 N (1.5) Lim(5230)",
             "sourceRows": [
@@ -3653,8 +3712,8 @@
             "id": "8804ed15-94ed-52ea-922a-b2a7d6c26fdf",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5142",
             "originalDescription": "tubo rectangular 38.1x 101.6 - Limat",
             "sourceRows": [
@@ -3681,8 +3740,8 @@
             "id": "7f929e59-dea9-5912-b66e-c61b483b39d8",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8651",
             "originalDescription": "Tubo rect 3 1/4 x 1\" Ec (0.9) Lim(8651)",
             "sourceRows": [
@@ -3709,8 +3768,8 @@
             "id": "f9c18fb1-08ea-5e19-9ae5-fc2296cab368",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8652",
             "originalDescription": "Tubo rect 3 1/4 x 1\" (1.05) Lim(8652)",
             "sourceRows": [
@@ -3737,8 +3796,8 @@
             "id": "e47f40ae-5327-5276-921c-4815c678fbc6",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8653",
             "originalDescription": "Tubo rect 3 1/4 x 1\" Int (1.25) Lim(8653)",
             "sourceRows": [
@@ -3761,8 +3820,8 @@
             "id": "e43f6b54-9a1a-5a85-85e2-eebb473281c9",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5220",
             "originalDescription": "Tubo rect 2 x 1/2",
             "sourceRows": [
@@ -3785,8 +3844,8 @@
             "id": "3f365ab0-183b-5828-a619-637d20b28baa",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5220",
             "originalDescription": "Tubo rect 2 x 1/2 lim(5220)",
             "sourceRows": [
@@ -3809,8 +3868,8 @@
             "id": "78e8dede-8fb0-5e1c-b70a-f9495252ec3f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5504",
             "originalDescription": "Tubo red 7.9 mm",
             "sourceRows": [
@@ -3833,8 +3892,8 @@
             "id": "e781b47f-2dd5-575d-9329-5d60a08bfde2",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5520",
             "originalDescription": "Tubo red 12,7 - 1/2",
             "sourceRows": [
@@ -3857,8 +3916,8 @@
             "id": "dbaff2a6-20b3-5578-a516-6602c86d47e0",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5524",
             "originalDescription": "Tubo red 15,5 - 5/8",
             "sourceRows": [
@@ -3881,8 +3940,8 @@
             "id": "373e53d3-3c07-534a-ac3a-b565f4d93f6d",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5541",
             "originalDescription": "Tubo red 19,05 - 3/4",
             "sourceRows": [
@@ -3905,8 +3964,8 @@
             "id": "8654577e-4992-514f-b68f-598fe0d70631",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5559",
             "originalDescription": "Tubo red 22,23 - 7/8",
             "sourceRows": [
@@ -3929,8 +3988,8 @@
             "id": "5f66d83b-a6df-5356-9685-fcae3db6b673",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5584",
             "originalDescription": "Tubo red 25,4 - 1\"",
             "sourceRows": [
@@ -3953,8 +4012,8 @@
             "id": "a4e7efa9-5ce8-582d-9d6f-1dc89e5183e3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5568",
             "originalDescription": "Tubo red 25,4 - 1\" Inter corrales",
             "sourceRows": [
@@ -3977,8 +4036,8 @@
             "id": "a5e21338-3b08-52f7-96e2-da358fdb8973",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5609",
             "originalDescription": "Tubo red 30 mm (1.2) Limat(5609)",
             "sourceRows": [
@@ -4001,8 +4060,8 @@
             "id": "991b28e4-e6a3-5fb9-a810-689acb2e828e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5611",
             "originalDescription": "Tubo red 30 mm (1.6) Limat(5611)",
             "sourceRows": [
@@ -4029,8 +4088,8 @@
             "id": "680a10c4-d3c0-5288-82c1-a68702b76be4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8503",
             "originalDescription": "Tope puerta 3/4\" (0.85) Limat(8503)",
             "sourceRows": [
@@ -4057,8 +4116,8 @@
             "id": "4871ed99-85d9-548a-9fba-f516f1205d40",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8504",
             "originalDescription": "Tope puerta 3/4\" (1.2) Limat(8504)",
             "sourceRows": [
@@ -4081,8 +4140,8 @@
             "id": "2f1a91d3-5ca9-5d3d-a179-ac686dc1f555",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8016",
             "originalDescription": "Tope tapajunta",
             "sourceRows": [
@@ -4109,8 +4168,8 @@
             "id": "3801fe1f-6dba-5a0e-87f1-ffd867f7b863",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8521",
             "originalDescription": "vitrovent jamba",
             "sourceRows": [
@@ -4137,8 +4196,8 @@
             "id": "fc3590d1-6d27-5ac2-9056-d14170a0f566",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8502",
             "originalDescription": "vitrovent platina",
             "sourceRows": [
@@ -4165,8 +4224,8 @@
             "id": "f40b10a0-d6e3-55b5-94cd-6d57f7cd9225",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7300",
             "originalDescription": "Base junquillo",
             "sourceRows": [
@@ -4193,8 +4252,8 @@
             "id": "e93dd4a4-88e6-5389-baf7-dfed20ec3b35",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7305",
             "originalDescription": "Tapa junquillo",
             "sourceRows": [
@@ -4221,8 +4280,8 @@
             "id": "09cd59f3-efaa-5a7e-8088-7be943914eb6",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7205",
             "originalDescription": "Tapa junquillo inter",
             "sourceRows": [
@@ -4249,8 +4308,8 @@
             "id": "5cdd3280-1b8b-542e-8319-25bfaab5c27e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "7206",
             "originalDescription": "junquillo p/8mm",
             "sourceRows": [
@@ -4272,8 +4331,8 @@
             "id": "81b70031-9df5-5912-af87-9f6f45ec7787",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2543",
             "originalDescription": "Cantonera de 1 1/2 \" (3) Limat(2542)",
             "sourceRows": [
@@ -4295,8 +4354,8 @@
             "id": "4dc99ad7-beee-50c6-b3ee-df5af0474ede",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2553",
             "originalDescription": "Cantonera de 2\" (3) Limat(2552)",
             "sourceRows": [
@@ -4323,8 +4382,8 @@
             "id": "9c85bf25-56aa-5d54-a3d8-03619c938934",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8436",
             "originalDescription": "Vent parante vertical Eco",
             "sourceRows": [
@@ -4351,8 +4410,8 @@
             "id": "250ff1d8-1210-5f65-a550-681a87e1d629",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8438",
             "originalDescription": "Vent corred \"H\" horiz Eco",
             "sourceRows": [
@@ -4379,8 +4438,8 @@
             "id": "a6c1974e-20aa-51c1-9ade-34379c098d12",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8441",
             "originalDescription": "Vent parante vertical (1.19) Limat(8441)",
             "sourceRows": [
@@ -4403,8 +4462,8 @@
             "id": "98339a25-ff06-544d-875c-45d230652f5c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8440",
             "originalDescription": "Vent corred \"H\" horiz (1.4) Limat(8440)",
             "sourceRows": [
@@ -4427,8 +4486,8 @@
             "id": "1f7d3202-aebf-5858-9d33-42c2c54e59d6",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8437",
             "originalDescription": "Parante parte fija vent Eco (0.9) Lim(8437)",
             "sourceRows": [
@@ -4451,8 +4510,8 @@
             "id": "c1bb5006-a449-52bf-929e-ea88765177e1",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5438",
             "originalDescription": "Parante parte fija vent (1.27) Lim(5438)",
             "sourceRows": [
@@ -4475,8 +4534,8 @@
             "id": "ee84b701-546b-54c9-a096-ec9af7f63b0b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2420",
             "originalDescription": "Pasamano redondo",
             "sourceRows": [
@@ -4498,8 +4557,8 @@
             "id": "3e8c56e7-c558-5330-92c9-7c5ea181954e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2410",
             "originalDescription": "Pasamano",
             "sourceRows": [
@@ -4521,8 +4580,8 @@
             "id": "738ab8a6-2400-5580-a457-04fbd655bccf",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2490",
             "originalDescription": "Base pasamano",
             "sourceRows": [
@@ -4544,8 +4603,8 @@
             "id": "bc957d14-9cf5-5a49-9fe0-6ba285df65d3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2465",
             "originalDescription": "Pasamano Modif",
             "sourceRows": [
@@ -4568,8 +4627,8 @@
             "id": "38f6a440-139e-5bb1-84cc-57cb0f374901",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2431",
             "originalDescription": "Balaustre eco",
             "sourceRows": [
@@ -4591,8 +4650,8 @@
             "id": "ad696d4b-2e7a-5e5b-981e-db61df707850",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2432",
             "originalDescription": "balaustre intermedio",
             "sourceRows": [
@@ -4615,8 +4674,8 @@
             "id": "82d78737-d8a5-5953-a5f6-d3f121bb489f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9301",
             "originalDescription": "Puente puerta ducha",
             "sourceRows": [
@@ -4639,8 +4698,8 @@
             "id": "8920a382-d95b-55a1-a4de-e0c9a4f531da",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9302",
             "originalDescription": "Base puerta ducha",
             "sourceRows": [
@@ -4663,8 +4722,8 @@
             "id": "2a1a133b-f3f3-5bce-8a8e-8cb100ac3299",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9303",
             "originalDescription": "Canal puerta ducha",
             "sourceRows": [
@@ -4687,8 +4746,8 @@
             "id": "2ad6721a-7143-5749-bed3-492ffcf2826d",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9304",
             "originalDescription": "Parante puerta ducha",
             "sourceRows": [
@@ -4711,8 +4770,8 @@
             "id": "b7ea2ab8-b056-5cd3-969d-d9a8e1b3dbab",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9305",
             "originalDescription": "Puerta ducha",
             "sourceRows": [
@@ -4735,8 +4794,8 @@
             "id": "77f34c9b-f9fc-52e0-8212-2f4c1c99be70",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9306",
             "originalDescription": "H c/aleta puerta ducha",
             "sourceRows": [
@@ -4759,8 +4818,8 @@
             "id": "f5eda99f-78e6-572b-820b-666fb08ed81a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9307",
             "originalDescription": "Toallero puerta ducha",
             "sourceRows": [
@@ -4783,8 +4842,8 @@
             "id": "7339d498-1308-51ac-b5c1-391d8c1dc94f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9308",
             "originalDescription": "Brazo toallero ducha",
             "sourceRows": [
@@ -4807,8 +4866,8 @@
             "id": "336f18ed-1ceb-52ae-92e4-6fc33ce36e0c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9401",
             "originalDescription": "Puente puerta ducha",
             "sourceRows": [
@@ -4831,8 +4890,8 @@
             "id": "63ecacde-5c28-5feb-bc9c-9a3219ab3471",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9403",
             "originalDescription": "Canal puerta ducha",
             "sourceRows": [
@@ -4855,8 +4914,8 @@
             "id": "fba396f3-34c9-5e2d-a2d4-289b6b1efa93",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "9404",
             "originalDescription": "Parante puerta ducha",
             "sourceRows": [
@@ -4879,8 +4938,8 @@
             "id": "cecd3bad-55b0-5782-b660-d72518720ea7",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "6109",
             "originalDescription": "Tee 3/4\"",
             "sourceRows": [
@@ -4903,8 +4962,8 @@
             "id": "47c3a3a6-b497-5b3e-8303-952de41eeb54",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "6110",
             "originalDescription": "Tee 1\"",
             "sourceRows": [
@@ -4927,8 +4986,8 @@
             "id": "b7fb726c-c93e-54dc-90bd-651dfcbb2a8d",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "6111",
             "originalDescription": "Tee 1\" Int",
             "sourceRows": [
@@ -4950,8 +5009,8 @@
             "id": "1941e580-10e8-5cb5-b74b-43a68c2b7bf3",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2253",
             "originalDescription": "Riel superior p/closet eco",
             "sourceRows": [
@@ -4973,8 +5032,8 @@
             "id": "cb513971-7a8a-555c-b712-64089b38db00",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2254",
             "originalDescription": "Riel superior p/closet int (1.2) Limat(2253)",
             "sourceRows": [
@@ -4996,8 +5055,8 @@
             "id": "44176788-d92e-5fe3-b241-2e7f4d6eca4a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "1630",
             "originalDescription": "Platina 3/4\" (3.18) Limat(1630)",
             "sourceRows": [
@@ -5019,8 +5078,8 @@
             "id": "fc0e3771-566c-57b0-8776-595de2cbe9e4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "1640",
             "originalDescription": "Platina 1\" (3.18) Limat(1640)",
             "sourceRows": [
@@ -5042,8 +5101,8 @@
             "id": "807ae8ca-272f-5494-846d-42c96f4be65a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "1650",
             "originalDescription": "Platina 1 1/2 Limat(1650)",
             "sourceRows": [
@@ -5065,8 +5124,8 @@
             "id": "ada3bc82-fecf-5ed9-bee0-e9b8826463f4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "236",
             "originalDescription": "tapa junta filete media luna",
             "sourceRows": [
@@ -5088,8 +5147,8 @@
             "id": "55acaeee-f606-55ae-bd73-d98844007050",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "8449",
             "originalDescription": "perfl mosquitero",
             "sourceRows": [
@@ -5112,8 +5171,8 @@
             "id": "9d3da234-375f-517e-911c-89b36dc6c748",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2037",
             "originalDescription": "Tubo cuad 1\" c/a",
             "sourceRows": [
@@ -5136,8 +5195,8 @@
             "id": "af4911f7-a06e-5450-a756-9f390373522e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2038",
             "originalDescription": "Tubo cuad 1\"c/doble aleta",
             "sourceRows": [
@@ -5160,8 +5219,8 @@
             "id": "c12fc627-126b-58cd-bc68-07c845c2c7ec",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2031",
             "originalDescription": "Tubo ovalado 7/8 c/aleta",
             "sourceRows": [
@@ -5184,8 +5243,8 @@
             "id": "80a91368-140a-5551-9e3f-dbc99ea09dd1",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5444",
             "originalDescription": "Rodon de 1 1/2\" p/vitrina",
             "sourceRows": [
@@ -5207,8 +5266,8 @@
             "id": "a6dad9ac-a5db-580d-8593-f9621532877b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5141",
             "originalDescription": "tubo rectangular 80 x 35 - corrales",
             "sourceRows": [
@@ -5230,8 +5289,8 @@
             "id": "d26c52b2-c70d-58f1-821b-c71283f3881c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "5143",
             "originalDescription": "tubo rectangular 4\" x 1 3/4\" (1)-cristalum",
             "sourceRows": [
@@ -5253,8 +5312,8 @@
             "id": "305fa91d-3950-50bc-9ca0-0ac251013297",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T18:32:31.760Z",
-            "updatedAt": "2026-09-21T18:32:31.760Z",
+            "createdAt": "2026-09-21T23:19:54.406Z",
+            "updatedAt": "2026-09-21T23:19:54.406Z",
             "originalCode": "2105",
             "originalDescription": "zocalo para piso/pared 88.84",
             "sourceRows": [
