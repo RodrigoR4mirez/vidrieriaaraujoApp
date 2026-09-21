@@ -35,6 +35,6 @@ Generado: 2026-09-21T18:32:31.760Z
 
 ## Respaldo, Preview y Producción
 
-- Respaldo de Blob: pendiente. No se exportó ni importó ningún dato persistente.
-- Preview: la rama quedó desplegada y lista para revisar, pero su `BLOB_READ_WRITE_TOKEN` coincide con el de Producción. No se importaron datos para evitar alterar Producción durante una prueba.
-- Producción: pendiente de un Blob aislado para Preview y de aprobación explícita del usuario después de validar allí el volcado.
+- Respaldo de Preview: `backups/araujo-2026-09-21T18-50-23.942Z.json`, excluido de Git y conservado localmente.
+- Preview: importación completada en el Blob exclusivo de Preview. Verificación posterior: 154 perfiles, 134 imágenes asociadas, 46 vidrios y las 20 cotizaciones existentes sin cambios. URL: `https://vidrieria-araujo-git-catalogos-1ec942-rodrigor4mirezs-projects.vercel.app`.
+- Producción: pendiente de aprobación explícita del usuario después de revisar el Preview. No se exportó, importó ni modificó el Blob de Producción.
