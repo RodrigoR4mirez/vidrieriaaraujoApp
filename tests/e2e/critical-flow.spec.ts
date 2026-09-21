@@ -172,6 +172,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByRole("button", { name: "Confirmar cotización", exact: true }).click();
   await expect(page.getByRole("alert").filter({ hasText: "nombre del cliente" })).toBeVisible();
   await expect(page).toHaveURL(/\/cotizador$/);
+  await chooseGlass(page, code);
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("75");
   await page.getByLabel("Alto (cm)", { exact: true }).fill("40");
   await page.getByLabel("Cantidad", { exact: true }).fill("4");
