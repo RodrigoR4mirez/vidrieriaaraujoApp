@@ -26,6 +26,7 @@ test("referencia de perfiles → catálogos → cotización por metros", async (
   page.on("pageerror", (error) => errors.push(error.message));
   await login(page);
 
+  await page.getByRole("link", { name: "Catálogos", exact: true }).first().click();
   await page.getByRole("link", { name: "Perfiles de aluminio", exact: true }).click();
   const seedButton = page.getByRole("button", {
     name: "Cargar referencia inicial",

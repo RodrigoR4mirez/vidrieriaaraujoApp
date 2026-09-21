@@ -57,6 +57,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   );
   expect(cookie?.httpOnly).toBe(true);
   expect(cookie?.sameSite).toBe("Lax");
+  await page.getByRole("link", { name: "Catálogos", exact: true }).first().click();
   await page.getByRole("link", { name: "Catálogos base", exact: true }).click();
   for (const [category, name] of [
     ["Familias", names.family],
@@ -144,6 +145,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByLabel("Buscar vidrio").fill(code);
   await expect(page.locator(".picker-product-row").filter({ hasText: code })).toHaveCount(0);
   await page.getByLabel("Buscar vidrio").press("Escape");
+  await page.getByRole("link", { name: "Catálogos", exact: true }).first().click();
   await page.getByRole("link", { name: "Vidrios", exact: true }).click();
   await page
     .getByRole("button", { name: `Reactivar ${code}`, exact: true })
@@ -175,6 +177,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByLabel("Cantidad", { exact: true }).fill("4");
   await page.getByLabel("Nombre del cliente").fill(names.customer);
   await page.getByLabel("Condiciones comerciales (opcional)").fill("Borrador conservado");
+  await page.getByRole("link", { name: "Catálogos", exact: true }).first().click();
   await page.getByRole("link", { name: "Vidrios", exact: true }).click();
   await page.getByRole("link", { name: "Cotización", exact: true }).first().click();
   await expect(page).toHaveURL(/\/cotizador$/);
