@@ -167,6 +167,7 @@ export function CatalogProductPicker({
   const input = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const queryRef = useRef("");
   const [active, setActive] = useState(0);
   const [recentIds, setRecentIds] = useState<string[]>(() =>
     typeof window === "undefined" ? [] : readRecent(recentKey));
@@ -180,8 +181,10 @@ export function CatalogProductPicker({
     previousValue.current = value;
     if (value || !wasSelected) return;
     let cancelled = false;
+    const queryAtTransition = queryRef.current;
     queueMicrotask(() => {
-      if (cancelled) return;
+      if (cancelled || queryRef.current !== queryAtTransition) return;
+      queryRef.current = "";
       setQuery("");
       setActive(0);
     });
@@ -242,6 +245,7 @@ export function CatalogProductPicker({
 
   function chooseProduct(product: PickerProduct) {
     onChange(product.id);
+    queryRef.current = "";
     setQuery("");
     setOpen(false);
     remember(product.id);
@@ -251,6 +255,7 @@ export function CatalogProductPicker({
     if (option.kind === "product") chooseProduct(option.product);
     else if (option.kind === "family") {
       onFamilyChange(option.family.id);
+      queryRef.current = "";
       setQuery("");
       setActive(0);
       setOpen(true);
@@ -264,6 +269,7 @@ export function CatalogProductPicker({
   function clear() {
     onChange("");
     onFamilyChange("");
+    queryRef.current = "";
     setQuery("");
     setOpen(true);
     input.current?.focus();
@@ -297,6 +303,7 @@ export function CatalogProductPicker({
         }}
         onChange={(event) => {
           if (selected) onChange("");
+          queryRef.current = event.target.value;
           setQuery(event.target.value);
           setOpen(true);
           setActive(0);
