@@ -13,7 +13,9 @@ import {
 } from "@/domain/catalogs/models";
 import {
   draftItemSchema,
+  isProfileDraftItem,
   type DraftItem,
+  type ProfileDraftItem,
   type QuotationItem,
 } from "@/domain/quotation/models";
 import { priceDraft } from "@/application/use-cases";
@@ -23,7 +25,9 @@ import { quotationTechnicalDetail } from "@/lib/quotation-item";
 import { Button, Dialog, Notice, QuantityControl } from "./ui";
 import { GlassPicker } from "./glass-picker";
 import { QuotationSummary } from "./quotation-summary";
-export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; owner: string }) {
+import type { AluminumCatalog } from "@/domain/aluminum/models";
+import { ProfileItemForm } from "./profile-item-form";
+export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: CatalogState; aluminum: AluminumCatalog; owner: string }) {
   const { draft, update, clear: clearCache, warning, get } = useQuotationDraft(owner);
   const { items, editId, customerName, conditions, requestId, form } = draft;
   const hydrated = useHydrated();
@@ -34,7 +38,7 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
   let priced: QuotationItem[] = [];
   let pricingError = "";
   try {
-    priced = priceDraft(items, catalog);
+    priced = priceDraft(items, catalog, aluminum);
   } catch (error) {
     pricingError = error instanceof Error ? error.message : "Revisa los ítems.";
   }
@@ -46,7 +50,9 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
     window.addEventListener("beforeunload", leave);
     return () => window.removeEventListener("beforeunload", leave);
   }, [items.length, customerName, conditions, form.mode, warning]);
-  const cancelEdit = () => update((old) => ({ ...old, editId: null, form: emptyForm() }));
+  const cancelEdit = () => update((old) => ({ ...old, editId: null,
+    form: { ...emptyForm(), productType: old.form.productType },
+  }));
   const clear = () => {
     clearCache();
     setError("");
@@ -58,37 +64,68 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
     }));
     setError("");
   };
+  const saveItem = (item: DraftItem) => {
+    update((old) => {
+      const productType = isProfileDraftItem(item) ? "PROFILE" as const : "GLASS" as const;
+      const fresh = { ...emptyForm(), productType };
+      const nextForm = old.editId ? fresh : productType === "PROFILE"
+        ? { ...old.form, metersRequested: "", quantity: 1 }
+        : { ...old.form, widthCm: "", heightCm: "", quantity: 1 };
+      return {
+        ...old,
+        items: old.editId ? old.items.map((entry) => entry.id === old.editId ? item : entry) : [...old.items, item],
+        editId: null,
+        requestId: "",
+        form: nextForm,
+      };
+    });
+    setError("");
+  };
   return (
     <fieldset disabled={pending || !hydrated} className="quotation-layout">
       <aside className="panel glass quote-form">
         <h2>
           <Ruler size={20} />
-          Agregar vidrio
+          Agregar ítem a la cotización
         </h2>
-        <p className="muted">Elige por pie² o por plancha entera.</p>
-        {catalog.products.length ? (
+        <p className="muted">Selecciona vidrio o perfil y completa los datos.</p>
+        <div className="segments product-tabs" aria-label="Tipo de producto">
+          <button type="button" className={form.productType === "GLASS" ? "selected" : ""}
+            aria-pressed={form.productType === "GLASS"} onClick={() => {
+              update((old) => ({ ...old, editId: null, form: { ...emptyForm(), productType: "GLASS" } }));
+              setError("");
+            }}>Vidrio</button>
+          <button type="button" className={form.productType === "PROFILE" ? "selected" : ""}
+            aria-pressed={form.productType === "PROFILE"} onClick={() => {
+              update((old) => ({ ...old, editId: null, form: { ...emptyForm(), productType: "PROFILE" } }));
+              setError("");
+            }}>Perfil</button>
+        </div>
+        {form.productType === "GLASS" && catalog.products.length ? (
           <ItemForm
             catalog={catalog}
             editing={items.find((i) => i.id === editId)}
             form={form}
             onFormChange={(next) => update((old) => ({ ...old, form: next }))}
-            onSave={(item) => {
-              update((old) => ({ ...old,
-                items: old.editId ? old.items.map((i) => i.id === old.editId ? item : i) : [...old.items, item],
-                editId: null, requestId: "",
-                form: old.editId ? emptyForm() : { ...old.form, widthCm: "", heightCm: "", quantity: 1 },
-              }));
-              setError("");
-            }}
+            onSave={saveItem}
             onCancel={cancelEdit}
           />
-        ) : (
+        ) : form.productType === "GLASS" ? (
           <Notice>
             El catálogo está vacío.{" "}
             <Link href="/catalogos">Crea las opciones base</Link> y{" "}
             <Link href="/catalogo">agrega un vidrio</Link> para empezar.
           </Notice>
-        )}
+        ) : aluminum.profiles.length ? <ProfileItemForm
+          catalog={aluminum}
+          editing={items.find((item) => item.id === editId && isProfileDraftItem(item)) as ProfileDraftItem | undefined}
+          form={form}
+          onFormChange={(next) => update((old) => ({ ...old, form: next }))}
+          onSave={saveItem}
+          onCancel={cancelEdit}
+        /> : <Notice>
+          El catálogo de perfiles está vacío. <Link href="/perfiles">Carga la referencia inicial o crea perfiles</Link> para empezar.
+        </Notice>}
       </aside>
       <section className="panel glass quote-summary">
         <QuotationSummary
@@ -96,8 +133,18 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
           onEdit={(id) => {
             const item = items.find((i) => i.id === id);
             if (!item) return;
+            if (isProfileDraftItem(item)) {
+              const profile = aluminum.profiles.find((entry) => entry.id === item.profileId);
+              update((old) => ({ ...old, editId: id, form: {
+                ...emptyForm(), productType: "PROFILE", profileMode: item.mode,
+                profileFamilyId: profile?.familyId || "", profileId: item.profileId,
+                colorId: item.colorId, metersRequested: item.mode === "PROFILE_METERS" ? item.metersRequested : "",
+                quantity: item.quantity,
+              } }));
+              return;
+            }
             update((old) => ({ ...old, editId: id, form: {
-              mode: item.mode ?? "SQUARE_FOOT", productId: item.productId,
+              ...emptyForm(), productType: "GLASS", mode: item.mode ?? "SQUARE_FOOT", productId: item.productId,
               familyId: catalog.products.find((p) => p.id === item.productId)?.familyId || "",
               quantity: item.quantity,
               widthCm: item.mode !== "SHEET" ? item.widthCm : "",
@@ -138,7 +185,9 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
         {warning && <Notice error>{warning}</Notice>}
         {pricingError && <ul className="draft-recovery">
           {items.map((item) => <li key={item.id}>
-            <span>{catalog.products.find((p) => p.id === item.productId)?.code || "Vidrio no disponible"} · Cantidad: {item.quantity}</span>
+            <span>{isProfileDraftItem(item)
+              ? aluminum.profiles.find((profile) => profile.id === item.profileId)?.code || "Perfil no disponible"
+              : catalog.products.find((p) => p.id === item.productId)?.code || "Vidrio no disponible"} · Cantidad: {item.quantity}</span>
             <Button variant="secondary" onClick={() => remove(item.id)}>Retirar ítem</Button>
           </li>)}
         </ul>}
@@ -150,7 +199,9 @@ export function QuotationBuilder({ catalog, owner }: { catalog: CatalogState; ow
             variant="secondary"
             disabled={pending}
             onClick={() =>
-              items.length || customerName || conditions || form.mode || form.widthCm || form.heightCm ? setResetOpen(true) : clear()
+              items.length || customerName || conditions || form.mode || form.widthCm || form.heightCm ||
+                form.profileMode || form.profileFamilyId || form.profileId || form.colorId || form.metersRequested
+                ? setResetOpen(true) : clear()
             }
           >
             <RotateCcw size={17} />

@@ -3,6 +3,7 @@ import { catalogStateSchema } from "@/domain/catalogs/models";
 import { quotationSchema } from "@/domain/quotation/models";
 import { DomainError } from "@/domain/errors";
 import type { JsonStore } from "./json-store";
+import { aluminumCatalogSchema } from "@/domain/aluminum/models";
 export const backupSchema = z
   .object({
     schemaVersion: z.literal(1),
@@ -50,6 +51,20 @@ export function validateBackup(raw: unknown) {
           )
             throw new DomainError("Backup con referencias inválidas.");
         }
+      entry.value = state;
+    } else if (entry.pathname === "data/v1/aluminum-catalog.json") {
+      const state = aluminumCatalogSchema.parse(entry.value);
+      if (new Set(state.profiles.map((profile) => profile.code)).size !== state.profiles.length)
+        throw new DomainError("Backup con códigos de perfil duplicados.");
+      if (new Set([...state.families, ...state.colors, ...state.profiles].map((value) => value.id)).size !==
+        state.families.length + state.colors.length + state.profiles.length)
+        throw new DomainError("Backup de perfiles con IDs duplicados.");
+      for (const profile of state.profiles) {
+        if (!state.families.some((family) => family.id === profile.familyId))
+          throw new DomainError("Backup con familias de perfil inválidas.");
+        if (profile.colorPrices.some((price) => !state.colors.some((color) => color.id === price.colorId)))
+          throw new DomainError("Backup con colores de perfil inválidos.");
+      }
       entry.value = state;
     } else if (/^data\/v1\/quotations\/[A-Z]{3}-\d{5,}\.json$/.test(entry.pathname)) {
       const q = quotationSchema.parse(entry.value);

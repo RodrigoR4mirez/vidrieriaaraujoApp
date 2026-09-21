@@ -85,3 +85,38 @@ export function calculateSheet(raw: z.input<typeof sheetCalculationSchema>) {
     itemAmount: new D(input.pricePerSheet).times(input.quantity).toFixed(2),
   };
 }
+
+export const PROFILE_METERS_MARKUP = "1.10";
+const profileBaseSchema = z.object({
+  pricePerBar: positiveDecimal,
+  barLengthMeters: positiveDecimal,
+  quantity: quantitySchema,
+});
+const profileMetersSchema = profileBaseSchema.extend({
+  metersRequested: positiveDecimal,
+});
+
+export function calculateProfileMeters(raw: z.input<typeof profileMetersSchema>) {
+  const input = profileMetersSchema.parse(raw);
+  const unitPrice = roundHalfUp(
+    new D(input.pricePerBar).div(input.barLengthMeters).times(PROFILE_METERS_MARKUP),
+  );
+  return {
+    ...input,
+    markupMultiplier: PROFILE_METERS_MARKUP,
+    unitPrice: unitPrice.toFixed(2),
+    itemAmount: roundHalfUp(
+      unitPrice.times(input.metersRequested).times(input.quantity),
+    ).toFixed(2),
+  };
+}
+
+export function calculateProfileBar(raw: z.input<typeof profileBaseSchema>) {
+  const input = profileBaseSchema.parse(raw);
+  const unitPrice = new D(input.pricePerBar).toDecimalPlaces(2, Decimal.ROUND_HALF_UP);
+  return {
+    ...input,
+    unitPrice: unitPrice.toFixed(2),
+    itemAmount: roundHalfUp(unitPrice.times(input.quantity)).toFixed(2),
+  };
+}

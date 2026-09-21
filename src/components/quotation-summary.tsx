@@ -1,8 +1,9 @@
 "use client";
-import { quotationItemDetail, quotationTechnicalDetail } from "@/lib/quotation-item";
+import Image from "next/image";
+import { quotationItemDetail, quotationItemGroup, quotationItemName, quotationTechnicalDetail } from "@/lib/quotation-item";
 import { useState } from "react";
 import { Pencil, Trash2, List, Rows3 } from "lucide-react";
-import type { QuotationItem } from "@/domain/quotation/models";
+import { isProfileQuotationItem, type QuotationItem } from "@/domain/quotation/models";
 import { quotationSubtotal, quotationTotal } from "@/domain/quotation/calculation";
 import { money } from "@/lib/formatting";
 import { EmptyState } from "./ui";
@@ -20,9 +21,7 @@ export function QuotationSummary({
   onDelete?: (id: string) => void;
 }) {
   const [compact, setCompact] = useState(false);
-  const groups = compact
-    ? [["Detalle", items] as const]
-    : Array.from(Map.groupBy(items, (i) => i.productDescription));
+  const groups = Array.from(Map.groupBy(items, quotationItemGroup));
   return (
     <>
       <div className="section-heading">
@@ -55,28 +54,27 @@ export function QuotationSummary({
       </div>
       {!items.length && (
         <EmptyState title="Empieza una nueva cotización">
-          Selecciona la modalidad, el vidrio y agrega el primer ítem.
+          Selecciona el tipo de producto, completa sus datos y agrega el primer ítem.
         </EmptyState>
       )}
       <div className="quotation-groups">
         {groups.map(([name, group]) => (
           <div className="quotation-group" key={name}>
-            {!compact && (
-              <div className="group-heading">
+            <div className="group-heading">
                 <strong>
                   <span className="blue-dot" />
-                  {name}
+                  {name} ({group.length})
                 </strong>
                 <span>
                   {group.length} {group.length === 1 ? "ítem" : "ítems"}
                 </span>
-              </div>
-            )}
+            </div>
             <div className="table-scroll">
               <table className="quotation-table">
                 <thead>
                   <tr>
-                    <th>{compact ? "Vidrio / modalidad" : "Modalidad / medidas"}</th>
+                    <th>Producto / descripción</th>
+                    <th>Modalidad / medidas</th>
                     <th>Cant.</th>
                     <th>P. unitario</th>
                     <th>Importe</th>
@@ -91,11 +89,18 @@ export function QuotationSummary({
                   {group.map((item) => (
                     <tr key={item.id}>
                       <td>
-                        {compact && <small>{item.productDescription}</small>}
-                        <strong>
-                          {quotationItemDetail(item)}
-                        </strong>
-                        {!compact && item.mode !== "SHEET" && (
+                        <div className="summary-product">
+                          {isProfileQuotationItem(item) && item.imagePath && <span className="summary-profile-image">
+                            <Image src={item.imagePath} alt="" fill sizes="44px" />
+                          </span>}
+                          <span><strong>{quotationItemName(item)}</strong>
+                            {!compact && <small>{isProfileQuotationItem(item) ? item.family : item.productCode}</small>}
+                          </span>
+                        </div>
+                      </td>
+                      <td>
+                        <strong>{quotationItemDetail(item)}</strong>
+                        {!compact && (isProfileQuotationItem(item) || item.mode !== "SHEET") && (
                           <small className="item-calculation">
                             {quotationTechnicalDetail(item)}
                           </small>

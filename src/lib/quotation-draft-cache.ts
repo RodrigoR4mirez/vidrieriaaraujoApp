@@ -2,9 +2,15 @@ import { z } from "zod";
 import { draftItemSchema } from "@/domain/quotation/models";
 
 const formSchema = z.object({
+  productType: z.enum(["GLASS", "PROFILE"]).default("GLASS"),
   mode: z.enum(["", "SQUARE_FOOT", "SHEET"]),
   familyId: z.string(), productId: z.string(),
   widthCm: z.string(), heightCm: z.string(), quantity: z.number().nullable(),
+  profileMode: z.enum(["", "PROFILE_METERS", "PROFILE_BAR"]).default(""),
+  profileFamilyId: z.string().default(""),
+  profileId: z.string().default(""),
+  colorId: z.string().default(""),
+  metersRequested: z.string().default(""),
 });
 const cacheSchema = z.object({
   version: z.literal(1),
@@ -18,7 +24,8 @@ const cacheSchema = z.object({
 export type QuotationForm = z.infer<typeof formSchema>;
 export type CachedDraft = z.infer<typeof cacheSchema>;
 export const emptyForm = (): QuotationForm => ({
-  mode: "", familyId: "", productId: "", widthCm: "", heightCm: "", quantity: 1,
+  productType: "GLASS", mode: "", familyId: "", productId: "", widthCm: "", heightCm: "", quantity: 1,
+  profileMode: "", profileFamilyId: "", profileId: "", colorId: "", metersRequested: "",
 });
 export const emptyDraft = (): CachedDraft => ({
   version: 1, items: [], customerName: "", conditions: "", editId: null, requestId: "", form: emptyForm(),

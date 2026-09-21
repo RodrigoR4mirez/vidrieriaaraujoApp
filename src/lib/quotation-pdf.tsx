@@ -1,4 +1,4 @@
-import { quotationItemDetail } from "@/lib/quotation-item";
+import { quotationItemDetail, quotationItemName } from "@/lib/quotation-item";
 import { quotationSubtotal } from "@/domain/quotation/calculation";
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import type { Quotation } from "@/domain/quotation/models";
@@ -65,7 +65,7 @@ export function QuotationPdf({ quotation: q }: { quotation: Quotation }) {
           <Text>Fecha y hora: {limaDate(q.confirmedAt)} · Moneda: Soles</Text>
         </View>
         <View style={[styles.row, styles.tableHeader]} fixed>
-          <Text style={styles.description}>Vidrio / Espesor</Text>
+          <Text style={styles.description}>Producto / descripción</Text>
           <Text style={styles.measures}>Modalidad / medidas</Text>
           <Text style={styles.quantity}>Cant.</Text>
           <Text style={styles.amount}>P. unitario</Text>
@@ -74,7 +74,7 @@ export function QuotationPdf({ quotation: q }: { quotation: Quotation }) {
         {q.items.map((i) => (
           <View style={styles.row} key={i.id} wrap={false}>
             <Text style={styles.description}>
-              {i.productDescription}
+              {quotationItemName(i)}
             </Text>
             <Text style={styles.measures}>
               {quotationItemDetail(i)}

@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   calculateItem,
   calculateSheet,
+  calculateProfileBar,
+  calculateProfileMeters,
   nextEvenInch,
   roundInchesForWaste,
   roundHalfUp,
@@ -16,6 +18,33 @@ describe("fórmula oficial", () => {
     for (const quantity of [0, -1, 1.5])
       expect(() => calculateSheet({ pricePerSheet: "111.11", quantity })).toThrow();
     expect(() => calculateSheet({ pricePerSheet: "0.00", quantity: 1 })).toThrow();
+  });
+  it("perfil por metros aplica precio de barra ÷ longitud × 1.10", () => {
+    expect(calculateProfileMeters({
+      pricePerBar: "28.00",
+      barLengthMeters: "6.00",
+      metersRequested: "2.50",
+      quantity: 1,
+    })).toMatchObject({
+      markupMultiplier: "1.10",
+      unitPrice: "5.13",
+      itemAmount: "12.83",
+    });
+    expect(calculateProfileMeters({
+      pricePerBar: "28.00",
+      barLengthMeters: "6.00",
+      metersRequested: "2.50",
+      quantity: 2,
+    }).itemAmount).toBe("25.65");
+  });
+  it("perfil por barra multiplica el precio del color por cantidad", () => {
+    expect(calculateProfileBar({ pricePerBar: "29.00", barLengthMeters: "6.00", quantity: 2 }))
+      .toMatchObject({ unitPrice: "29.00", itemAmount: "58.00" });
+    for (const invalid of [
+      { pricePerBar: "0", barLengthMeters: "6", quantity: 1 },
+      { pricePerBar: "28", barLengthMeters: "0", quantity: 1 },
+      { pricePerBar: "28", barLengthMeters: "6", quantity: 0 },
+    ]) expect(() => calculateProfileBar(invalid)).toThrow();
   });
   it("100 × 80 conserva S/62.24 por ítem y cobra S/62.50", () => {
     const result = calculateItem({

@@ -3,7 +3,7 @@ import { clearDraftCaches } from "@/lib/quotation-draft-cache";
 import Link from "next/link";
 import { useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Calculator, Layers, Settings2, History, LogOut, RefreshCw } from "lucide-react";
+import { Calculator, Layers, PanelsTopLeft, Settings2, History, LogOut, RefreshCw } from "lucide-react";
 import { logoutAction } from "@/app/actions";
 export function Navigation() {
   const pathname = usePathname();
@@ -15,6 +15,7 @@ export function Navigation() {
         {[
           ["/cotizador", "Cotizador", Calculator],
           ["/catalogo", "Vidrios", Layers],
+          ["/perfiles", "Perfiles", PanelsTopLeft],
           ["/catalogos", "Catálogos base", Settings2],
           ["/cotizaciones", "Histórico", History],
         ].map(([href, label, Icon]) =>

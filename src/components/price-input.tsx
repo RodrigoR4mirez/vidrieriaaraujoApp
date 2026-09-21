@@ -4,15 +4,17 @@ import Decimal from "decimal.js";
 import { priceFromDigits } from "@/lib/price-input";
 
 export function PriceInput({
-  id, name, value, onChange, onBlur, inputRef, required,
+  id, name, value, onChange, onBlur = () => undefined, inputRef = () => undefined, required = false,
+  "aria-label": ariaLabel,
 }: {
   id: string;
-  name: string;
+  name?: string;
   value?: string;
   onChange: (value: string) => void;
-  onBlur: () => void;
-  inputRef: (element: HTMLInputElement | null) => void;
-  required: boolean;
+  onBlur?: () => void;
+  inputRef?: (element: HTMLInputElement | null) => void;
+  required?: boolean;
+  "aria-label"?: string;
 }) {
   const ref = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
@@ -24,6 +26,7 @@ export function PriceInput({
     <input
       ref={(element) => { ref.current = element; inputRef(element); }}
       id={id}
+      aria-label={ariaLabel}
       name={name}
       type="text"
       inputMode="numeric"

@@ -1,6 +1,6 @@
 # Distribuidora Araujo — Vidriería & Aluminios
 
-MVP privado de catálogo de vidrios, cotización por medidas y planchas enteras y cotizaciones históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador se conserva temporalmente en la misma pestaña al navegar y recargar, hasta confirmarlo o descartarlo.
+MVP privado de catálogos de vidrios y perfiles de aluminio, cotización unificada y cotizaciones históricas. Tablet y escritorio. Los dispositivos leen la misma información desde Vercel Blob privado; el borrador se conserva temporalmente en la misma pestaña al navegar y recargar, hasta confirmarlo o descartarlo.
 
 Aplicación: [vidrieria-araujo.vercel.app](https://vidrieria-araujo.vercel.app). El catálogo inicia vacío para cargar los datos reales del negocio. Resultados de pruebas y URL Preview en [Despliegue](docs/deployment.md#resultados).
 
@@ -36,15 +36,18 @@ El segundo comando genera el secreto de sesión. En archivos dotenv, **escapar c
 
 1. Crear familias y espesores en **Catálogos base**, y opcionalmente colores/acabados y diseños catedral.
 2. Crear vidrios con códigos únicos y precios por pie² y/o plancha (sin precio: `0.00`). El catálogo de producción inicia vacío.
-3. En **Cotizador**, elegir **Pie² (por medidas)** o **Plancha entera**, vidrio y cantidad; solo por pie² ingresar ancho y alto en cm. Se pueden mezclar ambas modalidades en una cotización. Agregar, editar, eliminar y alternar vistas.
-4. Ingresar obligatoriamente el nombre del cliente y, si corresponde, condiciones comerciales opcionales. El sistema no asume plazos de entrega, vigencia ni datos fiscales de los mocks.
-5. Confirmar. El servidor valida el nombre, el catálogo activo, calcula y guarda una cotización inmutable con número definitivo.
-6. Abrir **Compartir cotización** para copiar, abrir WhatsApp, descargar PDF A4, imprimir A4/ticket 80 mm o imprimir el voucher interno del taller sin precios.
-7. Consultar el histórico desde cualquier otro dispositivo autenticado y buscar por cliente, número o fecha.
+3. Abrir **Perfiles** y usar **Cargar referencia inicial** una sola vez si el catálogo está vacío. La carga versionada contiene 21 familias, Mate/Negro, 143 perfiles únicos y las imágenes técnicas procesadas del Excel original. También se pueden crear, editar, ocultar o reactivar familias, colores y perfiles manualmente.
+4. En **Cotizador**, elegir **Vidrio** o **Perfil**. Vidrio admite **Pie² (por medidas)** y **Plancha entera**; perfil admite **Por metros** y **Barra completa**, siempre con uno de sus colores/precios disponibles. Se pueden combinar todas las modalidades en una cotización.
+5. Ingresar obligatoriamente el nombre del cliente y, si corresponde, condiciones comerciales opcionales. El sistema no asume plazos de entrega, vigencia ni datos fiscales de los mocks.
+6. Confirmar. El servidor valida el nombre, ambos catálogos activos, recalcula y guarda una cotización inmutable con número definitivo.
+7. Abrir **Compartir cotización** para copiar, abrir WhatsApp, descargar PDF A4, imprimir A4/ticket 80 mm o imprimir el voucher interno del taller sin precios.
+8. Consultar el histórico desde cualquier otro dispositivo autenticado y buscar por cliente, número o fecha.
 
 Ocultar conserva registros. Un producto con cualquier referencia base oculta tampoco puede seleccionarse para una nueva cotización. Para resolver conflictos de edición, recargar y volver a aplicar los cambios. Cambiar precios nunca recalcula el histórico.
 
 Los catálogos base solo solicitan nombre, descripción opcional y estado. Los precios se escriben desde los centavos: `1` → `0.01`, `11100` → `111.00`; ambos precios permiten `0.00` y al vaciarlos toman ese valor. Cada modalidad ofrece únicamente productos activos con su precio mayor que cero. Una plancha se calcula como precio de catálogo × cantidad; por pie² se aplica la regla de merma de `0.5″`. Los importes de los ítems conservan sus dos decimales y solo el total final se redondea hacia arriba a `.50` o al entero. Los datos antiguos se conservan sin migración destructiva.
+
+Un perfil por metros calcula `(precio de barra ÷ longitud comercial) × 1.10`, redondea el precio por metro a dos decimales y lo multiplica por metros y cantidad. Barra completa usa el precio del color por cantidad. La fórmula vive en el dominio y el total combinado se redondea una sola vez con la misma regla del vidrio. No se maneja IGV.
 
 ## Verificar
 
@@ -86,10 +89,11 @@ Los backups reales están ignorados por Git y se crean con permisos 600. Importa
 - [Arquitectura](docs/architecture.md)
 - [Modelo de datos y migración futura](docs/data-model.md)
 - [Mapa STITCH](docs/stitch-map.md)
+- [Referencias originales de Excel y mockups](docs/reference-assets.md)
 - [Vercel, entornos y despliegue](docs/deployment.md)
 - [Flujo automático de entrega por sesión](docs/release-workflow.md)
 
-Los originales STITCH permanecen intactos y están excluidos del despliegue. El logo real está en `public/brand/logo.png`; las fuentes se sirven localmente desde el paquete de Fontsource.
+Los originales STITCH y la carpeta local `mockapp-v2/` permanecen intactos y están excluidos del despliegue. El logo real está en `public/brand/logo.png`; las imágenes técnicas procesadas están en `public/profiles/` y las fuentes se sirven localmente desde el paquete de Fontsource.
 
 ### Selección guiada del vidrio
 

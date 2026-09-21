@@ -7,6 +7,11 @@ data/v1/catalog.json
   schemaVersion: 1
   values: BaseValue[]
   products: Product[]
+data/v1/aluminum-catalog.json
+  schemaVersion: 1
+  families: AluminumFamily[]
+  colors: AluminumColor[]
+  profiles: AluminumProfile[]
 data/v1/quotations/COT-00001.json
 data/v1/quotations/COT-00002.json
 ...
@@ -26,12 +31,21 @@ Los precios nuevos o modificados requieren exactamente dos decimales y un import
 
 Cada ítem por pie² (`mode: SQUARE_FOOT`, opcional para históricos antiguos) conserva id, productId, productCode, productDescription, family, colorFinish, thickness, cathedralDesign, widthCm, heightCm, quantity, pricePerSquareFoot, widthInRaw, heightInRaw, widthWasteIn, heightWasteIn, widthInRounded, heightInRounded, areaIn2, areaFt2, unitPrice e itemAmount. Las mermas son opcionales al leer históricos anteriores. El snapshot histórico no depende de referencias vigentes para mostrarse.
 
+## Perfiles de aluminio
+
+`AluminumFamily`: id UUID, revisión, nombre original, descripción y estado. `AluminumColor`: id UUID, revisión, nombre, muestra hexadecimal y estado. `AluminumProfile`: código único, descripción, familia, longitud comercial, imagen pública relativa opcional, precios por color, estado y trazabilidad opcional (`originalCode`, `originalDescription`, `sourceRows`).
+
+El catálogo inicial versionado se deriva de `lista - Rodri.xlsx`/`Hoja1`: 21 familias, 2 colores y 143 perfiles únicos. La carga solo se permite sobre un catálogo de aluminio vacío y nunca sobrescribe registros existentes.
+
+Los ítems de perfil usan `itemType: ALUMINUM_PROFILE`. `PROFILE_METERS` congela perfil, familia, color, imagen, longitud, precio por barra, multiplicador `1.10`, metros, cantidad, precio unitario por metro e importe. `PROFILE_BAR` congela los mismos datos excepto metros y multiplicador. Ambos conviven con los ítems de vidrio en `quotation.items`.
+
 ## Migración futura
 
 | Entidad Blob | Tabla futura | Restricciones |
 |---|---|---|
 | values | base_catalog_values | PK id, category, status; campos antiguos opcionales |
 | products | glass_products | PK id, UNIQUE(code), referencias base, revision |
+| aluminum families/colors/profiles | aluminum_families / aluminum_colors / aluminum_profiles | PK id, UNIQUE(code de perfil), precios por color, revision |
 | quotations | quotations | PK id, UNIQUE(number), solo inserciones |
 | quotation.items | quotation_items | PK id por cotización, FK quotation, snapshots completos |
 

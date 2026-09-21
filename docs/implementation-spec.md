@@ -1411,3 +1411,16 @@ Indicador ámbar con pulso suave, estático con movimiento reducido. Copia tempo
 ### Navegación y datos recientes
 
 Los enlaces principales precargan sus pantallas; el Router Cache de Next reutiliza sus respuestas privadas en memoria durante 30 segundos. No se guardan catálogos ni históricos en sessionStorage/localStorage. `Actualizar` solicita los datos recientes en la pantalla actual, conservando el borrador. Las mutaciones mantienen revalidación y la confirmación relee precios en servidor. La primera visita o un caché vencido aún puede requerir espera de red. El número provisional se obtiene de los nombres de archivos, sin descargar snapshots; la reserva definitiva y el control de concurrencia permanecen sin cambios.
+
+## 50. Ampliación implementada: perfiles de aluminio
+
+- Referencias originales y trazabilidad: `docs/reference-assets.md`.
+- Catálogo privado separado: `data/v1/aluminum-catalog.json` mediante `AluminumCatalogRepository`.
+- Carga inicial versionada: 21 familias, colores Mate/Negro y 143 perfiles únicos procesados desde `lista - Rodri.xlsx`, sin dependencia runtime de `mockapp-v2`.
+- Perfiles con imagen técnica; vidrios sin imágenes.
+- Mantenimiento en `/perfiles`: búsqueda, familia, estado, detalle, crear, editar, ocultar/reactivar y carga inicial no destructiva.
+- Catálogos base con áreas Vidrios/Perfiles; perfiles administra familias, colores y acceso a perfiles/códigos.
+- Cotizador unificado con pestañas Vidrio/Perfil y grupos separados en el resumen.
+- Modalidades `PROFILE_METERS` y `PROFILE_BAR` según `docs/business-rules.md`; fórmula única en dominio con `decimal.js`.
+- Cotizaciones confirmadas, histórico, PDF, WhatsApp, impresión, texto copiado, voucher interno y backup admiten snapshots mixtos.
+- El subtotal suma importes de ambas categorías y el total conserva el redondeo oficial sin IGV.

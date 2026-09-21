@@ -42,3 +42,23 @@ Pie de página actualizado según referencias del usuario: créditos de Distribu
 Borrador: indicador ámbar con pulso suave (estático si se solicita movimiento reducido). Se conserva temporalmente en la pestaña al navegar y recargar, incluyendo formulario sin agregar y edición en curso. Confirmar, descartar o cerrar sesión limpia la copia temporal.
 
 Navegación ágil: precarga completa de enlaces principales y reutilización de pantallas en memoria durante 30 segundos. Acción Actualizar datos para solicitar información reciente; guardar continúa invalidando vistas. Solo el borrador se guarda en sessionStorage.
+
+## Ampliación visual `mockapp-v2` — perfiles de aluminio
+
+Las referencias originales de esta iteración están en `mockapp-v2/`. Son documentación local de diseño y datos; la aplicación no depende de esa ruta en runtime.
+
+| Archivo de referencia | Pantalla | Ruta prevista | Estado / interacción | Componentes |
+|---|---|---|---|---|
+| `ChatGPT Image 20 sept 2026, 20_48_24 (1).png` | Cotizador de vidrio dentro del cotizador unificado | `/cotizador` | pestaña Vidrio, búsqueda, venta por pie²/plancha, resumen separado por tipo | QuotationBuilder, GlassItemForm, QuotationSummary |
+| `ChatGPT Image 20 sept 2026, 20_48_24 (2).png` | Cotizador de perfiles y resumen unificado | `/cotizador` | pestaña Perfil, familia, búsqueda, color, metros/barra, cantidad, grupos Vidrios/Perfiles | ProfileItemForm, ProfilePicker, QuotationSummary |
+| `ChatGPT Image 20 sept 2026, 20_48_25 (3).png` | Mantenimiento de perfiles de aluminio | `/perfiles` | buscar, filtrar, ver imagen/detalle, crear, editar, ocultar/reactivar | AluminumProfileCatalog, ProfileForm |
+| `ChatGPT Image 20 sept 2026, 20_48_25 (4).png` | Catálogos base de perfiles | `/catalogos` | pestañas Vidrios/Perfiles; familias, colores y perfiles/códigos | BaseCatalogManager, AluminumCatalogManager |
+| `lista - Rodri.xlsx` (`Hoja1`) | Carga inicial y casos de validación de perfiles | acción de carga inicial, sin dependencia runtime | 21 familias; 143 perfiles únicos; precios Mate/Negro; imágenes técnicas embebidas | AluminumCatalogService, seed versionado |
+
+### Criterios visuales de la ampliación
+
+- Vidrios continúan sin imágenes.
+- Perfiles muestran la imagen técnica importada del Excel o un marcador visual explícito cuando el origen no contiene imagen.
+- El cotizador conserva el formulario a la izquierda y el resumen a la derecha en escritorio/tablet, y los apila en móvil.
+- El resumen separa `Vidrios` y `Perfiles de aluminio`, aunque calcula un único subtotal y total.
+- Las imágenes son referencia visual; los datos y fórmulas versionados en el dominio son la fuente de verdad una vez implementados.

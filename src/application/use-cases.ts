@@ -6,14 +6,29 @@ import {
   productDetails,
 } from "@/domain/catalogs/models";
 import { DomainError } from "@/domain/errors";
-import { calculateItem, calculateSheet, quotationSubtotal, quotationTotal } from "@/domain/quotation/calculation";
+import {
+  calculateItem,
+  calculateProfileBar,
+  calculateProfileMeters,
+  calculateSheet,
+  quotationSubtotal,
+  quotationTotal,
+} from "@/domain/quotation/calculation";
 import {
   draftSchema,
+  isProfileDraftItem,
   type DraftItem,
   type QuotationItem,
 } from "@/domain/quotation/models";
 import type { CatalogState } from "@/domain/catalogs/models";
+import {
+  emptyAluminumCatalog,
+  isProfileQuotable,
+  profilePrice,
+  type AluminumCatalog,
+} from "@/domain/aluminum/models";
 import type {
+  AluminumCatalogRepository,
   BaseCatalogRepository,
   GlassRepository,
   QuotationRepository,
@@ -21,8 +36,47 @@ import type {
 export function priceDraft(
   items: DraftItem[],
   catalog: CatalogState,
+  aluminum: AluminumCatalog = emptyAluminumCatalog(),
 ): QuotationItem[] {
   return items.map((item) => {
+    if (isProfileDraftItem(item)) {
+      const profile = aluminum.profiles.find((entry) => entry.id === item.profileId);
+      const color = aluminum.colors.find((entry) => entry.id === item.colorId);
+      const family = profile && aluminum.families.find((entry) => entry.id === profile.familyId);
+      if (!profile || !color || !family)
+        throw new DomainError("Perfil, familia o color inexistente. Actualiza el catálogo.");
+      if (!isProfileQuotable(profile, item.colorId, aluminum))
+        throw new DomainError("Perfil oculto, color oculto o sin precio. Actualiza la cotización.");
+      const common = {
+        profileCode: profile.code,
+        profileDescription: profile.description,
+        family: family.name,
+        color: color.name,
+        imagePath: profile.imagePath,
+        barLengthMeters: profile.barLengthMeters,
+        pricePerBar: profilePrice(profile, item.colorId)!,
+      };
+      if (item.mode === "PROFILE_METERS")
+        return {
+          ...item,
+          ...common,
+          ...calculateProfileMeters({
+            pricePerBar: common.pricePerBar,
+            barLengthMeters: common.barLengthMeters,
+            metersRequested: item.metersRequested,
+            quantity: item.quantity,
+          }),
+        };
+      return {
+        ...item,
+        ...common,
+        ...calculateProfileBar({
+          pricePerBar: common.pricePerBar,
+          barLengthMeters: common.barLengthMeters,
+          quantity: item.quantity,
+        }),
+      };
+    }
     const product = catalog.products.find((p) => p.id === item.productId);
     if (!product)
       throw new DomainError("Producto inexistente. Actualiza el catálogo.");
@@ -80,6 +134,7 @@ export class QuotationService {
   constructor(
     private glass: GlassRepository,
     private quotations: QuotationRepository,
+    private aluminum?: AluminumCatalogRepository,
   ) {}
   async confirm(raw: unknown) {
     const draft = draftSchema.parse(raw);
@@ -90,7 +145,11 @@ export class QuotationService {
     if (existing) return existing;
     if (new Set(draft.items.map((i) => i.id)).size !== draft.items.length)
       throw new DomainError("Los ítems no deben repetirse.");
-    const items = priceDraft(draft.items, await this.glass.catalog());
+    const [glassCatalog, aluminumCatalog] = await Promise.all([
+      this.glass.catalog(),
+      this.aluminum?.catalog() ?? Promise.resolve(emptyAluminumCatalog()),
+    ]);
+    const items = priceDraft(draft.items, glassCatalog, aluminumCatalog);
     const now = new Date().toISOString();
     return this.quotations.confirm({
       schemaVersion: 1,

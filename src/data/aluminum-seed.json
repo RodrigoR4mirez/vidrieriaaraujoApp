@@ -1,0 +1,4004 @@
+{
+  "schemaVersion": 1,
+  "families": [
+    {
+      "id": "00000000-0000-4100-8000-000000000001",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "RIELES DE MAMPARA",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000002",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "RIELES SISTEMA NOVA",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000003",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "RIELES DE VENTANA",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000004",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "ZOCALOS H Y DE PARED",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000005",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "CANALES",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000006",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "PORTAFELPAS",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000007",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "ANGULOS",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000008",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "TUBOS CUADRADOS",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000009",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "TUBOS MULTIFUNCIONALES",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000010",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "TUBOS RECTANGULARES",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000011",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "TUBOS REDONDOS",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000012",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "TOPE JUNQUILLO Y PORTAJUNQUILLO",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000013",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "CANTONERA",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000014",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "CONTRAMARCOS",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000015",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "PASAMANOS Y BARANDAS",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000016",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "PUERTA DUCHA",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000017",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "PUERTA DUCHA intermedio",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000018",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "TEE",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000019",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "RIEL CLOSET",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000020",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "PLATINAS",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4100-8000-000000000021",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "TUBOS CUADRADOS CON ALETA",
+      "description": "",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    }
+  ],
+  "colors": [
+    {
+      "id": "00000000-0000-4200-8000-000000000001",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "Mate",
+      "swatch": "#C4C9CF",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4200-8000-000000000002",
+      "schemaVersion": 1,
+      "revision": 1,
+      "name": "Negro",
+      "swatch": "#242424",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "00000000-0000-4300-8000-000000000001",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2248",
+      "description": "Riel mamp- ala corta Eco",
+      "familyId": "00000000-0000-4100-8000-000000000001",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "28.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "29.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2248",
+      "originalDescription": "Riel mamp- ala corta Eco",
+      "sourceRows": [
+        4
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image1.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000002",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2244",
+      "description": "Riel mamp- ala larga Eco",
+      "familyId": "00000000-0000-4100-8000-000000000001",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "35.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "37.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2244",
+      "originalDescription": "Riel mamp- ala larga Eco",
+      "sourceRows": [
+        5
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image2.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000003",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2249",
+      "description": "Riel mamp- ala corta INT- limat(2244)",
+      "familyId": "00000000-0000-4100-8000-000000000001",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "37.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "38.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2249",
+      "originalDescription": "Riel mamp- ala corta INT- limat(2244)",
+      "sourceRows": [
+        7
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image1.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000004",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2245",
+      "description": "Riel mamp- ala larga INT- limat(2248)",
+      "familyId": "00000000-0000-4100-8000-000000000001",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "55.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "60.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2245",
+      "originalDescription": "Riel mamp- ala larga INT- limat(2248)",
+      "sourceRows": [
+        8
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image2.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000005",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "1164",
+      "description": "doble riel",
+      "familyId": "00000000-0000-4100-8000-000000000001",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "110.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "1164",
+      "originalDescription": "doble riel",
+      "sourceRows": [
+        10
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image1.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000006",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3181",
+      "description": "Riel nova baja",
+      "familyId": "00000000-0000-4100-8000-000000000002",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "18.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "19.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3181",
+      "originalDescription": "Riel nova baja",
+      "sourceRows": [
+        12
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image3.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000007",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3182",
+      "description": "Riel alta para nova",
+      "familyId": "00000000-0000-4100-8000-000000000002",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "25.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "25.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3182",
+      "originalDescription": "Riel alta para nova",
+      "sourceRows": [
+        13
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image4.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000008",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8413",
+      "description": "Riel angulo p/vent   Limat(8413)",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "14.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "15.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8413",
+      "originalDescription": "Riel angulo p/vent   Limat(8413)",
+      "sourceRows": [
+        16
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image5.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000009",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8313",
+      "description": "Riel angulo p/vent (2.77)  Limat(8313)",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "20.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "21.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8313",
+      "originalDescription": "Riel angulo p/vent (2.77)  Limat(8313)",
+      "sourceRows": [
+        17
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image5.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000010",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8410",
+      "description": "Riel alta p/vent inter (2) Limat(8410)",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "23.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8410",
+      "originalDescription": "Riel alta p/vent inter (2) Limat(8410)",
+      "sourceRows": [
+        20
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image5.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000011",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8444",
+      "description": "Riel para sistema \"U\" (1.8) Limat(8444)",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "25.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "26.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8444",
+      "originalDescription": "Riel para sistema \"U\" (1.8) Limat(8444)",
+      "sourceRows": [
+        22
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image47.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000012",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8445",
+      "description": "Riel para sistema \"U\"  Int (2.7) Limat(8445)",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "34.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "37.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8445",
+      "originalDescription": "Riel para sistema \"U\"  Int (2.7) Limat(8445)",
+      "sourceRows": [
+        23
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image47.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000013",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8464",
+      "description": "Riel para ventana alta eco Limat (8464)",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "27.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "31.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8464",
+      "originalDescription": "Riel para ventana alta eco Limat (8464)",
+      "sourceRows": [
+        25
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image47.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000014",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8411",
+      "description": "Riel para ventana alta INT(2) Limat (8411)",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "51.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8411",
+      "originalDescription": "Riel para ventana alta INT(2) Limat (8411)",
+      "sourceRows": [
+        26
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image47.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000015",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8465",
+      "description": "Riel para ventana baja eco",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "24.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "36.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8465",
+      "originalDescription": "Riel para ventana baja eco",
+      "sourceRows": [
+        28
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image47.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000016",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8415",
+      "description": "Riel para ventana baja INT (2) Limat(8415)",
+      "familyId": "00000000-0000-4100-8000-000000000003",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "36.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8415",
+      "originalDescription": "Riel para ventana baja INT (2) Limat(8415)",
+      "sourceRows": [
+        29
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image47.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000017",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7905",
+      "description": "zócalo p/mamp\"H\" alta N",
+      "familyId": "00000000-0000-4100-8000-000000000004",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "187.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "188.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7905",
+      "originalDescription": "zócalo p/mamp\"H\" alta N",
+      "sourceRows": [
+        31
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image7.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000018",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7906",
+      "description": "zócalo p/mamp\"H\" alta ec",
+      "familyId": "00000000-0000-4100-8000-000000000004",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "119.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "123.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7906",
+      "originalDescription": "zócalo p/mamp\"H\" alta ec",
+      "sourceRows": [
+        33
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image7.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000019",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8221",
+      "description": "Zócalo p/sist \"H\" Ec",
+      "familyId": "00000000-0000-4100-8000-000000000004",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "45.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "46.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8221",
+      "originalDescription": "Zócalo p/sist \"H\" Ec",
+      "sourceRows": [
+        35
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image6.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000020",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8222",
+      "description": "Zócalo p/sist \"H\" Int (2) Limat(8223)",
+      "familyId": "00000000-0000-4100-8000-000000000004",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "51.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "54.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8222",
+      "originalDescription": "Zócalo p/sist \"H\" Int (2) Limat(8223)",
+      "sourceRows": [
+        36
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image6.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000021",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9150",
+      "description": "Zòcalo p/vidrio 8mm",
+      "familyId": "00000000-0000-4100-8000-000000000004",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "68.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "72.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9150",
+      "originalDescription": "Zòcalo p/vidrio 8mm",
+      "sourceRows": [
+        37
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image7.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000022",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "U13",
+      "description": "\"U\" 13",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "16.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "18.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "U13",
+      "originalDescription": "\"U\" 13",
+      "sourceRows": [
+        40
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000023",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "U12",
+      "description": "\"U\" 12 Eco",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "14.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "14.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "U12",
+      "originalDescription": "\"U\" 12 Eco",
+      "sourceRows": [
+        41
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000024",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3206",
+      "description": "\"U\" p/vitrina 3/8",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "10.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "10.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3206",
+      "originalDescription": "\"U\" p/vitrina 3/8",
+      "sourceRows": [
+        42
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000025",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3004",
+      "description": "Canal  1/2\" eco",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "11.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "12.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3004",
+      "originalDescription": "Canal  1/2\" eco",
+      "sourceRows": [
+        44
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000026",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3001",
+      "description": "Canal  1/2\" (0.8) Limat(3001)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "11.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3001",
+      "originalDescription": "Canal  1/2\" (0.8) Limat(3001)",
+      "sourceRows": [
+        45
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000027",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3200",
+      "description": "Canal  1/2\" (0.9) Limat(3200)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "14.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "15.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3200",
+      "originalDescription": "Canal  1/2\" (0.9) Limat(3200)",
+      "sourceRows": [
+        46
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000028",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3002",
+      "description": "Canal  1/2\" inter (1.2)- limat(3002)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "19.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "20.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3002",
+      "originalDescription": "Canal  1/2\" inter (1.2)- limat(3002)",
+      "sourceRows": [
+        47
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000029",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3207",
+      "description": "Canal  5/8\"",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "15.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "16.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3207",
+      "originalDescription": "Canal  5/8\"",
+      "sourceRows": [
+        49
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000030",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3208",
+      "description": "Canal  5/8\" (1) Limat(3208)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "19.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "20.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3208",
+      "originalDescription": "Canal  5/8\" (1) Limat(3208)",
+      "sourceRows": [
+        50
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000031",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3310",
+      "description": "Canal de 20mm p/melamine",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "23.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3310",
+      "originalDescription": "Canal de 20mm p/melamine",
+      "sourceRows": [
+        51
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000032",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3007",
+      "description": "Canal 3/4 - U113",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "25.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3007",
+      "originalDescription": "Canal 3/4 - U113",
+      "sourceRows": [
+        52
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image11.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000033",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3008",
+      "description": "Canal 3/4 - U113 INT",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "34.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3008",
+      "originalDescription": "Canal 3/4 - U113 INT",
+      "sourceRows": [
+        53
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image11.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000034",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3009",
+      "description": "Canal  1 1/4\"",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "28.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "30.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3009",
+      "originalDescription": "Canal  1 1/4\"",
+      "sourceRows": [
+        55
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image8.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000035",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7830",
+      "description": "Canal 60,3 x 22,3 Ec",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "37.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "37.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7830",
+      "originalDescription": "Canal 60,3 x 22,3 Ec",
+      "sourceRows": [
+        57
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image11.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000036",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7831",
+      "description": "Canal 60,3 x 22,3 int (1.19) Limat(7831)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "50.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "53.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7831",
+      "originalDescription": "Canal 60,3 x 22,3 int (1.19) Limat(7831)",
+      "sourceRows": [
+        58
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image11.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000037",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8430",
+      "description": "Canal 60,3 x 22,3  Pes",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "63.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "69.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8430",
+      "originalDescription": "Canal 60,3 x 22,3  Pes",
+      "sourceRows": [
+        59
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image11.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000038",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7955",
+      "description": "Canal 3/4\" x 1/2\" LT28 Ec",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "15.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "16.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7955",
+      "originalDescription": "Canal 3/4\" x 1/2\" LT28 Ec",
+      "sourceRows": [
+        61
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image12.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000039",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7956",
+      "description": "Canal 3/4\" x 1/2\" LT28 Int (1.15)Lim(7956)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "22.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "22.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7956",
+      "originalDescription": "Canal 3/4\" x 1/2\" LT28 Int (1.15)Lim(7956)",
+      "sourceRows": [
+        62
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image12.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000040",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8629",
+      "description": "Canal 3 1/4 x 1 Ec (0.9) Limat(8629)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "58.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "67.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8629",
+      "originalDescription": "Canal 3 1/4 x 1 Ec (0.9) Limat(8629)",
+      "sourceRows": [
+        64
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image11.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000041",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8630",
+      "description": "Canal 3 1/4 x 1 Int (1.3) Limat(8630)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "70.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "73.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8630",
+      "originalDescription": "Canal 3 1/4 x 1 Int (1.3) Limat(8630)",
+      "sourceRows": [
+        65
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image11.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000042",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8631",
+      "description": "Canal 3 1/4 x 1 pes (1.5) Limat(8631)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "87.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "88.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8631",
+      "originalDescription": "Canal 3 1/4 x 1 pes (1.5) Limat(8631)",
+      "sourceRows": [
+        66
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image11.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000043",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3061",
+      "description": "Riel alta vitrina",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "13.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "15.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3061",
+      "originalDescription": "Riel alta vitrina",
+      "sourceRows": [
+        68
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image9.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000044",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3062",
+      "description": "Riel baja vitrina",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "11.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "11.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3062",
+      "originalDescription": "Riel baja vitrina",
+      "sourceRows": [
+        69
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image9.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000045",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3185",
+      "description": "Riel sup, fija/corrediza",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "27.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "28.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3185",
+      "originalDescription": "Riel sup, fija/corrediza",
+      "sourceRows": [
+        70
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image10.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000046",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "3186",
+      "description": "Riel sup, fija/corred alta (1.2) Limat(3186)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "46.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "48.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "3186",
+      "originalDescription": "Riel sup, fija/corred alta (1.2) Limat(3186)",
+      "sourceRows": [
+        71
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image10.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000047",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "1415",
+      "description": "Canal c/portfel p.v/8m Ec",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "23.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "25.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "1415",
+      "originalDescription": "Canal c/portfel p.v/8m Ec",
+      "sourceRows": [
+        73
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image13.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000048",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "1417",
+      "description": "Canal c/portfel  p.v/8m int (1.2) Lim(JV114)",
+      "familyId": "00000000-0000-4100-8000-000000000005",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "45.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "47.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "1417",
+      "originalDescription": "Canal c/portfel  p.v/8m int (1.2) Lim(JV114)",
+      "sourceRows": [
+        74
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image13.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000049",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8116",
+      "description": "Porta felpa A/Corta",
+      "familyId": "00000000-0000-4100-8000-000000000006",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "8.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "8.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8116",
+      "originalDescription": "Porta felpa A/Corta",
+      "sourceRows": [
+        77
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image15.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000050",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8118",
+      "description": "Porta felpa A/Larga",
+      "familyId": "00000000-0000-4100-8000-000000000006",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "9.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "9.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8118",
+      "originalDescription": "Porta felpa A/Larga",
+      "sourceRows": [
+        78
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image14.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000051",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8114",
+      "description": "Porta felpa Sin aleta",
+      "familyId": "00000000-0000-4100-8000-000000000006",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "7.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "7.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8114",
+      "originalDescription": "Porta felpa Sin aleta",
+      "sourceRows": [
+        79
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image16.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000052",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "4104",
+      "description": "Angulo de 1/2\" E",
+      "familyId": "00000000-0000-4100-8000-000000000007",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "8.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "8.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "4104",
+      "originalDescription": "Angulo de 1/2\" E",
+      "sourceRows": [
+        82
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image17.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000053",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "4103",
+      "description": "Angulo de 1/2\" (1) Int Limat(4103)",
+      "familyId": "00000000-0000-4100-8000-000000000007",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "11.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "11.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "4103",
+      "originalDescription": "Angulo de 1/2\" (1) Int Limat(4103)",
+      "sourceRows": [
+        83
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image17.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000054",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "4107",
+      "description": "Angulo de 3/4\" E",
+      "familyId": "00000000-0000-4100-8000-000000000007",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "11.20"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "11.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "4107",
+      "originalDescription": "Angulo de 3/4\" E",
+      "sourceRows": [
+        84
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image17.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000055",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "4108",
+      "description": "Agulo de 3/4\" Int (1.2) Limat(4107)",
+      "familyId": "00000000-0000-4100-8000-000000000007",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "20.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "21.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "4108",
+      "originalDescription": "Agulo de 3/4\" Int (1.2) Limat(4107)",
+      "sourceRows": [
+        85
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image17.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000056",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "4109",
+      "description": "Agulo de 3/4\" Int (1.52) Limat(4108)",
+      "familyId": "00000000-0000-4100-8000-000000000007",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "25.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "4109",
+      "originalDescription": "Agulo de 3/4\" Int (1.52) Limat(4108)",
+      "sourceRows": [
+        86
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image17.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000057",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "4110",
+      "description": "Angulo de 1\" E (0.85) Limat(4109)",
+      "familyId": "00000000-0000-4100-8000-000000000007",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "18.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "19.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "4110",
+      "originalDescription": "Angulo de 1\" E (0.85) Limat(4109)",
+      "sourceRows": [
+        87
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image17.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000058",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "4316",
+      "description": "Angulo de 1\" 1/2 Int (1.52) Limat(4316)",
+      "familyId": "00000000-0000-4100-8000-000000000007",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "47.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "4316",
+      "originalDescription": "Angulo de 1\" 1/2 Int (1.52) Limat(4316)",
+      "sourceRows": [
+        89
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image17.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000059",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "4011",
+      "description": "Angulo espiga",
+      "familyId": "00000000-0000-4100-8000-000000000007",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "28.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "4011",
+      "originalDescription": "Angulo espiga",
+      "sourceRows": [
+        90
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image18.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000060",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5407",
+      "description": "Tubo cuad 3/4\"",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "25.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5407",
+      "originalDescription": "Tubo cuad 3/4\"",
+      "sourceRows": [
+        93
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000061",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5315",
+      "description": "Tubo cuad 1\" ec",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "28.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "29.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5315",
+      "originalDescription": "Tubo cuad 1\" ec",
+      "sourceRows": [
+        94
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000062",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5310",
+      "description": "Tubo cuad 1\" Int (0.85) Limat(5310)",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "34.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "36.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5310",
+      "originalDescription": "Tubo cuad 1\" Int (0.85) Limat(5310)",
+      "sourceRows": [
+        95
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000063",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5311",
+      "description": "Tubo cuad 1\" Pes (1.2) Limat(5311)",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "45.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5311",
+      "originalDescription": "Tubo cuad 1\" Pes (1.2) Limat(5311)",
+      "sourceRows": [
+        96
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000064",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5213",
+      "description": "Tubo cuad 30 ec (0.8) Limat(5213)",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "38.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "39.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5213",
+      "originalDescription": "Tubo cuad 30 ec (0.8) Limat(5213)",
+      "sourceRows": [
+        98
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000065",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5214",
+      "description": "Tubo cuad 30 Int (1.1) Limat(5214)",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "50.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "52.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5214",
+      "originalDescription": "Tubo cuad 30 Int (1.1) Limat(5214)",
+      "sourceRows": [
+        99
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000066",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5414",
+      "description": "Tubo cuad 1 1/2\" E",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "40.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "36.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5414",
+      "originalDescription": "Tubo cuad 1 1/2\" E",
+      "sourceRows": [
+        101
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000067",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5415",
+      "description": "Tubo cuad 1 1/2\" Ec (0.8) Limat(5415)",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "45.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "51.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5415",
+      "originalDescription": "Tubo cuad 1 1/2\" Ec (0.8) Limat(5415)",
+      "sourceRows": [
+        102
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000068",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5416",
+      "description": "Tubo cuad 1 1/2\" Int (1.05) Limat(5416)",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "57.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "59.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5416",
+      "originalDescription": "Tubo cuad 1 1/2\" Int (1.05) Limat(5416)",
+      "sourceRows": [
+        103
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000069",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5417",
+      "description": "Tubo cuad 1 1/2\" N (1.20) Limat (5417)",
+      "familyId": "00000000-0000-4100-8000-000000000008",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "66.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "69.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5417",
+      "originalDescription": "Tubo cuad 1 1/2\" N (1.20) Limat (5417)",
+      "sourceRows": [
+        104
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image20.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000070",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5283",
+      "description": "Tubo multif.- Eco Corra (5283)",
+      "familyId": "00000000-0000-4100-8000-000000000009",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "45.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "47.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5283",
+      "originalDescription": "Tubo multif.- Eco Corra (5283)",
+      "sourceRows": [
+        107
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image49.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000071",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5282",
+      "description": "Tubo multif.- Intermedio Limat (5282)",
+      "familyId": "00000000-0000-4100-8000-000000000009",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "61.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "63.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5282",
+      "originalDescription": "Tubo multif.- Intermedio Limat (5282)",
+      "sourceRows": [
+        108
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image49.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000072",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5285",
+      "description": "Tubo multif. Doble- Eco Corra (5284)",
+      "familyId": "00000000-0000-4100-8000-000000000009",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "50.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "51.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5285",
+      "originalDescription": "Tubo multif. Doble- Eco Corra (5284)",
+      "sourceRows": [
+        110
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image49.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000073",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5284",
+      "description": "Tubo multif. Doble- Intermedio Limat(2005)",
+      "familyId": "00000000-0000-4100-8000-000000000009",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "65.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "70.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5284",
+      "originalDescription": "Tubo multif. Doble- Intermedio Limat(2005)",
+      "sourceRows": [
+        111
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image19.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000074",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5225",
+      "description": "Tubo rect 2 x 1\" s.e",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "34.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "36.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5225",
+      "originalDescription": "Tubo rect 2 x 1\" s.e",
+      "sourceRows": [
+        114
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image21.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000075",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5221",
+      "description": "Tubo rect 2 x 1\" Ec (0.8) Limat(5221)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "43.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "48.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5221",
+      "originalDescription": "Tubo rect 2 x 1\" Ec (0.8) Limat(5221)",
+      "sourceRows": [
+        115
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image21.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000076",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5223",
+      "description": "Tubo rect 2 x 1\" Int (1.05) Limat(5223)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "72.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "76.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5223",
+      "originalDescription": "Tubo rect 2 x 1\" Int (1.05) Limat(5223)",
+      "sourceRows": [
+        116
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image21.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000077",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7852",
+      "description": "Tubo rect 1 x 2 3/8\" s.e",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "40.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "41.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7852",
+      "originalDescription": "Tubo rect 1 x 2 3/8\" s.e",
+      "sourceRows": [
+        118
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000078",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7851",
+      "description": "Tubo rect 1 x 2 3/8\" Ec (0.8) Limat(7851)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "53.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "58.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7851",
+      "originalDescription": "Tubo rect 1 x 2 3/8\" Ec (0.8) Limat(7851)",
+      "sourceRows": [
+        119
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000079",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7850",
+      "description": "Tubo rect 1 x 2 3/8\" Int (1.2) Limat(7852)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "73.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "78.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7850",
+      "originalDescription": "Tubo rect 1 x 2 3/8\" Int (1.2) Limat(7852)",
+      "sourceRows": [
+        120
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000080",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5227",
+      "description": "Tubo rect 3 1/4 x 1 1/2- s.e",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "56.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "58.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5227",
+      "originalDescription": "Tubo rect 3 1/4 x 1 1/2- s.e",
+      "sourceRows": [
+        123
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000081",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5228",
+      "description": "Tubo rect 3 1/4 x 1 1/2 e (1.05) Lim(5228)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "87.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "96.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5228",
+      "originalDescription": "Tubo rect 3 1/4 x 1 1/2 e (1.05) Lim(5228)",
+      "sourceRows": [
+        124
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000082",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5230",
+      "description": "Tubo rect 3 1/4 x 1 1/2 Int (1.25) Lim(5229)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "105.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "109.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5230",
+      "originalDescription": "Tubo rect 3 1/4 x 1 1/2 Int (1.25) Lim(5229)",
+      "sourceRows": [
+        125
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000083",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5231",
+      "description": "Tubo rect 3 1/4 x 1 1/2 N (1.5) Lim(5230)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "123.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "129.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5231",
+      "originalDescription": "Tubo rect 3 1/4 x 1 1/2 N (1.5) Lim(5230)",
+      "sourceRows": [
+        126
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000084",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8651",
+      "description": "Tubo rect 3 1/4 x 1\" Ec (0.9) Lim(8651)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "69.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "71.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8651",
+      "originalDescription": "Tubo rect 3 1/4 x 1\" Ec (0.9) Lim(8651)",
+      "sourceRows": [
+        128
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000085",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8652",
+      "description": "Tubo rect 3 1/4 x 1\" (1.05) Lim(8652)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "79.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "86.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8652",
+      "originalDescription": "Tubo rect 3 1/4 x 1\" (1.05) Lim(8652)",
+      "sourceRows": [
+        130
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000086",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8653",
+      "description": "Tubo rect 3 1/4 x 1\" Int (1.25) Lim(8653)",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "95.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "110.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8653",
+      "originalDescription": "Tubo rect 3 1/4 x 1\" Int (1.25) Lim(8653)",
+      "sourceRows": [
+        131
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image22.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000087",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5220",
+      "description": "Tubo rect 2 x 1/2",
+      "familyId": "00000000-0000-4100-8000-000000000010",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "33.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "38.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5220",
+      "originalDescription": "Tubo rect 2 x 1/2 | Tubo rect 2 x 1/2 lim(5220)",
+      "sourceRows": [
+        133,
+        134
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image21.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000088",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5504",
+      "description": "Tubo red 7.9 mm",
+      "familyId": "00000000-0000-4100-8000-000000000011",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "6.70"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5504",
+      "originalDescription": "Tubo red 7.9 mm",
+      "sourceRows": [
+        137
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image46.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000089",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5520",
+      "description": "Tubo red 12,7 -   1/2",
+      "familyId": "00000000-0000-4100-8000-000000000011",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "10.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5520",
+      "originalDescription": "Tubo red 12,7 -   1/2",
+      "sourceRows": [
+        138
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image46.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000090",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5524",
+      "description": "Tubo red 15,5 -   5/8",
+      "familyId": "00000000-0000-4100-8000-000000000011",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "12.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5524",
+      "originalDescription": "Tubo red 15,5 -   5/8",
+      "sourceRows": [
+        139
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image46.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000091",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5541",
+      "description": "Tubo red 19,05 - 3/4",
+      "familyId": "00000000-0000-4100-8000-000000000011",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "15.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5541",
+      "originalDescription": "Tubo red 19,05 - 3/4",
+      "sourceRows": [
+        140
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image46.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000092",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5559",
+      "description": "Tubo red 22,23 - 7/8",
+      "familyId": "00000000-0000-4100-8000-000000000011",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "18.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5559",
+      "originalDescription": "Tubo red 22,23 - 7/8",
+      "sourceRows": [
+        141
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image46.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000093",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5584",
+      "description": "Tubo red 25,4 -   1\"",
+      "familyId": "00000000-0000-4100-8000-000000000011",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "19.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5584",
+      "originalDescription": "Tubo red 25,4 -   1\"",
+      "sourceRows": [
+        142
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image46.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000094",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5609",
+      "description": "Tubo red 30 mm (1.2) Limat(5609)",
+      "familyId": "00000000-0000-4100-8000-000000000011",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "42.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5609",
+      "originalDescription": "Tubo red 30 mm (1.2) Limat(5609)",
+      "sourceRows": [
+        144
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image46.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000095",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5611",
+      "description": "Tubo red 30 mm (1.6) Limat(5611)",
+      "familyId": "00000000-0000-4100-8000-000000000011",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "54.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5611",
+      "originalDescription": "Tubo red 30 mm (1.6) Limat(5611)",
+      "sourceRows": [
+        145
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image46.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000096",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8503",
+      "description": "Tope puerta 3/4\" (0.85) Limat(8503)",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "14.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "15.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8503",
+      "originalDescription": "Tope puerta 3/4\" (0.85) Limat(8503)",
+      "sourceRows": [
+        149
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image27.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000097",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8504",
+      "description": "Tope puerta 3/4\" (1.2) Limat(8504)",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "19.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "19.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8504",
+      "originalDescription": "Tope puerta 3/4\" (1.2) Limat(8504)",
+      "sourceRows": [
+        150
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image27.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000098",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8016",
+      "description": "Tope tapajunta",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "25.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8016",
+      "originalDescription": "Tope tapajunta",
+      "sourceRows": [
+        151
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image27.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000099",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8521",
+      "description": "vitrovent jamba",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "24.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "25.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8521",
+      "originalDescription": "vitrovent jamba",
+      "sourceRows": [
+        153
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image29.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000100",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8502",
+      "description": "vitrovent platina",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "9.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "10.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8502",
+      "originalDescription": "vitrovent platina",
+      "sourceRows": [
+        154
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image28.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000101",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7300",
+      "description": "Base junquillo",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "17.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "17.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7300",
+      "originalDescription": "Base junquillo",
+      "sourceRows": [
+        155
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image30.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000102",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7305",
+      "description": "Tapa junquillo",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "15.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "16.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7305",
+      "originalDescription": "Tapa junquillo",
+      "sourceRows": [
+        156
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image31.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000103",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7205",
+      "description": "Tapa junquillo inter",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "19.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "19.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7205",
+      "originalDescription": "Tapa junquillo inter",
+      "sourceRows": [
+        158
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image31.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000104",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "7206",
+      "description": "junquillo p/8mm",
+      "familyId": "00000000-0000-4100-8000-000000000012",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "17.50"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "18.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "7206",
+      "originalDescription": "junquillo p/8mm",
+      "sourceRows": [
+        159
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image31.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000105",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2543",
+      "description": "Cantonera de 1 1/2 \" (3) Limat(2542)",
+      "familyId": "00000000-0000-4100-8000-000000000013",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "48.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2543",
+      "originalDescription": "Cantonera de 1 1/2 \" (3) Limat(2542)",
+      "sourceRows": [
+        162
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000106",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2553",
+      "description": "Cantonera de 2\" (3) Limat(2552)",
+      "familyId": "00000000-0000-4100-8000-000000000013",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "59.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2553",
+      "originalDescription": "Cantonera de 2\" (3) Limat(2552)",
+      "sourceRows": [
+        163
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000107",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8436",
+      "description": "Vent parante vertical Eco",
+      "familyId": "00000000-0000-4100-8000-000000000014",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "45.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "56.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8436",
+      "originalDescription": "Vent parante vertical Eco",
+      "sourceRows": [
+        165
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image35.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000108",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8438",
+      "description": "Vent corred \"H\" horiz Eco",
+      "familyId": "00000000-0000-4100-8000-000000000014",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "57.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "59.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8438",
+      "originalDescription": "Vent corred \"H\" horiz Eco",
+      "sourceRows": [
+        166
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image36.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000109",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8441",
+      "description": "Vent parante vertical (1.19) Limat(8441)",
+      "familyId": "00000000-0000-4100-8000-000000000014",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "59.00"
+        },
+        {
+          "colorId": "00000000-0000-4200-8000-000000000002",
+          "pricePerBar": "76.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8441",
+      "originalDescription": "Vent parante vertical (1.19) Limat(8441)",
+      "sourceRows": [
+        168
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image35.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000110",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8440",
+      "description": "Vent corred \"H\" horiz (1.4) Limat(8440)",
+      "familyId": "00000000-0000-4100-8000-000000000014",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "70.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8440",
+      "originalDescription": "Vent corred \"H\" horiz (1.4) Limat(8440)",
+      "sourceRows": [
+        169
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image36.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000111",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8437",
+      "description": "Parante parte fija vent Eco (0.9) Lim(8437)",
+      "familyId": "00000000-0000-4100-8000-000000000014",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "42.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8437",
+      "originalDescription": "Parante parte fija vent Eco (0.9) Lim(8437)",
+      "sourceRows": [
+        171
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image37.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000112",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5438",
+      "description": "Parante parte fija vent (1.27) Lim(5438)",
+      "familyId": "00000000-0000-4100-8000-000000000014",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "58.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5438",
+      "originalDescription": "Parante parte fija vent (1.27) Lim(5438)",
+      "sourceRows": [
+        172
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image37.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000113",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2420",
+      "description": "Pasamano redondo",
+      "familyId": "00000000-0000-4100-8000-000000000015",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "163.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2420",
+      "originalDescription": "Pasamano redondo",
+      "sourceRows": [
+        176
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image32.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000114",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2410",
+      "description": "Pasamano",
+      "familyId": "00000000-0000-4100-8000-000000000015",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "56.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2410",
+      "originalDescription": "Pasamano",
+      "sourceRows": [
+        177
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image32.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000115",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2490",
+      "description": "Base pasamano",
+      "familyId": "00000000-0000-4100-8000-000000000015",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "25.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2490",
+      "originalDescription": "Base pasamano",
+      "sourceRows": [
+        178
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image32.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000116",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2465",
+      "description": "Pasamano Modif",
+      "familyId": "00000000-0000-4100-8000-000000000015",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "99.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2465",
+      "originalDescription": "Pasamano Modif",
+      "sourceRows": [
+        179
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image32.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000117",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2431",
+      "description": "Balaustre eco",
+      "familyId": "00000000-0000-4100-8000-000000000015",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "45.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2431",
+      "originalDescription": "Balaustre eco",
+      "sourceRows": [
+        180
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image33.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000118",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9301",
+      "description": "Puente puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000016",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "60.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9301",
+      "originalDescription": "Puente puerta ducha",
+      "sourceRows": [
+        184
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image39.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000119",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9302",
+      "description": "Base puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000016",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "27.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9302",
+      "originalDescription": "Base puerta ducha",
+      "sourceRows": [
+        185
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image40.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000120",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9303",
+      "description": "Canal puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000016",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "22.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9303",
+      "originalDescription": "Canal puerta ducha",
+      "sourceRows": [
+        186
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image41.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000121",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9304",
+      "description": "Parante puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000016",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "19.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9304",
+      "originalDescription": "Parante puerta ducha",
+      "sourceRows": [
+        187
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image42.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000122",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9305",
+      "description": "Puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000016",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "32.70"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9305",
+      "originalDescription": "Puerta ducha",
+      "sourceRows": [
+        188
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image43.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000123",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9306",
+      "description": "H c/aleta puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000016",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "35.80"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9306",
+      "originalDescription": "H c/aleta puerta ducha",
+      "sourceRows": [
+        189
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image44.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000124",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9307",
+      "description": "Toallero puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000016",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "14.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9307",
+      "originalDescription": "Toallero puerta ducha",
+      "sourceRows": [
+        190
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image45.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000125",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9308",
+      "description": "Brazo toallero ducha",
+      "familyId": "00000000-0000-4100-8000-000000000016",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "24.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9308",
+      "originalDescription": "Brazo toallero ducha",
+      "sourceRows": [
+        191
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image38.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000126",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9401",
+      "description": "Puente puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000017",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "105.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9401",
+      "originalDescription": "Puente puerta ducha",
+      "sourceRows": [
+        194
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image39.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000127",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9403",
+      "description": "Canal puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000017",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "46.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9403",
+      "originalDescription": "Canal puerta ducha",
+      "sourceRows": [
+        195
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image41.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000128",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "9404",
+      "description": "Parante puerta ducha",
+      "familyId": "00000000-0000-4100-8000-000000000017",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "45.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "9404",
+      "originalDescription": "Parante puerta ducha",
+      "sourceRows": [
+        196
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image42.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000129",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "6109",
+      "description": "Tee 3/4\"",
+      "familyId": "00000000-0000-4100-8000-000000000018",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "14.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "6109",
+      "originalDescription": "Tee 3/4\"",
+      "sourceRows": [
+        199
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image34.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000130",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "6110",
+      "description": "Tee 1\"",
+      "familyId": "00000000-0000-4100-8000-000000000018",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "18.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "6110",
+      "originalDescription": "Tee 1\"",
+      "sourceRows": [
+        200
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image34.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000131",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2254",
+      "description": "Riel superior p/closet  int (1.2) Limat(2253)",
+      "familyId": "00000000-0000-4100-8000-000000000019",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "42.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2254",
+      "originalDescription": "Riel superior p/closet  int (1.2) Limat(2253)",
+      "sourceRows": [
+        205
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000132",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "1630",
+      "description": "Platina 3/4\" (3.18) Limat(1630)",
+      "familyId": "00000000-0000-4100-8000-000000000020",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "24.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "1630",
+      "originalDescription": "Platina 3/4\" (3.18) Limat(1630)",
+      "sourceRows": [
+        207
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000133",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "1640",
+      "description": "Platina 1\" (3.18) Limat(1640)",
+      "familyId": "00000000-0000-4100-8000-000000000020",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "29.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "1640",
+      "originalDescription": "Platina 1\" (3.18) Limat(1640)",
+      "sourceRows": [
+        208
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000134",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "1650",
+      "description": "Platina 1 1/2 Limat(1650)",
+      "familyId": "00000000-0000-4100-8000-000000000020",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "52.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "1650",
+      "originalDescription": "Platina 1 1/2 Limat(1650)",
+      "sourceRows": [
+        209
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000135",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "236",
+      "description": "tapa junta filete media luna",
+      "familyId": "00000000-0000-4100-8000-000000000020",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "23.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "236",
+      "originalDescription": "tapa junta filete media luna",
+      "sourceRows": [
+        210
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000136",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "8449",
+      "description": "perfl mosquitero",
+      "familyId": "00000000-0000-4100-8000-000000000020",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "18.50"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "8449",
+      "originalDescription": "perfl mosquitero",
+      "sourceRows": [
+        211
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000137",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2037",
+      "description": "Tubo cuad 1\" c/a",
+      "familyId": "00000000-0000-4100-8000-000000000021",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "35.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2037",
+      "originalDescription": "Tubo cuad 1\" c/a",
+      "sourceRows": [
+        213
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image24.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000138",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2038",
+      "description": "Tubo cuad 1\"c/doble aleta",
+      "familyId": "00000000-0000-4100-8000-000000000021",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "38.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2038",
+      "originalDescription": "Tubo cuad 1\"c/doble aleta",
+      "sourceRows": [
+        214
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image23.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000139",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2031",
+      "description": "Tubo ovalado 7/8 c/aleta",
+      "familyId": "00000000-0000-4100-8000-000000000021",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "40.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2031",
+      "originalDescription": "Tubo ovalado 7/8 c/aleta",
+      "sourceRows": [
+        215
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image26.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000140",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5444",
+      "description": "Rodon de 1 1/2\" p/vitrina",
+      "familyId": "00000000-0000-4100-8000-000000000021",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "36.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5444",
+      "originalDescription": "Rodon de 1 1/2\" p/vitrina",
+      "sourceRows": [
+        216
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image25.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000141",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5141",
+      "description": "tubo rectangular 80 x 35 - corrales",
+      "familyId": "00000000-0000-4100-8000-000000000021",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "155.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5141",
+      "originalDescription": "tubo rectangular 80 x 35 - corrales",
+      "sourceRows": [
+        218
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image24.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000142",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "5142",
+      "description": "tubo rectangular 38.1x 101.6 - Limat",
+      "familyId": "00000000-0000-4100-8000-000000000021",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "125.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "5142",
+      "originalDescription": "tubo rectangular 38.1x 101.6 - Limat",
+      "sourceRows": [
+        219
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image24.png"
+    },
+    {
+      "id": "00000000-0000-4300-8000-000000000143",
+      "schemaVersion": 1,
+      "revision": 1,
+      "code": "2105",
+      "description": "zocalo para piso/pared 88.84",
+      "familyId": "00000000-0000-4100-8000-000000000021",
+      "barLengthMeters": "6.00",
+      "colorPrices": [
+        {
+          "colorId": "00000000-0000-4200-8000-000000000001",
+          "pricePerBar": "62.00"
+        }
+      ],
+      "status": "ACTIVE",
+      "originalCode": "2105",
+      "originalDescription": "zocalo para piso/pared 88.84",
+      "sourceRows": [
+        221
+      ],
+      "createdAt": "2026-09-20T00:00:00.000Z",
+      "updatedAt": "2026-09-20T00:00:00.000Z",
+      "imagePath": "/profiles/image24.png"
+    }
+  ]
+}

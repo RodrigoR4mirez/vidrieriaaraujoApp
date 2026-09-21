@@ -631,8 +631,10 @@ tbody tr:hover {
 .quotation-groups {
   display: grid;
   gap: 17px;
+  min-width: 0;
 }
 .quotation-group {
+  min-width: 0;
   border-radius: 16px;
   overflow: hidden;
   background: #fff9;
@@ -1173,6 +1175,23 @@ tbody tr:hover {
   .quotation-table .row-actions {
     flex-direction: column;
   }
+  .quotation-table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  .quotation-table th,
+  .quotation-table td {
+    overflow-wrap: anywhere;
+  }
+  .quotation-table th:nth-child(1) { width: 36%; }
+  .quotation-table th:nth-child(2) { width: 29%; }
+  .quotation-table th:nth-child(3) { width: 8%; }
+  .quotation-table th:nth-child(4),
+  .quotation-table td:nth-child(4) { display: none; }
+  .quotation-table th:nth-child(5) { width: 15%; }
+  .quotation-table th:nth-child(6) { width: 12%; }
+  .summary-product { min-width: 0; align-items: flex-start; }
+  .summary-profile-image { width: 32px; height: 28px; }
   .form-actions {
     gap: 8px;
   }
@@ -1256,3 +1275,104 @@ fieldset.quotation-layout {
 .refresh-spin { animation: refresh-spin .8s linear infinite; }
 @keyframes refresh-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .refresh-spin { animation: none; } }
+
+/* Aluminum profiles and unified quotation. */
+.product-tabs { width: 100%; margin-top: 18px; border-radius: 14px; }
+.product-tabs button, .profile-modes button, .catalog-area-tabs button {
+  flex: 1; justify-content: center;
+}
+.field-label { font-size: 12px; font-weight: 600; }
+.profile-search { width: 100%; }
+.selected-profile-card {
+  display: flex; align-items: center; gap: 12px; padding: 10px;
+  border: 1px solid var(--line); border-radius: 12px; background: #ffffffa3;
+}
+.selected-profile-card strong, .selected-profile-card span { display: block; }
+.selected-profile-card strong { font-size: 11px; }
+.selected-profile-card span { color: var(--muted); font-size: 10px; margin-top: 4px; }
+.profile-thumbnail, .profile-image, .summary-profile-image {
+  position: relative; display: grid; place-items: center; flex: 0 0 auto;
+  overflow: hidden; border-radius: 9px; background: linear-gradient(145deg, #fff, #e9eef4);
+  border: 1px solid #e2e9f2; color: #7890ad;
+}
+.profile-thumbnail { width: 72px; height: 48px; }
+.profile-thumbnail img, .profile-image img, .summary-profile-image img { object-fit: contain; padding: 6px; }
+.color-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.color-option {
+  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 7px;
+  min-height: 46px; padding: 8px 10px; text-align: left; background: #ffffffa8;
+  border: 1px solid var(--line); border-radius: 11px; color: #344963; font-size: 11px;
+}
+.color-option.selected { color: var(--blue); border-color: #8db8fa; background: #edf5ff; }
+.color-option small { grid-column: 2; color: var(--muted); font-size: 9px; }
+.color-swatch {
+  display: inline-block; width: 20px; height: 20px; border-radius: 50%;
+  border: 1px solid #26374b25; box-shadow: inset 0 1px 2px #fff8; flex: 0 0 auto;
+}
+.profile-modes { width: 100%; border-radius: 13px; }
+.summary-product { display: flex; align-items: center; gap: 9px; min-width: 160px; }
+.summary-profile-image { width: 44px; height: 34px; }
+.catalog-area-tabs { width: min(520px, 100%); margin: 0 0 22px; padding: 5px; border-radius: 15px; }
+.catalog-area-tabs button { min-height: 42px; font-size: 12px; }
+.profile-catalog-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start;
+}
+.profile-catalog-list { padding: 24px; }
+.profile-catalog-list .selected-row { background: #eaf4ffb8; outline: 1px solid #8db9fa; outline-offset: -1px; }
+.profile-select-button {
+  padding: 4px 6px; border: 0; border-radius: 7px; background: transparent; color: var(--ink);
+}
+.profile-select-button:hover, .profile-select-button:focus-visible { background: #dcecff; color: var(--blue); }
+.catalog-pagination {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 16px 2px 0; color: var(--muted); font-size: 11px;
+}
+.catalog-pagination > div { display: flex; align-items: center; gap: 10px; }
+.catalog-pagination .icon-button { font-size: 20px; }
+.profile-detail {
+  position: sticky; top: 18px; display: flex; flex-direction: column; gap: 13px; padding: 20px;
+}
+.profile-detail > .profile-image { width: 100% !important; }
+.profile-detail .profile-code { color: var(--blue); font-size: 25px; }
+.profile-detail dl { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0; }
+.profile-detail dt { color: var(--muted); font-size: 10px; }
+.profile-detail dd { margin: 3px 0 0; font-size: 12px; font-weight: 650; }
+.profile-price {
+  display: flex; align-items: center; justify-content: space-between; padding: 8px 2px;
+  border-bottom: 1px solid var(--line); font-size: 11px;
+}
+.profile-price span { display: flex; align-items: center; gap: 8px; }
+.swatch-stack { display: flex; gap: 4px; }
+.profile-price-editor { border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.profile-price-editor legend { padding: 0 5px; font-size: 12px; font-weight: 650; }
+.profile-price-editor label {
+  display: grid; grid-template-columns: auto auto minmax(60px, 1fr) minmax(110px, 160px);
+  align-items: center; gap: 8px; margin: 10px 0; font-size: 11px;
+}
+.profile-price-editor input[type="checkbox"] { width: 17px; min-height: 17px; }
+.profile-price-editor input[type="text"] { min-height: 42px; }
+.color-input {
+  display: flex; align-items: center; gap: 9px; min-height: 48px; padding: 7px 11px;
+  background: #ffffffb5; border: 1px solid var(--line); border-radius: 11px;
+}
+.color-input input { width: 42px; min-height: 32px; padding: 0; border: 0; }
+.empty-copy {
+  display: grid; justify-items: center; gap: 16px; max-width: 430px; margin: auto; font-size: 12px;
+}
+@media (max-width: 1190px) {
+  .profile-catalog-layout { grid-template-columns: 1fr; }
+  .profile-detail { position: static; display: none; }
+}
+@media (max-width: 800px) {
+  .quote-form > .form-stack { display: grid; grid-template-columns: 1fr 1fr; }
+  .quote-form > .form-stack > .form-stack { display: flex; }
+  .color-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .quote-form > .form-stack { display: flex; }
+  .color-options { grid-template-columns: 1fr 1fr; }
+  .profile-price-editor label { grid-template-columns: auto auto 1fr; }
+  .profile-price-editor label input[type="text"] { grid-column: 1 / -1; }
+  .catalog-area-tabs { width: 100%; }
+  .catalog-area-tabs button { font-size: 10px; }
+}

@@ -126,7 +126,7 @@ export function EmptyState({
     <div className="empty">
       <div className="empty-icon">◇</div>
       <h3>{title}</h3>
-      <p>{children}</p>
+      <div className="empty-copy">{children}</div>
     </div>
   );
 }

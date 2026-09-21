@@ -44,7 +44,7 @@ git push origin main # Production automática desde GitHub
 
 Preview no es obligatorio para documentación ni cambios funcionales de riesgo bajo. Los cambios exclusivamente documentales no se despliegan. Todo cambio importante de pantalla o funcionalidad debe permanecer en Preview hasta que el usuario lo valide y autorice expresamente el paso a Production. La misma regla se aplica a fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración. Si GitHub, el push o Vercel requieren permisos, autenticación, autorización o configuración, detenerse y pedirlos al usuario; nunca reemplazar ese paso con un despliegue directo desde local.
 
-Production se construye con variables de Production; no se promueve un artefacto que contiene variables del store de pruebas. No hacer deploy si los tests oficiales fallan. `STITCH/`, `LOGOS/`, secretos, backups y resultados de pruebas están excluidos del despliegue. `public/brand/` y fuentes instaladas son los assets de runtime.
+Production se construye con variables de Production; no se promueve un artefacto que contiene variables del store de pruebas. No hacer deploy si los tests oficiales fallan. `STITCH/`, `mockapp-v2/`, `LOGOS/`, secretos, backups y resultados de pruebas están excluidos del despliegue. `public/brand/`, `public/profiles/` y fuentes instaladas son los assets de runtime.
 
 Indicar `--target=preview` explícitamente: la CLI puede clasificar el primer despliegue de un proyecto nuevo como Production. Las funciones se ejecutan en `gru1`; la región de la máquina de build puede ser diferente.
 

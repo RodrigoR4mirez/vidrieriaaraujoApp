@@ -12,14 +12,35 @@ const sheetDraftSchema = z.object({
   mode: z.literal("SHEET"),
   quantity: quantitySchema,
 }).strict();
-export const draftItemSchema = z.union([sheetDraftSchema, cutDraftSchema]);
+const profileIdentity = {
+  id: z.string().uuid(),
+  itemType: z.literal("ALUMINUM_PROFILE"),
+  profileId: z.string().uuid(),
+  colorId: z.string().uuid(),
+  quantity: quantitySchema,
+};
+const profileMetersDraftSchema = z.object({
+  ...profileIdentity,
+  mode: z.literal("PROFILE_METERS"),
+  metersRequested: positiveDecimal,
+}).strict();
+const profileBarDraftSchema = z.object({
+  ...profileIdentity,
+  mode: z.literal("PROFILE_BAR"),
+}).strict();
+export const draftItemSchema = z.union([
+  profileMetersDraftSchema,
+  profileBarDraftSchema,
+  sheetDraftSchema,
+  cutDraftSchema,
+]);
 export const customerNameSchema = z.string().trim()
   .min(1, "Ingresa el nombre del cliente")
   .max(160, "El nombre del cliente es demasiado largo");
 export const draftSchema = z.object({
   requestId: z.string().uuid(),
   customerName: customerNameSchema,
-  items: z.array(draftItemSchema).min(1, "Agrega al menos un vidrio").max(200),
+  items: z.array(draftItemSchema).min(1, "Agrega al menos un producto").max(200),
   conditions: z.string().trim().max(2000).default(""),
 }).strict();
 const snapshot = {
@@ -41,7 +62,28 @@ const sheetItemSchema = sheetDraftSchema.extend({
   sheetWidthCm: positiveDecimal.optional(),
   sheetHeightCm: positiveDecimal.optional(),
 }).strict();
-export const quotationItemSchema = z.union([sheetItemSchema, cutItemSchema]);
+const profileSnapshot = {
+  profileCode: z.string(),
+  profileDescription: z.string(),
+  family: z.string(),
+  color: z.string(),
+  imagePath: z.string().optional(),
+  barLengthMeters: positiveDecimal,
+  pricePerBar: positiveDecimal,
+  unitPrice: decimalString,
+  itemAmount: decimalString,
+};
+const profileMetersItemSchema = profileMetersDraftSchema.extend({
+  ...profileSnapshot,
+  markupMultiplier: positiveDecimal,
+}).strict();
+const profileBarItemSchema = profileBarDraftSchema.extend(profileSnapshot).strict();
+export const quotationItemSchema = z.union([
+  profileMetersItemSchema,
+  profileBarItemSchema,
+  sheetItemSchema,
+  cutItemSchema,
+]);
 export const numberSchema = z
   .string()
   .regex(/^COT-\d{5,}$/, "Número de cotización inválido");
@@ -72,6 +114,14 @@ export type Draft = z.infer<typeof draftSchema>;
 export type DraftItem = z.infer<typeof draftItemSchema>;
 export type QuotationItem = z.infer<typeof quotationItemSchema>;
 export type Quotation = z.infer<typeof quotationSchema>;
+export type ProfileDraftItem = z.infer<typeof profileMetersDraftSchema> | z.infer<typeof profileBarDraftSchema>;
+export type ProfileQuotationItem = z.infer<typeof profileMetersItemSchema> | z.infer<typeof profileBarItemSchema>;
+export function isProfileDraftItem(item: DraftItem): item is ProfileDraftItem {
+  return "itemType" in item && item.itemType === "ALUMINUM_PROFILE";
+}
+export function isProfileQuotationItem(item: QuotationItem): item is ProfileQuotationItem {
+  return "itemType" in item && item.itemType === "ALUMINUM_PROFILE";
+}
 export function formatQuotationNumber(value: number) {
   return `COT-${String(value).padStart(5, "0")}`;
 }

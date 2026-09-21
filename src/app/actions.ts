@@ -82,6 +82,45 @@ export async function saveBaseAction(raw: unknown, edit: unknown) {
     return saved;
   });
 }
+export async function saveAluminumFamilyAction(raw: unknown, edit: unknown) {
+  await requireSession();
+  return result(async () => {
+    const { id, revision } = editSchema.parse(edit);
+    const saved = await services().aluminum.saveFamily(raw, id, revision);
+    revalidatePath("/", "layout");
+    return saved;
+  });
+}
+export async function saveAluminumColorAction(raw: unknown, edit: unknown) {
+  await requireSession();
+  return result(async () => {
+    const { id, revision } = editSchema.parse(edit);
+    const saved = await services().aluminum.saveColor(raw, id, revision);
+    revalidatePath("/", "layout");
+    return saved;
+  });
+}
+export async function saveAluminumProfileAction(raw: unknown, edit: unknown) {
+  await requireSession();
+  return result(async () => {
+    const { id, revision } = editSchema.parse(edit);
+    const saved = await services().aluminum.saveProfile(raw, id, revision);
+    revalidatePath("/", "layout");
+    return saved;
+  });
+}
+export async function seedAluminumCatalogAction() {
+  await requireSession();
+  return result(async () => {
+    const seeded = await services().aluminum.seedFromReference();
+    revalidatePath("/", "layout");
+    return {
+      families: seeded.families.length,
+      colors: seeded.colors.length,
+      profiles: seeded.profiles.length,
+    };
+  });
+}
 export async function confirmAction(raw: unknown) {
   await requireSession();
   return result(async () => {

@@ -1,4 +1,4 @@
-import { internalVoucherMeasure, internalVoucherMeta } from "@/lib/quotation-item";
+import { internalVoucherMeasure, internalVoucherMeta, quotationItemName } from "@/lib/quotation-item";
 import { notFound } from "next/navigation";
 import { requireSession } from "@/infrastructure/auth/session";
 import { services } from "@/application/container";
@@ -37,7 +37,7 @@ export default async function InternalVoucherPage({
           <section key={item.id} className="internal-cut-line">
             <div className="internal-glass-name">
               <span>[{index + 1}]</span>
-              <strong>{item.productDescription.toLocaleUpperCase("es-PE")}</strong>
+              <strong>{quotationItemName(item).toLocaleUpperCase("es-PE")}</strong>
             </div>
             <strong className="internal-measure">{internalVoucherMeasure(item)}</strong>
             <small className="internal-meta">{internalVoucherMeta(item)}</small>

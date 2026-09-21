@@ -1,6 +1,7 @@
 import { expect, it } from "vitest";
 import { validateBackup, importBackup } from "@/application/backup";
 import { emptyCatalog } from "@/domain/catalogs/models";
+import aluminumSeed from "@/data/aluminum-seed.json";
 const backup = {
   schemaVersion: 1,
   exportedAt: new Date().toISOString(),
@@ -14,6 +15,12 @@ it("valida backup y rechaza rutas fuera de datos", () => {
       entries: [{ pathname: "../../secrets", value: {} }],
     }),
   ).toThrow();
+});
+it("valida el catálogo de aluminio dentro del backup", () => {
+  expect(validateBackup({
+    ...backup,
+    entries: [{ pathname: "data/v1/aluminum-catalog.json", value: aluminumSeed }],
+  }).entries).toHaveLength(1);
 });
 it("no modifica datos sin flag explícito y usa ETag al restaurar", async () => {
   const calls: unknown[] = [];

@@ -23,3 +23,6 @@ test-results/
 backups/
 *.bak
 *.backup
+
+# Local source references (processed runtime assets live under public/)
+mockapp-v2/

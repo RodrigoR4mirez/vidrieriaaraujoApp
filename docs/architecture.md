@@ -4,7 +4,7 @@
 UI (App Router, Server Components + componentes interactivos)
   → Server Actions / Route Handlers con sesión
   → CatalogService / QuotationService / casos de backup
-  → GlassRepository / BaseCatalogRepository / QuotationRepository / JsonStore
+  → GlassRepository / BaseCatalogRepository / AluminumCatalogRepository / QuotationRepository / JsonStore
   → VercelBlob*Repository / VercelBlobStore
   → Vercel Blob privado
 ```
@@ -19,11 +19,15 @@ El catálogo pequeño se almacena como un agregado `data/v1/catalog.json`. Esta 
 
 Cada registro tiene `revision`. El cliente devuelve la revisión editada. La operación lee el último ETag, valida, escribe con `ifMatch`; ante conflicto relee y reintenta hasta 20 veces. Si la revisión de ese registro cambió, informa conflicto en español. Ediciones simultáneas de registros diferentes se combinan; nunca se pierden cambios silenciosamente.
 
+El catálogo de aluminio usa un agregado independiente, `data/v1/aluminum-catalog.json`, con el mismo protocolo ETag. Esto mantiene la unicidad de códigos y la relación perfil–familia–precios por color en una única escritura condicional. La carga inicial es idempotente cuando ya coincide y se niega a mezclar o sobrescribir datos parciales.
+
 Las lecturas privadas usan `useCache: false` y `Accept-Encoding: identity`. En la verificación real, respuestas comprimidas de Blob devolvían un ETag débil (`W/`) que no satisface `ifMatch`. Solicitar la representación sin compresión conserva el cuerpo y su ETag fuerte juntos; nunca se sustituye por el ETag de otra lectura. También se reintenta la colisión si dos dispositivos crean el catálogo inicial simultáneamente.
 
 ## Confirmación
 
 El servidor acepta solo IDs, modalidad, medidas para pie², cantidades, condiciones y un ID de solicitud. Relee productos y catálogos base activos, llama al cálculo de dominio y crea el snapshot. Lista cotizaciones, elige máximo + 1 y crea un archivo sin overwrite ni sufijo aleatorio. Ante colisión relee y reintenta. El ID de solicitud permite recuperar el resultado tras perder una respuesta y evita duplicar un mismo intento concurrente. El folio que aparece en borrador es provisional.
+
+Para perfiles el servidor relee además perfil, familia, color y precio por barra. `calculation.ts` calcula metros o barra completa; ninguna salida vuelve a calcular. El subtotal y total se forman sobre la unión de ítems de vidrio y aluminio.
 
 El histórico tiene un archivo por cotización. La fecha se almacena ISO UTC junto con `timezone: America/Lima`; UI, mensajes y documentos la presentan en Lima. Las salidas usan el snapshot, sin consultar precios actuales ni repetir fórmulas. No hay endpoint de edición/eliminación de cotizaciones.
 

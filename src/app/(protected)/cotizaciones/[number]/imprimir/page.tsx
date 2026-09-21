@@ -1,4 +1,4 @@
-import { quotationItemDetail } from "@/lib/quotation-item";
+import { quotationItemDetail, quotationItemName } from "@/lib/quotation-item";
 import { notFound } from "next/navigation";
 import { requireSession } from "@/infrastructure/auth/session";
 import { services } from "@/application/container";
@@ -41,7 +41,7 @@ export default async function Page({
         </header>
         {q.items.map((i) => (
           <section key={i.id} className="print-line">
-            <strong>{i.productDescription}</strong>
+            <strong>{quotationItemName(i)}</strong>
             <p>
               {i.quantity} × {quotationItemDetail(i)}
             </p>

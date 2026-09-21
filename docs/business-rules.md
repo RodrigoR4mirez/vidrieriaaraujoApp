@@ -434,3 +434,37 @@ En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial
 ### Continuidad del borrador
 
 Se permite una copia temporal de UI en `sessionStorage`, aislada por usuario y pestaña: ítems, condiciones, formulario incompleto, edición y solicitud de confirmación. No es una cotización confirmada ni la fuente principal del negocio. El catálogo y precios se releen y la confirmación sigue validándose en servidor y persistiendo únicamente en Blob. Al confirmar, descartar explícitamente o cerrar sesión se limpia el borrador. No se promete sincronización del borrador entre dispositivos ni conservación al cerrar la pestaña.
+
+## 15. Perfiles de aluminio
+
+La cotización puede combinar vidrios y perfiles de aluminio. Los perfiles son una categoría independiente: sí conservan y muestran una imagen técnica; los vidrios no usan imágenes.
+
+Cada perfil cotizable tiene código único, descripción, familia, longitud de barra comercial, estado y uno o más precios por color. Un color sin precio no está disponible para ese perfil. Familias, colores y perfiles ocultos se conservan para históricos, pero no aparecen en nuevas cotizaciones.
+
+### Modalidades
+
+`PROFILE_METERS` vende tramos por metros. Entradas: perfil, color, metros solicitados positivos y cantidad entera mayor o igual a uno.
+
+```text
+precioMetroRaw = precioBarra / longitudBarraMetros
+precioMetroConRecargoRaw = precioMetroRaw * 1.10
+precioUnitarioMetro = roundHalfUp(precioMetroConRecargoRaw, 2)
+importeItem = roundHalfUp(precioUnitarioMetro * metrosSolicitados * cantidad, 2)
+```
+
+El recargo fijo para venta fraccionada es 10%. La longitud comercial inicial proveniente de la referencia aprobada es 6 metros, pero se conserva en cada perfil para no convertirla en un número mágico. En pantalla se muestra la fórmula `(precio barra ÷ longitud) × 1.10 × metros × cantidad`.
+
+`PROFILE_BAR` vende barras completas. Entradas: perfil, color y cantidad entera mayor o igual a uno.
+
+```text
+precioUnitario = precioBarra
+importeItem = precioBarra * cantidad
+```
+
+No se solicita cantidad de metros para barra completa. Todos los cálculos usan `decimal.js` y se implementan una sola vez en el dominio.
+
+### Snapshot y total unificado
+
+El ítem confirmado congela como mínimo: tipo de ítem, modalidad, perfil y código, descripción y familia originales, color, imagen relativa versionada, longitud comercial, precio por barra, porcentaje de recargo cuando corresponda, metros solicitados cuando corresponda, cantidad, precio unitario e importe.
+
+El subtotal unificado es la suma exacta de los importes de vidrios y perfiles. El total a cobrar conserva la regla de la sección 5: se redondea una sola vez hacia arriba a `.50` o al entero. No se aplica IGV ni otro impuesto.
