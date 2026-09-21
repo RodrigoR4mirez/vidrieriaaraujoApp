@@ -11,11 +11,11 @@ describe("referencia y cotización de perfiles", () => {
   it("conserva la trazabilidad validada del Excel", () => {
     expect(catalog.families).toHaveLength(21);
     expect(catalog.colors.map((color) => color.name)).toEqual(["Mate", "Negro"]);
-    expect(catalog.profiles).toHaveLength(143);
-    const profile = catalog.profiles.find((entry) => entry.code === "5220");
-    expect(profile?.sourceRows).toEqual([133, 134]);
-    expect(profile?.colorPrices).toHaveLength(2);
-    expect(profile?.originalDescription).toContain("Tubo rect 2 x 1/2");
+    expect(catalog.profiles).toHaveLength(154);
+    const profiles5220 = catalog.profiles.filter((entry) => entry.code.startsWith("5220-"));
+    expect(profiles5220.map((profile) => profile.sourceRows)).toEqual([[133], [134]]);
+    expect(profiles5220.map((profile) => profile.colorPrices)).toHaveLength(2);
+    expect(profiles5220[0]?.originalDescription).toContain("Tubo rect 2 x 1/2");
   });
 
   it("crea snapshots por metros y barra con el color elegido", () => {

@@ -18,6 +18,7 @@ import { money } from "@/lib/formatting";
 import { Button, Dialog, EmptyState, Notice, StatusBadge } from "./ui";
 import { PriceInput } from "./price-input";
 import { useHydrated } from "./use-hydrated";
+import { ProfileImagePicker } from "./profile-image-picker";
 
 export function AluminumProfileCatalog({ catalog }: { catalog: AluminumCatalog }) {
   const [query, setQuery] = useState("");
@@ -195,13 +196,8 @@ function ProfileForm({ catalog, editing, onSaved, onCancel }: {
       <div className="field"><label htmlFor="profile-status">Estado</label><select id="profile-status" value={form.status}
         onChange={(event) => setForm({ ...form, status: event.target.value as "ACTIVE" | "HIDDEN" })}>
         <option value="ACTIVE">Activo</option><option value="HIDDEN">Oculto</option></select></div></div>
-    <div className="field"><label htmlFor="profile-image-path">Imagen técnica</label><select id="profile-image-path" value={form.imagePath}
-      onChange={(event) => setForm({ ...form, imagePath: event.target.value })}><option value="">Sin imagen de origen</option>
-      {imagePaths.map((path) => <option value={path} key={path}>{path}</option>)}</select>
-      {form.imagePath ? <div className="profile-form-image-preview">
-        <div><strong>Vista previa</strong><span>{form.imagePath.split("/").at(-1)}</span></div>
-        <span className="profile-image"><Image src={form.imagePath} alt={`Vista previa de ${form.code || "perfil"}`} fill sizes="150px" /></span>
-      </div> : <small className="profile-form-image-empty">Selecciona una imagen para verla antes de guardar.</small>}</div>
+    <ProfileImagePicker paths={imagePaths} value={form.imagePath}
+      onChange={(imagePath) => setForm({ ...form, imagePath })} typedCode={form.code} />
     <fieldset className="profile-price-editor"><legend>Precios por barra y color *</legend>
       {catalog.colors.filter((color) => color.status === "ACTIVE" || prices[color.id]).map((color) => <label key={color.id}>
         <input type="checkbox" checked={Boolean(prices[color.id])} onChange={(event) => setPrices((old) => ({ ...old,
