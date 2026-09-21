@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "exportedAt": "2026-09-21T19:49:45.328Z",
+  "exportedAt": "2026-09-21T19:59:40.953Z",
   "entries": [
     {
       "pathname": "data/v1/catalog.json",
@@ -8,15 +8,15 @@
         "schemaVersion": 1,
         "values": [
           {
-            "name": "Incoloros",
+            "name": "Primario",
             "description": "",
             "status": "ACTIVE",
             "category": "families",
-            "id": "6ecde007-d399-52f6-8a0e-9a8100739695",
+            "id": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "name": "2 Mm",
@@ -26,184 +26,8 @@
             "id": "96b3c98b-b893-5086-8553-0c6eb92d75ae",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "3 Mm",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "thicknesses",
-            "id": "f820bd0c-1219-5ec3-a6aa-16a056e0b442",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "4 Mm",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "thicknesses",
-            "id": "fada05ae-0af8-528b-a2df-dd8b4288120b",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "5.5 Mm",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "thicknesses",
-            "id": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "6 Mm",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "thicknesses",
-            "id": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "8 Mm",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "thicknesses",
-            "id": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "10 Mm",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "thicknesses",
-            "id": "1f6748f9-8660-530d-8af1-ec304536eaf0",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Bronce",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "families",
-            "id": "198e860f-6afd-54e5-932d-82b42efd9484",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Gris",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "families",
-            "id": "6fd1fa6c-2b04-5f4c-934c-cc0251d3d246",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Reflejante",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "families",
-            "id": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Azul Cielo",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "colors-finishes",
-            "id": "c4d6bc8f-ee76-5955-8516-8b6f7d16c649",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Azul Electra",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "colors-finishes",
-            "id": "d1811065-faad-5ef3-818f-fd8141053f18",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Bronce",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "colors-finishes",
-            "id": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Verde",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "colors-finishes",
-            "id": "b940dc71-9763-582d-b687-901d359f8f35",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Espejos",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "families",
-            "id": "4f441059-9c16-50dc-afab-84b736894a33",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Catedral Incoloro Ch",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "families",
-            "id": "03f104d6-cbe2-5252-b31c-b3818e90e1f9",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Sin Especificar",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "thicknesses",
-            "id": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "name": "Incoloro",
@@ -213,96 +37,85 @@
             "id": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
-            "name": "Cuadriculado",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "cathedral-designs",
-            "id": "5365d5eb-ec94-5022-81af-d5b7dc40c920",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Arabesco",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "cathedral-designs",
-            "id": "e59b0504-a89d-5579-9af6-83b762f713c9",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Flora",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "cathedral-designs",
-            "id": "0c81bcca-cdd4-541f-96b7-deca83125223",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Llovizna",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "cathedral-designs",
-            "id": "fa047b05-b7da-5c67-bdb5-1da3454e8241",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "5 Mm",
+            "name": "3 Mm",
             "description": "",
             "status": "ACTIVE",
             "category": "thicknesses",
-            "id": "3e650e0e-7a40-50bf-9ca7-41010ac2f76f",
+            "id": "f820bd0c-1219-5ec3-a6aa-16a056e0b442",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
-            "name": "Catedral Color Ch",
+            "name": "4 Mm",
             "description": "",
             "status": "ACTIVE",
-            "category": "families",
-            "id": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "category": "thicknesses",
+            "id": "fada05ae-0af8-528b-a2df-dd8b4288120b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
-            "name": "Ambar",
+            "name": "5.5 Mm",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "thicknesses",
+            "id": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "6 Mm",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "thicknesses",
+            "id": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "8 Mm",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "thicknesses",
+            "id": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "10 Mm",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "thicknesses",
+            "id": "1f6748f9-8660-530d-8af1-ec304536eaf0",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Bronce",
             "description": "",
             "status": "ACTIVE",
             "category": "colors-finishes",
-            "id": "c14cf5f4-8ffa-5341-ac5d-ecf250f62c2e",
+            "id": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
-          },
-          {
-            "name": "Oceanico",
-            "description": "",
-            "status": "ACTIVE",
-            "category": "cathedral-designs",
-            "id": "2b423a5e-5f5f-5c1a-a2ce-e5691d04c1f2",
-            "schemaVersion": 1,
-            "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "name": "Gris",
@@ -312,8 +125,173 @@
             "id": "be123abe-3ad0-5876-aed1-44c3aad59307",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Reflejante",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "families",
+            "id": "eabe6f02-cc15-5f41-b8af-8dcf0a9324ff",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Azul Cielo",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "colors-finishes",
+            "id": "c4d6bc8f-ee76-5955-8516-8b6f7d16c649",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Azul Electra",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "colors-finishes",
+            "id": "d1811065-faad-5ef3-818f-fd8141053f18",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Verde",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "colors-finishes",
+            "id": "b940dc71-9763-582d-b687-901d359f8f35",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Espejos",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "families",
+            "id": "4f441059-9c16-50dc-afab-84b736894a33",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Catedral Incoloro Ch",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "families",
+            "id": "03f104d6-cbe2-5252-b31c-b3818e90e1f9",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Sin Especificar",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "thicknesses",
+            "id": "96e4e250-8f94-5d67-8a72-5c5912bc9ff2",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Cuadriculado",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "cathedral-designs",
+            "id": "5365d5eb-ec94-5022-81af-d5b7dc40c920",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Arabesco",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "cathedral-designs",
+            "id": "e59b0504-a89d-5579-9af6-83b762f713c9",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Flora",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "cathedral-designs",
+            "id": "0c81bcca-cdd4-541f-96b7-deca83125223",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Llovizna",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "cathedral-designs",
+            "id": "fa047b05-b7da-5c67-bdb5-1da3454e8241",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "5 Mm",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "thicknesses",
+            "id": "3e650e0e-7a40-50bf-9ca7-41010ac2f76f",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Catedral Color Ch",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "families",
+            "id": "cccd02a1-b997-5b7b-af44-ba098730b7fb",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Ambar",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "colors-finishes",
+            "id": "c14cf5f4-8ffa-5341-ac5d-ecf250f62c2e",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
+          },
+          {
+            "name": "Oceanico",
+            "description": "",
+            "status": "ACTIVE",
+            "category": "cathedral-designs",
+            "id": "2b423a5e-5f5f-5c1a-a2ce-e5691d04c1f2",
+            "schemaVersion": 1,
+            "revision": 1,
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "name": "Azul",
@@ -323,8 +301,8 @@
             "id": "da54d877-2f06-530e-ac18-0bde22fc8c04",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "name": "Laminado",
@@ -334,8 +312,8 @@
             "id": "a78cfa8e-bff5-5576-8858-62829eea2b5f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "name": "Arenado",
@@ -345,15 +323,16 @@
             "id": "96a47682-4cd1-5ee9-bc15-4fbefa399b35",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           }
         ],
         "products": [
           {
             "code": "GL-004-INCOLORO-2MM",
-            "familyId": "6ecde007-d399-52f6-8a0e-9a8100739695",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "96b3c98b-b893-5086-8553-0c6eb92d75ae",
+            "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "sheetWidthCm": "160",
             "sheetHeightCm": "220",
             "pricePerSquareFoot": "1.70",
@@ -362,13 +341,14 @@
             "id": "9ee2f3d3-0da1-522d-bf90-bb0aec980947",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-005-INCOLORO-3MM",
-            "familyId": "6ecde007-d399-52f6-8a0e-9a8100739695",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "f820bd0c-1219-5ec3-a6aa-16a056e0b442",
+            "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "sheetWidthCm": "183",
             "sheetHeightCm": "244",
             "pricePerSquareFoot": "2.00",
@@ -377,13 +357,14 @@
             "id": "ed8dbc63-9132-55d1-9203-ef23050b233c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-006-INCOLORO-4MM",
-            "familyId": "6ecde007-d399-52f6-8a0e-9a8100739695",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "fada05ae-0af8-528b-a2df-dd8b4288120b",
+            "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "2.30",
@@ -392,13 +373,14 @@
             "id": "70e0fa72-0cf5-555c-982d-95e6ab03274d",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-007-INCOLORO-5-5MM",
-            "familyId": "6ecde007-d399-52f6-8a0e-9a8100739695",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
+            "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "2.50",
@@ -407,13 +389,14 @@
             "id": "5a578670-4f95-5061-bd5b-d5d0bb2bebcc",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-008-INCOLORO-6MM",
-            "familyId": "6ecde007-d399-52f6-8a0e-9a8100739695",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
+            "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "2.80",
@@ -422,13 +405,14 @@
             "id": "b27602cd-f05d-5497-8086-7640f374a518",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-009-INCOLORO-8MM",
-            "familyId": "6ecde007-d399-52f6-8a0e-9a8100739695",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
+            "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "3.90",
@@ -437,13 +421,14 @@
             "id": "9309009a-3363-58a7-9b47-2aff3b1ca198",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-010-INCOLORO-10MM",
-            "familyId": "6ecde007-d399-52f6-8a0e-9a8100739695",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "1f6748f9-8660-530d-8af1-ec304536eaf0",
+            "colorFinishId": "3d5d9c31-b5da-5385-bbda-6b3f58eb7741",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "0.00",
@@ -452,13 +437,14 @@
             "id": "67420de3-aa0a-56ad-83e6-0efd7fccfd94",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-013-BRONCE-4MM",
-            "familyId": "198e860f-6afd-54e5-932d-82b42efd9484",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "fada05ae-0af8-528b-a2df-dd8b4288120b",
+            "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "2.60",
@@ -467,13 +453,14 @@
             "id": "d62d482f-eca5-5f49-9a92-5ffc729e3c8d",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-014-BRONCE-5-5-MM",
-            "familyId": "198e860f-6afd-54e5-932d-82b42efd9484",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
+            "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "2.90",
@@ -482,13 +469,14 @@
             "id": "fd79bc61-fc94-58e4-851c-344c07cabaa4",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-015-BRONCE-6-MM",
-            "familyId": "198e860f-6afd-54e5-932d-82b42efd9484",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
+            "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "3.30",
@@ -497,13 +485,14 @@
             "id": "639f684a-a6c3-5193-985f-5f07d7d8845a",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-016-BRONCE-8MM",
-            "familyId": "198e860f-6afd-54e5-932d-82b42efd9484",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
+            "colorFinishId": "b0163ec9-a350-5ed4-88ee-6efdd0854e14",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "4.50",
@@ -512,13 +501,14 @@
             "id": "90919dcd-d50b-58e2-baad-d985f538259f",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-019-GRIS-5-5M",
-            "familyId": "6fd1fa6c-2b04-5f4c-934c-cc0251d3d246",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "d1bef8a0-56a8-5050-b78b-4f283f42a94a",
+            "colorFinishId": "be123abe-3ad0-5876-aed1-44c3aad59307",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "2.95",
@@ -527,13 +517,14 @@
             "id": "b57991d4-10e5-5680-a555-80550a8d1215",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-020-GRIS-6MM",
-            "familyId": "6fd1fa6c-2b04-5f4c-934c-cc0251d3d246",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "f79cc53b-f21c-58ac-99f8-f9c65e0e27a4",
+            "colorFinishId": "be123abe-3ad0-5876-aed1-44c3aad59307",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "3.32",
@@ -542,13 +533,14 @@
             "id": "76a1589b-75ba-5589-bffd-826493faec13",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-021-GRIS-8MM",
-            "familyId": "6fd1fa6c-2b04-5f4c-934c-cc0251d3d246",
+            "familyId": "442ca416-d049-5a0c-a43e-f8d0f5dfd475",
             "thicknessId": "6e84fcb1-7444-50c0-94da-b8b464b1a0be",
+            "colorFinishId": "be123abe-3ad0-5876-aed1-44c3aad59307",
             "sheetWidthCm": "214",
             "sheetHeightCm": "330",
             "pricePerSquareFoot": "4.65",
@@ -557,8 +549,8 @@
             "id": "8456f9ee-3c99-5732-8b13-4cdbe84f186d",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-024-REF-AZUL-CIELO-5-5-MM",
@@ -573,8 +565,8 @@
             "id": "ee9109e5-a86c-5057-8e84-a6bcf809bff5",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-025-REF-AZUL-CIELO-6-MM",
@@ -589,8 +581,8 @@
             "id": "8392b3e8-cdf9-5731-81aa-d623e894ceb7",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-026-REF-AZUL-CIELO-8-MM",
@@ -605,8 +597,8 @@
             "id": "0eb7beb4-35f4-5e67-b47e-76f77301052b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-027-REF-AZUL-ELECTRA-5-5MM",
@@ -621,8 +613,8 @@
             "id": "6f142208-3840-5713-8428-1adbb1514439",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-029-REF-BRONCE-5-5MM",
@@ -637,8 +629,8 @@
             "id": "a6ed3844-8071-58a1-a150-b43d394ae11e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-030-REF-BRONCE-8-MM",
@@ -653,8 +645,8 @@
             "id": "6405fe35-b5d8-505a-9fde-3968a7e664af",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-032-REF-VERDE-6-MM",
@@ -669,8 +661,8 @@
             "id": "6464d1ab-7e8a-546d-be31-5509c2940f5b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-035-ESPEJO-CHINO-2MM",
@@ -684,8 +676,8 @@
             "id": "34ca2402-d568-5064-83fe-1319e85ba30c",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-036-ESPEJO-CHINO-3MM",
@@ -699,8 +691,8 @@
             "id": "0397d3e1-b753-5469-97a8-45465fe42b98",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-037-ESPEJO-4MM-DOBLE-CAPA",
@@ -714,8 +706,8 @@
             "id": "2a8f98e8-b07c-5361-9eee-73d8fbedb658",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-040-CAT-CUADRICULADO",
@@ -731,8 +723,8 @@
             "id": "ac22b235-b36e-5e1a-90ff-fef6625ea427",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-041-CAT-ARABESCO",
@@ -748,8 +740,8 @@
             "id": "d2f5476e-162a-5ce4-b843-66d08a459780",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-042-CAT-FLORA",
@@ -765,8 +757,8 @@
             "id": "38feb85a-27a7-5075-b249-8ee79a514aba",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-043-CAT-LLOVIZNA",
@@ -782,8 +774,8 @@
             "id": "a5148261-56a3-51df-953e-5ef6d425668e",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-046-CAT-LLOVIZNA-5MM",
@@ -799,8 +791,8 @@
             "id": "0e978b6c-b4f1-5c51-95c9-342328c9453b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-049-CAT-AMBAR-OCEANICO",
@@ -816,8 +808,8 @@
             "id": "3ff4c966-9aa3-5f90-8899-143c97d1eefb",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-050-CAT-AMBAR-LLOVIZNA",
@@ -833,8 +825,8 @@
             "id": "639ec735-f7f4-55c0-b00b-9a66b1b4f901",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-051-CAT-BRONCE-LLOVIZNA-3MM",
@@ -850,8 +842,8 @@
             "id": "2243ef57-393e-5148-96b4-b1c96340a339",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-052-CAT-BRONCE-ARABESCO",
@@ -867,8 +859,8 @@
             "id": "a71832df-d1ad-5fe4-833a-a9256686c2d0",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-053-CAT-GRIS-ARABESCO",
@@ -884,8 +876,8 @@
             "id": "c8521dc2-bb19-5d3c-ab30-eaf69d6e4001",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-054-CAT-VERDE-ARABESCO",
@@ -901,8 +893,8 @@
             "id": "58f2e771-753c-5d99-929d-b5e52cc1a342",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-056-CAT-AMBAR-ARABESCO",
@@ -918,8 +910,8 @@
             "id": "8f7d79f0-f645-542a-9138-1d592fabee48",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-058-CAT-BRONCE-LLOVIZNA-5MM",
@@ -935,8 +927,8 @@
             "id": "0ff8ce08-1b99-5d05-bc68-2bfecb00497b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-060-CAT-AZUL-ARABESCO",
@@ -952,8 +944,8 @@
             "id": "69495c41-0350-5773-bdc5-63ed91b2d409",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-063-LAMINADO-6MM",
@@ -967,8 +959,8 @@
             "id": "6b577202-b389-5af6-9e6d-11cb9c461990",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-064-LAMINADO-8MM",
@@ -982,8 +974,8 @@
             "id": "fadc5698-a476-5a32-8bc3-9ca3d754369b",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-067-ARENADO-DE-4MM",
@@ -997,8 +989,8 @@
             "id": "e850bb87-c2c6-5f6a-80a3-016cdf39fbc7",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           },
           {
             "code": "GL-068-ARENADO-DE-6MM",
@@ -1012,8 +1004,8 @@
             "id": "df01ac5b-ce74-56c3-a6cd-3837a6c6a3f6",
             "schemaVersion": 1,
             "revision": 1,
-            "createdAt": "2026-09-21T19:49:45.328Z",
-            "updatedAt": "2026-09-21T19:49:45.328Z"
+            "createdAt": "2026-09-21T19:59:40.953Z",
+            "updatedAt": "2026-09-21T19:59:40.953Z"
           }
         ]
       }

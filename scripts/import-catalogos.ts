@@ -241,7 +241,14 @@ function glassAttributes(family: string, description: string) {
     return { color: title(first || "Sin especificar"), design: title(rest.join(" ") || "Sin especificar") };
   }
   if (family === "REFLEJANTE") return { color: title(withoutThickness.replace(/^ref\.?\s*/i, "")), design: "" };
+  if (family === "INCOLOROS") return { color: "Incoloro", design: "" };
+  if (family === "BRONCE") return { color: "Bronce", design: "" };
+  if (family === "GRIS") return { color: "Gris", design: "" };
   return { color: "", design: "" };
+}
+
+function glassFamily(family: string) {
+  return ["INCOLOROS", "BRONCE", "GRIS"].includes(family) ? "Primario" : family;
 }
 
 async function readGlass() {
@@ -283,7 +290,7 @@ async function readGlass() {
   };
   const products: Product[] = records.map((record) => {
     const attributes = glassAttributes(record.family, record.description);
-    const familyId = addBase("families", record.family);
+    const familyId = addBase("families", glassFamily(record.family));
     const thickness = thicknessFrom(record.description);
     const thicknessId = addBase("thicknesses", thickness);
     const colorFinishId = attributes.color ? addBase("colors-finishes", attributes.color) : undefined;
@@ -320,6 +327,7 @@ function report(result: ImportResult) {
 `- Cada imagen de perfil se guarda como \`public/profiles/<CÓDIGO>.png\` cuando el Excel la ancla a esa fila.\n` +
 `- Las medidas de plancha de vidrios se convierten de metros a centímetros; \`1.60 × 2.20\` pasa a \`160 × 220 cm\`.\n` +
 `- Las columnas \`PIE\` y \`PLANCHA\` del Excel se conservan como precios por pie² y plancha, respectivamente; una celda vacía se guarda como \`0.00\`. La falta de espesor se representa como \`Sin especificar\`, sin inventar un espesor físico.\n\n` +
+`- Incoloros, Bronce y Gris se agrupan en la familia \`Primario\` y conservan su color como acabado.\n\n` +
 `## Casos especiales\n\n` +
 `- Perfiles sin precio: ${result.zeroPriceProfiles.length ? result.zeroPriceProfiles.join(", ") : "ninguno"}.\n` +
 `- Vidrios sin precio en ambas modalidades: ${result.zeroPriceGlasses.length ? result.zeroPriceGlasses.join(", ") : "ninguno"}.\n` +

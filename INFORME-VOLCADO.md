@@ -1,6 +1,6 @@
 # Informe de volcado de catálogos
 
-Generado: 2026-09-21T19:49:45.328Z
+Generado: 2026-09-21T19:59:40.953Z
 
 ## Resultado validado
 
@@ -9,7 +9,7 @@ Generado: 2026-09-21T19:49:45.328Z
 | Familias de perfiles | 21 |
 | Colores de perfiles | 2 |
 | Perfiles | 154 |
-| Familias de vidrios | 9 |
+| Familias de vidrios | 7 |
 | Colores/acabados de vidrios | 8 |
 | Espesores de vidrios | 9 |
 | Diseños catedral | 5 |
@@ -23,6 +23,8 @@ Generado: 2026-09-21T19:49:45.328Z
 - Cada imagen de perfil se guarda como `public/profiles/<CÓDIGO>.png` cuando el Excel la ancla a esa fila.
 - Las medidas de plancha de vidrios se convierten de metros a centímetros; `1.60 × 2.20` pasa a `160 × 220 cm`.
 - Las columnas `PIE` y `PLANCHA` del Excel se conservan como precios por pie² y plancha, respectivamente; una celda vacía se guarda como `0.00`. La falta de espesor se representa como `Sin especificar`, sin inventar un espesor físico.
+
+- Incoloros, Bronce y Gris se agrupan en la familia `Primario` y conservan su color como acabado.
 
 ## Casos especiales
 
