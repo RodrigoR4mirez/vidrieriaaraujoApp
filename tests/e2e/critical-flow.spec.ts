@@ -111,6 +111,10 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByRole("dialog").getByLabel("Alto de plancha").fill("300");
   await page.getByRole("button", { name: "Guardar vidrio" }).click();
   await expect(page.getByRole("dialog")).not.toBeVisible();
+  const editedRow = page.getByRole("row").filter({
+    has: page.getByRole("cell", { name: code, exact: true }),
+  });
+  await expect(editedRow).toContainText("200 × 300");
   await page
     .getByRole("button", { name: `Ocultar ${code}`, exact: true })
     .click();
@@ -324,7 +328,10 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     expect(voucherBox!.x + voucherBox!.width).toBeLessThanOrEqual(width);
   }
   await page.emulateMedia({ media: "print" });
-  expect((await internalVoucher.boundingBox())!.width).toBeLessThanOrEqual(198);
+  const eightyMillimetersInCssPixels = Math.ceil((80 / 25.4) * 96);
+  expect((await internalVoucher.boundingBox())!.width).toBeLessThanOrEqual(
+    eightyMillimetersInCssPixels,
+  );
   await page.emulateMedia({ media: "screen" });
   await page.goto(`/cotizaciones/${number}/imprimir`);
   await expect(page.locator(".ticket")).toContainText("S/ 604.00");
