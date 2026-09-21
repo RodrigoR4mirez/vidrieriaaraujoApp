@@ -41,8 +41,8 @@ test("referencia de perfiles → catálogos → cotización por metros", async (
   await page.getByRole("button", { name: "2248", exact: true }).click();
   const technicalImage = page.getByAltText("Sección técnica de 2248").last();
   await expect(technicalImage).toBeVisible();
-  expect(
-    await technicalImage.evaluate(
+  await expect.poll(
+    () => technicalImage.evaluate(
       (image) => (image as HTMLImageElement).naturalWidth,
     ),
   ).toBeGreaterThan(0);
