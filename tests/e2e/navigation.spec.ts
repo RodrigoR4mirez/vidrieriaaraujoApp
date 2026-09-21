@@ -9,14 +9,14 @@ test("reutiliza pantallas y actualizar conserva el borrador", async ({ page }) =
   await expect(page).toHaveURL(/\/cotizador$/);
   await page.getByLabel("Condiciones comerciales (opcional)").fill("Borrador de navegación");
   const routes = [
-    ["Vidrios", "Catálogo principal de vidrios"],
+    ["Vidrios", "Vidrios"],
     ["Catálogos base", "Catálogos base"],
-    ["Histórico", "Cotizaciones confirmadas"],
-    ["Cotizador", "Nº COT-"],
+    ["Historial", "Historial"],
+    ["Cotización", "Nº COT-"],
   ];
   // Warm the visited routes; the second pass must reuse their payloads.
   for (const [link, heading] of routes) {
-    await page.getByRole("link", { name: link, exact: true }).click();
+    await page.getByRole("link", { name: link, exact: true }).first().click();
     await expect(page.getByRole("heading", { level: 1 })).toContainText(heading);
   }
   const requests: string[] = [];
@@ -27,7 +27,7 @@ test("reutiliza pantallas y actualizar conserva el borrador", async ({ page }) =
   const timings: Record<string, number> = {};
   for (const [link, heading] of routes) {
     const start = Date.now();
-    await page.getByRole("link", { name: link, exact: true }).click();
+    await page.getByRole("link", { name: link, exact: true }).first().click();
     await expect(page.getByRole("heading", { level: 1 })).toContainText(heading);
     timings[link] = Date.now() - start;
   }

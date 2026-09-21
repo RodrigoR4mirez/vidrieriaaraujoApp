@@ -11,8 +11,10 @@ export default async function ProtectedLayout({
   return (
     <div className="app-shell">
       <Navigation />
-      <main>{children}</main>
-      <AppFooter />
+      <div className="app-content">
+        <main>{children}</main>
+        <AppFooter />
+      </div>
     </div>
   );
 }

@@ -7,6 +7,8 @@ import { numberSchema } from "@/domain/quotation/models";
 import { PageHeader } from "@/components/layout";
 import { QuotationSummary } from "@/components/quotation-summary";
 import { ShareActions } from "@/components/share-actions";
+import { quotationSectionTabs } from "@/components/section-tabs-config";
+import { limaDate } from "@/lib/formatting";
 export default async function Page({
   params,
 }: {
@@ -20,9 +22,9 @@ export default async function Page({
   return (
     <>
       <PageHeader
-        eyebrow="Cotización"
+        tabs={quotationSectionTabs}
         title={`Nº ${q.number}`}
-        date={q.confirmedAt}
+        meta={`Confirmada · ${limaDate(q.confirmedAt)}`}
       />
       <div className="confirmed-banner">
         <CheckCircle2 size={30} />

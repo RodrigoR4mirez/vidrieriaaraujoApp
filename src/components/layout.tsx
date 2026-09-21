@@ -1,28 +1,24 @@
-import { Brand } from "./brand";
-import { limaDate } from "@/lib/formatting";
 import type { ReactNode } from "react";
+import { SectionTabs, type SectionTab } from "./section-tabs";
 export function PageHeader({
+  tabs,
   title,
-  eyebrow,
-  description,
-  date,
-  draft = false,
+  meta,
+  actions,
 }: {
+  tabs: readonly SectionTab[];
   title: string;
-  eyebrow: string;
-  description?: string;
-  date?: string;
-  draft?: boolean;
+  meta?: ReactNode;
+  actions?: ReactNode;
 }) {
   return (
-    <header className="page-header glass">
-      <div>
-        <p className="eyebrow">{draft && <span className="draft-light" aria-hidden="true" />}{eyebrow}</p>
+    <header className="page-header">
+      <div className="page-header-main">
+        <SectionTabs items={tabs} />
         <h1>{title}</h1>
-        {description && <p className="muted">{description}</p>}
-        {date && <p className="date">{limaDate(date)}</p>}
+        {meta && <div className="page-header-meta">{meta}</div>}
       </div>
-      <Brand />
+      {actions && <div className="page-header-actions">{actions}</div>}
     </header>
   );
 }

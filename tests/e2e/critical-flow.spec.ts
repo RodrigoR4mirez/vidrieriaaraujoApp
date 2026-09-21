@@ -130,7 +130,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(
     page.getByRole("button", { name: `Reactivar ${code}`, exact: true }),
   ).toBeVisible();
-  await page.getByRole("link", { name: "Cotizador", exact: true }).click();
+  await page.getByRole("link", { name: "Cotización", exact: true }).first().click();
   await expect(page.locator(".sale-mode-choice button[aria-pressed=true]")).toHaveCount(0);
   await expect(page.getByLabel("Buscar vidrio")).toBeDisabled();
   await expect(page.getByLabel("Buscar vidrio")).toHaveAttribute(
@@ -151,7 +151,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(
     page.getByRole("button", { name: `Ocultar ${code}`, exact: true }),
   ).toBeVisible();
-  await page.getByRole("link", { name: "Cotizador", exact: true }).click();
+  await page.getByRole("link", { name: "Cotización", exact: true }).first().click();
   const add = async (sku: string, width: string, quantity: string) => {
     await chooseGlassMode(page, "Por pie²");
     await chooseGlass(page, sku);
@@ -176,7 +176,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByLabel("Nombre del cliente").fill(names.customer);
   await page.getByLabel("Condiciones comerciales (opcional)").fill("Borrador conservado");
   await page.getByRole("link", { name: "Vidrios", exact: true }).click();
-  await page.getByRole("link", { name: "Cotizador", exact: true }).click();
+  await page.getByRole("link", { name: "Cotización", exact: true }).first().click();
   await expect(page).toHaveURL(/\/cotizador$/);
   await expect(page.getByTestId("quotation-total")).toBeVisible();
   await page.reload();
@@ -198,8 +198,8 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     .getByRole("button", { name: "Editar ítem 1", exact: true })
     .click();
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("110");
-  await page.getByRole("link", { name: "Histórico", exact: true }).click();
-  await page.getByRole("link", { name: "Cotizador", exact: true }).click();
+  await page.getByRole("link", { name: "Historial", exact: true }).first().click();
+  await page.getByRole("link", { name: "Cotización", exact: true }).first().click();
   await expect(page).toHaveURL(/\/cotizador$/);
   await expect(page.getByTestId("quotation-total")).toBeVisible();
   await page.reload();

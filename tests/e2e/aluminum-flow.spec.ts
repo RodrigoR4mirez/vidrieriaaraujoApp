@@ -26,7 +26,7 @@ test("referencia de perfiles → catálogos → cotización por metros", async (
   page.on("pageerror", (error) => errors.push(error.message));
   await login(page);
 
-  await page.getByRole("link", { name: "Perfiles", exact: true }).click();
+  await page.getByRole("link", { name: "Perfiles de aluminio", exact: true }).click();
   const seedButton = page.getByRole("button", {
     name: "Cargar referencia inicial",
   });
@@ -55,7 +55,7 @@ test("referencia de perfiles → catálogos → cotización por metros", async (
   await expect(page.getByRole("button", { name: "Colores 2" })).toBeVisible();
   await expect(page.getByRole("link", { name: /Perfiles y códigos/ })).toBeVisible();
 
-  await page.getByRole("link", { name: "Cotizador", exact: true }).click();
+  await page.getByRole("link", { name: "Cotización", exact: true }).first().click();
   await page
     .getByRole("button", { name: "Perfil", exact: true })
     .click();

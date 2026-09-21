@@ -2,6 +2,7 @@ import { requireSession } from "@/infrastructure/auth/session";
 import { services } from "@/application/container";
 import { PageHeader } from "@/components/layout";
 import { CatalogsWorkspace } from "@/components/catalogs-workspace";
+import { catalogSectionTabs } from "@/components/section-tabs-config";
 export default async function Page() {
   await requireSession();
   const [catalog, aluminum] = await Promise.all([
@@ -11,10 +12,9 @@ export default async function Page() {
   return (
     <>
       <PageHeader
-        eyebrow="Administración"
+        tabs={catalogSectionTabs}
         title="Catálogos base"
-        description="Configura la información usada para cotizar vidrios y perfiles."
-        date={new Date().toISOString()}
+        meta="Valores usados al crear vidrios y perfiles"
       />
       <CatalogsWorkspace values={catalog.values} aluminum={aluminum} />
     </>
