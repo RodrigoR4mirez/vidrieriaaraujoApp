@@ -33,10 +33,12 @@ test("referencia de perfiles → catálogos → cotización por metros", async (
   if (await seedButton.isVisible()) {
     await seedButton.click();
   }
-  await expect(page.getByRole("button", { name: "2248" })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "2248", exact: true }),
+  ).toBeVisible();
   await expect(page.locator(".profile-catalog-list tbody tr")).toHaveCount(20);
   await expect(page.getByText("1 / 8", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "2248" }).click();
+  await page.getByRole("button", { name: "2248", exact: true }).click();
   const technicalImage = page.getByAltText("Sección técnica de 2248").last();
   await expect(technicalImage).toBeVisible();
   expect(

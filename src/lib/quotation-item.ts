@@ -18,7 +18,7 @@ export function quotationItemDetail(item: QuotationItem) {
 export function quotationTechnicalDetail(item: QuotationItem) {
   if (isProfileQuotationItem(item)) {
     if (item.mode === "PROFILE_METERS")
-      return `(${money(item.pricePerBar)} ÷ ${item.barLengthMeters} m) × ${item.markupMultiplier} × ${item.metersRequested} m`;
+      return `(${money(item.pricePerBar)} ÷ ${item.barLengthMeters} m) × ${item.markupMultiplier} × ${item.metersRequested} m × ${item.quantity}`;
     return `Barra comercial de ${item.barLengthMeters} m · ${money(item.pricePerBar)} por barra`;
   }
   if (item.mode === "SHEET") return "";
