@@ -17,7 +17,7 @@ export default async function Page() {
       <PageHeader
         tabs={quotationSectionTabs}
         title={`Nº ${next}`}
-        meta={<><span className="draft-badge"><i aria-hidden="true" />Borrador</span><span>Número provisional · {limaDate(new Date().toISOString())}</span></>}
+        meta={<><span className="draft-badge"><i className="draft-light" aria-hidden="true" />Borrador</span><span>Número provisional · {limaDate(new Date().toISOString())}</span></>}
       />
       <QuotationBuilder catalog={catalog} aluminum={aluminum} owner={currentSession.sub!} />
     </>
