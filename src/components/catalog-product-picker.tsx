@@ -302,9 +302,9 @@ export function CatalogProductPicker({
           if (selected) event.currentTarget.select();
         }}
         onChange={(event) => {
-          if (selected) onChange("");
           queryRef.current = event.target.value;
           setQuery(event.target.value);
+          if (selected) onChange("");
           setOpen(true);
           setActive(0);
         }}
