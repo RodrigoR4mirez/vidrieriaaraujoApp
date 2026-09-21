@@ -170,12 +170,15 @@ export function CatalogProductPicker({
   const [active, setActive] = useState(0);
   const [recentIds, setRecentIds] = useState<string[]>(() =>
     typeof window === "undefined" ? [] : readRecent(recentKey));
+  const previousValue = useRef(value);
   const selected = products.find((product) => product.id === value);
   const familyMode = catalogFamilyMode(families.length);
   const selectedFamily = families.find((family) => family.id === familyId);
 
   useEffect(() => {
-    if (value) return;
+    const wasSelected = Boolean(previousValue.current);
+    previousValue.current = value;
+    if (value || !wasSelected) return;
     let cancelled = false;
     queueMicrotask(() => {
       if (cancelled) return;
