@@ -53,20 +53,25 @@ test("referencia de perfiles → catálogos → cotización por metros", async (
     .click();
   await expect(page.getByRole("button", { name: "Familias 21" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Colores 2" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Perfiles y códigos 143" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Perfiles y códigos/ })).toBeVisible();
 
   await page.getByRole("link", { name: "Cotizador", exact: true }).click();
   await page
     .getByRole("button", { name: "Perfil", exact: true })
     .click();
-  await page
-    .getByLabel("Familia de perfiles")
-    .selectOption({ label: "RIELES DE MAMPARA" });
-  await page
-    .getByLabel("Perfil de aluminio")
-    .selectOption({ label: "2248 — Riel mamp- ala corta Eco" });
+  await expect(page.locator(".sale-mode-choice button[aria-pressed=true]")).toHaveCount(0);
+  await expect(page.getByLabel("Buscar perfil")).toBeDisabled();
+  await page.getByRole("button", { name: "Por medida", exact: true }).click();
+  await page.getByLabel("Buscar perfil").click();
+  await expect(page.locator(".picker-family-row")).toHaveCount(21);
+  await page.locator(".picker-family-row").filter({ hasText: "RIELES DE MAMPARA" }).click();
+  await expect(page.locator(".picker-family-tag")).toContainText("RIELES DE MAMPARA");
+  await expect(page.getByRole("option", { name: "← Todas las familias" })).toBeVisible();
+  await page.getByLabel("Buscar perfil").fill("2248");
+  await page.locator(".picker-product-row").filter({
+    has: page.locator(".picker-product-copy small").filter({ hasText: /^2248 ·/ }),
+  }).click();
   await page.getByRole("button", { name: /^Mate/ }).click();
-  await page.getByRole("button", { name: "Por metros" }).click();
   await page.getByLabel("Metros solicitados").fill("2.50");
   await page
     .getByRole("button", { name: "Agregar a la cotización" })

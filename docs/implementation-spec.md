@@ -1402,7 +1402,9 @@ No detenerse después de una sola fase salvo bloqueo real.
 
 ### Selección guiada del vidrio
 
-En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial automática. Cada control permanece deshabilitado hasta completar el anterior; medidas y cantidad requieren un vidrio seleccionado. Al cambiar modalidad o familia se descarta la selección dependiente. Solo se ofrecen familias con productos activos y cotizables (precio > 0 en esa modalidad), y el combo de vidrio se limita a esa familia. Se elimina el selector adicional de espesor. El detalle muestra el diseño cuando corresponda (por ejemplo, Arabesco, sin el prefijo Catedral), color, grosor, medidas de plancha si están registradas, y código entre paréntesis en texto pequeño. No se inventan dimensiones ni se repite la familia. La edición de ítems conserva su modalidad, familia y producto; permite cambiar medidas/cantidad como antes. Cálculos y snapshots históricos permanecen iguales.
+En cotizador: tipo Vidrio/Perfil → modalidad mediante dos botones → buscador combinado → tarjeta seleccionada → datos de venta. Ninguna modalidad se selecciona al iniciar y el buscador muestra `Primero elige la modalidad de venta` hasta elegirla. El buscador integra código, descripción y familia, teclado completo, coincidencias sin mayúsculas/tildes y palabras en cualquier orden. No existe un `select` de familia.
+
+El desplegable usa chips cuando hay hasta seis familias disponibles y carpetas cuando hay más. Sus familias, contadores y resultados incluyen únicamente productos activos con precio válido para la modalidad. Al cambiar modalidad conserva el producto si sigue cotizable o lo limpia con aviso; al cambiar tipo reinicia todo el formulario de selección. El botón de agregado requiere modalidad, producto y datos completos. El dominio de cálculo, importe estimado, snapshots y confirmación no cambian.
 
 ### Continuidad del borrador en la pestaña
 
@@ -1421,6 +1423,7 @@ Los enlaces principales precargan sus pantallas; el Router Cache de Next reutili
 - Mantenimiento en `/perfiles`: búsqueda, familia, estado, detalle, crear, editar, ocultar/reactivar y carga inicial no destructiva.
 - Catálogos base con áreas Vidrios/Perfiles; perfiles administra familias, colores y acceso a perfiles/códigos.
 - Cotizador unificado con pestañas Vidrio/Perfil y grupos separados en el resumen.
+- Selector unificado con modalidad previa, búsqueda por código/descripción/familia y navegación adaptativa por chips o carpetas.
 - Modalidades `PROFILE_METERS` y `PROFILE_BAR` según `docs/business-rules.md`; fórmula única en dominio con `decimal.js`.
 - Cotizaciones confirmadas, histórico, PDF, WhatsApp, impresión, texto copiado, voucher interno y backup admiten snapshots mixtos.
 - El subtotal suma importes de ambas categorías y el total conserva el redondeo oficial sin IGV.

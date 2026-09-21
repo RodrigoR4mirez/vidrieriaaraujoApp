@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
-import { PackageOpen, Plus, Search } from "lucide-react";
+import { PackageOpen, PanelsTopLeft, Plus, Ruler, X } from "lucide-react";
+import { useState } from "react";
 import { emptyCatalog } from "@/domain/catalogs/models";
 import {
+  isProfileQuotable,
   type AluminumCatalog,
   profilePrice,
 } from "@/domain/aluminum/models";
@@ -19,6 +20,10 @@ import type { QuotationForm } from "@/lib/quotation-draft-cache";
 import { money } from "@/lib/formatting";
 import { useHydrated } from "./use-hydrated";
 import { Button, Notice, QuantityControl } from "./ui";
+import {
+  CatalogProductPicker,
+  type PickerProduct,
+} from "./catalog-product-picker";
 
 export function ProfileItemForm({
   catalog,
@@ -36,26 +41,38 @@ export function ProfileItemForm({
   onCancel: () => void;
 }) {
   const hydrated = useHydrated();
-  const [query, setQuery] = useState("");
   const [error, setError] = useState("");
+  const [availabilityNotice, setAvailabilityNotice] = useState("");
   const patch = (change: Partial<QuotationForm>) => onFormChange({ ...form, ...change });
-  const activeFamilies = catalog.families.filter((family) => family.status === "ACTIVE");
-  const availableProfiles = useMemo(() => catalog.profiles.filter((profile) =>
-    profile.status === "ACTIVE" &&
-    profile.familyId === form.profileFamilyId &&
-    profile.colorPrices.some((entry) => catalog.colors.some((color) =>
-      color.id === entry.colorId && color.status === "ACTIVE" && Number(entry.pricePerBar) > 0,
-    )) &&
-    `${profile.code} ${profile.description}`.toLocaleLowerCase("es-PE")
-      .includes(query.toLocaleLowerCase("es-PE")),
-  ), [catalog.colors, catalog.profiles, form.profileFamilyId, query]);
-  const profile = catalog.profiles.find((entry) => entry.id === form.profileId);
+  const availableProfiles = catalog.profiles.filter((profile) =>
+    profile.colorPrices.some((entry) => isProfileQuotable(profile, entry.colorId, catalog)));
+  const availableFamilies = catalog.families.filter((family) =>
+    availableProfiles.some((profile) => profile.familyId === family.id));
+  const profile = availableProfiles.find((entry) => entry.id === form.profileId);
   const availableColors = profile?.colorPrices.flatMap((entry) => {
     const color = catalog.colors.find((candidate) =>
       candidate.id === entry.colorId && candidate.status === "ACTIVE" && Number(entry.pricePerBar) > 0,
     );
     return color ? [{ ...color, pricePerBar: entry.pricePerBar }] : [];
   }) ?? [];
+  const pickerProducts: PickerProduct[] = availableProfiles.map((entry) => {
+    const familyName = catalog.families.find((family) => family.id === entry.familyId)?.name || "";
+    const colorCount = entry.colorPrices.filter((price) =>
+      catalog.colors.some((color) => color.id === price.colorId && color.status === "ACTIVE") &&
+      Number(price.pricePerBar) > 0,
+    ).length;
+    return {
+      id: entry.id,
+      code: entry.code,
+      description: entry.description,
+      familyId: entry.familyId,
+      familyName,
+      measure: `Barra ${entry.barLengthMeters} m`,
+      keyDetail: `${colorCount} ${colorCount === 1 ? "color" : "colores"}`,
+      imagePath: entry.imagePath,
+    };
+  });
+  const selectedPickerProduct = pickerProducts.find((entry) => entry.id === form.profileId);
   const candidate = {
     id: editing?.id || profile?.id || "",
     itemType: "ALUMINUM_PROFILE" as const,
@@ -75,6 +92,27 @@ export function ProfileItemForm({
     }
   }
 
+  function changeMode(nextMode: "PROFILE_BAR" | "PROFILE_METERS") {
+    const current = catalog.profiles.find((entry) => entry.id === form.profileId);
+    const keepProfile = Boolean(current && availableProfiles.some((entry) => entry.id === current.id));
+    const keepFamily = form.profileFamilyId && availableProfiles.some((entry) =>
+      entry.familyId === form.profileFamilyId);
+    const keepColor = keepProfile && current?.colorPrices.some((entry) =>
+      entry.colorId === form.colorId && isProfileQuotable(current, entry.colorId, catalog));
+    onFormChange({
+      ...form,
+      profileMode: nextMode,
+      profileFamilyId: keepFamily ? form.profileFamilyId : "",
+      profileId: keepProfile ? form.profileId : "",
+      colorId: keepColor ? form.colorId : "",
+      metersRequested: nextMode === "PROFILE_BAR" ? "" : form.metersRequested,
+    });
+    setAvailabilityNotice(current && !keepProfile
+      ? `Este producto no se vende ${nextMode === "PROFILE_BAR" ? "por barra" : "por medida"} y se quitó de la selección.`
+      : "");
+    setError("");
+  }
+
   return (
     <form className="form-stack" onSubmit={(event) => {
       event.preventDefault();
@@ -83,48 +121,58 @@ export function ProfileItemForm({
         id: editing?.id || crypto.randomUUID(),
       });
       if (!parsed.success) {
-        setError("Selecciona familia, perfil, color, modalidad y valores válidos.");
+        setError("Selecciona un perfil, color, modalidad y valores válidos.");
         return;
       }
       onSave(parsed.data);
       setError("");
     }}>
       {editing && <Notice>Editar perfil, modalidad y cantidad</Notice>}
-      <div className="field">
-        <label htmlFor="profile-family">Familia de perfiles</label>
-        <select id="profile-family" required disabled={!!editing} value={form.profileFamilyId}
-          onChange={(event) => patch({ profileFamilyId: event.target.value, profileId: "", colorId: "" })}>
-          <option value="">Selecciona la familia</option>
-          {activeFamilies.map((family) => <option key={family.id} value={family.id}>{family.name}</option>)}
-        </select>
-      </div>
-      <div className="field">
-        <label htmlFor="profile-search">Buscar perfil</label>
-        <div className="search-field profile-search">
-          <Search size={17} />
-          <input id="profile-search" placeholder="Código o descripción" value={query}
-            disabled={!form.profileFamilyId || !!editing} onChange={(event) => setQuery(event.target.value)} />
+      <div className="field sale-mode-section">
+        <span className="field-label">Modalidad de venta (perfil)</span>
+        <div className="sale-mode-grid">
+          <div className="sale-mode-choice">
+            <button type="button" aria-pressed={form.profileMode === "PROFILE_BAR"}
+              className={form.profileMode === "PROFILE_BAR" ? "selected" : ""}
+              disabled={!availableProfiles.length} onClick={() => changeMode("PROFILE_BAR")}>
+              <PanelsTopLeft size={18} /><span>Por barra</span>
+            </button>
+            {!availableProfiles.length && <small>Sin productos disponibles en esta modalidad</small>}
+          </div>
+          <div className="sale-mode-choice">
+            <button type="button" aria-pressed={form.profileMode === "PROFILE_METERS"}
+              className={form.profileMode === "PROFILE_METERS" ? "selected" : ""}
+              disabled={!availableProfiles.length} onClick={() => changeMode("PROFILE_METERS")}>
+              <Ruler size={18} /><span>Por medida</span>
+            </button>
+            {!availableProfiles.length && <small>Sin productos disponibles en esta modalidad</small>}
+          </div>
         </div>
       </div>
-      <div className="field">
-        <label htmlFor="profile-select">Perfil de aluminio</label>
-        <select id="profile-select" required disabled={!form.profileFamilyId || !!editing}
-          value={form.profileId} onChange={(event) => patch({ profileId: event.target.value, colorId: "" })}>
-          <option value="">Selecciona el perfil</option>
-          {availableProfiles.map((entry) => <option key={entry.id} value={entry.id}>
-            {entry.code} — {entry.description}
-          </option>)}
-        </select>
-      </div>
-      {profile && <div className="selected-profile-card">
-        <div className="profile-thumbnail">
+      <CatalogProductPicker label="Buscar perfil" placeholder="Buscar perfil o familia…"
+        products={pickerProducts}
+        families={availableFamilies.map((family) => ({ id: family.id, name: family.name }))}
+        value={form.profileId} familyId={form.profileFamilyId}
+        disabled={!form.profileMode || !availableProfiles.length}
+        recentKey="araujo:recent-aluminum-profiles"
+        onChange={(profileId) => patch({ profileId, colorId: "" })}
+        onFamilyChange={(profileFamilyId) => patch({
+          profileFamilyId,
+          profileId: profileFamilyId && profile?.familyId !== profileFamilyId ? "" : form.profileId,
+          colorId: profileFamilyId && profile?.familyId !== profileFamilyId ? "" : form.colorId,
+        })} />
+      {availabilityNotice && <Notice>{availabilityNotice}</Notice>}
+      {profile && selectedPickerProduct && <div className="selected-product-card profile-selected-card">
+        <span className="profile-thumbnail">
           {profile.imagePath ? <Image src={profile.imagePath} alt={`Sección del perfil ${profile.code}`}
             fill sizes="72px" /> : <PackageOpen size={28} />}
-        </div>
-        <div><strong>{profile.code} — {profile.description}</strong>
-          <span>{catalog.families.find((family) => family.id === profile.familyId)?.name}</span></div>
+        </span>
+        <div><strong>{profile.code}</strong><span>{profile.description}</span>
+          <small>{selectedPickerProduct.measure} · {selectedPickerProduct.familyName}</small></div>
+        <button type="button" className="icon-button" aria-label="Quitar perfil seleccionado"
+          onClick={() => patch({ profileId: "", colorId: "" })}><X size={16} /></button>
       </div>}
-      <fieldset disabled={!profile} className="form-stack item-measures">
+      <fieldset disabled={!form.profileMode || !profile} className="form-stack item-measures">
         <div className="field">
           <span className="field-label">Color del perfil</span>
           <div className="color-options">
@@ -135,17 +183,6 @@ export function ProfileItemForm({
               {color.name}
               <small>{money(color.pricePerBar)} / barra</small>
             </button>)}
-          </div>
-        </div>
-        <div className="field">
-          <span className="field-label">Modalidad de venta</span>
-          <div className="segments profile-modes">
-            <button type="button" className={form.profileMode === "PROFILE_METERS" ? "selected" : ""}
-              aria-pressed={form.profileMode === "PROFILE_METERS"}
-              onClick={() => patch({ profileMode: "PROFILE_METERS" })}>Por metros</button>
-            <button type="button" className={form.profileMode === "PROFILE_BAR" ? "selected" : ""}
-              aria-pressed={form.profileMode === "PROFILE_BAR"}
-              onClick={() => patch({ profileMode: "PROFILE_BAR", metersRequested: "" })}>Barra completa</button>
           </div>
         </div>
         {form.profileMode === "PROFILE_METERS" && <div className="field">
@@ -160,7 +197,9 @@ export function ProfileItemForm({
       {form.profileMode === "PROFILE_METERS" && profile && form.colorId && <div className="calculation-breakdown">
         (precio barra {money(profilePrice(profile, form.colorId) || "0")} ÷ {profile.barLengthMeters}) × 1.10 × metros × cantidad
       </div>}
-      <div className="estimate"><span>Importe estimado</span><strong>{estimate ? money(estimate.itemAmount) : "S/ —"}</strong></div>
+      <div className={`estimate ${!estimate ? "disabled-control" : ""}`}>
+        <span>Importe estimado</span><strong>{estimate ? money(estimate.itemAmount) : "S/ —"}</strong>
+      </div>
       {error && <Notice error>{error}</Notice>}
       {editing ? <div className="form-actions">
         <Button variant="secondary" type="button" onClick={onCancel}>Cancelar</Button>

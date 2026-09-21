@@ -8,6 +8,15 @@ async function login(page: Page) {
   await page.getByRole("button", { name: "Ingresar al Cotizador" }).click();
   await expect(page).toHaveURL(/\/cotizador$/);
 }
+async function chooseGlassMode(page: Page, name: "Por pie²" | "Por plancha") {
+  const button = page.getByRole("button", { name, exact: true });
+  if ((await button.getAttribute("aria-pressed")) !== "true") await button.click();
+}
+async function chooseGlass(page: Page, sku: string) {
+  const search = page.getByLabel("Buscar vidrio");
+  await search.fill(sku);
+  await page.locator(".picker-product-row").filter({ hasText: sku }).click();
+}
 test("protección de rutas y acceso incorrecto", async ({ page, request }) => {
   await page.goto("/catalogo");
   await expect(page).toHaveURL(/\/login$/);
@@ -122,17 +131,19 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     page.getByRole("button", { name: `Reactivar ${code}`, exact: true }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Cotizador", exact: true }).click();
-  await expect(page.getByLabel("Cotizar por")).toHaveValue("");
-  await expect(page.getByLabel("Familia", { exact: true })).toBeDisabled();
-  await expect(page.getByRole("combobox", { name: "Tipo de vidrio" })).toBeDisabled();
+  await expect(page.locator(".sale-mode-choice button[aria-pressed=true]")).toHaveCount(0);
+  await expect(page.getByLabel("Buscar vidrio")).toBeDisabled();
+  await expect(page.getByLabel("Buscar vidrio")).toHaveAttribute(
+    "placeholder",
+    "Primero elige la modalidad de venta",
+  );
+  await expect(page.locator("#family-select")).toHaveCount(0);
   await expect(page.getByLabel("Cantidad", { exact: true })).toBeDisabled();
   await expect(page.getByText("Espesor del cristal", { exact: true })).toHaveCount(0);
-  await page.getByLabel("Cotizar por").selectOption("SQUARE_FOOT");
-  await expect(page.getByRole("combobox", { name: "Tipo de vidrio" })).toBeDisabled();
-  await page.getByLabel("Familia", { exact: true }).selectOption({ label: names.family });
-  await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
-  await expect(page.getByRole("option").filter({ hasText: code })).toHaveCount(0);
-  await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Escape");
+  await chooseGlassMode(page, "Por pie²");
+  await page.getByLabel("Buscar vidrio").fill(code);
+  await expect(page.locator(".picker-product-row").filter({ hasText: code })).toHaveCount(0);
+  await page.getByLabel("Buscar vidrio").press("Escape");
   await page.getByRole("link", { name: "Vidrios", exact: true }).click();
   await page
     .getByRole("button", { name: `Reactivar ${code}`, exact: true })
@@ -142,10 +153,8 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   ).toBeVisible();
   await page.getByRole("link", { name: "Cotizador", exact: true }).click();
   const add = async (sku: string, width: string, quantity: string) => {
-    await page.getByLabel("Cotizar por").selectOption("SQUARE_FOOT");
-    await page.getByLabel("Familia", { exact: true }).selectOption({ label: names.family });
-    await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
-    await page.getByRole("option").filter({ hasText: sku }).click();
+    await chooseGlassMode(page, "Por pie²");
+    await chooseGlass(page, sku);
     await page.getByLabel("Ancho (cm)", { exact: true }).fill(width);
     await page.getByLabel("Alto (cm)", { exact: true }).fill("80");
     await page.getByLabel("Cantidad", { exact: true }).fill(quantity);
@@ -223,40 +232,38 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page
     .getByLabel("Condiciones comerciales (opcional)")
     .fill("Condiciones de prueba; no corresponde a una venta.");
-  await page.getByLabel("Cotizar por").selectOption("SHEET");
+  await chooseGlassMode(page, "Por plancha");
+  await expect(page.getByText("Este producto no se vende por plancha y se quitó de la selección.")).toBeVisible();
   await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveCount(0);
-  await expect(page.getByLabel("Familia", { exact: true })).toHaveValue("");
-  await expect(page.getByRole("combobox", { name: "Tipo de vidrio" })).toBeDisabled();
-  await page.getByLabel("Familia", { exact: true }).selectOption({ label: names.family });
-  await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
-  const sheetOptions = await page.getByRole("listbox").getByRole("option").allTextContents();
+  await page.getByLabel("Buscar vidrio").fill(`${tag}-SHEET`);
+  const sheetOptions = await page.locator(".picker-product-row").allTextContents();
   expect(sheetOptions).toHaveLength(1);
   expect(sheetOptions[0]).toContain(`${names.design} · ${names.color} · ${names.thickness}`);
-  expect(sheetOptions[0]).not.toContain(names.family);
-  expect(sheetOptions[0]).toContain(`(${tag}-SHEET)`);
+  expect(sheetOptions[0]).toContain(names.family);
+  expect(sheetOptions[0]).toContain(`${tag}-SHEET`);
   // Select by keyboard as well as touch/click; Enter must not submit the form.
-  await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Home");
-  await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Enter");
+  await page.getByLabel("Buscar vidrio").press("ArrowDown");
+  await page.getByLabel("Buscar vidrio").press("Enter");
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Agregar ítem", exact: true }).click();
   await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 603.65");
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 604.00");
   await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
-  await expect(page.getByLabel("Cotizar por")).toHaveValue("SHEET");
+  await expect(page.getByRole("button", { name: "Por plancha", exact: true })).toHaveAttribute("aria-pressed", "true");
   await page.getByLabel("Cantidad", { exact: true }).fill("2");
   await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 493.00");
   await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
-  await page.getByLabel("Cotizar por").selectOption("SQUARE_FOOT");
-  await page.getByLabel("Familia", { exact: true }).selectOption({ label: names.family });
-  await page.getByRole("combobox", { name: "Tipo de vidrio" }).click();
-  const cutOptions = await page.getByRole("listbox").getByRole("option").allTextContents();
+  await chooseGlassMode(page, "Por pie²");
+  await expect(page.getByText("Este producto no se vende por pie² y se quitó de la selección.")).toBeVisible();
+  await page.getByLabel("Buscar vidrio").fill(tag);
+  const cutOptions = await page.locator(".picker-product-row").allTextContents();
   expect(cutOptions).toHaveLength(2);
   for (const suffix of ["SHEET", "NONE"])
     expect(cutOptions.some((text) => text.includes(`${tag}-${suffix}`))).toBe(false);
-  expect(cutOptions.find((text) => text.includes(code))).toContain("200 × 300 cm");
+  expect(cutOptions.find((text) => text.includes(code))).toContain("200×300 cm");
   for (const viewport of [{ width: 390, height: 844 }, { width: 820, height: 1180 }]) {
     await page.setViewportSize(viewport);
     const dropdown = await page.getByRole("listbox").boundingBox();
@@ -264,10 +271,10 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     expect(dropdown!.x + dropdown!.width).toBeLessThanOrEqual(viewport.width);
     await page.screenshot({ path: `test-results/selector-${viewport.width}.png`, fullPage: true });
   }
-  await page.getByRole("combobox", { name: "Tipo de vidrio" }).press("Escape");
-  await page.getByLabel("Familia", { exact: true }).selectOption("");
-  await expect(page.getByRole("combobox", { name: "Tipo de vidrio" })).toBeDisabled();
-  await expect(page.getByLabel("Ancho (cm)", { exact: true })).toBeDisabled();
+  await page.getByLabel("Buscar vidrio").press("Escape");
+  await page.getByRole("button", { name: "Vidrio", exact: true }).click();
+  await expect(page.getByLabel("Buscar vidrio")).toBeDisabled();
+  await expect(page.getByLabel("Cantidad", { exact: true })).toBeDisabled();
   await expect(page.getByRole("button", { name: "Agregar ítem", exact: true })).toBeDisabled();
   for (const viewport of [
     { width: 1440, height: 900 },
@@ -378,7 +385,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.emulateMedia({ media: "screen" });
   await page.goto("/cotizador");
   await expect(page.getByTestId("quotation-total")).toHaveText("S/ 0.00");
-  await expect(page.getByLabel("Cotizar por")).toHaveValue("");
+  await expect(page.locator(".sale-mode-choice button[aria-pressed=true]")).toHaveCount(0);
   await page.getByLabel("Condiciones comerciales (opcional)").fill("Descartar");
   await page.getByRole("button", { name: "Nueva cotización", exact: true }).click();
   await page.getByRole("button", { name: "Descartar borrador" }).click();

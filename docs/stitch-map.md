@@ -60,5 +60,6 @@ Las referencias originales de esta iteración están en `mockapp-v2/`. Son docum
 - Vidrios continúan sin imágenes.
 - Perfiles muestran la imagen técnica importada del Excel o un marcador visual explícito cuando el origen no contiene imagen.
 - El cotizador conserva el formulario a la izquierda y el resumen a la derecha en escritorio/tablet, y los apila en móvil.
+- El panel de agregado ordena tipo → modalidad → buscador único → tarjeta → datos; el buscador usa chips con hasta seis familias y carpetas cuando hay más.
 - El resumen separa `Vidrios` y `Perfiles de aluminio`, aunque calcula un único subtotal y total.
 - Las imágenes son referencia visual; los datos y fórmulas versionados en el dominio son la fuente de verdad una vez implementados.

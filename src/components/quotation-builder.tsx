@@ -5,11 +5,12 @@ import { useHydrated } from "./use-hydrated";
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, Plus, RotateCcw, Ruler } from "lucide-react";
+import { ArrowRight, PanelsTopLeft, Plus, RotateCcw, Ruler, X } from "lucide-react";
 import {
   type CatalogState,
   type SaleMode,
   isQuotable,
+  productDetails,
 } from "@/domain/catalogs/models";
 import {
   draftItemSchema,
@@ -23,7 +24,10 @@ import { confirmAction } from "@/app/actions";
 import { money } from "@/lib/formatting";
 import { quotationTechnicalDetail } from "@/lib/quotation-item";
 import { Button, Dialog, Notice, QuantityControl } from "./ui";
-import { GlassPicker } from "./glass-picker";
+import {
+  CatalogProductPicker,
+  type PickerProduct,
+} from "./catalog-product-picker";
 import { QuotationSummary } from "./quotation-summary";
 import type { AluminumCatalog } from "@/domain/aluminum/models";
 import { ProfileItemForm } from "./profile-item-form";
@@ -275,11 +279,33 @@ function ItemForm({
   const hydrated = useHydrated();
   const { mode, familyId, productId, widthCm, heightCm, quantity } = form;
   const patch = (change: Partial<QuotationForm>) => onFormChange({ ...form, ...change });
-  const available = mode ? catalog.products.filter((p) => isQuotable(p, catalog.values, mode)) : [];
-  const families = catalog.values.filter((v) => v.category === "families" && available.some((p) => p.familyId === v.id));
-  const familyProducts = available.filter((p) => p.familyId === familyId);
+  const squareFootProducts = catalog.products.filter((product) =>
+    isQuotable(product, catalog.values, "SQUARE_FOOT"));
+  const sheetProducts = catalog.products.filter((product) =>
+    isQuotable(product, catalog.values, "SHEET"));
+  const available = mode === "SQUARE_FOOT" ? squareFootProducts : mode === "SHEET" ? sheetProducts : [];
+  const families = catalog.values.filter((value) => value.category === "families" &&
+    available.some((product) => product.familyId === value.id));
   const [error, setError] = useState("");
-  const product = familyProducts.find((p) => p.id === productId);
+  const [availabilityNotice, setAvailabilityNotice] = useState("");
+  const product = available.find((entry) => entry.id === productId);
+  const pickerProducts: PickerProduct[] = available.map((entry) => {
+    const details = productDetails(entry, catalog.values);
+    const description = [details.cathedralDesign, details.colorFinish, details.thickness]
+      .filter(Boolean).join(" · ") || details.productDescription || entry.code;
+    return {
+      id: entry.id,
+      code: entry.code,
+      description,
+      familyId: entry.familyId,
+      familyName: details.family,
+      measure: entry.sheetWidthCm && entry.sheetHeightCm
+        ? `${entry.sheetWidthCm}×${entry.sheetHeightCm} cm`
+        : "Sin medida de plancha",
+      keyDetail: details.thickness || details.colorFinish || details.family,
+    };
+  });
+  const selectedPickerProduct = pickerProducts.find((entry) => entry.id === productId);
   const candidate = {
     productId: product?.id || "",
     mode,
@@ -314,30 +340,62 @@ function ItemForm({
       }}
     >
       {editing && <Notice>{mode === "SHEET" ? "Editar cantidad de planchas" : "Editar medidas y cantidad"}</Notice>}
-      <div className="field">
-        <label htmlFor="sale-mode">Cotizar por</label>
-        <select id="sale-mode" value={mode} disabled={!!editing} onChange={(event) => {
-          onFormChange({ ...emptyForm(), mode: event.target.value as SaleMode | "" });
-          setError("");
-        }}>
-          <option value="">Selecciona la modalidad</option>
-          <option value="SQUARE_FOOT">Pie² (por medidas)</option>
-          <option value="SHEET">Plancha entera</option>
-        </select>
+      <div className="field sale-mode-section">
+        <span className="field-label">Modalidad de venta (vidrio)</span>
+        <div className="sale-mode-grid">
+          <div className="sale-mode-choice">
+            <button type="button" aria-pressed={mode === "SQUARE_FOOT"}
+              className={mode === "SQUARE_FOOT" ? "selected" : ""}
+              disabled={!squareFootProducts.length} onClick={() => {
+                const nextMode: SaleMode = "SQUARE_FOOT";
+                const current = catalog.products.find((entry) => entry.id === productId);
+                const keepProduct = Boolean(current && isQuotable(current, catalog.values, nextMode));
+                const nextFamily = familyId && squareFootProducts.some((entry) => entry.familyId === familyId)
+                  ? familyId : "";
+                onFormChange({ ...form, mode: nextMode, familyId: nextFamily,
+                  productId: keepProduct ? productId : "" });
+                setAvailabilityNotice(current && !keepProduct
+                  ? "Este producto no se vende por pie² y se quitó de la selección." : "");
+                setError("");
+              }}><Ruler size={18} /><span>Por pie²</span></button>
+            {!squareFootProducts.length && <small>Sin productos disponibles en esta modalidad</small>}
+          </div>
+          <div className="sale-mode-choice">
+            <button type="button" aria-pressed={mode === "SHEET"}
+              className={mode === "SHEET" ? "selected" : ""}
+              disabled={!sheetProducts.length} onClick={() => {
+                const nextMode: SaleMode = "SHEET";
+                const current = catalog.products.find((entry) => entry.id === productId);
+                const keepProduct = Boolean(current && isQuotable(current, catalog.values, nextMode));
+                const nextFamily = familyId && sheetProducts.some((entry) => entry.familyId === familyId)
+                  ? familyId : "";
+                onFormChange({ ...form, mode: nextMode, familyId: nextFamily,
+                  productId: keepProduct ? productId : "" });
+                setAvailabilityNotice(current && !keepProduct
+                  ? "Este producto no se vende por plancha y se quitó de la selección." : "");
+                setError("");
+              }}><PanelsTopLeft size={18} /><span>Por plancha</span></button>
+            {!sheetProducts.length && <small>Sin productos disponibles en esta modalidad</small>}
+          </div>
+        </div>
       </div>
-      {mode && !available.length && <Notice>No hay vidrios activos con precio disponible para esta modalidad.</Notice>}
-      <div className="field">
-        <label htmlFor="family-select">Familia</label>
-        <select id="family-select" value={familyId} disabled={!!editing || !mode || !families.length}
-          onChange={(event) => { onFormChange({ ...emptyForm(), mode, familyId: event.target.value }); setError(""); }} required>
-          <option value="">Selecciona la familia</option>
-          {families.map((family) => <option key={family.id} value={family.id}>{family.name}</option>)}
-        </select>
-      </div>
-      <GlassPicker key={`${mode}-${familyId}`} products={familyProducts} values={catalog.values}
-        value={productId} disabled={!!editing || !mode || !familyId || !familyProducts.length}
-        onChange={(productId) => patch({ productId })} />
-      <fieldset disabled={!product} className="item-measures form-stack">
+      <CatalogProductPicker label="Buscar vidrio" placeholder="Buscar o desplegar vidrios…"
+        products={pickerProducts} families={families.map((family) => ({ id: family.id, name: family.name }))}
+        value={productId} familyId={familyId} disabled={!mode || !available.length}
+        recentKey="araujo:recent-glass-products"
+        onChange={(nextProductId) => patch({ productId: nextProductId })}
+        onFamilyChange={(nextFamilyId) => patch({
+          familyId: nextFamilyId,
+          productId: nextFamilyId && product && product.familyId !== nextFamilyId ? "" : productId,
+        })} />
+      {availabilityNotice && <Notice>{availabilityNotice}</Notice>}
+      {product && selectedPickerProduct && <div className="selected-product-card">
+        <div><strong>{product.code}</strong><span>{selectedPickerProduct.description}</span>
+          <small>{selectedPickerProduct.measure} · {selectedPickerProduct.familyName}</small></div>
+        <button type="button" className="icon-button" aria-label="Quitar vidrio seleccionado"
+          onClick={() => patch({ productId: "" })}><X size={16} /></button>
+      </div>}
+      <fieldset disabled={!mode || !product} className="item-measures form-stack">
       {mode === "SQUARE_FOOT" && <div className="form-grid">
         <div className="field">
           <label htmlFor="width">Ancho (cm)</label>
@@ -370,7 +428,7 @@ function ItemForm({
       </div>}
       <QuantityControl value={quantity ?? NaN} onChange={(quantity) => patch({ quantity: Number.isFinite(quantity) ? quantity : null })} label={mode === "SHEET" ? "Cantidad de planchas" : "Cantidad de paños / piezas"} />
       </fieldset>
-      <div className="estimate">
+      <div className={`estimate ${!estimate ? "disabled-control" : ""}`}>
         <span>Importe estimado</span>
         <strong>{estimate ? money(estimate.itemAmount) : "S/ —"}</strong>
       </div>
@@ -385,10 +443,10 @@ function ItemForm({
           <Button variant="secondary" type="button" onClick={onCancel}>
             Cancelar
           </Button>
-          <Button disabled={!hydrated || !product}>Guardar cambios</Button>
+          <Button disabled={!hydrated || !estimate}>Guardar cambios</Button>
         </div>
       ) : (
-        <Button disabled={!hydrated || !product} type="submit">
+        <Button disabled={!hydrated || !estimate} type="submit">
           <Plus size={18} />
           Agregar ítem
         </Button>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import seed from "@/data/aluminum-seed.json";
-import { aluminumCatalogSchema } from "@/domain/aluminum/models";
+import { aluminumCatalogSchema, isProfileQuotable } from "@/domain/aluminum/models";
 import { catalogStateSchema, emptyCatalog } from "@/domain/catalogs/models";
 import { priceDraft } from "@/application/use-cases";
 import { quotationSubtotal, quotationTotal } from "@/domain/quotation/calculation";
@@ -64,6 +64,29 @@ describe("referencia y cotización de perfiles", () => {
       mode: "PROFILE_BAR",
       quantity: 1,
     }], emptyCatalog(), catalog)).toThrow("sin precio");
+  });
+
+  it("excluye perfiles ocultos, sin precio y con familia o color ocultos", () => {
+    const profile = catalog.profiles.find((entry) => entry.code === "2248")!;
+    const mate = catalog.colors.find((color) => color.name === "Mate")!;
+    expect(isProfileQuotable(profile, mate.id, catalog)).toBe(true);
+    expect(isProfileQuotable({ ...profile, status: "HIDDEN" }, mate.id, catalog)).toBe(false);
+    expect(isProfileQuotable({
+      ...profile,
+      colorPrices: profile.colorPrices.map((price) => ({ ...price, pricePerBar: "0.00" })),
+    }, mate.id, catalog)).toBe(false);
+    expect(isProfileQuotable(profile, mate.id, {
+      ...catalog,
+      families: catalog.families.map((family) => family.id === profile.familyId
+        ? { ...family, status: "HIDDEN" as const }
+        : family),
+    })).toBe(false);
+    expect(isProfileQuotable(profile, mate.id, {
+      ...catalog,
+      colors: catalog.colors.map((color) => color.id === mate.id
+        ? { ...color, status: "HIDDEN" as const }
+        : color),
+    })).toBe(false);
   });
 
   it("combina vidrio y perfil en un único subtotal", () => {

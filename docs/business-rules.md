@@ -429,7 +429,11 @@ El voucher del cliente conserva importes y condiciones. El voucher interno del t
 
 ### Selección guiada del vidrio
 
-En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial automática. Cada control permanece deshabilitado hasta completar el anterior; medidas y cantidad requieren un vidrio seleccionado. Al cambiar modalidad o familia se descarta la selección dependiente. Solo se ofrecen familias con productos activos y cotizables (precio > 0 en esa modalidad), y el combo de vidrio se limita a esa familia. Se elimina el selector adicional de espesor. El detalle muestra el diseño cuando corresponda (por ejemplo, Arabesco, sin el prefijo Catedral), color, grosor, medidas de plancha si están registradas, y código entre paréntesis en texto pequeño. No se inventan dimensiones ni se repite la familia. La edición de ítems conserva su modalidad, familia y producto; permite cambiar medidas/cantidad como antes. Cálculos y snapshots históricos permanecen iguales.
+En cotizador: elegir tipo de producto → modalidad → buscar producto. No hay modalidad ni producto seleccionados automáticamente. El buscador único permanece deshabilitado hasta elegir modalidad; medidas, cantidad, importe y agregado requieren además un producto válido. No existe un `select` independiente de familia: las familias se filtran dentro del desplegable y se muestran en la tarjeta elegida.
+
+Solo participan productos activos y cotizables: vidrio con precio estrictamente mayor que cero en la modalidad elegida; perfil con al menos un color activo cuyo precio por barra sea mayor que cero. Familias sin productos disponibles no se muestran ni cuentan. Hasta seis familias disponibles se presentan como chips; con más de seis se navegan como carpetas. La búsqueda cubre código, descripción y familia, ignora mayúsculas/tildes y exige que coincidan todas las palabras sin importar su orden.
+
+Al cambiar modalidad se mantiene el producto solo si continúa disponible; en caso contrario se limpia y se informa. Al cambiar entre Vidrio y Perfil se reinician modalidad, búsqueda, familia y producto. La tarjeta seleccionada muestra código, descripción, medida disponible y familia. La edición conserva los datos del ítem y permite volver a buscar. Cálculos, importes, snapshots y confirmación permanecen sin cambios.
 
 ### Continuidad del borrador
 
