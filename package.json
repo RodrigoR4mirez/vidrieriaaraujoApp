@@ -16,6 +16,7 @@
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build && npm run test:bundle",
     "test:bundle": "node scripts/verify-pdf-bundle.mjs",
     "auth:hash": "node scripts/password-hash.mjs",
+    "catalogs:import": "tsx scripts/import-catalogos.ts",
     "backup:export": "tsx --env-file-if-exists=.env.local scripts/backup.ts export",
     "backup:import": "tsx --env-file-if-exists=.env.local scripts/backup.ts import"
   },
@@ -47,6 +48,7 @@
     "@typescript/native": "npm:typescript@7.0.2",
     "eslint": "10.10.0",
     "eslint-config-next": "16.3.5",
+    "exceljs": "4.4.0",
     "tailwindcss": "4.3.3",
     "tsx": "4.23.13",
     "typescript": "npm:@typescript/typescript6@6.0.2",

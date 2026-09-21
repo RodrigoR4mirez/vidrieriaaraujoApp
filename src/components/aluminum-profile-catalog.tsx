@@ -165,11 +165,14 @@ function ProfileForm({ catalog, editing, onSaved, onCancel }: {
   const [prices, setPrices] = useState<Record<string, string>>(() => Object.fromEntries(
     editing?.colorPrices.map((entry) => [entry.colorId, entry.pricePerBar]) || [],
   ));
+  const imagePaths = [...new Set(catalog.profiles.flatMap((profile) =>
+    profile.imagePath ? [profile.imagePath] : [],
+  ))].sort();
   return <form className="form-stack" onSubmit={(event) => {
     event.preventDefault();
     const candidate: AluminumProfileInput = {
       ...form,
-      colorPrices: Object.entries(prices).filter(([, price]) => price && Number(price) > 0)
+      colorPrices: Object.entries(prices).filter(([, price]) => price !== "")
         .map(([colorId, pricePerBar]) => ({ colorId, pricePerBar })),
     };
     const valid = aluminumProfileInputSchema.safeParse(candidate);
@@ -194,7 +197,7 @@ function ProfileForm({ catalog, editing, onSaved, onCancel }: {
         <option value="ACTIVE">Activo</option><option value="HIDDEN">Oculto</option></select></div></div>
     <div className="field"><label htmlFor="profile-image-path">Imagen técnica</label><select id="profile-image-path" value={form.imagePath}
       onChange={(event) => setForm({ ...form, imagePath: event.target.value })}><option value="">Sin imagen de origen</option>
-      {Array.from({ length: 49 }, (_, index) => `/profiles/image${index + 1}.png`).map((path) => <option value={path} key={path}>{path}</option>)}</select></div>
+      {imagePaths.map((path) => <option value={path} key={path}>{path}</option>)}</select></div>
     <fieldset className="profile-price-editor"><legend>Precios por barra y color *</legend>
       {catalog.colors.filter((color) => color.status === "ACTIVE" || prices[color.id]).map((color) => <label key={color.id}>
         <input type="checkbox" checked={Boolean(prices[color.id])} onChange={(event) => setPrices((old) => ({ ...old,
