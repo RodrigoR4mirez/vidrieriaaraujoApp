@@ -110,7 +110,7 @@ describe("repositories y casos de uso", () => {
     const draft = f.draft();
     const q = await f.service.confirm({ ...draft, items: [...draft.items, { id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 3 }] });
     expect(q.subtotal).toBe("395.57");
-    expect(q.total).toBe("396.00");
+    expect(q.total).toBe("395.60");
     expect(q.customerName).toBe("María Pérez");
     expect(q.items[0].itemAmount).toBe("62.24");
     expect(q.items[1]).toMatchObject({ mode: "SHEET", pricePerSheet: "111.11", quantity: 3, itemAmount: "333.33", sheetWidthCm: "200", sheetHeightCm: "300" });
@@ -120,7 +120,7 @@ describe("repositories y casos de uso", () => {
     expect(internalVoucherMeta(q.items[1])).toBe("Cant: 3 pln · Por plancha");
     expect(quotationText(q)).toContain("Plancha entera");
     expect(decodeURIComponent(whatsappUrl(q))).toContain("SUBTOTAL EXACTO: S/ 395.57");
-    expect(decodeURIComponent(whatsappUrl(q))).toContain("TOTAL A COBRAR: S/ 396.00");
+    expect(decodeURIComponent(whatsappUrl(q))).toContain("TOTAL A COBRAR: S/ 395.60");
     await f.catalog.saveProduct({ ...product, pricePerSheet: "0.00" }, product.id, product.revision);
     expect(await f.service.find(q.number)).toEqual(q);
     await expect(f.service.confirm({ requestId: randomUUID(), customerName: "María Pérez", items: [{ id: randomUUID(), productId: product.id, mode: "SHEET", quantity: 1 }] })).rejects.toThrow("sin precio");
@@ -191,14 +191,14 @@ describe("repositories y casos de uso", () => {
     const q = await f.service.confirm(f.draft());
     expect(q.number).toBe("COT-00001");
     expect(q.subtotal).toBe("62.24");
-    expect(q.total).toBe("62.50");
+    expect(q.total).toBe("62.30");
     expect(quotationItemDetail(q.items[0])).toBe("Por pie² · 100 × 80 cm");
     expect(quotationTechnicalDetail(q.items[0])).toBe("Ancho 39.37″ → 40″ · Alto 31.50″ → 32″ · Área 8.89 ft² · S/ 3.50 pie²");
     expect(internalVoucherMeasure(q.items[0])).toBe("100 × 80 cm");
     expect(internalVoucherMeta(q.items[0])).toBe("Cant: 2 pz · Por pie²");
     expect(quotationSchema.parse(JSON.parse(JSON.stringify(q)))).toEqual(q);
     expect(quotationText(q)).toContain("SUBTOTAL EXACTO: S/ 62.24");
-    expect(quotationText(q)).toContain("TOTAL A COBRAR: S/ 62.50");
+    expect(quotationText(q)).toContain("TOTAL A COBRAR: S/ 62.30");
     expect(quotationText(q)).toContain("Cliente: María Pérez");
     expect(quotationText(q)).not.toContain("Ancho 39.37″");
     expect(decodeURIComponent(whatsappUrl(q))).toContain(q.number);
@@ -207,7 +207,7 @@ describe("repositories y casos de uso", () => {
       f.product.id,
       f.product.revision,
     );
-    expect((await f.service.find(q.number))?.total).toBe("62.50");
+    expect((await f.service.find(q.number))?.total).toBe("62.30");
   });
   it("asigna números únicos crecientes en confirmaciones simultáneas", async () => {
     const f = await fixture();
@@ -275,7 +275,7 @@ describe("repositories y casos de uso", () => {
       hidden.id,
       hidden.revision,
     );
-    expect((await f.service.confirm(f.draft())).total).toBe("62.50");
+    expect((await f.service.confirm(f.draft())).total).toBe("62.30");
   });
   it("excluye valores base ocultos de nuevas cotizaciones", async () => {
     const f = await fixture();

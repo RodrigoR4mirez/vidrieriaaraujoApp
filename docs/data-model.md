@@ -21,13 +21,13 @@ Solo almacenamiento privado. Los stores de Preview/desarrollo y Production tiene
 
 `BaseValue`: id UUID, schemaVersion, revision, category, name, description, status, createdAt, updatedAt. Categorías: `families`, `colors-finishes`, `thicknesses`, `cathedral-designs`. Nuevos registros no tienen código ni observación. Los campos antiguos `code` y `observation` son opcionales y se conservan al leer, editar y respaldar datos existentes; no aparecen en la UI. Las relaciones usan siempre el ID.
 
-`Product`: id UUID, schemaVersion, revision, code único normalizado en mayúsculas, familyId, thicknessId, colorFinishId opcional, cathedralDesignId opcional, sheetWidthCm/sheetHeightCm opcionales en pareja, pricePerSquareFoot, pricePerSheet opcional, status, createdAt, updatedAt.
+`Product`: id UUID, schemaVersion, revision, code único normalizado en mayúsculas, familyId, thicknessId, colorFinishId opcional, cathedralDesignId opcional, sheetWidthCm y sheetHeightCm opcionales e informativos de forma independiente, pricePerSquareFoot, pricePerSheet opcional, status, createdAt, updatedAt.
 
 Estados: ACTIVE/HIDDEN. No hay borrado físico. Decimales persistidos como strings; cantidades como enteros. Las medidas de plancha son informativas. Su precio se usa exclusivamente en modalidad `SHEET`. Nuevas escrituras guardan ambos precios; ausentes o vacíos pasan a `0.00`. Lecturas antiguas conservan `pricePerSheet` ausente sin modificar el JSON.
 
 Los precios nuevos o modificados requieren exactamente dos decimales y un importe no negativo (cero indica no disponible). La entrada desplaza dígitos desde los centavos (`11100` → `111.00`). Los precios históricos o existentes no se migran ni redondean en almacenamiento; un precio antiguo sin modificar se conserva incluso al editar otros campos del producto.
 
-`Quotation`: schemaVersion, id de solicitud UUID, number COT-XXXXX, status CONFIRMED, createdAt, confirmedAt, timezone America/Lima, customerName, conditions, subtotal exacto, total redondeado e items. `customerName` y `subtotal` son opcionales únicamente al leer snapshots antiguos; toda confirmación nueva exige el nombre.
+`Quotation`: schemaVersion, id de solicitud UUID, number COT-XXXXX, status CONFIRMED, createdAt, confirmedAt, timezone America/Lima, customerName, conditions, subtotal exacto, total redondeado e items. Toda confirmación nueva exige nombre de cliente de 1 a 160 caracteres, condiciones de hasta 2,000 caracteres y entre 1 y 200 ítems con IDs únicos. `customerName` y `subtotal` son opcionales únicamente al leer snapshots antiguos. Los archivos históricos con un prefijo legado de tres letras se presentan como `COT-XXXXX`; las nuevas escrituras usan exclusivamente ese prefijo.
 
 Cada ítem por pie² (`mode: SQUARE_FOOT`, opcional para históricos antiguos) conserva id, productId, productCode, productDescription, family, colorFinish, thickness, cathedralDesign, widthCm, heightCm, quantity, pricePerSquareFoot, widthInRaw, heightInRaw, widthWasteIn, heightWasteIn, widthInRounded, heightInRounded, areaIn2, areaFt2, unitPrice e itemAmount. Las mermas son opcionales al leer históricos anteriores. El snapshot histórico no depende de referencias vigentes para mostrarse.
 
@@ -37,7 +37,7 @@ Cada ítem por pie² (`mode: SQUARE_FOOT`, opcional para históricos antiguos) c
 
 El catálogo inicial versionado se deriva de `lista - Rodri.xlsx`/`Hoja1`: 21 familias, 2 colores y 143 perfiles únicos. La carga solo se permite sobre un catálogo de aluminio vacío y nunca sobrescribe registros existentes.
 
-Los ítems de perfil usan `itemType: ALUMINUM_PROFILE`. `PROFILE_METERS` congela perfil, familia, color, imagen, longitud, precio por barra, multiplicador `1.10`, metros, cantidad, precio unitario por metro e importe. `PROFILE_BAR` congela los mismos datos excepto metros y multiplicador. Ambos conviven con los ítems de vidrio en `quotation.items`.
+Los ítems de perfil usan `itemType: ALUMINUM_PROFILE`. En nuevas cotizaciones, `PROFILE_METERS` conserva su nombre técnico por compatibilidad pero recibe la medida en centímetros (`measurementUnit: CENTIMETERS`), guarda esa medida y su equivalente normalizado en metros, además de perfil, familia, color, imagen, longitud, precio por barra, multiplicador `1.10`, cantidad, precio unitario por metro e importe. Los históricos con `measurementUnit: METERS` siguen siendo legibles. `PROFILE_BAR` congela los mismos datos excepto medida fraccionada y multiplicador. Ambos conviven con los ítems de vidrio en `quotation.items`.
 
 ## Migración futura
 
@@ -51,4 +51,4 @@ Los ítems de perfil usan `itemType: ALUMINUM_PROFILE`. `PROFILE_METERS` congela
 
 Implementar nuevos repositorios con las mismas interfaces. No modificar UI, casos de uso, cálculo, PDF ni mensajes. La migración usaría una transacción y una secuencia o bloqueo apropiado para folios; no se incorpora base relacional al MVP.
 
-Los ítems `mode: SHEET` conservan los mismos datos descriptivos, cantidad, `pricePerSheet`, `unitPrice`, `itemAmount` y dimensiones de plancha opcionales. No incluyen medidas de corte ni conversiones de área. Ambas variantes conviven en `items`; un ítem histórico sin `mode` sigue siendo por pie², sin reescribirlo.
+Los ítems `mode: SHEET` conservan los mismos datos descriptivos, cantidad, `pricePerSheet`, `unitPrice`, `itemAmount` y dimensiones de plancha opcionales, aun si solo una dimensión está disponible. No incluyen medidas de corte ni conversiones de área. Ambas variantes conviven en `items`; un ítem histórico sin `mode` sigue siendo por pie², sin reescribirlo.

@@ -4,7 +4,7 @@ import { quotationItemDetail, quotationItemGroup, quotationItemName, quotationTe
 import { useState } from "react";
 import { Pencil, Trash2, List, Rows3 } from "lucide-react";
 import { isProfileQuotationItem, type QuotationItem } from "@/domain/quotation/models";
-import { quotationSubtotal, quotationTotal } from "@/domain/quotation/calculation";
+import { quotationRoundingAdjustment, quotationSubtotal, quotationTotal } from "@/domain/quotation/calculation";
 import { money } from "@/lib/formatting";
 import { EmptyState } from "./ui";
 export function QuotationSummary({
@@ -22,16 +22,21 @@ export function QuotationSummary({
 }) {
   const [compact, setCompact] = useState(false);
   const groups = Array.from(Map.groupBy(items, quotationItemGroup));
+  const pieces = items.reduce((sum, item) => sum + item.quantity, 0);
+  const plural = (count: number, singular: string, pluralForm: string) =>
+    `${count} ${count === 1 ? singular : pluralForm}`;
+  const countLabel = items.length
+    ? `${plural(items.length, "producto", "productos")} · ${plural(pieces, "pieza", "piezas")}`
+    : "Aún no hay productos";
+  const subtotalValue = subtotal ?? quotationSubtotal(items);
+  const totalValue = total ?? quotationTotal(items);
+  const adjustment = quotationRoundingAdjustment(subtotalValue, totalValue);
   return (
     <>
       <div className="section-heading">
         <div>
           <h2>Resumen de cotización</h2>
-          <p className="muted">
-            {onEdit
-              ? "Productos agregados listos para cotizar"
-              : "Detalle de la cotización confirmada"}
-          </p>
+          <p className="muted">{countLabel}</p>
         </div>
         <div className="segments" aria-label="Vista de cotización">
           <button
@@ -61,23 +66,18 @@ export function QuotationSummary({
         {groups.map(([name, group]) => (
           <div className="quotation-group" key={name}>
             <div className="group-heading">
-                <strong>
-                  <span className="blue-dot" />
-                  {name} ({group.length})
-                </strong>
-                <span>
-                  {group.length} {group.length === 1 ? "ítem" : "ítems"}
-                </span>
+                <strong>{name}</strong>
+                <span>{plural(group.length, "producto", "productos")}</span>
             </div>
             <div className="table-scroll">
               <table className="quotation-table">
                 <thead>
                   <tr>
-                    <th>Producto / descripción</th>
+                    <th>Producto</th>
                     <th>Modalidad / medidas</th>
-                    <th>Cant.</th>
-                    <th>P. unitario</th>
-                    <th>Importe</th>
+                    <th className="numeric">Cant.</th>
+                    <th className="numeric">P. unit.</th>
+                    <th className="numeric">Importe</th>
                     {onEdit && (
                       <th>
                         <span className="sr-only">Acciones</span>
@@ -106,7 +106,7 @@ export function QuotationSummary({
                           </small>
                         )}
                       </td>
-                      <td>{item.quantity}</td>
+                      <td className="numeric">{item.quantity}</td>
                       <td className="numeric muted">{money(item.unitPrice)}</td>
                       <td className="numeric">
                         <strong>{money(item.itemAmount)}</strong>
@@ -139,26 +139,21 @@ export function QuotationSummary({
           </div>
         ))}
       </div>
-      <div className="totals">
-        <div>
-          <span>Subtotal exacto</span>
-          <strong data-testid="quotation-subtotal">
-            {money(subtotal ?? quotationSubtotal(items))}
-          </strong>
-        </div>
-        <div>
-          <span>Total a cobrar</span>
-          <strong data-testid="quotation-total">
-            {money(total ?? quotationTotal(items))}
-          </strong>
-        </div>
-        <div>
-          <span>Ítems</span>
-          <strong>{items.length}</strong>
-        </div>
-        <div>
-          <span>Piezas</span>
-          <strong>{items.reduce((sum, item) => sum + item.quantity, 0)}</strong>
+      <div className="totals-wrap">
+        <div className="totals">
+          <div className="totals-row">
+            <span>Subtotal</span>
+            <span className="totals-value" data-testid="quotation-subtotal">{money(subtotalValue)}</span>
+          </div>
+          {adjustment !== "0.00" && <div className="totals-row">
+            <span>Redondeo</span>
+            <span>+ {money(adjustment)}</span>
+          </div>}
+          <hr />
+          <div className="totals-final">
+            <span>Total a cobrar</span>
+            <strong data-testid="quotation-total">{money(totalValue)}</strong>
+          </div>
         </div>
       </div>
     </>

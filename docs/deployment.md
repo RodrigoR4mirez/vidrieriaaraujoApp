@@ -52,6 +52,8 @@ El PDF necesita los módulos CommonJS de las fuentes estándar de PDFKit. `outpu
 
 Preview puede tener protección adicional de Vercel. Para pruebas automatizadas usar una credencial de bypass de automatización, sin desactivar la protección. Este bypass no reemplaza el login de la aplicación.
 
+Antes de una validación funcional, seguir el [preflight de entorno](release-workflow.md#preflight-obligatorio-de-entorno): comprobar sesión Vercel y que ambos stores Blob estén **Active**. Si un store está suspendido, las lecturas privadas responderán `403 Forbidden` aunque el proyecto, token y código sean correctos. Reactivarlo desde Vercel antes de reintentar; no desplegar ni cambiar la aplicación para sortear ese estado.
+
 ## Recuperación y continuidad
 
 Exportar regularmente usando el token correcto y guardar el archivo en almacenamiento privado. Probar restauración en un store separado, nunca encima de datos reales durante pruebas. `--overwrite` restaura el catálogo con ETag; cotizaciones diferentes preexistentes siempre bloquean. Los archivos idénticos se omiten para permitir reintentos. Los backups no son atómicos entre todos los documentos: preferir baja actividad.
@@ -73,7 +75,7 @@ Verificación final: 18 de septiembre de 2026. Código de aplicación: commit `3
 | Lint | Correcto, sin errores ni warnings de ESLint |
 | Typecheck | Correcto |
 | Vitest: unitarias e integración | 62/62 |
-| Fórmula oficial | Subtotales S/ 62.24 y S/ 208.08; totales S/ 62.50 y S/ 208.50 |
+| Fórmula oficial | Subtotales S/ 62.24 y S/ 208.08; totales S/ 62.30 y S/ 208.10 |
 | Build local y Vercel | Correctos |
 | PDF con paquete aislado | Correcto; fuentes normal/negrita incluidas |
 | E2E local con Blob real | 2/2 |

@@ -11,7 +11,7 @@ async function login(page: Page) {
   await expect(page).toHaveURL(/\/cotizador$/);
 }
 
-test("referencia de perfiles → catálogos → cotización por metros", async ({
+test("catálogo de perfiles → cotización por centímetros", async ({
   page,
   baseURL,
 }) => {
@@ -35,12 +35,12 @@ test("referencia de perfiles → catálogos → cotización por metros", async (
     await seedButton.click();
   }
   await expect(
-    page.getByRole("button", { name: "2248", exact: true }),
+    page.getByRole("button", { name: "2244", exact: true }),
   ).toBeVisible();
   await expect(page.locator(".profile-catalog-list tbody tr")).toHaveCount(20);
   await expect(page.getByText("1 / 8", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "2248", exact: true }).click();
-  const technicalImage = page.getByAltText("Sección técnica de 2248").last();
+  await page.getByRole("button", { name: "2244", exact: true }).click();
+  const technicalImage = page.getByAltText("Sección técnica de 2244").last();
   await expect(technicalImage).toBeVisible();
   await expect.poll(
     () => technicalImage.evaluate(
@@ -65,24 +65,24 @@ test("referencia de perfiles → catálogos → cotización por metros", async (
   await page.getByRole("button", { name: "Por medida", exact: true }).click();
   await page.getByLabel("Buscar perfil").click();
   await expect(page.locator(".picker-family-row")).toHaveCount(21);
-  await page.locator(".picker-family-row").filter({ hasText: "RIELES DE MAMPARA" }).click();
-  await expect(page.locator(".picker-family-tag")).toContainText("RIELES DE MAMPARA");
+  await page.locator(".picker-family-row").filter({ hasText: /Rieles De Mampara/i }).click();
+  await expect(page.locator(".picker-family-tag")).toContainText(/Rieles De Mampara/i);
   await expect(page.getByRole("option", { name: "← Todas las familias" })).toBeVisible();
-  await page.getByLabel("Buscar perfil").fill("2248");
+  await page.getByLabel("Buscar perfil").fill("2244");
   await page.locator(".picker-product-row").filter({
-    has: page.locator(".picker-product-copy small").filter({ hasText: /^2248 ·/ }),
+    has: page.locator(".picker-product-copy small").filter({ hasText: /^2244 ·/ }),
   }).click();
   await page.getByRole("button", { name: /^Mate/ }).click();
-  await page.getByLabel("Metros solicitados").fill("2.50");
+  await page.getByLabel("Medida de corte (cm)").fill("250");
   await page
     .getByRole("button", { name: "Agregar a la cotización" })
     .click();
 
-  await expect(page.getByText("Perfiles de aluminio (1)")).toBeVisible();
-  await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 12.83");
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 13.00");
+  await expect(page.getByText("Perfiles de aluminio", { exact: true })).toBeVisible();
+  await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 16.05");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 16.10");
   await expect(page.locator(".item-calculation")).toContainText(
-    "2.50 m × 1",
+    "250 cm",
   );
 
   for (const viewport of [

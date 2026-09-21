@@ -12,8 +12,10 @@ async function chooseGlassMode(page: Page, name: "Por pie²" | "Por plancha") {
   const button = page.getByRole("button", { name, exact: true });
   if ((await button.getAttribute("aria-pressed")) !== "true") await button.click();
 }
-async function chooseGlass(page: Page, sku: string) {
+async function chooseGlass(page: Page, sku: string, family: string) {
   const search = page.getByLabel("Buscar vidrio");
+  await search.fill(family);
+  await page.getByRole("option").filter({ hasText: family }).first().click();
   await search.fill(sku);
   await page.locator(".picker-product-row").filter({ hasText: sku }).click();
 }
@@ -156,7 +158,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByRole("link", { name: "Cotización", exact: true }).first().click();
   const add = async (sku: string, width: string, quantity: string) => {
     await chooseGlassMode(page, "Por pie²");
-    await chooseGlass(page, sku);
+    await chooseGlass(page, sku, names.family);
     await page.getByLabel("Ancho (cm)", { exact: true }).fill(width);
     await page.getByLabel("Alto (cm)", { exact: true }).fill("80");
     await page.getByLabel("Cantidad", { exact: true }).fill(quantity);
@@ -166,13 +168,13 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   };
   await add(code, "100", "2");
   await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 62.24");
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.50");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.30");
   await expect(page.locator(".item-calculation").first()).toContainText("Ancho 39.37″ → 40″");
   await expect(page.locator(".item-calculation").first()).not.toContainText("merma");
   await page.getByRole("button", { name: "Confirmar cotización", exact: true }).click();
   await expect(page.getByRole("alert").filter({ hasText: "nombre del cliente" })).toBeVisible();
   await expect(page).toHaveURL(/\/cotizador$/);
-  await chooseGlass(page, code);
+  await chooseGlass(page, code, names.family);
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("75");
   await page.getByLabel("Alto (cm)", { exact: true }).fill("40");
   await page.getByLabel("Cantidad", { exact: true }).fill("4");
@@ -184,7 +186,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page).toHaveURL(/\/cotizador$/);
   await expect(page.getByTestId("quotation-total")).toBeVisible();
   await page.reload();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.50");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 62.30");
   await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveValue("75");
   await expect(page.getByLabel("Alto (cm)", { exact: true })).toHaveValue("40");
   await expect(page.getByLabel("Cantidad", { exact: true })).toHaveValue("4");
@@ -197,7 +199,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page.locator(".draft-light")).toHaveCSS("animation-name", "draft-pulse");
 
   await add(`${tag}-LAM`, "120", "3");
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.50");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.40");
   await page
     .getByRole("button", { name: "Editar ítem 1", exact: true })
     .click();
@@ -212,17 +214,17 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
 
   await page.getByRole("button", { name: "Aumentar cantidad" }).click();
   await page.getByRole("button", { name: "Guardar cambios" }).click();
-  await expect(page.getByTestId("quotation-total")).not.toHaveText("S/ 270.50");
+  await expect(page.getByTestId("quotation-total")).not.toHaveText("S/ 270.40");
   await page
     .getByRole("button", { name: "Editar ítem 1", exact: true })
     .click();
   await page.getByLabel("Ancho (cm)", { exact: true }).fill("100");
   await page.getByLabel("Cantidad", { exact: true }).fill("2");
   await page.getByRole("button", { name: "Guardar cambios" }).click();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.50");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.40");
   await add(code, "50", "1");
   await page.getByRole("button", { name: "Eliminar ítem 3" }).click();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.50");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 270.40");
   await page.getByRole("button", { name: "Compacto", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Compacto", exact: true }),
@@ -239,7 +241,10 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await chooseGlassMode(page, "Por plancha");
   await expect(page.getByText("Este producto no se vende por plancha y se quitó de la selección.")).toBeVisible();
   await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveCount(0);
-  await page.getByLabel("Buscar vidrio").fill(`${tag}-SHEET`);
+  const glassSearch = page.getByLabel("Buscar vidrio");
+  await glassSearch.fill(names.family);
+  await page.getByRole("option").filter({ hasText: names.family }).first().click();
+  await glassSearch.fill(`${tag}-SHEET`);
   const sheetOptions = await page.locator(".picker-product-row").allTextContents();
   expect(sheetOptions).toHaveLength(1);
   expect(sheetOptions[0]).toContain(`${names.design} · ${names.color} · ${names.thickness}`);
@@ -251,12 +256,12 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Agregar ítem", exact: true }).click();
   await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 603.65");
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 604.00");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 603.70");
   await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
   await expect(page.getByRole("button", { name: "Por plancha", exact: true })).toHaveAttribute("aria-pressed", "true");
   await page.getByLabel("Cantidad", { exact: true }).fill("2");
   await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 493.00");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 492.60");
   await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
@@ -300,7 +305,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await expect(page).toHaveURL(/\/cotizaciones\/COT-\d+$/);
   const number = page.url().split("/").pop()!;
   await page.reload();
-  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 604.00");
+  await expect(page.getByTestId("quotation-total")).toHaveText("S/ 603.70");
   await expect(page.getByText(names.customer, { exact: true })).toBeVisible();
   await expect(page.getByText("Solo lectura", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Compartir cotización" }).click();
@@ -309,7 +314,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     .click();
   await expect(page.getByRole("status")).toContainText("Cotización copiada");
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
-    "S/ 604.00",
+    "S/ 603.70",
   );
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain("Plancha entera");
   expect(await page.evaluate(() => navigator.clipboard.readText())).not.toContain("Ancho 39.37″");
@@ -345,7 +350,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   );
   await page.emulateMedia({ media: "screen" });
   await page.goto(`/cotizaciones/${number}/imprimir`);
-  await expect(page.locator(".ticket")).toContainText("S/ 604.00");
+  await expect(page.locator(".ticket")).toContainText("S/ 603.70");
   await expect(page.locator(".ticket")).toContainText("Plancha entera");
   await expect(page.locator(".ticket")).toContainText("333.33");
   await expect(page.locator(".ticket")).toContainText(names.customer);
@@ -373,7 +378,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await login(secondPage);
   await secondPage.goto(`/cotizaciones/${number}`);
   await expect(secondPage.getByTestId("quotation-total")).toHaveText(
-    "S/ 604.00",
+    "S/ 603.70",
   );
   await secondPage.goto("/cotizaciones");
   await secondPage.getByLabel("Buscar cotización").fill(names.customer);

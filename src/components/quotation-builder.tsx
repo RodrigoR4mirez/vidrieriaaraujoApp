@@ -24,6 +24,7 @@ import { confirmAction } from "@/app/actions";
 import { money } from "@/lib/formatting";
 import { quotationTechnicalDetail } from "@/lib/quotation-item";
 import { profileMeasurementInCentimeters } from "@/domain/quotation/calculation";
+import { quotationTotal } from "@/domain/quotation/calculation";
 import { Button, Dialog, Notice, QuantityControl } from "./ui";
 import {
   CatalogProductPicker,
@@ -46,6 +47,10 @@ export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: Catalo
     priced = priceDraft(items, catalog, aluminum);
   } catch (error) {
     pricingError = error instanceof Error ? error.message : "Revisa los ítems.";
+  }
+  let confirmTotal: string | undefined;
+  if (!pending && !pricingError && priced.length) {
+    try { confirmTotal = quotationTotal(priced); } catch { /* Keep the action label concise on an invalid draft. */ }
   }
   useEffect(() => {
     if (!warning || (!items.length && !customerName && !conditions && !form.mode)) return;
@@ -182,7 +187,7 @@ export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: Catalo
             id="conditions"
             rows={2}
             maxLength={2000}
-            placeholder="Indica las condiciones acordadas para esta cotización."
+            placeholder="Ej. 50% adelanto, entrega en 3 días"
             value={conditions}
             onChange={(e) => {
               update((old) => ({ ...old, conditions: e.target.value, requestId: "" }));
@@ -241,6 +246,7 @@ export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: Catalo
             }}
           >
             {pending ? "Confirmando…" : "Confirmar cotización"}
+            {!pending && confirmTotal && <span className="confirm-amount" aria-hidden="true">· {money(confirmTotal)}</span>}
             <ArrowRight size={18} />
           </Button>
         </div>

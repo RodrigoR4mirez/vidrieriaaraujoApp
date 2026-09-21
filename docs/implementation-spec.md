@@ -454,7 +454,7 @@ No IGV.
 
 No impuestos.
 
-Subtotal = suma exacta de `itemAmount`. Total a cobrar = subtotal redondeado hacia arriba a `.50` cuando la fracción está entre `.01` y `.50`, o al siguiente entero cuando está entre `.51` y `.99`.
+Subtotal = suma exacta de `itemAmount`. Total a cobrar = subtotal redondeado hacia arriba a un decimal; el segundo decimal siempre queda en `0` y un valor que ya termina en `.0` no cambia.
 
 ---
 
@@ -592,8 +592,8 @@ No duplicar.
 Tests oficiales deben dar:
 
 ```text
-Subtotal S/ 62.24 → total S/ 62.50
-Subtotal S/ 208.08 → total S/ 208.50
+Subtotal S/ 62.24 → total S/ 62.30
+Subtotal S/ 208.08 → total S/ 208.10
 ```
 
 ---
@@ -1047,8 +1047,8 @@ Como mínimo:
 No desplegar si fallan:
 
 ```text
-100 x 80 cm / S/3.50 / cantidad 2 = subtotal S/62.24, total S/62.50
-120 x 80 cm / S/6.50 / cantidad 3 = subtotal S/208.08, total S/208.50
+100 x 80 cm / S/3.50 / cantidad 2 = subtotal S/62.24, total S/62.30
+120 x 80 cm / S/6.50 / cantidad 3 = subtotal S/208.08, total S/208.10
 ```
 
 ---
@@ -1402,7 +1402,7 @@ No detenerse después de una sola fase salvo bloqueo real.
 
 ### Selección guiada del vidrio
 
-En cotizador: tipo Vidrio/Perfil → modalidad mediante dos botones → buscador combinado → tarjeta seleccionada → datos de venta. Ninguna modalidad se selecciona al iniciar y el buscador muestra `Primero elige la modalidad de venta` hasta elegirla. El buscador integra código, descripción y familia, teclado completo, coincidencias sin mayúsculas/tildes y palabras en cualquier orden. No existe un `select` de familia.
+En cotizador: tipo Vidrio/Perfil → modalidad mediante dos botones → buscador combinado → tarjeta seleccionada → datos de venta. Ninguna modalidad se selecciona al iniciar y el buscador muestra `Primero elige la modalidad de venta` hasta elegirla. El buscador integra código, descripción y familia, teclado completo, coincidencias sin mayúsculas/tildes y palabras en cualquier orden. No existe un `select` de familia. Para perfiles por medida, el ingreso nuevo es siempre en centímetros; el dominio conserva la equivalencia en metros y lee históricos antiguos en metros.
 
 El desplegable usa chips cuando hay hasta seis familias disponibles y carpetas cuando hay más. Sus familias, contadores y resultados incluyen únicamente productos activos con precio válido para la modalidad. Al cambiar modalidad conserva el producto si sigue cotizable o lo limpia con aviso; al cambiar tipo reinicia todo el formulario de selección. El botón de agregado requiere modalidad, producto y datos completos. El dominio de cálculo, importe estimado, snapshots y confirmación no cambian.
 

@@ -63,12 +63,10 @@ export function quotationSubtotal(items: { itemAmount: string }[]) {
     .toFixed(2);
 }
 export function roundQuotationTotal(value: Decimal.Value) {
-  const amount = new D(value);
-  const integer = amount.floor();
-  const decimal = amount.minus(integer);
-  if (decimal.isZero()) return integer.toFixed(2);
-  if (decimal.lte("0.5")) return integer.plus("0.5").toFixed(2);
-  return integer.plus(1).toFixed(2);
+  return new D(value).toDecimalPlaces(1, Decimal.ROUND_UP).toFixed(2);
+}
+export function quotationRoundingAdjustment(subtotal: Decimal.Value, total: Decimal.Value) {
+  return new D(total).minus(subtotal).toFixed(2);
 }
 export function quotationTotal(items: { itemAmount: string }[]) {
   return roundQuotationTotal(quotationSubtotal(items));

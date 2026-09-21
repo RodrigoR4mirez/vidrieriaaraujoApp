@@ -123,9 +123,8 @@ itemAmount = unitPrice * cantidad
 ```text
 quotationSubtotal = suma(itemAmount)
 
-si la fracción es 0.00: quotationTotal = quotationSubtotal
-si la fracción está entre 0.01 y 0.50: quotationTotal = siguiente 0.50
-si la fracción está entre 0.51 y 0.99: quotationTotal = siguiente entero
+quotationTotal = quotationSubtotal redondeado hacia arriba a 1 decimal
+(el segundo decimal siempre queda en 0; si ya es 0, no cambia)
 ```
 
 Este redondeo se aplica una sola vez, únicamente al total final. La interfaz, PDF, WhatsApp y ticket muestran el subtotal exacto y el total a cobrar.
@@ -174,13 +173,13 @@ areaFt2 = 8.89
 unitPrice = 31.12
 
 31.12 * 2 = subtotal S/ 62.24
-total a cobrar = S/ 62.50
+total a cobrar = S/ 62.30
 ```
 
 Resultado:
 
 ```text
-S/ 62.50
+S/ 62.30
 ```
 
 ---
@@ -211,13 +210,13 @@ areaFt2 = 10.67
 unitPrice = 69.36
 
 69.36 * 3 = subtotal S/ 208.08
-total a cobrar = S/ 208.50
+total a cobrar = S/ 208.10
 ```
 
 Resultado:
 
 ```text
-S/ 208.50
+S/ 208.10
 ```
 
 ---
@@ -282,7 +281,7 @@ unitPrice
 itemAmount
 ```
 
-Una cotización confirmada es histórica.
+Una cotización confirmada es histórica. Toda confirmación nueva requiere entre 1 y 200 ítems con IDs no repetidos, nombre de cliente de 1 a 160 caracteres y condiciones comerciales opcionales de hasta 2,000 caracteres.
 
 Cambios posteriores de catálogo o precio no deben recalcularla.
 
@@ -329,7 +328,7 @@ Todos deben vivir en el dominio y tener tests unitarios.
 S/ 3.50 / pie²
 cantidad 2
 subtotal: S/ 62.24
-total: S/ 62.50
+total: S/ 62.30
 ```
 
 ### Caso oficial 2
@@ -339,17 +338,17 @@ total: S/ 62.50
 S/ 6.50 / pie²
 cantidad 3
 subtotal: S/ 208.08
-total: S/ 208.50
+total: S/ 208.10
 ```
 
 ### Redondeo del total final
 
 ```text
-120.12 -> 120.50
-120.01 -> 120.50
+120.12 -> 120.20
+120.01 -> 120.10
 120.50 -> 120.50
-120.51 -> 121.00
-120.67 -> 121.00
+120.51 -> 120.60
+120.67 -> 120.70
 120.99 -> 121.00
 120.00 -> 120.00
 ```
@@ -362,8 +361,10 @@ alto <= 0 -> error
 cantidad = 0 -> error
 cantidad negativa -> error
 cantidad decimal -> error
-precioPie2 <= 0 -> error
+precioPie2 <= 0 al calcular una línea por pie² -> error
 ```
+
+El catálogo sí permite registrar `0.00` en precio por pie² o por plancha: significa que esa modalidad no está disponible. Un producto con ese precio no puede seleccionarse ni confirmarse en la modalidad correspondiente.
 
 ---
 
@@ -416,8 +417,8 @@ Actualización aprobada: el catálogo admite `0.00` en precio por pie² y por pl
 Cada ítem nuevo elige una modalidad: `SQUARE_FOOT` (por pie², con medidas) o `SHEET` (plancha entera). Una misma cotización puede combinar ambas. En el selector solo aparecen productos activos, con referencias base activas y precio estrictamente mayor que cero en la modalidad elegida. El servidor verifica esto al confirmar.
 
 - Por pie²: se conserva exactamente la fórmula de las secciones 2–4 y sus casos oficiales.
-- Por plancha: cantidad entera >= 1; precio unitario = precio de catálogo por plancha; importe = precio por plancha × cantidad, expresado con dos decimales. No aplicar conversiones de área ni redondeo por merma. Las medidas de plancha del catálogo son opcionales e informativas; no se solicitan medidas de corte.
-- Subtotal de cotización: suma exacta de importes de ambas modalidades. Total a cobrar: subtotal redondeado hacia arriba a `0.50` o al siguiente entero según la sección 5.
+- Por plancha: cantidad entera >= 1; precio unitario = precio de catálogo por plancha; importe = precio por plancha × cantidad, expresado con dos decimales. No aplicar conversiones de área ni redondeo por merma. Las medidas de plancha del catálogo son opcionales e informativas, incluso si solo una está registrada; no se solicitan medidas de corte.
+- Subtotal de cotización: suma exacta de importes de ambas modalidades. Total a cobrar: subtotal redondeado hacia arriba a un decimal, según la sección 5; el segundo decimal siempre queda en `0`.
 
 El snapshot de plancha conserva modalidad, producto y descripción, precio por plancha, cantidad, precio unitario, importe y medidas de plancha del catálogo si existen. Cambios posteriores del catálogo no alteran el histórico. Los snapshots anteriores sin modalidad se interpretan como venta por pie² y se leen sin reescribirlos. Resumen, PDF, WhatsApp y ticket identifican claramente las planchas enteras.
 
@@ -471,4 +472,4 @@ No se solicita cantidad de metros para barra completa. Todos los cálculos usan 
 
 El ítem confirmado congela como mínimo: tipo de ítem, modalidad, perfil y código, descripción y familia originales, color, imagen relativa versionada, longitud comercial, precio por barra, porcentaje de recargo cuando corresponda, medida solicitada en centímetros y su equivalente en metros, cantidad, precio unitario e importe.
 
-El subtotal unificado es la suma exacta de los importes de vidrios y perfiles. El total a cobrar conserva la regla de la sección 5: se redondea una sola vez hacia arriba a `.50` o al entero. No se aplica IGV ni otro impuesto.
+El subtotal unificado es la suma exacta de los importes de vidrios y perfiles. El total a cobrar conserva la regla de la sección 5: se redondea una sola vez hacia arriba a un decimal y su segundo decimal queda en `0`. No se aplica IGV ni otro impuesto.

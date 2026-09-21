@@ -25,9 +25,9 @@ Las lecturas privadas usan `useCache: false` y `Accept-Encoding: identity`. En l
 
 ## Confirmación
 
-El servidor acepta solo IDs, modalidad, medidas para pie², cantidades, condiciones y un ID de solicitud. Relee productos y catálogos base activos, llama al cálculo de dominio y crea el snapshot. Lista cotizaciones, elige máximo + 1 y crea un archivo sin overwrite ni sufijo aleatorio. Ante colisión relee y reintenta. El ID de solicitud permite recuperar el resultado tras perder una respuesta y evita duplicar un mismo intento concurrente. El folio que aparece en borrador es provisional.
+El servidor acepta solo IDs, modalidad, medidas para pie² o centímetros para perfiles por medida, cantidades, condiciones y un ID de solicitud. Exige entre 1 y 200 ítems sin IDs repetidos, cliente válido y condiciones de hasta 2,000 caracteres. Relee productos y catálogos base activos, llama al cálculo de dominio y crea el snapshot. Lista cotizaciones, elige máximo + 1 y crea un archivo sin overwrite ni sufijo aleatorio. Ante colisión relee y reintenta. El ID de solicitud permite recuperar el resultado tras perder una respuesta y evita duplicar un mismo intento concurrente. El folio que aparece en borrador es provisional.
 
-Para perfiles el servidor relee además perfil, familia, color y precio por barra. `calculation.ts` calcula metros o barra completa; ninguna salida vuelve a calcular. El subtotal y total se forman sobre la unión de ítems de vidrio y aluminio.
+Para perfiles el servidor relee además perfil, familia, color y precio por barra. Las nuevas ventas por medida ingresan centímetros y el dominio los convierte a metros para calcular; históricos que conservaron metros siguen siendo compatibles. Barra completa no usa medida de corte. Ninguna salida vuelve a calcular. El subtotal y total se forman sobre la unión de ítems de vidrio y aluminio.
 
 El histórico tiene un archivo por cotización. La fecha se almacena ISO UTC junto con `timezone: America/Lima`; UI, mensajes y documentos la presentan en Lima. Las salidas usan el snapshot, sin consultar precios actuales ni repetir fórmulas. No hay endpoint de edición/eliminación de cotizaciones.
 

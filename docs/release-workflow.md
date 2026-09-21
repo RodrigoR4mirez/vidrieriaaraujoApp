@@ -82,6 +82,33 @@ Se reutilizan resultados válidos del mismo código y se evita repetir baterías
 
 Las pruebas mutables nunca se ejecutan contra Production.
 
+## Preflight obligatorio de entorno
+
+Antes de validar un cambio funcional que consulte o escriba datos, comprobar el entorno una sola vez por sesión. Este paso evita confundir una falla de la aplicación con una credencial, store o configuración local:
+
+```sh
+vercel whoami
+vercel blob list-stores
+```
+
+Confirmar en el resultado que `vidrieria-araujo-preview` y `vidrieria-araujo-production` estén en estado **Active**. Un store suspendido puede listar su configuración pero rechaza lecturas privadas con `403 Forbidden`; en ese caso no se modifica código ni se despliega. El titular debe reactivar o regularizar el plan o la facturación del store desde Vercel y luego se vuelve a intentar la lectura de Preview.
+
+Para E2E local o de Preview, usar solamente las variables privadas del entorno de desarrollo/Preview:
+
+```sh
+vercel env pull .env.local --environment=development
+# Crear o conservar .env.e2e.local, ignorado por Git:
+# E2E_USER=…
+# E2E_PASSWORD=…
+```
+
+- Tras `vercel env pull`, revisar la línea `APP_PASSWORD_HASH`: en `.env.local` cada signo `$` debe escribirse como `\$`, pues Next.js expande variables dotenv. En Vercel el hash se guarda literal, sin escapes.
+- No imprimir, versionar ni copiar variables secretas en reportes. `.env.local` y `.env.e2e.local` permanecen fuera de Git.
+- Ejecutar `npm run test:e2e` solo contra `localhost` o una URL Preview. Verificar que `E2E_BASE_URL` no sea la URL de Production antes de empezar: el escenario crea registros `E2E-` en el store de Preview.
+- Si falta una sesión de Vercel, permisos, variables o Blob activo, detenerse y pedir al usuario exactamente esa acción. No sustituirlo con un despliegue directo desde local ni con Production.
+
+El preflight no reemplaza la verificación proporcional: E2E completos se usan para cambios de autenticación, Blob, confirmación, catálogo o cotizador; para cambios aislados se ejecuta únicamente la comprobación focalizada aplicable.
+
 ## Despliegue en Vercel
 
 Proyecto autorizado:

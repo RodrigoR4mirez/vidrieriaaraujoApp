@@ -51,7 +51,7 @@ describe("referencia y cotización de perfiles", () => {
     });
     expect(items[1]).toMatchObject({ color: "Negro", itemAmount: "58.00" });
     expect(quotationSubtotal(items)).toBe("70.83");
-    expect(quotationTotal(items)).toBe("71.00");
+    expect(quotationTotal(items)).toBe("70.90");
   });
 
   it("rechaza colores que el perfil no ofrece", () => {
@@ -113,6 +113,6 @@ describe("referencia y cotización de perfiles", () => {
     ], glass, catalog);
     expect(items).toHaveLength(2);
     expect(quotationSubtotal(items)).toBe("91.24");
-    expect(quotationTotal(items)).toBe("91.50");
+    expect(quotationTotal(items)).toBe("91.30");
   });
 });

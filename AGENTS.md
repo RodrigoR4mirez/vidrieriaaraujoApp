@@ -312,7 +312,8 @@ El total es:
 
 ```text
 subtotalCotizacion = suma exacta de los importes de los ítems
-totalCotizacion = subtotalCotizacion redondeado hacia arriba a .50 o al entero
+totalCotizacion = subtotalCotizacion redondeado hacia arriba a un decimal
+(el segundo decimal siempre queda en 0; si ya es 0, no cambia)
 ```
 
 ---
@@ -344,14 +345,14 @@ Tests obligatorios:
 100 x 80 cm
 S/ 3.50 / pie²
 cantidad 2
-subtotal S/ 62.24; total S/ 62.50
+subtotal S/ 62.24; total S/ 62.30
 ```
 
 ```text
 120 x 80 cm
 S/ 6.50 / pie²
 cantidad 3
-subtotal S/ 208.08; total S/ 208.50
+subtotal S/ 208.08; total S/ 208.10
 ```
 
 No desplegar si esos tests fallan.

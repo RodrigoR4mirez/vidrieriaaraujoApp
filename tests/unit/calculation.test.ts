@@ -8,6 +8,7 @@ import {
   roundInchesForWaste,
   roundHalfUp,
   quotationSubtotal,
+  quotationRoundingAdjustment,
   roundQuotationTotal,
   quotationTotal,
 } from "@/domain/quotation/calculation";
@@ -61,7 +62,7 @@ describe("fórmula oficial", () => {
       { pricePerBar: "28", barLengthMeters: "6", quantity: 0 },
     ]) expect(() => calculateProfileBar(invalid)).toThrow();
   });
-  it("100 × 80 conserva S/62.24 por ítem y cobra S/62.50", () => {
+  it("100 × 80 conserva S/62.24 por ítem y cobra S/62.30", () => {
     const result = calculateItem({
       widthCm: "100",
       heightCm: "80",
@@ -78,9 +79,9 @@ describe("fórmula oficial", () => {
     });
     expect(result.widthWasteIn).toMatch(/^0\.6299/);
     expect(result.heightWasteIn).toMatch(/^0\.5039/);
-    expect(quotationTotal([result])).toBe("62.50");
+    expect(quotationTotal([result])).toBe("62.30");
   });
-  it("120 × 80 conserva S/208.08 por ítem y cobra S/208.50", () => {
+  it("120 × 80 conserva S/208.08 por ítem y cobra S/208.10", () => {
     const result = calculateItem({
       widthCm: "120",
       heightCm: "80",
@@ -95,7 +96,7 @@ describe("fórmula oficial", () => {
       unitPrice: "69.36",
       itemAmount: "208.08",
     });
-    expect(quotationTotal([result])).toBe("208.50");
+    expect(quotationTotal([result])).toBe("208.10");
   });
   it.each([
     ["35.43", "36"],
@@ -116,13 +117,17 @@ describe("fórmula oficial", () => {
     expect(result.widthInRounded).toBe("10");
   });
   it.each([
-    ["120.12", "120.50"],
-    ["120.01", "120.50"],
+    ["120.12", "120.20"],
+    ["120.01", "120.10"],
     ["120.50", "120.50"],
-    ["120.51", "121.00"],
-    ["120.67", "121.00"],
+    ["120.51", "120.60"],
+    ["120.67", "120.70"],
     ["120.99", "121.00"],
     ["120.00", "120.00"],
+    ["13.76", "13.80"],
+    ["14.78", "14.80"],
+    ["14.71", "14.80"],
+    ["14.87", "14.90"],
   ])("total %s → %s", (input, expected) =>
     expect(roundQuotationTotal(input)).toBe(expected),
   );
@@ -136,7 +141,11 @@ describe("fórmula oficial", () => {
   it("muestra subtotal exacto y redondea únicamente el total final", () => {
     const items = [{ itemAmount: "62.24" }, { itemAmount: "208.08" }];
     expect(quotationSubtotal(items)).toBe("270.32");
-    expect(quotationTotal(items)).toBe("270.50");
+    expect(quotationTotal(items)).toBe("270.40");
+  });
+  it("muestra el ajuste exacto del redondeo", () => {
+    expect(quotationRoundingAdjustment("13.76", "13.80")).toBe("0.04");
+    expect(quotationRoundingAdjustment("14.20", "14.20")).toBe("0.00");
   });
   it.each([
     { widthCm: "0" },

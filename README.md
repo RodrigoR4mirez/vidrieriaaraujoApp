@@ -37,7 +37,7 @@ El segundo comando genera el secreto de sesión. En archivos dotenv, **escapar c
 1. Crear familias y espesores en **Catálogos base**, y opcionalmente colores/acabados y diseños catedral.
 2. Crear vidrios con códigos únicos y precios por pie² y/o plancha (sin precio: `0.00`). El catálogo de producción inicia vacío.
 3. Abrir **Perfiles** y usar **Cargar referencia inicial** una sola vez si el catálogo está vacío. La carga versionada contiene 21 familias, Mate/Negro, 143 perfiles únicos y las imágenes técnicas procesadas del Excel original. También se pueden crear, editar, ocultar o reactivar familias, colores y perfiles manualmente.
-4. En **Cotizador**, elegir **Vidrio** o **Perfil**, seleccionar primero la modalidad y buscar por código, descripción o familia en el mismo campo. Las familias aparecen como chips o carpetas según su cantidad disponible. Vidrio admite **Pie² (por medidas)** y **Plancha entera**; perfil admite **Por medida** y **Por barra**, siempre con uno de sus colores/precios disponibles. Se pueden combinar todas las modalidades en una cotización.
+4. En **Cotizador**, elegir **Vidrio** o **Perfil**, seleccionar primero la modalidad y buscar por código, descripción o familia en el mismo campo. Las familias se filtran dentro de ese buscador: aparecen como chips hasta seis familias disponibles o como carpetas cuando hay más. Vidrio admite **Pie² (por medidas)** y **Plancha entera**; perfil admite **Por medida** (corte ingresado en centímetros) y **Por barra**, siempre con uno de sus colores/precios disponibles. Se pueden combinar todas las modalidades en una cotización.
 5. Ingresar obligatoriamente el nombre del cliente y, si corresponde, condiciones comerciales opcionales. El sistema no asume plazos de entrega, vigencia ni datos fiscales de los mocks.
 6. Confirmar. El servidor valida el nombre, ambos catálogos activos, recalcula y guarda una cotización inmutable con número definitivo.
 7. Abrir **Compartir cotización** para copiar, abrir WhatsApp, descargar PDF A4, imprimir A4/ticket 80 mm o imprimir el voucher interno del taller sin precios.
@@ -45,9 +45,9 @@ El segundo comando genera el secreto de sesión. En archivos dotenv, **escapar c
 
 Ocultar conserva registros. Un producto con cualquier referencia base oculta tampoco puede seleccionarse para una nueva cotización. Para resolver conflictos de edición, recargar y volver a aplicar los cambios. Cambiar precios nunca recalcula el histórico.
 
-Los catálogos base solo solicitan nombre, descripción opcional y estado. Los precios se escriben desde los centavos: `1` → `0.01`, `11100` → `111.00`; ambos precios permiten `0.00` y al vaciarlos toman ese valor. Cada modalidad ofrece únicamente productos activos con su precio mayor que cero. Una plancha se calcula como precio de catálogo × cantidad; por pie² se aplica la regla de merma de `0.5″`. Los importes de los ítems conservan sus dos decimales y solo el total final se redondea hacia arriba a `.50` o al entero. Los datos antiguos se conservan sin migración destructiva.
+Los catálogos base solo solicitan nombre, descripción opcional y estado. Los precios se escriben desde los centavos: `1` → `0.01`, `11100` → `111.00`; ambos precios permiten `0.00` y al vaciarlos toman ese valor. Cada modalidad ofrece únicamente productos activos con su precio mayor que cero. Una plancha se calcula como precio de catálogo × cantidad; por pie² se aplica la regla de merma de `0.5″`. Los importes de los ítems conservan sus dos decimales y solo el total final se redondea hacia arriba a un decimal; su segundo decimal siempre queda en `0`. Los datos antiguos se conservan sin migración destructiva.
 
-Un perfil por metros calcula `(precio de barra ÷ longitud comercial) × 1.10`, redondea el precio por metro a dos decimales y lo multiplica por metros y cantidad. Barra completa usa el precio del color por cantidad. La fórmula vive en el dominio y el total combinado se redondea una sola vez con la misma regla del vidrio. No se maneja IGV.
+Un perfil por medida recibe siempre centímetros. Calcula `(precio de barra ÷ longitud comercial) × 1.10`, redondea el precio por metro a dos decimales y lo multiplica por `(centímetros ÷ 100)` y cantidad. La barra comercial se conserva en metros y se muestra su equivalencia; históricos antiguos ingresados en metros siguen siendo legibles. Barra completa usa el precio del color por cantidad. La fórmula vive en el dominio y el total combinado se redondea una sola vez con la misma regla del vidrio. No se maneja IGV.
 
 ## Verificar
 
@@ -59,7 +59,7 @@ npm run build
 npm run verify
 ```
 
-`verify` ejecuta lint, tipos, unitarias/integración, build y generación PDF con el paquete aislado del despliegue. Los casos oficiales generan subtotales **S/ 62.24** y **S/ 208.08**, con totales a cobrar **S/ 62.50** y **S/ 208.50**. Playwright usa el servidor real y Blob de Preview/desarrollo, no una base simulada:
+`verify` ejecuta lint, tipos, unitarias/integración, build y generación PDF con el paquete aislado del despliegue. Los casos oficiales generan subtotales **S/ 62.24** y **S/ 208.08**, con totales a cobrar **S/ 62.30** y **S/ 208.10**. Playwright usa el servidor real y Blob de Preview/desarrollo, no una base simulada:
 
 ```sh
 npx playwright install chromium
@@ -97,7 +97,7 @@ Los originales STITCH y la carpeta local `mockapp-v2/` permanecen intactos y est
 
 ### Selección guiada del vidrio
 
-En cotizador: elegir modalidad → familia → vidrio. No hay selección inicial automática. Cada control permanece deshabilitado hasta completar el anterior; medidas y cantidad requieren un vidrio seleccionado. Al cambiar modalidad o familia se descarta la selección dependiente. Solo se ofrecen familias con productos activos y cotizables (precio > 0 en esa modalidad), y el combo de vidrio se limita a esa familia. Se elimina el selector adicional de espesor. El detalle muestra el diseño cuando corresponda (por ejemplo, Arabesco, sin el prefijo Catedral), color, grosor, medidas de plancha si están registradas, y código entre paréntesis en texto pequeño. No se inventan dimensiones ni se repite la familia. La edición de ítems conserva su modalidad, familia y producto; permite cambiar medidas/cantidad como antes. Cálculos y snapshots históricos permanecen iguales.
+En cotizador: elegir tipo de producto → modalidad → buscador combinado. No hay selección inicial automática. El buscador se habilita tras elegir modalidad; las familias disponibles se filtran allí mediante chips o carpetas, sin un combo independiente. Medidas y cantidad requieren un producto seleccionado. Al cambiar modalidad o familia se descarta la selección dependiente cuando deja de ser cotizable. Solo se ofrecen familias con productos activos y cotizables (precio > 0 en esa modalidad). Se elimina el selector adicional de espesor. El detalle muestra el diseño cuando corresponda (por ejemplo, Arabesco, sin el prefijo Catedral), color, grosor, medidas de plancha si están registradas, y código entre paréntesis en texto pequeño. No se inventan dimensiones ni se repite la familia. La edición de ítems conserva su modalidad, familia y producto; permite cambiar medidas/cantidad como antes. Cálculos y snapshots históricos permanecen iguales.
 
 El borrador temporal incluye campos aún sin agregar y ediciones pendientes. Se limpia al confirmar, descartar o cerrar sesión; no se sincroniza entre dispositivos. Si el navegador bloquea el almacenamiento temporal se muestra un aviso.
 
