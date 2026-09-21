@@ -37,6 +37,21 @@ describe("fórmula oficial", () => {
       quantity: 2,
     }).itemAmount).toBe("25.65");
   });
+  it("perfil por centímetros conserva el precio proporcional exacto", () => {
+    expect(calculateProfileMeters({
+      pricePerBar: "28.00",
+      barLengthMeters: "6.00",
+      metersRequested: "2.50",
+      measurementUnit: "CENTIMETERS",
+      measurementValue: "250",
+      quantity: 1,
+    })).toMatchObject({
+      measurementUnit: "CENTIMETERS",
+      measurementValue: "250",
+      unitPrice: "5.13",
+      itemAmount: "12.83",
+    });
+  });
   it("perfil por barra multiplica el precio del color por cantidad", () => {
     expect(calculateProfileBar({ pricePerBar: "29.00", barLengthMeters: "6.00", quantity: 2 }))
       .toMatchObject({ unitPrice: "29.00", itemAmount: "58.00" });

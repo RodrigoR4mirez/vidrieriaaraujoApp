@@ -7,7 +7,6 @@ import { emptyCatalog } from "@/domain/catalogs/models";
 import {
   isProfileQuotable,
   type AluminumCatalog,
-  profilePrice,
 } from "@/domain/aluminum/models";
 import {
   draftItemSchema,
@@ -16,6 +15,8 @@ import {
   type QuotationItem,
 } from "@/domain/quotation/models";
 import { priceDraft } from "@/application/use-cases";
+import { profileMeasurementInMeters } from "@/domain/quotation/calculation";
+import { quotationTechnicalDetail } from "@/lib/quotation-item";
 import type { QuotationForm } from "@/lib/quotation-draft-cache";
 import { money } from "@/lib/formatting";
 import { useHydrated } from "./use-hydrated";
@@ -80,7 +81,11 @@ export function ProfileItemForm({
     colorId: form.colorId,
     mode: form.profileMode,
     quantity: form.quantity,
-    ...(form.profileMode === "PROFILE_METERS" ? { metersRequested: form.metersRequested } : {}),
+    ...(form.profileMode === "PROFILE_METERS" && form.metersRequested ? {
+      metersRequested: profileMeasurementInMeters(form.metersRequested, form.profileMeasurementUnit),
+      measurementUnit: form.profileMeasurementUnit,
+      measurementValue: form.metersRequested,
+    } : {}),
   };
   let estimate: QuotationItem | undefined;
   const parsedCandidate = draftItemSchema.safeParse(candidate);
@@ -106,6 +111,7 @@ export function ProfileItemForm({
       profileId: keepProfile ? form.profileId : "",
       colorId: keepColor ? form.colorId : "",
       metersRequested: nextMode === "PROFILE_BAR" ? "" : form.metersRequested,
+      profileMeasurementUnit: nextMode === "PROFILE_BAR" ? "METERS" : form.profileMeasurementUnit,
     });
     setAvailabilityNotice(current && !keepProfile
       ? `Este producto no se vende ${nextMode === "PROFILE_BAR" ? "por barra" : "por medida"} y se quitó de la selección.`
@@ -186,7 +192,18 @@ export function ProfileItemForm({
           </div>
         </div>
         {form.profileMode === "PROFILE_METERS" && <div className="field">
-          <label htmlFor="meters-requested">Metros solicitados</label>
+          <span className="field-label">Unidad de medida</span>
+          <div className="segments compact-segments" aria-label="Unidad de medida">
+            <button type="button" className={form.profileMeasurementUnit === "METERS" ? "selected" : ""}
+              aria-pressed={form.profileMeasurementUnit === "METERS"}
+              onClick={() => patch({ profileMeasurementUnit: "METERS", metersRequested: "" })}>Metros</button>
+            <button type="button" className={form.profileMeasurementUnit === "CENTIMETERS" ? "selected" : ""}
+              aria-pressed={form.profileMeasurementUnit === "CENTIMETERS"}
+              onClick={() => patch({ profileMeasurementUnit: "CENTIMETERS", metersRequested: "" })}>Centímetros</button>
+          </div>
+        </div>}
+        {form.profileMode === "PROFILE_METERS" && <div className="field">
+          <label htmlFor="meters-requested">Medida solicitada ({form.profileMeasurementUnit === "CENTIMETERS" ? "cm" : "m"})</label>
           <input id="meters-requested" type="number" inputMode="decimal" min="0.01" step="any"
             required value={form.metersRequested} onChange={(event) => patch({ metersRequested: event.target.value })} />
         </div>}
@@ -194,8 +211,8 @@ export function ProfileItemForm({
           onChange={(quantity) => patch({ quantity: Number.isFinite(quantity) ? quantity : null })}
           label={form.profileMode === "PROFILE_BAR" ? "Cantidad de barras" : "Cantidad de piezas / tramos"} />
       </fieldset>
-      {form.profileMode === "PROFILE_METERS" && profile && form.colorId && <div className="calculation-breakdown">
-        (precio barra {money(profilePrice(profile, form.colorId) || "0")} ÷ {profile.barLengthMeters}) × 1.10 × metros × cantidad
+      {form.profileMode === "PROFILE_METERS" && estimate && <div className="calculation-breakdown">
+        {quotationTechnicalDetail(estimate)}
       </div>}
       <div className={`estimate ${!estimate ? "disabled-control" : ""}`}>
         <span>Importe estimado</span><strong>{estimate ? money(estimate.itemAmount) : "S/ —"}</strong>

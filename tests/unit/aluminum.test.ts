@@ -30,6 +30,7 @@ describe("referencia y cotización de perfiles", () => {
         colorId: mate.id,
         mode: "PROFILE_METERS",
         metersRequested: "2.50",
+        measurementUnit: "METERS",
         quantity: 1,
       },
       {

@@ -11,6 +11,7 @@ const formSchema = z.object({
   profileId: z.string().default(""),
   colorId: z.string().default(""),
   metersRequested: z.string().default(""),
+  profileMeasurementUnit: z.enum(["METERS", "CENTIMETERS"]).default("METERS"),
 });
 const cacheSchema = z.object({
   version: z.literal(1),
@@ -25,7 +26,7 @@ export type QuotationForm = z.infer<typeof formSchema>;
 export type CachedDraft = z.infer<typeof cacheSchema>;
 export const emptyForm = (): QuotationForm => ({
   productType: "GLASS", mode: "", familyId: "", productId: "", widthCm: "", heightCm: "", quantity: 1,
-  profileMode: "", profileFamilyId: "", profileId: "", colorId: "", metersRequested: "",
+  profileMode: "", profileFamilyId: "", profileId: "", colorId: "", metersRequested: "", profileMeasurementUnit: "METERS",
 });
 export const emptyDraft = (): CachedDraft => ({
   version: 1, items: [], customerName: "", conditions: "", editId: null, requestId: "", form: emptyForm(),

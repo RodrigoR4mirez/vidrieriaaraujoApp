@@ -64,6 +64,8 @@ export function priceDraft(
             pricePerBar: common.pricePerBar,
             barLengthMeters: common.barLengthMeters,
             metersRequested: item.metersRequested,
+            measurementUnit: item.measurementUnit,
+            measurementValue: item.measurementValue,
             quantity: item.quantity,
           }),
         };

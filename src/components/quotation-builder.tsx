@@ -73,7 +73,7 @@ export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: Catalo
       const productType = isProfileDraftItem(item) ? "PROFILE" as const : "GLASS" as const;
       const fresh = { ...emptyForm(), productType };
       const nextForm = old.editId ? fresh : productType === "PROFILE"
-        ? { ...old.form, profileId: "", profileFamilyId: "", colorId: "", metersRequested: "", quantity: 1 }
+        ? { ...old.form, profileId: "", profileFamilyId: "", colorId: "", metersRequested: "", profileMeasurementUnit: "METERS" as const, quantity: 1 }
         : { ...old.form, productId: "", familyId: "", widthCm: "", heightCm: "", quantity: 1 };
       return {
         ...old,
@@ -142,7 +142,8 @@ export function QuotationBuilder({ catalog, aluminum, owner }: { catalog: Catalo
               update((old) => ({ ...old, editId: id, form: {
                 ...emptyForm(), productType: "PROFILE", profileMode: item.mode,
                 profileFamilyId: profile?.familyId || "", profileId: item.profileId,
-                colorId: item.colorId, metersRequested: item.mode === "PROFILE_METERS" ? item.metersRequested : "",
+                colorId: item.colorId, metersRequested: item.mode === "PROFILE_METERS" ? item.measurementValue || item.metersRequested : "",
+                profileMeasurementUnit: item.mode === "PROFILE_METERS" ? item.measurementUnit : "METERS",
                 quantity: item.quantity,
               } }));
               return;

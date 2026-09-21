@@ -94,19 +94,32 @@ const profileBaseSchema = z.object({
 });
 const profileMetersSchema = profileBaseSchema.extend({
   metersRequested: positiveDecimal,
+  measurementUnit: z.enum(["METERS", "CENTIMETERS"]).default("METERS"),
+  measurementValue: positiveDecimal.optional(),
 });
+
+export function profileMeasurementInMeters(
+  value: Decimal.Value,
+  unit: "METERS" | "CENTIMETERS",
+) {
+  return unit === "CENTIMETERS" ? new D(value).div(100).toFixed() : new D(value).toFixed();
+}
 
 export function calculateProfileMeters(raw: z.input<typeof profileMetersSchema>) {
   const input = profileMetersSchema.parse(raw);
-  const unitPrice = roundHalfUp(
+  const meterUnitPrice = roundHalfUp(
     new D(input.pricePerBar).div(input.barLengthMeters).times(PROFILE_METERS_MARKUP),
   );
+  const measurementValue = new D(input.measurementValue ||
+    (input.measurementUnit === "CENTIMETERS" ? new D(input.metersRequested).times(100) : input.metersRequested));
+  const measureFactor = input.measurementUnit === "CENTIMETERS" ? new D(100) : new D(1);
   return {
     ...input,
     markupMultiplier: PROFILE_METERS_MARKUP,
-    unitPrice: unitPrice.toFixed(2),
+    measurementValue: measurementValue.toFixed(),
+    unitPrice: meterUnitPrice.toFixed(2),
     itemAmount: roundHalfUp(
-      unitPrice.times(input.metersRequested).times(input.quantity),
+      meterUnitPrice.div(measureFactor).times(measurementValue).times(input.quantity),
     ).toFixed(2),
   };
 }

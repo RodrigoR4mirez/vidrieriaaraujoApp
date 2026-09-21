@@ -19,10 +19,14 @@ const profileIdentity = {
   colorId: z.string().uuid(),
   quantity: quantitySchema,
 };
+const profileMeasurementUnitSchema = z.enum(["METERS", "CENTIMETERS"]);
 const profileMetersDraftSchema = z.object({
   ...profileIdentity,
   mode: z.literal("PROFILE_METERS"),
   metersRequested: positiveDecimal,
+  // `metersRequested` remains the normalized value for historical compatibility.
+  measurementUnit: profileMeasurementUnitSchema.default("METERS"),
+  measurementValue: positiveDecimal.optional(),
 }).strict();
 const profileBarDraftSchema = z.object({
   ...profileIdentity,
