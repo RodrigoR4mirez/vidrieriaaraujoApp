@@ -1,10 +1,10 @@
 "use client";
 import { useHydrated } from "./use-hydrated";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { PriceInput } from "./price-input";
-import { Plus, Pencil, Eye, EyeOff, Search, SlidersHorizontal } from "lucide-react";
+import { Plus, Pencil, Eye, EyeOff, Search, SlidersHorizontal, X } from "lucide-react";
 import {
   type CatalogState,
   type Product,
@@ -26,6 +26,8 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
   const [editing, setEditing] = useState<Product | null | undefined>();
   const [filtersOpen, setFiltersOpen] = useState(false);
   const activeFilters = [family, color, thickness].filter(Boolean).length + (status === "ALL" ? 0 : 1);
+  const [selectedId, setSelectedId] = useState("");
+  const [sheetOpen, setSheetOpen] = useState(false);
   const [error, setError] = useState("");
   const [pending, startTransition] = useTransition();
   const router = useRouter();
@@ -39,8 +41,28 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
         .toLowerCase()
         .includes(query.toLowerCase()),
   );
+  const selected = products.find((p) => p.id === selectedId) || products[0];
+  const openDetail = (id: string) => { setSelectedId(id); setSheetOpen(true); };
+  const toggleStatus = (p: Product) => startTransition(async () => {
+    const result = await saveProductAction(
+      { ...p, status: p.status === "ACTIVE" ? "HIDDEN" : "ACTIVE" },
+      { id: p.id, revision: p.revision },
+    );
+    if (!result.ok) setError(result.error);
+    else {
+      setError("");
+      router.refresh();
+    }
+  });
+  useEffect(() => {
+    if (!sheetOpen) return;
+    const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") setSheetOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [sheetOpen]);
   return (
-    <section className="panel glass">
+    <div className="profile-catalog-layout">
+    <section className="panel glass profile-catalog-list">
       <div className="toolbar">
         <div className="search-field">
           <Search size={18} />
@@ -131,7 +153,11 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
               {products.map((p) => {
                 const detail = productDetails(p, catalog.values);
                 return (
-                  <tr key={p.id} className={p.status === "HIDDEN" ? "is-hidden" : ""}>
+                  <tr
+                    key={p.id}
+                    onClick={() => openDetail(p.id)}
+                    className={`${selected?.id === p.id ? "selected-row" : ""} ${p.status === "HIDDEN" ? "is-hidden" : ""}`}
+                  >
                     <td className="cell-code">
                       <strong>{p.code}</strong>
                     </td>
@@ -161,7 +187,7 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
                         <button
                           className="icon-button"
                           aria-label={`Editar ${p.code}`}
-                          onClick={() => setEditing(p)}
+                          onClick={(event) => { event.stopPropagation(); setEditing(p); }}
                         >
                           <Pencil size={17} />
                         </button>
@@ -169,23 +195,7 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
                           className="icon-button"
                           disabled={pending}
                           aria-label={`${p.status === "ACTIVE" ? "Ocultar" : "Reactivar"} ${p.code}`}
-                          onClick={() =>
-                            startTransition(async () => {
-                              const result = await saveProductAction(
-                                {
-                                  ...p,
-                                  status:
-                                    p.status === "ACTIVE" ? "HIDDEN" : "ACTIVE",
-                                },
-                                { id: p.id, revision: p.revision },
-                              );
-                              if (!result.ok) setError(result.error);
-                              else {
-                                setError("");
-                                router.refresh();
-                              }
-                            })
-                          }
+                          onClick={(event) => { event.stopPropagation(); toggleStatus(p); }}
                         >
                           {p.status === "ACTIVE" ? (
                             <EyeOff size={17} />
@@ -195,6 +205,7 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
                         </button>
                       </div>
                     </td>
+                    <td className="cell-chevron" aria-hidden="true">›</td>
                   </tr>
                 );
               })}
@@ -210,6 +221,69 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
       <Notice>
         Los vidrios ocultos se conservan para edición e historial.
       </Notice>
+      </section>
+      {sheetOpen && selected && (
+        <button
+          type="button"
+          className="sheet-scrim"
+          aria-label="Cerrar detalle"
+          onClick={() => setSheetOpen(false)}
+        />
+      )}
+      {selected && (() => {
+        const detail = productDetails(selected, catalog.values);
+        return (
+          <aside className={`panel glass profile-detail ${sheetOpen ? "is-open" : ""}`} aria-label="Detalle del vidrio">
+            <span className="sheet-handle" aria-hidden="true" />
+            <div className="profile-detail-heading">
+              <h2>Detalle del vidrio</h2>
+              <button
+                type="button"
+                className="icon-button sheet-close"
+                aria-label="Cerrar detalle"
+                onClick={() => setSheetOpen(false)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <span className="eyebrow">Código</span>
+            <strong className="profile-code">{selected.code}</strong>
+            <p>
+              {[detail.family, detail.colorFinish, detail.thickness].filter(Boolean).join(" · ")}
+              {detail.cathedralDesign ? ` · ${detail.cathedralDesign}` : ""}
+            </p>
+            <dl>
+              <div><dt>Familia</dt><dd>{detail.family || "—"}</dd></div>
+              <div><dt>Color / acabado</dt><dd>{detail.colorFinish || "—"}</dd></div>
+              <div><dt>Espesor</dt><dd>{detail.thickness || "—"}</dd></div>
+              <div><dt>Diseño catedral</dt><dd>{detail.cathedralDesign || "—"}</dd></div>
+              <div>
+                <dt>Plancha</dt>
+                <dd>{selected.sheetWidthCm ? `${selected.sheetWidthCm} × ${selected.sheetHeightCm} cm` : "—"}</dd>
+              </div>
+              <div><dt>Estado</dt><dd><StatusBadge status={selected.status} /></dd></div>
+            </dl>
+            <h3>Precio</h3>
+            <div className="profile-price"><span>Por pie²</span><strong>{money(selected.pricePerSquareFoot)}</strong></div>
+            <div className="profile-price"><span>Por plancha</span><strong>{money(selected.pricePerSheet || "0.00")}</strong></div>
+            <div className="profile-detail-actions">
+              <button
+                type="button"
+                className="icon-button"
+                disabled={pending}
+                aria-label={`${selected.status === "ACTIVE" ? "Ocultar" : "Reactivar"} ${selected.code}`}
+                onClick={() => toggleStatus(selected)}
+              >
+                {selected.status === "ACTIVE" ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
+              <Button variant="secondary" onClick={() => setEditing(selected)}>
+                <Pencil size={17} />
+                Editar vidrio
+              </Button>
+            </div>
+          </aside>
+        );
+      })()}
       {editing !== undefined && (
         <Dialog
           title={editing ? "Editar vidrio" : "Nuevo vidrio"}
@@ -226,7 +300,7 @@ export function GlassCatalog({ catalog }: { catalog: CatalogState }) {
           />
         </Dialog>
       )}
-    </section>
+    </div>
   );
 }
 function ProductForm({
