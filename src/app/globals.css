@@ -1351,6 +1351,16 @@ fieldset.quotation-layout {
 }
 .profile-thumbnail { width: 72px; height: 48px; }
 .profile-thumbnail img, .profile-image img, .summary-profile-image img { object-fit: contain; padding: 6px; }
+.profile-form-image-preview {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  margin-top: 10px; padding: 10px 12px; border: 1px solid #dce7f4;
+  border-radius: 13px; background: linear-gradient(135deg, #ffffffcc, #edf5ffcc);
+}
+.profile-form-image-preview > div { min-width: 0; display: grid; gap: 3px; }
+.profile-form-image-preview strong { font-size: 12px; }
+.profile-form-image-preview span:not(.profile-image) { overflow: hidden; color: var(--muted); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.profile-form-image-preview .profile-image { width: 150px; height: 82px; border-radius: 10px; background: #fff; }
+.profile-form-image-empty { display: block; margin-top: 8px; color: var(--muted); font-size: 11px; }
 .color-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .color-option {
   display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 7px;
@@ -1425,6 +1435,7 @@ fieldset.quotation-layout {
   .color-options { grid-template-columns: 1fr 1fr; }
   .profile-price-editor label { grid-template-columns: auto auto 1fr; }
   .profile-price-editor label input[type="text"] { grid-column: 1 / -1; }
+  .profile-form-image-preview .profile-image { width: 116px; height: 70px; }
   .catalog-area-tabs { width: 100%; }
   .catalog-area-tabs button { font-size: 10px; }
   .catalog-picker-dropdown { left: 0; right: 0; }

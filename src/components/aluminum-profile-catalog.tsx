@@ -197,7 +197,11 @@ function ProfileForm({ catalog, editing, onSaved, onCancel }: {
         <option value="ACTIVE">Activo</option><option value="HIDDEN">Oculto</option></select></div></div>
     <div className="field"><label htmlFor="profile-image-path">Imagen técnica</label><select id="profile-image-path" value={form.imagePath}
       onChange={(event) => setForm({ ...form, imagePath: event.target.value })}><option value="">Sin imagen de origen</option>
-      {imagePaths.map((path) => <option value={path} key={path}>{path}</option>)}</select></div>
+      {imagePaths.map((path) => <option value={path} key={path}>{path}</option>)}</select>
+      {form.imagePath ? <div className="profile-form-image-preview">
+        <div><strong>Vista previa</strong><span>{form.imagePath.split("/").at(-1)}</span></div>
+        <span className="profile-image"><Image src={form.imagePath} alt={`Vista previa de ${form.code || "perfil"}`} fill sizes="150px" /></span>
+      </div> : <small className="profile-form-image-empty">Selecciona una imagen para verla antes de guardar.</small>}</div>
     <fieldset className="profile-price-editor"><legend>Precios por barra y color *</legend>
       {catalog.colors.filter((color) => color.status === "ACTIVE" || prices[color.id]).map((color) => <label key={color.id}>
         <input type="checkbox" checked={Boolean(prices[color.id])} onChange={(event) => setPrices((old) => ({ ...old,
