@@ -30,6 +30,13 @@ Tras la consolidación quedan 10 Markdown de trabajo, incluido este informe.
 
 Los documentos versionados eliminados son recuperables desde el historial de Git. Las copias locales ` 2` no estaban versionadas.
 
+## Clonación reproducible
+
+- El runtime necesita `src/`, `package.json`, `package-lock.json`, `.nvmrc`, `.env.example`, `public/brand/logo.png`, los JSON de referencia y `public/profiles/`. Todos están versionados.
+- El seed de aluminio tiene 154 perfiles: 134 referencian imagen y las 134 imágenes canónicas están versionadas; 20 no tienen imagen en el Excel. Se excluyen las 74 copias locales con sufijo ` 2` porque cada una ya tiene su original por código.
+- Los Excel, secretos, `.vercel/`, backups y el contenido activo de Vercel Blob no se versionan. Tras clonar, se sigue `README.md`: Node 24, `npm ci`, copiar `.env.example` a `.env.local` y configurar credenciales del ambiente correcto.
+- STITCH no es dependencia runtime. Sus Markdown se retiraron; los HTML y capturas históricos se conservan como referencia. Quitarlos del último commit no haría más liviano un clon normal, porque Git conserva sus objetos en el historial; reducir eso requeriría reescribir todo el historial, una operación separada que no se hizo.
+
 ## Estructura vigente y comprobación
 
 | Necesidad | Fuente |

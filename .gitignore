@@ -28,3 +28,6 @@ backups/
 mockapp-v2/
 mockapp-v3/
 catalogos-fisicos/
+
+# Copias locales de Finder; el asset canónico usa el código del perfil sin sufijo.
+public/profiles/* 2.png
