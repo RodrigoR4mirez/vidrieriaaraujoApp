@@ -39,18 +39,18 @@ No ejecutar una operación de Production si el archivo, token, sesión o equipo 
 Preview:
 
 ```sh
-node --env-file=.env.catalogos-preview.local --import tsx scripts/backup.ts export
+npm run backup:export:preview
 node --env-file=.env.catalogos-preview.local --import tsx scripts/backup.ts import backups/archivo.json --overwrite
 ```
 
 Production:
 
 ```sh
-node --env-file=.env.catalogos-production.local --import tsx scripts/backup.ts export
+npm run backup:export:production
 node --env-file=.env.catalogos-production.local --import tsx scripts/backup.ts import backups/archivo.json --overwrite
 ```
 
-No usar `.env.local` por costumbre cuando el objetivo sea Production. El nombre del archivo debe aparecer explícitamente en el comando.
+Las importaciones no tienen un comando genérico: el archivo de ambiente debe aparecer explícitamente. No usar `.env.local` por costumbre cuando el objetivo sea Production.
 
 ## Diagnóstico de errores
 

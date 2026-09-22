@@ -75,12 +75,15 @@ Si Preview tiene protección Vercel, proporcionar `VERCEL_AUTOMATION_BYPASS_SECR
 ## Backups
 
 ```sh
-npm run backup:export
-npm run backup:import -- backups/archivo.json
-npm run backup:import -- backups/archivo.json --overwrite
+npm run backup:export:preview
+npm run backup:export:production
+
+# Importación: siempre indicar el ambiente explícitamente.
+node --env-file=.env.catalogos-preview.local --import tsx scripts/backup.ts import backups/archivo.json --overwrite
+node --env-file=.env.catalogos-production.local --import tsx scripts/backup.ts import backups/archivo.json --overwrite
 ```
 
-Los backups reales están ignorados por Git y se crean con permisos 600. Importar valida esquema, rutas, códigos y referencias antes de escribir. Sin flag no sobrescribe datos diferentes. Ni siquiera `--overwrite` permite cambiar una cotización confirmada. Un fallo parcial se puede reintentar; archivos idénticos se omiten. Exportar durante baja actividad: Blob no ofrece una transacción de snapshot entre varios archivos. Guardar copias fuera del equipo en almacenamiento privado.
+Los backups reales están ignorados por Git y se crean con permisos 600. Importar valida esquema, rutas, códigos y referencias antes de escribir. Sin `--overwrite` no sobrescribe datos diferentes. Ni siquiera `--overwrite` permite cambiar una cotización confirmada. La importación de Production requiere aprobación explícita. Un fallo parcial se puede reintentar; archivos idénticos se omiten. Exportar durante baja actividad: Blob no ofrece una transacción de snapshot entre varios archivos. Guardar copias fuera del equipo en almacenamiento privado.
 
 ## Documentación
 

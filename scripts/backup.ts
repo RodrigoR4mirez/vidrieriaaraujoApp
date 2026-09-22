@@ -23,7 +23,7 @@ try {
     console.log(`Restauración terminada: ${count} archivos escritos.`);
   } else
     throw new Error(
-      "Uso: npm run backup:export | npm run backup:import -- <archivo> [--overwrite]",
+      "Uso: node --env-file=<ambiente> --import tsx scripts/backup.ts export | import <archivo> [--overwrite]",
     );
 } catch (error) {
   console.error(error instanceof Error ? error.message : "Error en backup");

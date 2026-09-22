@@ -36,7 +36,7 @@ Para escribir en Preview o Production debe existir una solicitud explícita que 
 - alcance: `vidrios`, `aluminio`, `catálogos base` o combinación exacta;
 - archivo fuente o respaldo que se usará.
 
-La aprobación para desplegar código no autoriza restaurar datos. Una aprobación anterior tampoco se reutiliza. Si la solicitud es ambigua, detenerse y pedir el alcance exacto antes de ejecutar `backup:import`, `--overwrite` o cualquier escritura equivalente.
+La aprobación para desplegar código no autoriza restaurar datos. Una aprobación anterior tampoco se reutiliza. Si la solicitud es ambigua, detenerse y pedir el alcance exacto antes de ejecutar una importación con `scripts/backup.ts`, `--overwrite` o cualquier escritura equivalente.
 
 Para Production, además, el despliegue debe estar en `Ready` y debe existir aprobación explícita para la mutación de datos de ese ambiente.
 

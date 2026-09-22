@@ -17,8 +17,8 @@
     "test:bundle": "node scripts/verify-pdf-bundle.mjs",
     "auth:hash": "node scripts/password-hash.mjs",
     "catalogs:import": "tsx scripts/import-catalogos.ts",
-    "backup:export": "tsx --env-file-if-exists=.env.local scripts/backup.ts export",
-    "backup:import": "tsx --env-file-if-exists=.env.local scripts/backup.ts import"
+    "backup:export:preview": "node --env-file=.env.catalogos-preview.local --import tsx scripts/backup.ts export",
+    "backup:export:production": "node --env-file=.env.catalogos-production.local --import tsx scripts/backup.ts export"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "5.3.0",

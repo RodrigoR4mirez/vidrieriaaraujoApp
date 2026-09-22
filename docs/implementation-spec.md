@@ -895,8 +895,9 @@ Sin IGV.
 Crear scripts:
 
 ```text
-npm run backup:export
-npm run backup:import -- <archivo>
+npm run backup:export:preview
+npm run backup:export:production
+node --env-file=<ambiente> --import tsx scripts/backup.ts import <archivo> [--overwrite]
 ```
 
 El export debe:
