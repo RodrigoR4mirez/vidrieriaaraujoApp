@@ -253,8 +253,15 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   expect(sheetOptions[0]).toContain(names.family);
   expect(sheetOptions[0]).toContain(`${tag}-SHEET`);
   // Select by keyboard as well as touch/click; Enter must not submit the form.
-  await page.getByLabel("Buscar vidrio").press("ArrowDown");
-  await page.getByLabel("Buscar vidrio").press("Enter");
+  // A sighted user checks which row is highlighted before pressing Enter —
+  // do the same here instead of assuming a single ArrowDown always lands on
+  // the product row (a leading "← Todas las familias" row can be in the way).
+  for (let attempts = 0; attempts < 5; attempts += 1) {
+    await glassSearch.press("ArrowDown");
+    if ((await page.locator(".picker-product-row.active").count()) === 1) break;
+  }
+  await expect(page.locator(".picker-product-row.active")).toHaveCount(1);
+  await glassSearch.press("Enter");
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Agregar ítem", exact: true }).click();
   await expect(page.getByTestId("quotation-subtotal")).toHaveText("S/ 603.65");
