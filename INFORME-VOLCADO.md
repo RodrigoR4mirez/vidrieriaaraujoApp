@@ -35,8 +35,7 @@ Generado: 2026-09-21T23:21:45.165Z
 - Códigos normalizados: 5220 → 5220-NEGRO (fila 133); 5220 → 5220-MATE (fila 134).
 - Duplicados descartados por fila más completa: 5142: fila 127, se conserva fila 219; 8651: fila 129, se conserva fila 128; 8503: fila 148, se conserva fila 149.
 
-## Respaldo, Preview y Producción
+## Alcance del informe
 
-- Respaldo de Blob: pendiente antes de importar en un store.
-- Preview: pendiente de despliegue e importación en el store de Preview.
-- Producción: pendiente de aprobación explícita del usuario después del Preview.
+- Este informe valida el contenido generado desde los archivos Excel.
+- El estado de Preview, Production y las migraciones de Blob se registra en los runbooks operativos.

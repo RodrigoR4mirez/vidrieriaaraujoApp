@@ -399,10 +399,9 @@ function report(result: ImportResult) {
 `- Perfiles sin imagen anclada: ${result.profilesWithoutImage.length ? result.profilesWithoutImage.join(", ") : "ninguno"}.\n` +
 `- Códigos normalizados: ${result.normalizedCodes.length ? result.normalizedCodes.map((entry) => `${entry.original} → ${entry.final} (fila ${entry.row})`).join("; ") : "ninguno"}.\n` +
 `- Duplicados descartados por fila más completa: ${result.droppedDuplicates.length ? result.droppedDuplicates.map((entry) => `${entry.code}: fila ${entry.droppedRow}, se conserva fila ${entry.keptRow}`).join("; ") : "ninguno"}.\n\n` +
-`## Respaldo, Preview y Producción\n\n` +
-`- Respaldo de Blob: pendiente antes de importar en un store.\n` +
-`- Preview: pendiente de despliegue e importación en el store de Preview.\n` +
-`- Producción: pendiente de aprobación explícita del usuario después del Preview.\n`;
+`## Alcance del informe\n\n` +
+`- Este informe valida el contenido generado desde los archivos Excel.\n` +
+`- El estado de Preview, Production y las migraciones de Blob se registra en los runbooks operativos.\n`;
 }
 
 async function writeAssets(result: ImportResult) {
