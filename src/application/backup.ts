@@ -4,6 +4,11 @@ import { quotationSchema } from "@/domain/quotation/models";
 import { DomainError } from "@/domain/errors";
 import type { JsonStore } from "./json-store";
 import { aluminumCatalogSchema } from "@/domain/aluminum/models";
+import {
+  ALUMINUM_CATALOG_PATH,
+  CATALOG_PATH,
+  captureCatalogVersion,
+} from "./catalog-history";
 export const backupSchema = z
   .object({
     schemaVersion: z.literal(1),
@@ -20,7 +25,7 @@ export function validateBackup(raw: unknown) {
     if (paths.has(entry.pathname))
       throw new DomainError("Backup con rutas duplicadas.");
     paths.add(entry.pathname);
-    if (entry.pathname === "data/v1/catalog.json") {
+    if (entry.pathname === CATALOG_PATH) {
       const state = catalogStateSchema.parse(entry.value);
       if (
         new Set(state.products.map((p) => p.code)).size !==
@@ -52,7 +57,7 @@ export function validateBackup(raw: unknown) {
             throw new DomainError("Backup con referencias inválidas.");
         }
       entry.value = state;
-    } else if (entry.pathname === "data/v1/aluminum-catalog.json") {
+    } else if (entry.pathname === ALUMINUM_CATALOG_PATH) {
       const state = aluminumCatalogSchema.parse(entry.value);
       if (new Set(state.profiles.map((profile) => profile.code)).size !== state.profiles.length)
         throw new DomainError("Backup con códigos de perfil duplicados.");
@@ -114,10 +119,17 @@ export async function importBackup(
         throw new DomainError(
           "Hay datos existentes. Usa --overwrite para restaurar el catálogo.",
         );
-      return { ...entry, etag: current?.etag };
+      return { ...entry, etag: current?.etag, previousValue: current?.value };
     }),
   );
-  for (const entry of plan)
-    if (entry) await store.write(entry.pathname, entry.value, entry.etag);
+  for (const entry of plan) {
+    if (!entry) continue;
+    if (
+      entry.etag &&
+      (entry.pathname === CATALOG_PATH || entry.pathname === ALUMINUM_CATALOG_PATH)
+    )
+      await captureCatalogVersion(store, entry.pathname, entry.previousValue);
+    await store.write(entry.pathname, entry.value, entry.etag);
+  }
   return plan.filter(Boolean).length;
 }

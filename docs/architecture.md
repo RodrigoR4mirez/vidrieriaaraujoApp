@@ -21,6 +21,8 @@ Cada registro tiene `revision`. El cliente devuelve la revisión editada. La ope
 
 El catálogo de aluminio usa un agregado independiente, `data/v1/aluminum-catalog.json`, con el mismo protocolo ETag. Esto mantiene la unicidad de códigos y la relación perfil–familia–precios por color en una única escritura condicional. La carga inicial es idempotente cuando ya coincide y se niega a mezclar o sobrescribir datos parciales.
 
+Antes de cada sobrescritura real de cualquiera de esos dos agregados, la aplicación guarda la versión anterior en `data/history/v1/catalogs/glass/` o `data/history/v1/catalogs/aluminum/`. La captura ocurre en el servidor, antes de la escritura con ETag, por lo que cubre ediciones web, cargas y restauraciones. Las cotizaciones quedan fuera porque son inmutables. Restaurar una entrada es una operación separada, con `--confirm` y aprobación explícita del ambiente; antes de restaurar también se captura el estado activo.
+
 Las lecturas privadas usan `useCache: false` y `Accept-Encoding: identity`. En la verificación real, respuestas comprimidas de Blob devolvían un ETag débil (`W/`) que no satisface `ifMatch`. Solicitar la representación sin compresión conserva el cuerpo y su ETag fuerte juntos; nunca se sustituye por el ETag de otra lectura. También se reintenta la colisión si dos dispositivos crean el catálogo inicial simultáneamente.
 
 ## Confirmación

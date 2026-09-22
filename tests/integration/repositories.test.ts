@@ -7,6 +7,10 @@ import {
   VercelBlobBaseCatalogRepository,
   VercelBlobQuotationRepository,
 } from "@/infrastructure/persistence/blob/repositories";
+import {
+  CATALOG_HISTORY_PREFIX,
+  parseCatalogHistory,
+} from "@/application/catalog-history";
 import type { JsonStore } from "@/infrastructure/persistence/blob/store";
 import { QuotationService, CatalogService } from "@/application/use-cases";
 import { quotationSchema } from "@/domain/quotation/models";
@@ -86,6 +90,19 @@ async function fixture() {
   };
 }
 describe("repositories y casos de uso", () => {
+  it("guarda automáticamente la versión anterior del catálogo", async () => {
+    const store = new MemoryStore();
+    const bases = new VercelBlobBaseCatalogRepository(new BlobCatalogDocument(store));
+    await bases.save({ category: "families", name: "Primera", description: "", status: "ACTIVE" });
+    await bases.save({ category: "families", name: "Segunda", description: "", status: "ACTIVE" });
+
+    const historyPaths = await store.paths(CATALOG_HISTORY_PREFIX);
+    expect(historyPaths).toHaveLength(1);
+    const history = parseCatalogHistory(store.records.get(historyPaths[0])?.value);
+    expect((history.value as { values: unknown[] }).values).toHaveLength(1);
+    expect((await bases.list())).toHaveLength(2);
+  });
+
   it("guarda precios omitidos o vacíos como cero y filtra por modalidad", async () => {
     const f = await fixture();
     const zero = await f.catalog.saveProduct({ ...f.product, code: "PENDIENTE", pricePerSquareFoot: "", pricePerSheet: undefined });

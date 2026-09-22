@@ -15,9 +15,13 @@ data/v1/aluminum-catalog.json
 data/v1/quotations/COT-00001.json
 data/v1/quotations/COT-00002.json
 ...
+data/history/v1/catalogs/glass/<timestamp>-<uuid>.json
+data/history/v1/catalogs/aluminum/<timestamp>-<uuid>.json
 ```
 
 Solo almacenamiento privado. Los stores de Preview/desarrollo y Production tienen la misma estructura pero datos independientes.
+
+`data/v1/` contiene únicamente el estado activo. `data/history/v1/catalogs/` contiene versiones anteriores de los dos catálogos, creadas automáticamente antes de una sobrescritura. No incluye cotizaciones y no se restaura ni se limpia de forma automática.
 
 `BaseValue`: id UUID, schemaVersion, revision, category, name, description, status, createdAt, updatedAt. Categorías: `families`, `colors-finishes`, `thicknesses`, `cathedral-designs`. Nuevos registros no tienen código ni observación. Los campos antiguos `code` y `observation` son opcionales y se conservan al leer, editar y respaldar datos existentes; no aparecen en la UI. Las relaciones usan siempre el ID.
 

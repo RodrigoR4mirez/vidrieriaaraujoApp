@@ -13,6 +13,33 @@ Una carga de datos puede dejar el deployment mostrando el commit anterior. Eso e
 
 Si la carga necesita un campo, esquema o comportamiento que el código actual no soporta, primero se debe desplegar el código compatible y esperar `Ready`. Después se ejecuta la carga de datos.
 
+## Historial automático de catálogos
+
+Cada cambio real de vidrios, aluminio o catálogos base guarda automáticamente la versión anterior en Blob antes de sobrescribir el catálogo activo:
+
+```text
+data/history/v1/catalogs/glass/<fecha>-<id>.json
+data/history/v1/catalogs/aluminum/<fecha>-<id>.json
+```
+
+Esto cubre ediciones desde la web, cargas y restauraciones. Las cotizaciones confirmadas no se versionan por este mecanismo porque son inmutables. El historial no aparece en `data/v1/`, no hace visibles los datos anteriores y no se elimina automáticamente.
+
+Consultar el historial del ambiente indicado:
+
+```sh
+node --env-file=.env.catalogos-preview.local --import tsx scripts/catalog-history.ts list
+node --env-file=.env.catalogos-production.local --import tsx scripts/catalog-history.ts list
+```
+
+Restaurar una entrada requiere aprobación explícita para ese ambiente y exige `--confirm`. Antes de aplicar la entrada elegida, el estado activo actual también se guarda en el historial:
+
+```sh
+node --env-file=.env.catalogos-preview.local --import tsx scripts/catalog-history.ts restore data/history/v1/catalogs/glass/<entrada>.json --confirm
+node --env-file=.env.catalogos-production.local --import tsx scripts/catalog-history.ts restore data/history/v1/catalogs/aluminum/<entrada>.json --confirm
+```
+
+La aprobación de una carga, un deploy o una restauración anterior no autoriza esta restauración. No borrar entradas del historial como parte de una carga; cualquier retención o limpieza requiere una decisión separada.
+
 ## Alcance y rutas
 
 En la arquitectura actual los catálogos base no son archivos separados:
@@ -80,6 +107,7 @@ Versión de esquema: <schemaVersion>
 Fuente/payload: <ruta local>
 Allowlist: <pathnames exactos>
 Backup anterior: <ruta local>
+Historial automático anterior: <pathname Blob | no aplicó>
 Resultado de importación: <archivos escritos>
 Conteos antes/después: <resumen>
 Exportación posterior: <ruta local>
@@ -170,6 +198,7 @@ Después de una carga o restauración autorizada:
 - la otra ruta de catálogo no cambia;
 - `data/v1/quotations/*` no cambia;
 - existe un respaldo anterior y una exportación posterior;
+- existe una entrada de historial automático para cada catálogo activo que fue sobrescrito;
 - el resultado registra ambiente, operación, archivo, cantidad escrita, commit compatible y verificación.
 
 Los datos anteriores dejan de estar activos, pero permanecen en el respaldo. Las cotizaciones históricas pueden seguir mostrando snapshots antiguos sin que eso reactive esos productos en el catálogo.
@@ -193,6 +222,8 @@ Restaurar significa aplicar deliberadamente un respaldo anterior. Requiere la mi
 Un respaldo completo puede contener aluminio, vidrios y cotizaciones. No se importa completo para revertir un solo catálogo sin revisar sus rutas. Para una reversión parcial se debe usar un payload que contenga únicamente la ruta autorizada.
 
 Después de restaurar, exportar nuevamente y repetir la verificación. Conservar los respaldos hasta confirmar que la aplicación funciona correctamente.
+
+El historial automático permite una reversión puntual sin reconstruir el Excel, pero no sustituye el respaldo exportado: el historial conserva versiones de los catálogos y el respaldo conserva el conjunto autorizado de archivos exportados.
 
 ## Limitación operativa
 

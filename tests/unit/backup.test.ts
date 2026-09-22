@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { expect, it } from "vitest";
 import { validateBackup, importBackup } from "@/application/backup";
 import { emptyCatalog } from "@/domain/catalogs/models";
@@ -24,9 +25,24 @@ it("valida el catálogo de aluminio dentro del backup", () => {
 });
 it("no modifica datos sin flag explícito y usa ETag al restaurar", async () => {
   const calls: unknown[] = [];
+  const now = new Date().toISOString();
+  const currentCatalog = {
+    ...emptyCatalog(),
+    values: [{
+      id: randomUUID(),
+      schemaVersion: 1 as const,
+      revision: 1,
+      createdAt: now,
+      updatedAt: now,
+      name: "Actual",
+      description: "",
+      status: "ACTIVE" as const,
+      category: "families" as const,
+    }],
+  };
   const store = {
     read: async () => ({
-      value: { ...emptyCatalog(), extra: 1 },
+      value: currentCatalog,
       etag: "original",
     }),
     paths: async () => [],
@@ -39,7 +55,11 @@ it("no modifica datos sin flag explícito y usa ETag al restaurar", async () => 
   );
   expect(calls).toHaveLength(0);
   expect(await importBackup(store, backup, true)).toBe(1);
-  expect(calls[0]).toEqual([
+  expect(calls).toHaveLength(2);
+  expect((calls[0] as unknown[])[0]).toMatch(
+    /^data\/history\/v1\/catalogs\/glass\//,
+  );
+  expect(calls[1]).toEqual([
     "data/v1/catalog.json",
     emptyCatalog(),
     "original",

@@ -58,6 +58,8 @@ Antes de una validación funcional, seguir el [preflight de entorno](release-wor
 
 Exportar regularmente usando el token correcto y guardar el archivo en almacenamiento privado. Probar restauración en un store separado, nunca encima de datos reales durante pruebas. `--overwrite` restaura el catálogo con ETag; cotizaciones diferentes preexistentes siempre bloquean. Los archivos idénticos se omiten para permitir reintentos. Los backups no son atómicos entre todos los documentos: preferir baja actividad.
 
+Además, cada sobrescritura real de vidrios, aluminio o catálogos base conserva automáticamente el estado anterior en `data/history/v1/catalogs/`. Se puede listar con `scripts/catalog-history.ts list` y restaurar una entrada concreta con `scripts/catalog-history.ts restore ... --confirm`, únicamente después de aprobación explícita para el ambiente. La restauración captura primero el estado activo actual; no existe limpieza automática del historial.
+
 Si Blob falla, la UI informa que no pudo cargar/guardar y permite reintentar. Ante timeout después de confirmar, conservar el borrador y volver a intentar recupera la confirmación por ID de solicitud. El histórico también permite encontrar la cotización ya confirmada.
 
 ## Resultados

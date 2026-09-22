@@ -51,6 +51,8 @@ Usar una copia de esta lista en cada cambio funcional.
 - [ ] Exporté nuevamente después de importar.
 - [ ] Confirmé que los archivos fuera de la allowlist no cambiaron.
 - [ ] Conservé la ruta del respaldo y el resultado de verificación.
+- [ ] Confirmé que cada catálogo sobrescrito generó historial automático en `data/history/v1/catalogs/`.
+- [ ] Si restauré historial, usé la entrada exacta, `--confirm` y aprobación explícita del ambiente.
 - [ ] Completé el registro de operación de datos, aunque no haya deployment nuevo.
 
 ## Cierre

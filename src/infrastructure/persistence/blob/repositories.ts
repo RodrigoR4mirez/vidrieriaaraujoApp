@@ -26,6 +26,11 @@ import type {
   AluminumCatalogRepository,
 } from "@/application/repositories";
 import {
+  ALUMINUM_CATALOG_PATH,
+  CATALOG_PATH,
+  captureCatalogVersion,
+} from "@/application/catalog-history";
+import {
   aluminumCatalogSchema,
   emptyAluminumCatalog,
   type AluminumCatalog,
@@ -37,9 +42,8 @@ import {
   type AluminumProfileInput,
 } from "@/domain/aluminum/models";
 import type { JsonStore } from "./store";
-export const CATALOG_PATH = "data/v1/catalog.json";
-export const ALUMINUM_CATALOG_PATH = "data/v1/aluminum-catalog.json";
 export const QUOTATION_PREFIX = "data/v1/quotations/";
+export { ALUMINUM_CATALOG_PATH, CATALOG_PATH } from "@/application/catalog-history";
 const MAX_RETRIES = 20;
 export class BlobCatalogDocument {
   constructor(private store: JsonStore) {}
@@ -53,13 +57,13 @@ export class BlobCatalogDocument {
   async mutate<T>(operation: (state: CatalogState) => T): Promise<T> {
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
       const { state, etag } = await this.read();
+      const previousState = structuredClone(state);
       const result = operation(state);
+      const nextState = catalogStateSchema.parse(state);
+      if (JSON.stringify(previousState) === JSON.stringify(nextState)) return result;
       try {
-        await this.store.write(
-          CATALOG_PATH,
-          catalogStateSchema.parse(state),
-          etag,
-        );
+        if (etag) await captureCatalogVersion(this.store, CATALOG_PATH, previousState);
+        await this.store.write(CATALOG_PATH, nextState, etag);
         return result;
       } catch (error) {
         if (
@@ -103,9 +107,18 @@ export class BlobAluminumCatalogDocument {
   async mutate<T>(operation: (state: AluminumCatalog) => T): Promise<T> {
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
       const { state, etag } = await this.read();
+      const previousState = structuredClone(state);
       const result = operation(state);
+      const nextState = aluminumCatalogSchema.parse(state);
+      if (JSON.stringify(previousState) === JSON.stringify(nextState)) return result;
       try {
-        await this.store.write(ALUMINUM_CATALOG_PATH, aluminumCatalogSchema.parse(state), etag);
+        if (etag)
+          await captureCatalogVersion(
+            this.store,
+            ALUMINUM_CATALOG_PATH,
+            previousState,
+          );
+        await this.store.write(ALUMINUM_CATALOG_PATH, nextState, etag);
         return result;
       } catch (error) {
         if (!(error instanceof ConflictError || error instanceof AlreadyExistsError) || attempt === MAX_RETRIES - 1)
