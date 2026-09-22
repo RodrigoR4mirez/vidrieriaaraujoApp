@@ -26,5 +26,5 @@ backups/
 
 # Local source references (processed runtime assets live under public/)
 mockapp-v2/
+mockapp-v3/
 catalogos-fisicos/
-.env*

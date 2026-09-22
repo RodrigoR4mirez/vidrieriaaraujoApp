@@ -1,230 +1,93 @@
-# Migraciones y restauraciones de catálogos
+# Cargas y restauraciones de catálogos
 
-Runbook para cargar o restaurar datos en Vercel Blob Private. No se ejecuta de rutina: solo se usa cuando la tarea lo solicita.
+Usar este procedimiento **solo** ante una solicitud concreta. Una carga Blob cambia datos sin crear commit ni deployment; registrar el commit de código compatible. Desplegar primero el código si el payload exige un esquema nuevo.
 
-## Código y datos son operaciones separadas
+## Alcance y autorización
 
-| Operación | Cambia | Genera commit | Genera deployment Vercel |
-|---|---|---:|---:|
-| Deploy de código | aplicación y esquema soportado | Sí | Sí |
-| Carga/restauración de datos | pathnames autorizados de Blob | No | No |
+| Solicitud | Única ruta activa permitida |
+|---|---|
+| Vidrios y sus bases (familias, colores, espesores, diseños) | `data/v1/catalog.json` |
+| Perfiles de aluminio y sus bases (familias, colores) | `data/v1/aluminum-catalog.json` |
 
-Una carga de datos puede dejar el deployment mostrando el commit anterior. Eso es normal si el código actual ya es compatible con el payload. No ejecutar un deploy solo para que Vercel muestre una fecha nueva.
+Las cotizaciones `data/v1/quotations/*.json` son inmutables y quedan fuera de restauraciones de catálogos. Los catálogos base no son archivos independientes.
 
-Si la carga necesita un campo, esquema o comportamiento que el código actual no soporta, primero se debe desplegar el código compatible y esperar `Ready`. Después se ejecuta la carga de datos.
+Antes de **cualquier escritura** en Preview o Production se necesita una solicitud explícita que identifique: ambiente, operación (`cargar` o `restaurar`), alcance exacto y fuente/payload o entrada de historial. Aprobar un deploy no autoriza escribir datos; una aprobación anterior tampoco se reutiliza. Para Production, confirmar que el código compatible esté `Ready`. Si falta una decisión sobre rutas o fuente, detenerse.
 
-## Historial automático de catálogos
+## Fuentes y preflight
 
-Cada cambio real de vidrios, aluminio o catálogos base guarda automáticamente la versión anterior en Blob antes de sobrescribir el catálogo activo:
-
-```text
-data/history/v1/catalogs/glass/<fecha>-<id>.json
-data/history/v1/catalogs/aluminum/<fecha>-<id>.json
-```
-
-Esto cubre ediciones desde la web, cargas y restauraciones. Las cotizaciones confirmadas no se versionan por este mecanismo porque son inmutables. El historial no aparece en `data/v1/`, no hace visibles los datos anteriores y no se elimina automáticamente.
-
-Consultar el historial del ambiente indicado:
-
-```sh
-node --env-file=.env.catalogos-preview.local --import tsx scripts/catalog-history.ts list
-node --env-file=.env.catalogos-production.local --import tsx scripts/catalog-history.ts list
-```
-
-Restaurar una entrada requiere aprobación explícita para ese ambiente y exige `--confirm`. Antes de aplicar la entrada elegida, el estado activo actual también se guarda en el historial:
-
-```sh
-node --env-file=.env.catalogos-preview.local --import tsx scripts/catalog-history.ts restore data/history/v1/catalogs/glass/<entrada>.json --confirm
-node --env-file=.env.catalogos-production.local --import tsx scripts/catalog-history.ts restore data/history/v1/catalogs/aluminum/<entrada>.json --confirm
-```
-
-La aprobación de una carga, un deploy o una restauración anterior no autoriza esta restauración. No borrar entradas del historial como parte de una carga; cualquier retención o limpieza requiere una decisión separada.
-
-## Alcance y rutas
-
-En la arquitectura actual los catálogos base no son archivos separados:
-
-| Alcance | Contenido | Ruta |
-|---|---|---|
-| Vidrios | familias, colores, espesores, diseños catedral y productos | `data/v1/catalog.json` |
-| Aluminio | familias, colores y perfiles | `data/v1/aluminum-catalog.json` |
-| Históricos | cotizaciones confirmadas | `data/v1/quotations/*.json` |
-
-Una operación de vidrios solo puede escribir `data/v1/catalog.json`. Una operación de aluminio solo puede escribir `data/v1/aluminum-catalog.json`. Las cotizaciones nunca se incluyen en una restauración de catálogos.
-
-## Regla de autorización
-
-Ninguna restauración se ejecuta automáticamente después de un deploy, una carga anterior o un cambio de código.
-
-Para escribir en Preview o Production debe existir una solicitud explícita que indique:
-
-- ambiente: `Preview` o `Production`;
-- operación: `cargar` o `restaurar`;
-- alcance: `vidrios`, `aluminio`, `catálogos base` o combinación exacta;
-- archivo fuente o respaldo que se usará.
-
-La aprobación para desplegar código no autoriza restaurar datos. Una aprobación anterior tampoco se reutiliza. Si la solicitud es ambigua, detenerse y pedir el alcance exacto antes de ejecutar una importación con `scripts/backup.ts`, `--overwrite` o cualquier escritura equivalente.
-
-Para Production, además, el despliegue debe estar en `Ready` y debe existir aprobación explícita para la mutación de datos de ese ambiente.
-
-## Fuentes disponibles
-
-Los Excel de referencia están dentro del repositorio:
+Los Excel originales son archivos **locales ignorados por Git**, no están disponibles en Vercel:
 
 ```text
 catalogos-fisicos/catalogo de vidrios.xlsx
 catalogos-fisicos/catalogo de perfiles de aluminio.xlsx
 ```
 
-El Excel de aluminio queda considerado como fuente para una futura carga. Registrar el archivo no significa importarlo. Antes de una carga se debe generar y revisar un payload; nunca se escribe directamente desde el Excel en Production.
+`data/catalogos-importacion.json` es un payload versionado generado a partir de los Excel; no cambia al editar productos desde la web. `INFORME-VOLCADO.md` es el informe de esa generación. Un payload de dos rutas no se importa para una solicitud de una sola ruta: preparar y validar un payload con la allowlist exacta.
 
-## Flujo obligatorio
+Antes de ejecutar scripts:
 
-```text
-solicitud explícita
-→ revisar fuente o respaldo
-→ dry-run y validación
-→ confirmar ambiente y allowlist
-→ despliegue Ready, si aplica
-→ respaldo del ambiente objetivo
-→ importación autorizada
-→ exportación y verificación posterior
+```sh
+nvm use
+node --version
+git status --short --branch
 ```
 
-Si falla una validación, una credencial, un permiso o la verificación, detenerse. No cambiar el código ni probar otro ambiente como sustituto.
+Exigir Node `v24.x`; confirmar el archivo de ambiente de [environments.md](environments.md), el token sin imprimirlo, el store correcto y su estado activo. Nunca usar `.env.local` por costumbre para Production.
 
-## Registro obligatorio de la operación
-
-Toda carga o restauración debe cerrar con este registro. No incluir tokens, contraseñas ni contenido completo de backups.
-
-```text
-Operación: <carga | restauración>
-Fecha/hora: <ISO 8601>
-Ambiente: <Preview | Production>
-Solicitud/aprobación: <referencia o mensaje explícito>
-Commit compatible: <sha>
-Versión de esquema: <schemaVersion>
-Fuente/payload: <ruta local>
-Allowlist: <pathnames exactos>
-Backup anterior: <ruta local>
-Historial automático anterior: <pathname Blob | no aplicó>
-Resultado de importación: <archivos escritos>
-Conteos antes/después: <resumen>
-Exportación posterior: <ruta local>
-Verificación: <correcta | fallida>
-Rollback: <no necesario | realizado | pendiente>
-Observaciones: <desfase esperado u otra incidencia>
-```
-
-El registro debe indicar expresamente si hubo solo cambio de datos o también cambio de código. Si no se puede completar, la operación no se considera cerrada.
-
-## Carga nueva desde Excel
-
-El dry-run de vidrios es de solo lectura:
+Para vidrios, el importador permite revisar sin escribir Blob:
 
 ```sh
 node --import tsx scripts/import-catalogos.ts --glass-only
-```
-
-Revisar cantidades, familias, colores, espesores, diseños, nombres, detalles, precios, medidas y códigos. Para generar el payload de vidrios:
-
-```sh
 node --import tsx scripts/import-catalogos.ts --glass-only --glass-backup
 ```
 
-Esto crea el archivo local ignorado por Git:
+El segundo comando genera `backups/catalogo-vidrios-importacion.json` con solo `data/v1/catalog.json`. Revisar conteos, referencias, nombres, códigos, precios por pie²/plancha y medidas antes de usarlo. Para aluminio, preparar el payload validado de `data/v1/aluminum-catalog.json`; no inferir autorización por una carga de vidrios.
 
-```text
-backups/catalogo-vidrios-importacion.json
-```
+Para aluminio, la hoja `Hoja1` usa `COD`, `DESCRIPCION`, `mate` y `negro`. Las imágenes se asignan según la fila del Excel y se guardan por código en `public/profiles/<CÓDIGO>.<extensión>`. No recrear `image*.png`, no usar renombrados Git como mapeo ni inventar imágenes para perfiles sin origen. La referencia validada generó 154 perfiles (21 familias, 2 colores, 134 con imagen y 20 sin ella); esos conteos son del payload documentado, no una garantía del estado activo. Las dos variantes físicas `5220` se guardan como `5220-MATE` y `5220-NEGRO`.
 
-El payload contiene únicamente `data/v1/catalog.json`; generarlo no escribe en Blob.
+## Ejecución
 
-La fuente de aluminio es `catalogos-fisicos/catalogo de perfiles de aluminio.xlsx`. Antes de cargarla se debe contar con un payload de aluminio validado y con autorización explícita para `data/v1/aluminum-catalog.json`. No asumir que una carga de vidrios incluye autorización para aluminio.
+1. Confirmar aprobación, ambiente, allowlist, payload y commit compatible.
+2. Exportar el estado del **ambiente objetivo inmediatamente antes** de escribir:
 
-### Imágenes de perfiles
+   ```sh
+   npm run backup:export:preview
+   npm run backup:export:production
+   ```
 
-La fuente validada contiene 154 perfiles: 21 familias, 2 colores, 134 perfiles con imagen y 20 sin imagen.
+   Ejecutar solo el comando del ambiente aprobado y anotar el archivo creado en `backups/`. Los backups reales están ignorados por Git.
+3. Importar únicamente el payload aprobado:
 
-- Las imágenes se guardan por código en `public/profiles/<CÓDIGO>.<extensión>`.
-- No se crean ni se recrean archivos genéricos `image*.png`.
-- No se usan renombrados Git para decidir qué imagen corresponde a un perfil.
-- La relación válida es la imagen anclada a la fila del Excel y el `imagePath` del catálogo.
-- Una misma imagen visual puede tener varios nombres por código si el Excel la asigna a varias filas; eso no autoriza reasignarla manualmente a otros perfiles.
-- Los 20 perfiles sin imagen permanecen sin `imagePath`; no se inventa ni se copia una imagen por aproximación.
+   ```sh
+   node --env-file=.env.catalogos-preview.local --import tsx scripts/backup.ts import backups/<payload>.json --overwrite
+   node --env-file=.env.catalogos-production.local --import tsx scripts/backup.ts import backups/<payload>.json --overwrite
+   ```
 
-Los archivos de imágenes antiguas que no estén referenciados no se eliminan automáticamente. Su limpieza requiere una tarea separada y autorización explícita.
+   Ejecutar solo la línea del ambiente aprobado. `--overwrite` habilita reemplazar las rutas incluidas en el payload; no amplía la allowlist ni permite sobrescribir cotizaciones.
+4. Exportar de nuevo el mismo ambiente. Comprobar rutas escritas, conteos, códigos únicos, referencias, precios/medidas/nombres representativos e igualdad de rutas fuera de la allowlist. Para vidrios solamente, se espera **un archivo escrito**; si el resultado difiere, detenerse.
 
-## Respaldo e importación
+El backup previo es obligatorio por defecto. Solo puede omitirse si el usuario autoriza **expresamente esa excepción para la operación concreta**; registrar que no existe ese punto de retorno. El historial automático puede ayudar si el código que lo implementa ya está desplegado, pero no sustituye el backup exportado ni garantiza una restauración completa. Las operaciones multiarchivo no son atómicas: hacerlas con baja actividad y detenerse ante conflictos ETag o escrituras parciales.
 
-Usar siempre el archivo de ambiente que corresponda al destino:
+## Historial y rollback
 
-```sh
-# Preview
-node --env-file=.env.catalogos-preview.local --import tsx scripts/backup.ts export
+Cuando está desplegado el código de historial, cada sobrescritura real de un catálogo existente guarda su versión anterior en `data/history/v1/catalogs/glass/` o `.../aluminum/`. La primera creación no tiene estado anterior que guardar. El historial no aparece en el catálogo activo ni en el export de `data/v1/`; no se borra automáticamente. Las cotizaciones siguen inmutables.
 
-# Production
-node --env-file=.env.catalogos-production.local --import tsx scripts/backup.ts export
-```
-
-Anotar el respaldo creado. Es el estado anterior y no debe confundirse con el payload nuevo.
-
-Importar solo después de cumplir la regla de autorización:
+Consultar entradas del ambiente elegido:
 
 ```sh
-# Preview
-node --env-file=.env.catalogos-preview.local --import tsx scripts/backup.ts import backups/<payload-autorizado>.json --overwrite
-
-# Production
-node --env-file=.env.catalogos-production.local --import tsx scripts/backup.ts import backups/<payload-autorizado>.json --overwrite
+node --env-file=.env.catalogos-preview.local --import tsx scripts/catalog-history.ts list
+node --env-file=.env.catalogos-production.local --import tsx scripts/catalog-history.ts list
 ```
 
-`--overwrite` permite reemplazar el contenido de las rutas que contiene el payload. No borra todo Blob, no borra respaldos y no autoriza rutas adicionales. El payload debe contener únicamente la allowlist aprobada.
+Restaurar una entrada exacta requiere nueva aprobación explícita del ambiente y alcance, y el flag `--confirm`:
 
-Para una carga solo de vidrios, el resultado esperado es:
-
-```text
-Restauración terminada: 1 archivos escritos.
+```sh
+node --env-file=.env.catalogos-preview.local --import tsx scripts/catalog-history.ts restore <pathname-listado> --confirm
+node --env-file=.env.catalogos-production.local --import tsx scripts/catalog-history.ts restore <pathname-listado> --confirm
 ```
 
-Si se escribe más de un archivo, detenerse y revisar el payload.
+Ejecutar solo la línea autorizada. La restauración captura primero el estado activo actual si existe, luego escribe la versión elegida con ETag. Exportar y verificar otra vez. Para restaurar desde un backup completo, preparar un payload **solo con la ruta autorizada**; no importar un respaldo con cotizaciones para revertir un catálogo.
 
-## Resultado esperado
+## Registro de cierre
 
-Después de una carga o restauración autorizada:
-
-- la ruta autorizada contiene únicamente los datos del payload aplicado;
-- precios, medidas, nombres, detalles, códigos y referencias corresponden al payload validado;
-- la otra ruta de catálogo no cambia;
-- `data/v1/quotations/*` no cambia;
-- existe un respaldo anterior y una exportación posterior;
-- existe una entrada de historial automático para cada catálogo activo que fue sobrescrito;
-- el resultado registra ambiente, operación, archivo, cantidad escrita, commit compatible y verificación.
-
-Los datos anteriores dejan de estar activos, pero permanecen en el respaldo. Las cotizaciones históricas pueden seguir mostrando snapshots antiguos sin que eso reactive esos productos en el catálogo.
-
-## Verificación posterior
-
-Exportar otra vez usando el mismo ambiente. Confirmar:
-
-1. cantidad esperada de familias, valores y productos/perfiles;
-2. códigos únicos y referencias válidas;
-3. precios, medidas y nombres representativos;
-4. igualdad de las rutas fuera de la allowlist;
-5. ausencia de escrituras en cotizaciones.
-
-Si la verificación falla, no repetir la importación a ciegas. Revisar el respaldo y ejecutar rollback solo con autorización explícita.
-
-## Restauración y rollback
-
-Restaurar significa aplicar deliberadamente un respaldo anterior. Requiere la misma autorización explícita y el mismo ambiente indicado arriba.
-
-Un respaldo completo puede contener aluminio, vidrios y cotizaciones. No se importa completo para revertir un solo catálogo sin revisar sus rutas. Para una reversión parcial se debe usar un payload que contenga únicamente la ruta autorizada.
-
-Después de restaurar, exportar nuevamente y repetir la verificación. Conservar los respaldos hasta confirmar que la aplicación funciona correctamente.
-
-El historial automático permite una reversión puntual sin reconstruir el Excel, pero no sustituye el respaldo exportado: el historial conserva versiones de los catálogos y el respaldo conserva el conjunto autorizado de archivos exportados.
-
-## Limitación operativa
-
-El respaldo no es una transacción única de todos los blobs. Ejecutar con baja actividad. Si aparece un conflicto de ETag o cambia el almacenamiento durante la operación, detenerse, volver a exportar el estado actual y revisar antes de reintentar.
+Guardar sin secretos: fecha, solicitud/aprobación, ambiente, operación, rutas, fuente y commit compatible; backup anterior o excepción autorizada; pathnames de historial si aplican; archivos escritos; conteos y comparación antes/después; exportación posterior; resultado de verificación y rollback realizado o pendiente. Distinguir claramente el cambio de datos del deployment de código.

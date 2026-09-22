@@ -13,15 +13,11 @@ async function login(page: Page) {
 
 test("catálogo de perfiles → cotización por centímetros", async ({
   page,
-  baseURL,
 }) => {
   test.skip(
     !username || !password,
     "Configura E2E_USER y E2E_PASSWORD en .env.e2e.local.",
   );
-  if (baseURL?.includes("vidrieria-araujo.vercel.app"))
-    throw new Error("No ejecutar pruebas mutables en Production.");
-
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await login(page);

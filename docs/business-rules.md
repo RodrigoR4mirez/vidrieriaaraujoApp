@@ -241,10 +241,11 @@ El resumen muestra:
 - precio unitario calculado;
 - importe del ítem;
 - pulgadas convertidas de ancho y alto;
-- merma calculada por lado;
 - pulgadas redondeadas;
 - área en pie²;
 - subtotal exacto y total final redondeado.
+
+La merma se conserva en el snapshot para trazabilidad, pero no aparece en la línea técnica visible. Los documentos del cliente usan la descripción simple.
 
 ---
 
@@ -399,18 +400,7 @@ La merma permanece en el snapshot y en el cálculo, pero no se muestra en ese te
 
 ---
 
-## 13. Prioridad
-
-Si existe contradicción:
-
-1. `docs/business-rules.md`
-2. `AGENTS.md`
-3. `docs/implementation-spec.md`
-4. `STITCH/instrucciones/*.md`
-5. HTML/mock de STITCH
-
-
-## 14. Precios pendientes y venta por plancha entera
+## 13. Precios pendientes y venta por plancha entera
 
 Actualización aprobada: el catálogo admite `0.00` en precio por pie² y por plancha. Los precios vacíos o no ingresados se guardan como `0.00`; no se permiten negativos. Cero significa que esa modalidad no está disponible, no que el vidrio se cotiza gratis.
 
@@ -440,7 +430,7 @@ Al cambiar modalidad se mantiene el producto solo si continúa disponible; en ca
 
 Se permite una copia temporal de UI en `sessionStorage`, aislada por usuario y pestaña: ítems, condiciones, formulario incompleto, edición y solicitud de confirmación. No es una cotización confirmada ni la fuente principal del negocio. El catálogo y precios se releen y la confirmación sigue validándose en servidor y persistiendo únicamente en Blob. Al confirmar, descartar explícitamente o cerrar sesión se limpia el borrador. No se promete sincronización del borrador entre dispositivos ni conservación al cerrar la pestaña.
 
-## 15. Perfiles de aluminio
+## 14. Perfiles de aluminio
 
 La cotización puede combinar vidrios y perfiles de aluminio. Los perfiles son una categoría independiente: sí conservan y muestran una imagen técnica; los vidrios no usan imágenes.
 

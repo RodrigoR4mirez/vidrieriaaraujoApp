@@ -13,15 +13,15 @@ El punto de composición `src/application/container.ts` conecta las interfaces a
 
 ## Lecturas y escritura
 
-Cada lectura de pantalla exige sesión en el servidor y obtiene datos frescos. Las páginas protegidas son dinámicas. Las Server Actions vuelven a autenticar, validan con Zod y revalidan las vistas después de guardar. El endpoint PDF responde 401 sin sesión y usa Cache-Control privado/no-store.
+Cada lectura de servidor exige sesión y consulta Blob sin caché de SDK. La navegación cliente puede reutilizar una pantalla durante 30 segundos; la acción `Actualizar` solicita datos recientes. Las páginas protegidas son dinámicas. Las Server Actions vuelven a autenticar, validan con Zod y revalidan las vistas después de guardar. El endpoint PDF responde 401 sin sesión y usa Cache-Control privado/no-store.
 
-El catálogo pequeño se almacena como un agregado `data/v1/catalog.json`. Esta decisión permite comprobar SKU únicos, referencias y versiones dentro de una única escritura condicional. Separar cada producto en archivos independientes necesitaría un protocolo adicional para asegurar unicidad al cambiar códigos. La especificación ofrece la distribución por registro como recomendación, no obligación.
+El catálogo de vidrios y sus bases se almacenan como un agregado `data/v1/catalog.json`. Esto permite comprobar SKU únicos, referencias y versiones en una escritura condicional.
 
 Cada registro tiene `revision`. El cliente devuelve la revisión editada. La operación lee el último ETag, valida, escribe con `ifMatch`; ante conflicto relee y reintenta hasta 20 veces. Si la revisión de ese registro cambió, informa conflicto en español. Ediciones simultáneas de registros diferentes se combinan; nunca se pierden cambios silenciosamente.
 
 El catálogo de aluminio usa un agregado independiente, `data/v1/aluminum-catalog.json`, con el mismo protocolo ETag. Esto mantiene la unicidad de códigos y la relación perfil–familia–precios por color en una única escritura condicional. La carga inicial es idempotente cuando ya coincide y se niega a mezclar o sobrescribir datos parciales.
 
-Antes de cada sobrescritura real de cualquiera de esos dos agregados, la aplicación guarda la versión anterior en `data/history/v1/catalogs/glass/` o `data/history/v1/catalogs/aluminum/`. La captura ocurre en el servidor, antes de la escritura con ETag, por lo que cubre ediciones web, cargas y restauraciones. Las cotizaciones quedan fuera porque son inmutables. Restaurar una entrada es una operación separada, con `--confirm` y aprobación explícita del ambiente; antes de restaurar también se captura el estado activo.
+La versión de código que incorpora historial guarda el estado anterior de un catálogo existente en `data/history/v1/catalogs/glass/` o `data/history/v1/catalogs/aluminum/` antes de sobrescribirlo. Cubre ediciones web, cargas y restauraciones hechas con ese código; no puede recuperar cambios anteriores a su despliegue. Las cotizaciones quedan fuera porque son inmutables. Restaurar exige `--confirm` y aprobación explícita del ambiente; antes también se captura el estado activo.
 
 Las lecturas privadas usan `useCache: false` y `Accept-Encoding: identity`. En la verificación real, respuestas comprimidas de Blob devolvían un ETag débil (`W/`) que no satisface `ifMatch`. Solicitar la representación sin compresión conserva el cuerpo y su ETag fuerte juntos; nunca se sustituye por el ETag de otra lectura. También se reintenta la colisión si dos dispositivos crean el catálogo inicial simultáneamente.
 
@@ -44,6 +44,8 @@ El borrador usa un store de UI con `useSyncExternalStore` y copia temporal valid
 Scrypt y comparación constante para contraseña; JWT HS256 restringido por algoritmo, emisor y audiencia. Sesión HttpOnly. Next Server Actions verifica origen. Todo acceso a repositorios se realiza detrás de sesión; no hay rutas públicas para datos. Secretos validados al usarse, permitiendo construir sin credenciales de negocio. No hay credenciales predeterminadas versionadas.
 
 Es un MVP de catálogo pequeño: listar histórico lee snapshots con concurrencia limitada a 20. Si crece sustancialmente, implementar paginación/indexación en un nuevo repositorio. Blob no proporciona transacciones entre documentos ni restauración multiarchivo atómica. El servicio requiere conexión; otro dispositivo refleja cambios al abrir o refrescar.
+
+El build de Vercel incluye explícitamente las fuentes estándar de PDFKit en el trace del PDF; `npm run test:bundle` comprueba ese paquete aislado antes de publicar cambios que afecten PDF o dependencias.
 
 ## Modalidades de venta
 

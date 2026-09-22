@@ -41,8 +41,6 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
     !username || !password,
     "Configura E2E_USER y E2E_PASSWORD en .env.e2e.local.",
   );
-  if (baseURL?.includes("vidrieria-araujo.vercel.app"))
-    throw new Error("No ejecutar pruebas mutables en Production.");
   const tag = `E2E-${Date.now().toString(36).toUpperCase()}`;
   const names = {
     customer: `Cliente ${tag}`,

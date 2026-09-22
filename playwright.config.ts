@@ -2,6 +2,9 @@ import { defineConfig, devices } from "@playwright/test";
 import { existsSync } from "node:fs";
 if (existsSync(".env.e2e.local")) process.loadEnvFile(".env.e2e.local");
 const baseURL = process.env.E2E_BASE_URL || "http://localhost:3000";
+const hostname = new URL(baseURL).hostname.toLowerCase();
+if (["distribuidora-araujo.vercel.app", "vidrieria-araujo.vercel.app"].includes(hostname))
+  throw new Error("No ejecutar pruebas E2E mutables en Production.");
 export default defineConfig({
   testDir: "./tests/e2e",
   timeout: 180_000,

@@ -1,95 +1,43 @@
-# Ambientes y credenciales operativas
+# Ambientes y herramientas locales
 
-Este documento evita mezclar Preview, Development y Production. Los valores secretos nunca se escriben aquí.
+## Equipo
 
-## Mapa de ambientes
-
-| Ambiente | Archivo local privado | Store Blob | Uso permitido |
+| Ambiente | Archivo local privado | Blob Private | Uso |
 |---|---|---|---|
-| Development | `.env.local` | Store de desarrollo/Preview | Desarrollo local y pruebas controladas |
-| Preview | `.env.catalogos-preview.local` | `vidrieria-araujo-preview` | Validación antes de aprobación |
-| Production | `.env.catalogos-production.local` | `vidrieria-araujo-production` | Datos reales |
+| Development | `.env.local` | store de desarrollo/Preview | Desarrollo local |
+| Preview | `.env.catalogos-preview.local` | `vidrieria-araujo-preview` (`store_x9gVwBo680tIrdWK`) | Validación |
+| Production | `.env.catalogos-production.local` | `vidrieria-araujo-production` (`store_ZuyDwmjLsc1VGeQN`) | Datos reales |
 
-Los IDs y la región de los stores están en [deployment.md](deployment.md). No copiar tokens ni valores de variables al repositorio, al chat o a reportes.
+Equipo Vercel: `rodrigor4mirezs-projects`; proyecto: `vidrieria-araujo`; funciones y stores en `gru1`. Cada store proporciona su propio `BLOB_READ_WRITE_TOKEN`. Los archivos `.env.*`, credenciales y backups reales no se versionan ni se copian al chat.
 
-## Preparación persistente del usuario
+Variables de la aplicación: `APP_USER`, `APP_PASSWORD_HASH`, `SESSION_SECRET` y `BLOB_READ_WRITE_TOKEN`. OIDC no reemplaza el token Blob. `npm run auth:hash` genera el hash; el secreto de sesión debe tener al menos 32 caracteres. En archivos dotenv de Next, escapar cada `$` del hash como `\$`; en Vercel guardar el valor literal.
 
-En macOS con `zsh`, Node se administra con `nvm`. La configuración queda en `~/.zshrc`, `nvm alias default 24` mantiene Node 24 como predeterminado en nuevas terminales y la CLI global de Vercel queda instalada bajo esa versión de Node:
+## Node y CLI persistentes en macOS/zsh
 
-```sh
-if [ ! -s ~/.nvm/nvm.sh ]; then
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
-fi
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-nvm install 24
-nvm alias default 24
-nvm use 24
-npm install --global vercel@latest
-vercel login
-vercel whoami
-```
+`nvm` se carga desde `~/.zshrc`. La preparación de una sola vez para el usuario es instalar Node 24, ejecutar `nvm alias default 24`, instalar Vercel CLI bajo ese Node y hacer `vercel login`. La instalación global de la CLI queda asociada a la versión de Node activa; si se cambia de versión, puede no aparecer hasta volver a Node 24.
 
-Después de reiniciar o abrir otra terminal, validar antes de trabajar:
+En una terminal nueva y **dentro del repositorio**:
 
 ```sh
 nvm use
 node --version
-npm --version
 vercel --version
 vercel whoami
 ```
 
-Si Node no es `24.x` o la cuenta/equipo de Vercel no es el esperado, detenerse. No usar `sudo npm` para corregir permisos. La CLI sirve para inspeccionar y administrar Vercel; el despliegue sigue el flujo GitHub → Vercel definido en `release-workflow.md`.
+Exigir `v24.x` antes de scripts, builds o mutaciones. Si `nvm` no está disponible, abrir una terminal zsh que cargue `~/.zshrc` o corregir esa configuración. No usar `sudo npm`. La CLI se usa para inspección/configuración; los deployments salen de GitHub, según [release-workflow.md](release-workflow.md).
 
-## Variables necesarias
+Una terminal automatizada no interactiva puede arrancar con otro Node aunque la terminal personal use 24. Cargar `~/.nvm/nvm.sh` en esa sesión y repetir `nvm use` antes de ejecutar scripts; no asumir que el alias predeterminado ya se aplicó.
 
-Cada ambiente debe tener sus propios valores para:
+## Operaciones Blob
 
-```text
-APP_USER
-APP_PASSWORD_HASH
-SESSION_SECRET
-BLOB_READ_WRITE_TOKEN
-```
-
-El token Blob de Preview no sirve para Production y viceversa. OIDC no reemplaza `BLOB_READ_WRITE_TOKEN` para las operaciones del store.
-
-Para comprobar que un archivo local tiene token sin imprimirlo:
+Seleccionar **un** archivo de ambiente explícito. Antes de escribir, comprobar que tiene token sin mostrarlo:
 
 ```sh
-node --env-file=.env.catalogos-preview.local -e 'if (!process.env.BLOB_READ_WRITE_TOKEN) process.exit(1); console.log("Token de Preview disponible")'
-node --env-file=.env.catalogos-production.local -e 'if (!process.env.BLOB_READ_WRITE_TOKEN) process.exit(1); console.log("Token de Production disponible")'
+node --env-file=.env.catalogos-preview.local -e 'if (!process.env.BLOB_READ_WRITE_TOKEN) process.exit(1); console.log("Token Preview disponible")'
+node --env-file=.env.catalogos-production.local -e 'if (!process.env.BLOB_READ_WRITE_TOKEN) process.exit(1); console.log("Token Production disponible")'
 ```
 
-No ejecutar una operación de Production si el archivo, token, sesión o equipo de Vercel no están confirmados.
+Ejecutar solo la línea del ambiente elegido; la presencia del token no prueba por sí sola que apunte al store correcto. Verificar equipo, proyecto y store antes de mutar. Para exportar o importar seguir [data-migration-runbook.md](data-migration-runbook.md).
 
-## Comandos correctos para Blob
-
-Preview:
-
-```sh
-npm run backup:export:preview
-node --env-file=.env.catalogos-preview.local --import tsx scripts/backup.ts import backups/archivo.json --overwrite
-```
-
-Production:
-
-```sh
-npm run backup:export:production
-node --env-file=.env.catalogos-production.local --import tsx scripts/backup.ts import backups/archivo.json --overwrite
-```
-
-Las importaciones no tienen un comando genérico: el archivo de ambiente debe aparecer explícitamente. No usar `.env.local` por costumbre cuando el objetivo sea Production.
-
-## Diagnóstico de errores
-
-| Síntoma | Interpretación | Acción |
-|---|---|---|
-| Falta `BLOB_READ_WRITE_TOKEN` | Archivo de ambiente incorrecto o incompleto | Detenerse y corregir el archivo privado |
-| `401 Unauthorized` | Token inválido, vencido o de otro ambiente | Verificar store y regenerar/configurar el token |
-| `403 Forbidden` | Store suspendido, cuenta sin acceso o equipo incorrecto | Revisar facturación, permisos y equipo en Vercel; no cambiar código |
-| Equipo de Vercel vacío | Sesión o autorización no disponible | Pedir login/autorización; no desplegar directamente |
-| Datos esperados no aparecen | Se consultó otro store o se sirvió una lectura obsoleta | Confirmar ambiente, token y recargar sin cache |
-
-Un error de permisos no se resuelve cambiando la aplicación, cambiando el pathname ni usando un deploy local.
+Un `401` indica token/sesión inválida; un `403` puede indicar falta de permisos o store suspendido. Revisar Vercel antes de reintentar. No cambiar rutas ni apuntar a otro ambiente para evitar el error.
