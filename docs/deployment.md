@@ -29,6 +29,9 @@ Configurar en los tres entornos; el token Blob difiere entre Production y Previe
 El flujo operativo obligatorio es **Local → GitHub → Vercel**; GitHub es la fuente de verdad y Vercel nunca se despliega directamente desde la carpeta local. La decisión entre Preview y Production está en [Flujo de entrega por sesión](release-workflow.md). Resumen:
 
 ```sh
+nvm use
+node --version
+npm --version
 vercel --version
 vercel whoami
 vercel teams ls
@@ -41,6 +44,8 @@ git switch main
 git merge --ff-only <rama-de-la-tarea>
 git push origin main # Production automática desde GitHub
 ```
+
+La preparación persistente del equipo se hace una sola vez por usuario con `nvm install 24`, `nvm alias default 24`, `nvm use 24`, la CLI global `vercel` y `vercel login`. Las instrucciones completas están en [environments.md](environments.md). La CLI queda para inspección, autenticación y configuración; no reemplaza el flujo GitHub → Vercel ni autoriza un deploy directo.
 
 Preview no es obligatorio para documentación ni cambios funcionales de riesgo bajo. Los cambios exclusivamente documentales no se despliegan. Todo cambio importante de pantalla o funcionalidad debe permanecer en Preview hasta que el usuario lo valide y autorice expresamente el paso a Production. La misma regla se aplica a fórmula, autenticación, persistencia, concurrencia, numeración, backups, dependencias o configuración. Si GitHub, el push o Vercel requieren permisos, autenticación, autorización o configuración, detenerse y pedirlos al usuario; nunca reemplazar ese paso con un despliegue directo desde local.
 

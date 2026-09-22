@@ -8,6 +8,8 @@ Usar una copia de esta lista en cada cambio funcional.
 - [ ] Revisé `git status --short --branch`.
 - [ ] Identifiqué archivos ajenos sin seguimiento y no los tocaré.
 - [ ] Node es 24.x.
+- [ ] Ejecuté `nvm use` y confirmé que la terminal actual usa Node 24.x.
+- [ ] `vercel --version` y `vercel whoami` funcionan para el equipo autorizado cuando la tarea requiere Vercel.
 - [ ] Leí las reglas aplicables de `AGENTS.md` y `docs/`.
 - [ ] Definí si el cambio requiere Preview.
 

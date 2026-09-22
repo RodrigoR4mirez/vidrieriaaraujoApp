@@ -15,6 +15,34 @@ npm run dev
 
 Completar las cuatro variables de `.env.local` antes de iniciar sesión. En un proyecto conectado, `vercel env pull .env.local --environment=development` obtiene las variables. No usar el store de producción para desarrollo o pruebas.
 
+### Preparación persistente del usuario (macOS + zsh)
+
+Node.js se administra con `nvm`; no se instala con `sudo` ni se fija una versión solo para la sesión actual. La primera preparación instala Node 24, lo deja como versión predeterminada para nuevas terminales y deja la configuración de `nvm` en `~/.zshrc`:
+
+```sh
+if [ ! -s ~/.nvm/nvm.sh ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm install 24
+nvm alias default 24
+nvm use 24
+npm install --global vercel@latest
+vercel login
+vercel whoami
+```
+
+Después de reiniciar, abrir una terminal nueva y confirmar:
+
+```sh
+nvm use
+node --version
+vercel --version
+```
+
+Node debe ser `24.x`. La CLI de Vercel queda disponible para inspección, autenticación y configuración. El despliegue continúa siendo exclusivamente **Local → GitHub → Vercel**; no usar la CLI para desplegar directamente a Production.
+
 - Node 24.x, Next.js 16.3.5, React 19.3.0, Tailwind 4.3.3.
 - TypeScript 7.0.2 (`tsc`); el alias oficial `@typescript/typescript6` proporciona la API que necesitan ESLint y otras herramientas. `@typescript/native` apunta al release estable de TypeScript 7.
 - ESLint 10 con `@eslint/compat` conserva las reglas de los plugins heredados de Next. npm puede avisar de sus rangos peer anteriores a ESLint 10; la ejecución real de las reglas se verifica.

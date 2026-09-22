@@ -12,6 +12,36 @@ Este documento evita mezclar Preview, Development y Production. Los valores secr
 
 Los IDs y la región de los stores están en [deployment.md](deployment.md). No copiar tokens ni valores de variables al repositorio, al chat o a reportes.
 
+## Preparación persistente del usuario
+
+En macOS con `zsh`, Node se administra con `nvm`. La configuración queda en `~/.zshrc`, `nvm alias default 24` mantiene Node 24 como predeterminado en nuevas terminales y la CLI global de Vercel queda instalada bajo esa versión de Node:
+
+```sh
+if [ ! -s ~/.nvm/nvm.sh ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm install 24
+nvm alias default 24
+nvm use 24
+npm install --global vercel@latest
+vercel login
+vercel whoami
+```
+
+Después de reiniciar o abrir otra terminal, validar antes de trabajar:
+
+```sh
+nvm use
+node --version
+npm --version
+vercel --version
+vercel whoami
+```
+
+Si Node no es `24.x` o la cuenta/equipo de Vercel no es el esperado, detenerse. No usar `sudo npm` para corregir permisos. La CLI sirve para inspeccionar y administrar Vercel; el despliegue sigue el flujo GitHub → Vercel definido en `release-workflow.md`.
+
 ## Variables necesarias
 
 Cada ambiente debe tener sus propios valores para:

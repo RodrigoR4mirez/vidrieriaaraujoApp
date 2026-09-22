@@ -89,9 +89,14 @@ Las pruebas mutables nunca se ejecutan contra Production.
 Antes de validar un cambio funcional que consulte o escriba datos, comprobar el entorno una sola vez por sesión. Este paso evita confundir una falla de la aplicación con una credencial, store o configuración local:
 
 ```sh
+nvm use
+node --version
+vercel --version
 vercel whoami
 vercel blob list-stores
 ```
+
+`node --version` debe mostrar `24.x`. La instalación persistente de Node y la CLI para el usuario está documentada en [environments.md](environments.md). Si `nvm use` no puede seleccionar Node 24, detenerse antes de ejecutar builds, E2E o cualquier operación de datos.
 
 Confirmar en el resultado que `vidrieria-araujo-preview` y `vidrieria-araujo-production` estén en estado **Active**. Un store suspendido puede listar su configuración pero rechaza lecturas privadas con `403 Forbidden`; en ese caso no se modifica código ni se despliega. El titular debe reactivar o regularizar el plan o la facturación del store desde Vercel y luego se vuelve a intentar la lectura de Preview.
 

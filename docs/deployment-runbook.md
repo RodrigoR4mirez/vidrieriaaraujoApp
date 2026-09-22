@@ -21,8 +21,11 @@ Ejecutar desde la raíz del repositorio:
 pwd
 git status --short --branch
 git branch --show-current
+nvm use
 node --version
 npm --version
+vercel --version
+vercel whoami
 git diff --check
 ```
 
@@ -32,6 +35,8 @@ Confirmar antes de continuar:
 - el árbol no tiene cambios rastreados ajenos a la tarea;
 - la rama actual es la esperada;
 - Node es 24.x, según `.nvmrc` y `package.json`;
+- `nvm use` seleccionó Node 24 en la terminal actual;
+- la CLI de Vercel responde y `vercel whoami` corresponde al equipo autorizado;
 - los archivos sin seguimiento ajenos quedan fuera del commit;
 - no existe una divergencia que requiera reescribir historia.
 
