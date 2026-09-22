@@ -2,6 +2,8 @@
 
 Este documento define cómo debe cerrar una sesión de trabajo en **Distribuidora Araujo**. GitHub (`origin`) es la fuente de verdad del código versionado y Vercel despliega exclusivamente desde GitHub. El flujo obligatorio es **Local → GitHub → Vercel**; nunca se despliega a Vercel directamente desde archivos locales.
 
+Para ejecutar el proceso paso a paso, usar [deployment-runbook.md](deployment-runbook.md). Para separar correctamente Preview y Production, consultar [environments.md](environments.md). Para catálogos, respaldos o cargas de Blob, usar [data-migration-runbook.md](data-migration-runbook.md). El checklist repetible está en [release-checklist.md](release-checklist.md).
+
 ## Resultado esperado
 
 Una modificación funcional se considera terminada cuando:
