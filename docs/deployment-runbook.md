@@ -132,7 +132,7 @@ Esperar a que Vercel termine el despliegue de Production con estado `Ready`. Con
 - target Production;
 - alias `https://vidrieria-araujo.vercel.app`.
 
-Solo después de ese estado se pueden ejecutar migraciones o cargas de datos de Production. El código y los datos se despliegan por separado.
+Solo después de ese estado se pueden ejecutar migraciones o cargas de datos de Production. El código y los datos se despliegan por separado: una carga de Blob no crea commit ni deployment, pero debe registrar el commit compatible que ya está activo.
 
 ## 5. Mutaciones de datos de Production
 
@@ -148,7 +148,7 @@ La ruta permitida depende del alcance autorizado:
 - aluminio y sus catálogos base: `data/v1/aluminum-catalog.json`;
 - cotizaciones: nunca forman parte de una restauración de catálogos.
 
-La aprobación para desplegar código no autoriza restaurar datos. Seguir [data-migration-runbook.md](data-migration-runbook.md) y detenerse si no existe una solicitud explícita con ambiente, operación, alcance y archivo fuente.
+La aprobación para desplegar código no autoriza restaurar datos. Seguir [data-migration-runbook.md](data-migration-runbook.md) y detenerse si no existe una solicitud explícita con ambiente, operación, alcance y archivo fuente. El registro de operación de datos es obligatorio aunque no haya un nuevo deployment.
 
 ## 6. Cierre de sesión
 

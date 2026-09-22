@@ -2,6 +2,17 @@
 
 Runbook para cargar o restaurar datos en Vercel Blob Private. No se ejecuta de rutina: solo se usa cuando la tarea lo solicita.
 
+## Código y datos son operaciones separadas
+
+| Operación | Cambia | Genera commit | Genera deployment Vercel |
+|---|---|---:|---:|
+| Deploy de código | aplicación y esquema soportado | Sí | Sí |
+| Carga/restauración de datos | pathnames autorizados de Blob | No | No |
+
+Una carga de datos puede dejar el deployment mostrando el commit anterior. Eso es normal si el código actual ya es compatible con el payload. No ejecutar un deploy solo para que Vercel muestre una fecha nueva.
+
+Si la carga necesita un campo, esquema o comportamiento que el código actual no soporta, primero se debe desplegar el código compatible y esperar `Ready`. Después se ejecuta la carga de datos.
+
 ## Alcance y rutas
 
 En la arquitectura actual los catálogos base no son archivos separados:
@@ -54,6 +65,30 @@ solicitud explícita
 ```
 
 Si falla una validación, una credencial, un permiso o la verificación, detenerse. No cambiar el código ni probar otro ambiente como sustituto.
+
+## Registro obligatorio de la operación
+
+Toda carga o restauración debe cerrar con este registro. No incluir tokens, contraseñas ni contenido completo de backups.
+
+```text
+Operación: <carga | restauración>
+Fecha/hora: <ISO 8601>
+Ambiente: <Preview | Production>
+Solicitud/aprobación: <referencia o mensaje explícito>
+Commit compatible: <sha>
+Versión de esquema: <schemaVersion>
+Fuente/payload: <ruta local>
+Allowlist: <pathnames exactos>
+Backup anterior: <ruta local>
+Resultado de importación: <archivos escritos>
+Conteos antes/después: <resumen>
+Exportación posterior: <ruta local>
+Verificación: <correcta | fallida>
+Rollback: <no necesario | realizado | pendiente>
+Observaciones: <desfase esperado u otra incidencia>
+```
+
+El registro debe indicar expresamente si hubo solo cambio de datos o también cambio de código. Si no se puede completar, la operación no se considera cerrada.
 
 ## Carga nueva desde Excel
 
@@ -122,7 +157,7 @@ Después de una carga o restauración autorizada:
 - la otra ruta de catálogo no cambia;
 - `data/v1/quotations/*` no cambia;
 - existe un respaldo anterior y una exportación posterior;
-- el resultado registra ambiente, operación, archivo, cantidad escrita y verificación.
+- el resultado registra ambiente, operación, archivo, cantidad escrita, commit compatible y verificación.
 
 Los datos anteriores dejan de estar activos, pero permanecen en el respaldo. Las cotizaciones históricas pueden seguir mostrando snapshots antiguos sin que eso reactive esos productos en el catálogo.
 

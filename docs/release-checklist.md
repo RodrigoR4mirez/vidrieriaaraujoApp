@@ -43,12 +43,15 @@ Usar una copia de esta lista en cada cambio funcional.
 - [ ] Definí la allowlist de pathnames.
 - [ ] Confirmé que existe una solicitud explícita de carga o restauración y su alcance.
 - [ ] No confundí aprobación de código con autorización para restaurar datos.
+- [ ] Confirmé si la operación cambia solo datos o también código.
+- [ ] Confirmé que el commit activo soporta el esquema del payload.
 - [ ] Creé respaldo del ambiente objetivo inmediatamente antes de escribir.
 - [ ] Confirmé el archivo de ambiente usado.
 - [ ] El resultado de importación coincide con la cantidad esperada.
 - [ ] Exporté nuevamente después de importar.
 - [ ] Confirmé que los archivos fuera de la allowlist no cambiaron.
 - [ ] Conservé la ruta del respaldo y el resultado de verificación.
+- [ ] Completé el registro de operación de datos, aunque no haya deployment nuevo.
 
 ## Cierre
 
