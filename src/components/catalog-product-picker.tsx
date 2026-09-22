@@ -171,6 +171,7 @@ export function CatalogProductPicker({
   const [recentIds, setRecentIds] = useState<string[]>(() =>
     typeof window === "undefined" ? [] : readRecent(recentKey));
   const previousValue = useRef(value);
+  const selfClearedValue = useRef(false);
   const selected = products.find((product) => product.id === value);
   const familyMode = catalogFamilyMode(families.length);
   const selectedFamily = families.find((family) => family.id === familyId);
@@ -179,6 +180,12 @@ export function CatalogProductPicker({
     const wasSelected = Boolean(previousValue.current);
     previousValue.current = value;
     if (value || !wasSelected) return;
+    if (selfClearedValue.current) {
+      // The picker itself cleared the selection because the user is typing a
+      // new query; keep that query instead of wiping it out here.
+      selfClearedValue.current = false;
+      return;
+    }
     // The parent has just cleared the selected product; reset the picker UI.
     setQuery("");
     setActive(0);
@@ -293,7 +300,10 @@ export function CatalogProductPicker({
         }}
         onChange={(event) => {
           setQuery(event.target.value);
-          if (selected) onChange("");
+          if (selected) {
+            selfClearedValue.current = true;
+            onChange("");
+          }
           setOpen(true);
           setActive(0);
         }}
