@@ -236,6 +236,8 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page
     .getByLabel("Condiciones comerciales (opcional)")
     .fill("Condiciones de prueba; no corresponde a una venta.");
+  await chooseGlassMode(page, "Por pie²");
+  await chooseGlass(page, code, names.family);
   await chooseGlassMode(page, "Por plancha");
   await expect(page.getByText("Este producto no se vende por plancha y se quitó de la selección.")).toBeVisible();
   await expect(page.getByLabel("Ancho (cm)", { exact: true })).toHaveCount(0);
@@ -245,7 +247,9 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await glassSearch.fill(`${tag}-SHEET`);
   const sheetOptions = await page.locator(".picker-product-row").allTextContents();
   expect(sheetOptions).toHaveLength(1);
-  expect(sheetOptions[0]).toContain(`${names.design} · ${names.color} · ${names.thickness}`);
+  expect(sheetOptions[0]).toContain(
+    `${names.family} · ${names.color} · ${names.thickness} · ${names.design}`,
+  );
   expect(sheetOptions[0]).toContain(names.family);
   expect(sheetOptions[0]).toContain(`${tag}-SHEET`);
   // Select by keyboard as well as touch/click; Enter must not submit the form.
@@ -263,6 +267,8 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await page.getByRole("button", { name: "Editar ítem 3", exact: true }).click();
   await page.getByLabel("Cantidad", { exact: true }).fill("3");
   await page.getByRole("button", { name: "Guardar cambios", exact: true }).click();
+  await chooseGlassMode(page, "Por plancha");
+  await chooseGlass(page, `${tag}-SHEET`, names.family);
   await chooseGlassMode(page, "Por pie²");
   await expect(page.getByText("Este producto no se vende por pie² y se quitó de la selección.")).toBeVisible();
   await page.getByLabel("Buscar vidrio").fill(tag);
@@ -384,6 +390,7 @@ test("catálogos → cotización → snapshot → compartir → otro dispositivo
   await secondPage.goto(`/cotizaciones/${number}`);
   await secondPage
     .getByRole("link", { name: "Nueva cotización", exact: true })
+    .first()
     .click();
   await expect(secondPage.getByRole("heading", { level: 1 })).toContainText(
     `COT-${String(Number(number.slice(4)) + 1).padStart(5, "0")}`,
