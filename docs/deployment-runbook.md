@@ -142,13 +142,13 @@ Seguir [data-migration-runbook.md](data-migration-runbook.md). El orden obligato
 Production Ready → respaldo → importación allowlist → exportación de verificación → reporte
 ```
 
-Para una tarea de vidrios, el único pathname permitido es:
+La ruta permitida depende del alcance autorizado:
 
-```text
-data/v1/catalog.json
-```
+- vidrios y sus catálogos base: `data/v1/catalog.json`;
+- aluminio y sus catálogos base: `data/v1/aluminum-catalog.json`;
+- cotizaciones: nunca forman parte de una restauración de catálogos.
 
-No se modifican perfiles, catálogo de aluminio ni cotizaciones salvo que la tarea lo autorice expresamente.
+La aprobación para desplegar código no autoriza restaurar datos. Seguir [data-migration-runbook.md](data-migration-runbook.md) y detenerse si no existe una solicitud explícita con ambiente, operación, alcance y archivo fuente.
 
 ## 6. Cierre de sesión
 

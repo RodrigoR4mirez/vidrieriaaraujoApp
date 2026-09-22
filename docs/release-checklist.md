@@ -41,6 +41,8 @@ Usar una copia de esta lista en cada cambio funcional.
 ## Datos
 
 - [ ] Definí la allowlist de pathnames.
+- [ ] Confirmé que existe una solicitud explícita de carga o restauración y su alcance.
+- [ ] No confundí aprobación de código con autorización para restaurar datos.
 - [ ] Creé respaldo del ambiente objetivo inmediatamente antes de escribir.
 - [ ] Confirmé el archivo de ambiente usado.
 - [ ] El resultado de importación coincide con la cantidad esperada.
