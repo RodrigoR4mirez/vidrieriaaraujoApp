@@ -10,7 +10,7 @@ Aplicación privada de Distribuidora Araujo para catálogos de vidrios y perfile
 4. Entrega de código: `docs/release-workflow.md`.
 5. Carga, respaldo o restauración de catálogos: `docs/data-migration-runbook.md` y `docs/environments.md`.
 
-Leer el documento aplicable completo antes de cambiar ese ámbito. `README.md` es la entrada para instalación y uso; `INFORME-VOLCADO.md` es un resultado generado de una importación concreta, no una regla permanente. Las referencias visuales originales de STITCH son históricas: consultar sus HTML/capturas solo si se solicita contrastar el diseño original. Las reglas aprobadas prevalecen sobre esos mocks.
+Leer el documento aplicable completo antes de cambiar ese ámbito. `README.md` es la entrada para instalación y uso; `INFORME-VOLCADO.md` es un resultado generado de una importación concreta, no una regla permanente.
 
 Si hay contradicción, comunicarla y resolverla usando primero la instrucción explícita del usuario y luego `docs/business-rules.md` para reglas comerciales. El código y los esquemas muestran el comportamiento implementado; no asumir que un documento histórico lo reemplaza.
 
@@ -38,4 +38,4 @@ Si hay contradicción, comunicarla y resolverla usando primero la instrucción e
 - Cargar o restaurar datos de Preview/Production es una operación independiente del deploy. Exige solicitud explícita con ambiente, operación, rutas y fuente. El respaldo previo es la regla; una excepción requiere autorización expresa y registro de la limitación de rollback. No restaurar automáticamente tras desplegar.
 - Nunca versionar `.env.*`, tokens, credenciales, backups reales o `.vercel/`. Los Excel locales de `catalogos-fisicos/` están ignorados por Git; no asumir que Vercel puede leerlos.
 
-La guía operativa detallada está en los runbooks indicados arriba. No reintroducir instrucciones de implementación inicial o fases de STITCH como pasos obligatorios de mantenimiento.
+La guía operativa detallada está en los runbooks indicados arriba.

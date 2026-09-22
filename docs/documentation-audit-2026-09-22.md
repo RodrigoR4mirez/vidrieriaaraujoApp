@@ -21,11 +21,11 @@ Tras la consolidación quedan 10 Markdown de trabajo, incluido este informe.
 
 ## Limpieza realizada
 
-- Se eliminaron los Markdown históricos de STITCH, `docs/stitch-map.md` y la especificación inicial redundante. Los HTML/capturas originales siguen como referencia visual opcional.
+- Se eliminó por completo `STITCH/`: sus Markdown, HTML, capturas y ZIP eran material histórico sin uso en el runtime. También se retiraron `docs/stitch-map.md` y la especificación inicial redundante.
 - Se retiraron `docs/deployment-runbook.md`, `docs/deployment.md` y `docs/release-checklist.md`; sus instrucciones vigentes se concentraron en los tres documentos operativos.
 - Se retiraron la auditoría antigua y `docs/reference-assets.md`. La trazabilidad vigente del Excel quedó en el runbook, el modelo de datos y `INFORME-VOLCADO.md`.
 - Se eliminaron dos copias locales obsoletas: `INFORME-VOLCADO 2.md` (contenía cifras y códigos antiguos) y `docs/validation-audit-2026-09-21 2.md` (duplicado exacto).
-- `mockapp-v3/` sigue local como colección de referencias y ahora está excluido de Git y del paquete Vercel. Los archivos sin seguimiento de imágenes con sufijo ` 2` no se tocaron porque no son documentación y pueden ser trabajo del usuario.
+- Se eliminaron físicamente 74 PNG con sufijo ` 2` y `src/components/profile-image-picker 2.tsx`: cada PNG era idéntico byte a byte a su imagen canónica y el componente era idéntico al archivo sin sufijo.
 - Se quitó un patrón `.env*` duplicado en `.gitignore` que anulaba la excepción de `.env.example`.
 
 Los documentos versionados eliminados son recuperables desde el historial de Git. Las copias locales ` 2` no estaban versionadas.
@@ -35,7 +35,7 @@ Los documentos versionados eliminados son recuperables desde el historial de Git
 - El runtime necesita `src/`, `package.json`, `package-lock.json`, `.nvmrc`, `.env.example`, `public/brand/logo.png`, los JSON de referencia y `public/profiles/`. Todos están versionados.
 - El seed de aluminio tiene 154 perfiles: 134 referencian imagen y las 134 imágenes canónicas están versionadas; 20 no tienen imagen en el Excel. Se excluyen las 74 copias locales con sufijo ` 2` porque cada una ya tiene su original por código.
 - Los Excel, secretos, `.vercel/`, backups y el contenido activo de Vercel Blob no se versionan. Tras clonar, se sigue `README.md`: Node 24, `npm ci`, copiar `.env.example` a `.env.local` y configurar credenciales del ambiente correcto.
-- STITCH no es dependencia runtime. Sus Markdown se retiraron; los HTML y capturas históricos se conservan como referencia. Quitarlos del último commit no haría más liviano un clon normal, porque Git conserva sus objetos en el historial; reducir eso requeriría reescribir todo el historial, una operación separada que no se hizo.
+- STITCH no era dependencia runtime y se eliminó del árbol actual. Un clon normal seguirá conservando sus objetos históricos hasta que se haga, si alguna vez se solicita, una reescritura total del historial; esa operación no se realizó.
 
 ## Estructura vigente y comprobación
 
