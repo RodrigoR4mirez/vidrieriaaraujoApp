@@ -53,7 +53,7 @@ Las referencias originales de esta iteración están en `mockapp-v2/`. Son docum
 | `ChatGPT Image 20 sept 2026, 20_48_24 (2).png` | Cotizador de perfiles y resumen unificado | `/cotizador` | pestaña Perfil, familia, búsqueda, color, metros/barra, cantidad, grupos Vidrios/Perfiles | ProfileItemForm, ProfilePicker, QuotationSummary |
 | `ChatGPT Image 20 sept 2026, 20_48_25 (3).png` | Mantenimiento de perfiles de aluminio | `/perfiles` | buscar, filtrar, ver imagen/detalle, crear, editar, ocultar/reactivar | AluminumProfileCatalog, ProfileForm |
 | `ChatGPT Image 20 sept 2026, 20_48_25 (4).png` | Catálogos base de perfiles | `/catalogos` | pestañas Vidrios/Perfiles; familias, colores y perfiles/códigos | BaseCatalogManager, AluminumCatalogManager |
-| `lista - Rodri.xlsx` (`Hoja1`) | Carga inicial y casos de validación de perfiles | acción de carga inicial, sin dependencia runtime | 21 familias; 143 perfiles únicos; precios Mate/Negro; imágenes técnicas embebidas | AluminumCatalogService, seed versionado |
+| `catalogos-fisicos/catalogo de perfiles de aluminio.xlsx` (`Hoja1`) | Carga inicial y casos de validación de perfiles | acción de carga inicial, sin dependencia runtime | 21 familias; 154 perfiles únicos; 134 imágenes por código; 20 sin imagen; precios Mate/Negro | AluminumCatalogService, seed versionado |
 
 ### Criterios visuales de la ampliación
 

@@ -114,6 +114,19 @@ El payload contiene únicamente `data/v1/catalog.json`; generarlo no escribe en 
 
 La fuente de aluminio es `catalogos-fisicos/catalogo de perfiles de aluminio.xlsx`. Antes de cargarla se debe contar con un payload de aluminio validado y con autorización explícita para `data/v1/aluminum-catalog.json`. No asumir que una carga de vidrios incluye autorización para aluminio.
 
+### Imágenes de perfiles
+
+La fuente validada contiene 154 perfiles: 21 familias, 2 colores, 134 perfiles con imagen y 20 sin imagen.
+
+- Las imágenes se guardan por código en `public/profiles/<CÓDIGO>.<extensión>`.
+- No se crean ni se recrean archivos genéricos `image*.png`.
+- No se usan renombrados Git para decidir qué imagen corresponde a un perfil.
+- La relación válida es la imagen anclada a la fila del Excel y el `imagePath` del catálogo.
+- Una misma imagen visual puede tener varios nombres por código si el Excel la asigna a varias filas; eso no autoriza reasignarla manualmente a otros perfiles.
+- Los 20 perfiles sin imagen permanecen sin `imagePath`; no se inventa ni se copia una imagen por aproximación.
+
+Los archivos de imágenes antiguas que no estén referenciados no se eliminan automáticamente. Su limpieza requiere una tarea separada y autorización explícita.
+
 ## Respaldo e importación
 
 Usar siempre el archivo de ambiente que corresponda al destino:

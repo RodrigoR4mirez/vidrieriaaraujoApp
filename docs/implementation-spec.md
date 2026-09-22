@@ -1418,8 +1418,8 @@ Los enlaces principales precargan sus pantallas; el Router Cache de Next reutili
 
 - Referencias originales y trazabilidad: `docs/reference-assets.md`.
 - Catálogo privado separado: `data/v1/aluminum-catalog.json` mediante `AluminumCatalogRepository`.
-- Carga inicial versionada: 21 familias, colores Mate/Negro y 143 perfiles únicos procesados desde `lista - Rodri.xlsx`, sin dependencia runtime de `mockapp-v2`.
-- Perfiles con imagen técnica; vidrios sin imágenes.
+- Carga inicial versionada: 21 familias, colores Mate/Negro y 154 perfiles únicos procesados desde `catalogos-fisicos/catalogo de perfiles de aluminio.xlsx`, sin dependencia runtime de `mockapp-v2`.
+- 134 perfiles tienen imagen por código y 20 quedan sin imagen porque el Excel no la trae; no se crean archivos genéricos `image*.png`.
 - Mantenimiento en `/perfiles`: búsqueda, familia, estado, detalle, crear, editar, ocultar/reactivar y carga inicial no destructiva.
 - Catálogos base con áreas Vidrios/Perfiles; perfiles administra familias, colores y acceso a perfiles/códigos.
 - Cotizador unificado con pestañas Vidrio/Perfil y grupos separados en el resumen.

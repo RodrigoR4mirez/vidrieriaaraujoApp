@@ -6,7 +6,7 @@
 
 Esta carpeta contiene las referencias originales del módulo de perfiles de aluminio:
 
-- Excel original: `lista - Rodri.xlsx`.
+- Excel vigente de perfiles: `catalogos-fisicos/catalogo de perfiles de aluminio.xlsx`.
 - Mockup del cotizador de vidrio: `ChatGPT Image 20 sept 2026, 20_48_24 (1).png`.
 - Mockup del cotizador de perfiles y resumen unificado: `ChatGPT Image 20 sept 2026, 20_48_24 (2).png`.
 - Mockup del catálogo/mantenimiento de perfiles: `ChatGPT Image 20 sept 2026, 20_48_25 (3).png`.
@@ -22,14 +22,16 @@ Antes de modificar perfiles, familias, colores, precios o su experiencia visual 
 
 ## Trazabilidad del Excel
 
-- Archivo: `lista - Rodri.xlsx`.
+- Archivo vigente: `catalogos-fisicos/catalogo de perfiles de aluminio.xlsx`.
 - Hoja: `Hoja1`.
-- Columnas utilizadas: `COD`, `DESCRIPCION`, `mate`, `negro`; la columna B contiene imágenes técnicas ancladas a las filas.
+- Columnas utilizadas: `COD`, `DESCRIPCION`, `mate`, `negro`; las imágenes técnicas están ancladas a las filas del Excel.
 - Longitud comercial adoptada según el mockup aprobado: 6 metros.
 - Familias detectadas: 21.
 - Filas candidatas con código y descripción: 157 (sin contar las dos filas de cabecera).
 - Filas con al menos un precio: 144.
-- Perfiles válidos únicos: 143.
+- Perfiles válidos únicos: 154.
+- Perfiles con imagen por código: 134.
+- Perfiles sin imagen: 20.
 - Cobertura de precios antes de consolidar duplicados: 58 solo Mate, 2 solo Negro y 84 con ambos colores.
 
 Las familias originales son: RIELES DE MAMPARA, RIELES SISTEMA NOVA, RIELES DE VENTANA, ZOCALOS H Y DE PARED, CANALES, PORTAFELPAS, ANGULOS, TUBOS CUADRADOS, TUBOS MULTIFUNCIONALES, TUBOS RECTANGULARES, TUBOS REDONDOS, TOPE JUNQUILLO Y PORTAJUNQUILLO, CANTONERA, CONTRAMARCOS, PASAMANOS Y BARANDAS, PUERTA DUCHA, PUERTA DUCHA intermedio, TEE, RIEL CLOSET, PLATINAS y TUBOS CUADRADOS CON ALETA.
@@ -40,7 +42,7 @@ Las familias originales son: RIELES DE MAMPARA, RIELES SISTEMA NOVA, RIELES DE V
 - El código estable se normaliza a mayúsculas para la unicidad; ninguno de los códigos válidos cambia por esta normalización.
 - Los importes binarios de Excel se expresan en dos decimales (`32.700000000000003` → `32.70`, `35.799999999999997` → `35.80`) sin cambiar su valor monetario.
 - El código `5220` aparece en dos filas válidas complementarias: fila 133 con precio Negro y fila 134 con precio Mate. Se consolida en un perfil, se preservan ambas filas/descripciones de origen y no se inventa otro SKU.
-- Si una fila no trae imagen propia se reutiliza únicamente la imagen técnica compartida por su familia cuando el Excel la ancla a productos equivalentes; en otro caso la UI muestra un marcador de perfil sin inventar una fotografía.
+- Las imágenes se escriben como `public/profiles/<CÓDIGO>.<extensión>` por perfil. No se crean `image*.png` ni se usan renombrados Git para asignarlas. Si una fila no trae imagen, el perfil queda sin `imagePath` y la UI muestra un marcador; no se inventa ni se reasigna una fotografía.
 
 ### Filas descartadas por no tener precio
 
